@@ -1,0 +1,4 @@
+PD Project - Android Application Development
+1. User authentication (auth) back-end API.
+Integrating and testing AWS Cognito as our chosen Auth backend. Features of securing user registration, sign-in, and sign-out, all of which are paramount for preserving user data integrity.
+Key user authentication functions of sign-in and sign-out are under rigorous testing to ensure these features run flawlessly, successfully safeguarding user data and enhancing the application's overall reliability.

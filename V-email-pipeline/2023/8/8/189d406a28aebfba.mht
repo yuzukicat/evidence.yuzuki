@@ -1,0 +1,419 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:511a:b0:134:c132:59db with SMTP id 26csp1994334rwi;
+        Tue, 8 Aug 2023 00:22:32 -0700 (PDT)
+X-Received: by 2002:a05:6a20:6a0c:b0:13a:12c2:359e with SMTP id p12-20020a056a206a0c00b0013a12c2359emr11945798pzk.2.1691479352127;
+        Tue, 08 Aug 2023 00:22:32 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1691479352; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=vu+Nz8Dl6V6PCrebGjCsfR4V+PuRRQOtiUKGNMHHRWiLF52jbgsxFr5wgNdMb12pdO
+         gKVg593CxxZOQAbHnCw8phqzkFfl0eASJHaz2oNKYWjgtTk18LD3NCF3Zr4cEYjuODDX
+         bKXlu5tsz2mOb2l0pIbzVtKy/c1JNv8Ty0fZIk0KsWMANUnLLSFgs4DSUdAXR+b1jPPG
+         Nn4+E4kYhjPGV3Ev1oAPdVZ1UN784x7xLPZaYT5ZSXXLgY6qUblPKJMU7xreHoPOUMHH
+         +HraOIgVuokiL05tuffZtiLaNcJf0sYVy80PQQpsIF6AbdC5lwBHBxArnAeE8cA8bVdf
+         rUhA==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:message-id:to:cc:references:date:subject
+         :mime-version:from:dkim-signature;
+        bh=jPO0+LnNFzuVP46nIoCfWcQxRN3YxzaF196WYrIZxMQ=;
+        fh=PlpGoVQKX20FQXmwNBPmwFCtvXK+gG54gaeOKa9hRmo=;
+        b=rpGMYcjvG2lhBV8HHAE+S5O0jHNIiW8UWDjYMo7SfVtl5EKhshNM8CWowqQIwiiKDO
+         05k4ewRvWDdDvB1mjgiXrm7OkPriXOdZa9WAsYo3YMHa3zc8aZmeo5YL0kWCGl86RYX3
+         Mkldt9VdvaoTxrA+WMAmV4lQJz/IIi1OGhwu9ZfK9I8JW5Kv5qVNG/n5aknYy2Io5W2q
+         /llF6Xgp7q4cBv9MFcu4LOMVupDFi/5axDYG933vMSek4MlT5P1qY7ZZNl1MN1ynLHS2
+         ALaIc7h5y+QxJZNo05m4Y/Z5pl5L1/gw7Saqg6hVHuQnVmhQK2AGraYHuLst3HlMhvbO
+         ebJQ==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=bXvJ1aeF;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of admin+bncbdpnxxpdz4krbn62y6tamgqetcjh4ua@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBDPNXXPDZ4KRBN62Y6TAMGQETCJH4UA@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <admin+bncBDPNXXPDZ4KRBN62Y6TAMGQETCJH4UA@nowhere.co.jp>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id e8-20020aa798c8000000b00686da3594d6sor4015961pfm.10.2023.08.08.00.22.31
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 08 Aug 2023 00:22:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of admin+bncbdpnxxpdz4krbn62y6tamgqetcjh4ua@nowhere.co.jp designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=bXvJ1aeF;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of admin+bncbdpnxxpdz4krbn62y6tamgqetcjh4ua@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBDPNXXPDZ4KRBN62Y6TAMGQETCJH4UA@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+ARC-Seal: i=2; a=rsa-sha256; t=1691479351; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=DrccDHiFYx9QWk3c6d2s0IlAszKSy2SJ77bS5WYrS11iOYe3Ze+OUs3z7BYNvyte/7
+         nyrU+AyoKTsvaDMW9qgsV5HCMXBOjbCentqiUrdEfcOUsL4yVVLwoOb8NjDYhC8eBL4z
+         7OHOK1lQLzTP9hwT2/ZFp7At24cyXA7LjY3BidHxow88yBmwZVTE5vlTy5v1tiUTUjhA
+         QMHaDnTqtsxtF9m0nULo5GjLqN0ogEB1e9VrAfRKb23O9PpVbWOEYJCqx9vAw6m2CGla
+         KzF8OdUem8x9DY8NR/kDqhiPTZlwe5+X5ELiYCC2DFZFb5Vkm9cDAED4XIaVEncnsz5H
+         XOUQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:message-id:to:cc:references:date:subject
+         :mime-version:from:dkim-signature;
+        bh=jPO0+LnNFzuVP46nIoCfWcQxRN3YxzaF196WYrIZxMQ=;
+        fh=PlpGoVQKX20FQXmwNBPmwFCtvXK+gG54gaeOKa9hRmo=;
+        b=v017orqY2egGIU0FN+Ql0PVgw+2Uz40p085wRVoKcPfOtP6a1E2bxN7XUZXv+DKHqQ
+         epQpsCbYJDyoajoMUB3tlf6Dqd+f8RwlA3jcWYZ5qzmaJvJtsk498mdzkKckV+M355ef
+         NxwPKXXmKH6vfGOe1Um/zv15BJuK5JcRde+xpfNSKpPddAu/KCHTqE34Kmmg19P6snXt
+         Uqjb8alOrPrRG3+dhxj/8JwLKWez0ni6Lui8zvTo2hvb2OmbXqqBieQ6Oa6HtTvjIkk2
+         /8XWKuz0NIrlSay2Vpt88a5eyBdlQN+7HbO7T01B3MtGfcuRNZJaffsN+yyrs34zbliH
+         yLFg==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="P6pN/+6p";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1691479351; x=1692084151;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:x-original-authentication-results
+         :x-original-sender:message-id:to:cc:references:date:subject
+         :mime-version:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jPO0+LnNFzuVP46nIoCfWcQxRN3YxzaF196WYrIZxMQ=;
+        b=bXvJ1aeFSQzbeOcFO5uNx/RlE0Mf/kOguoDHNHOhjUJcXm2mAyWdbkjj3gWLtWcAaS
+         cm1lgQwtCnrWODW4fZxo6JWExyPMrijUIlm2A/dQUJAdDiqMJSAdftZqCF2eLUqDlIwf
+         wJG3Iz859SF3p5ySNr8c+bDbD/GSuPnfhIpoc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691479351; x=1692084151;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence
+         :x-original-authentication-results:x-original-sender:message-id:to
+         :cc:references:date:subject:mime-version:from:x-beenthere
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jPO0+LnNFzuVP46nIoCfWcQxRN3YxzaF196WYrIZxMQ=;
+        b=PVJxJSPEAVOjxvtOVGn0EUE411ZD4AMo2NpsEKUcfHELDTBAz2pSw+yr592Sh2ddhA
+         5yujAHVkF2bdG2b4orNKsRKd0i+ePeQhyTjIDth2qLFl5sSVqJRTtv+/IEEO2uzWIBFI
+         WsibKc3gXvaPCgmdkcXTTBwC5BMR5p7cVf/m4HTWMANBLt+JWso/Pe+uILHFXUC92EGk
+         xiu+bVUD4e6HAEMocqzpma9cbw5AYnkmo+axgl5AoafZpAJ3ZlVG54H/0aCWdO8YOAfx
+         XwnY2BXe/k77xlddZ3prq2mFF8z/u7JfYhT+14lnA2/QQwQKJL73d7SKIHTvsOqpEnlY
+         mAOA==
+X-Gm-Message-State: AOJu0YxSGr8MJkRBHiMyXiqJpIhl3ijKVG4kxcz3anqN2NrLKdTLsEiF
+	5xMTJaBDQCREgqEzjn9mK+x7yQSY
+X-Google-Smtp-Source: AGHT+IHpSukGLlfVZ9YGWtoKusfFqkxOnI7MOJ0pgKquVoo9LP4tN/zQauZWPfgnOa/PqhS8edbbfg==
+X-Received: by 2002:a05:6a20:4304:b0:118:e70:6f7d with SMTP id h4-20020a056a20430400b001180e706f7dmr12243010pzk.10.1691479351424;
+        Tue, 08 Aug 2023 00:22:31 -0700 (PDT)
+X-BeenThere: admin@nowhere.co.jp
+Received: by 2002:aa7:9afa:0:b0:666:aafb:d36d with SMTP id y26-20020aa79afa000000b00666aafbd36dls2382332pfp.0.-pod-prod-04-us;
+ Tue, 08 Aug 2023 00:22:30 -0700 (PDT)
+X-Received: by 2002:a05:6a20:2452:b0:134:81bc:6ce9 with SMTP id t18-20020a056a20245200b0013481bc6ce9mr11043519pzc.21.1691479349859;
+        Tue, 08 Aug 2023 00:22:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691479349; cv=none;
+        d=google.com; s=arc-20160816;
+        b=aO98YhkKJI23DGEcC8ugdUCBkY7HAOrQe+ufrN4hdvffaDV2gaE/5cM/qhzGbKbOPT
+         ctcMLCaUuZ/de1wZREBDTD0GpmubvfH/jDDGJb04YphJXaV4pUAH863v9QHWs4gt0ZJ5
+         T91RmabwADDthopAG6Xo6JRuRvupOyC/Bupe16WDARkOxwYDyniA0vGgeG4v0qhsr8Ft
+         L1/FcjRUtLX98A27IDq3VLRAQxh4lezcNFJOa3Rd6647hp4CiH4OQ+i25FmBhi7UDAEu
+         axZ6N/K5s02eagfeH/CjBgdvw8jNnoIOGX8QDbsugW5ISHoO6GOE1OTY7KqcczmeYgr5
+         l5uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:cc:references:date:subject:mime-version:from
+         :dkim-signature;
+        bh=jPO0+LnNFzuVP46nIoCfWcQxRN3YxzaF196WYrIZxMQ=;
+        fh=PlpGoVQKX20FQXmwNBPmwFCtvXK+gG54gaeOKa9hRmo=;
+        b=zcuf8l8EP1nYu0SKS+aqOkeEO/q3n1iwEzA1NwYXd5GMD32il/00HbPetcdxd38Y2w
+         ORPTF6dM6amg7gy5iLuhJtc8CYeO7mJv33F/zkx0ixhokwGHP2MibssEpF5pzo1+oshi
+         3YMoHz9bgTRSKY50/vAodCMq0YNJuq7ST6vFsqYVW24ZPt9AGUx+/wRZFLpucGdfc7+Z
+         HrnABnMCm5r9mk9+wQ45+5cYQI6VegeGxYXZBnJxR0OUCJJRQkAzWHSQJvSz/1XpVLCI
+         3PMPz+j1XvU9I4QQkPCPf+QJRE0uoKIWtZqXW7zk4fTWxddmdb63Sb+0UsmSTF055RUJ
+         m2uw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="P6pN/+6p";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id e8-20020aa798c8000000b00686da3594d6sor4015941pfm.10.2023.08.08.00.22.29
+        for <admin@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 08 Aug 2023 00:22:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+X-Received: by 2002:a05:6a20:a10d:b0:127:aaf:59a6 with SMTP id q13-20020a056a20a10d00b001270aaf59a6mr9679299pzk.36.1691479348454;
+        Tue, 08 Aug 2023 00:22:28 -0700 (PDT)
+Received: from smtpclient.apple ([240b:13:31e1:6200:982e:59e3:d63a:c4aa])
+        by smtp.gmail.com with ESMTPSA id s9-20020a62e709000000b00686e8b00a51sm7293218pfh.103.2023.08.08.00.22.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 08 Aug 2023 00:22:27 -0700 (PDT)
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_E40EF888-1DB2-4A72-8689-2ECF84BD6F93"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6\))
+Subject: [admin 9149] Fwd: Alert: Spike in user-reported spam
+Date: Tue, 8 Aug 2023 16:22:14 +0900
+References: <33ba49b317d0e9080523ab00f004bb5089b6c967-20111368-110691822@google.com>
+Cc: admin <admin@nowhere.co.jp>
+To: Jueming Feng <feng.jueming@nowhere.co.jp>
+Message-Id: <ABC0D070-1331-4C0E-9E18-32903F74CDE3@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.700.6)
+X-Original-Sender: yamadera@nowhere.co.jp
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="P6pN/+6p";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates
+ 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Precedence: list
+Mailing-list: list admin@nowhere.co.jp; contact admin+owners@nowhere.co.jp
+List-ID: <admin.nowhere.co.jp>
+X-Spam-Checked-In-Group: admin@nowhere.co.jp
+X-Google-Group-Id: 370051093590
+List-Post: <https://groups.google.com/a/nowhere.co.jp/group/admin/post>, <mailto:admin@nowhere.co.jp>
+List-Help: <https://support.google.com/a/nowhere.co.jp/bin/topic.py?topic=25838>,
+ <mailto:admin+help@nowhere.co.jp>
+List-Archive: <https://groups.google.com/a/nowhere.co.jp/group/admin/>
+List-Unsubscribe: <mailto:googlegroups-manage+370051093590+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/nowhere.co.jp/group/admin/subscribe>
+
+
+--Apple-Mail=_E40EF888-1DB2-4A72-8689-2ECF84BD6F93
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+=E3=81=93=E3=82=8C=E3=81=8D=E3=81=A6=E3=81=9F=E3=81=AE=E3=81=A7=E4=B8=80=E5=
+=BF=9C=E3=83=AD=E3=82=B0=E3=81=A8=E3=81=8B=E6=B0=97=E3=82=92=E3=81=A4=E3=81=
+=91=E3=81=A6=E8=A6=8B=E3=81=A6=E3=81=8A=E3=81=84=E3=81=A6=E3=80=82
+=E3=81=93=E3=81=AE=E5=89=8Dmusa=E3=81=8B=E3=82=89=E3=82=82=E4=BF=BA=E3=81=AE=
+=E3=83=A1=E3=83=BC=E3=83=AB=E3=82=A2=E3=83=89=E3=83=AC=E3=82=B9=E5=81=BD=E8=
+=A3=85=E3=81=97=E3=81=9Fspam
+=E6=9D=A5=E3=81=9F=E3=82=89=E3=81=97=E3=81=84=E3=81=AE=E3=81=A7=E3=80=82
+
+
+> =E8=BB=A2=E9=80=81=E3=81=95=E3=82=8C=E3=81=9F=E3=83=A1=E3=83=83=E3=82=BB=
+=E3=83=BC=E3=82=B8:
+>=20
+> =E5=B7=AE=E5=87=BA=E4=BA=BA: Google Workspace Alerts =
+<google-workspace-alerts-noreply@google.com>
+> =E4=BB=B6=E5=90=8D: Alert: Spike in user-reported spam
+> =E6=97=A5=E4=BB=98: 2023=E5=B9=B48=E6=9C=888=E6=97=A5 16:15:06 JST
+> =E5=AE=9B=E5=85=88: yamadera@nowhere.co.jp
+> =E8=BF=94=E4=BF=A1=E5=85=88: Google Workspace Alerts =
+<google-workspace-alerts-noreply@google.com>
+>=20
+>=20
+> =20
+> =20
+> This Spike in user-reported spam alert is to inform you that an =
+unusually high volume of messages from a sender have been marked as =
+spam.
+>=20
+> The alert details include:
+>=20
+> Summary: 7 message(s) were reported as spam by users in your domain. =
+There was 2 recipient(s).
+> Activity date: =E7=81=AB=E6=9B=9C=E6=97=A5, 2023/08/08 4:16:55 (UTC)
+> Total user reports: 7
+> Reported by: yamadera@nowhere.co.jp <mailto:yamadera@nowhere.co.jp>, =
+yamadera@nowhere.co.jp <mailto:yamadera@nowhere.co.jp>, =
+yamadera@aizu.com <mailto:yamadera@aizu.com>, yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>, yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>, yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>, yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>
+> Severity: HIGH
+> Please view the alert center for additional details, investigation =
+options, and remediation recommendations.
+>=20
+> Go to Alert Center =
+<https://notifications.google.com/g/p/ANiao5oswHSy-MaysZiYLT3S8kS2G5syM8v8=
+nv9iJHIX4Rsy9fknSt6Q41wGtWWGlZezaW2aiaItF12oF8lDopNmLKuNY6AzlpaKVXXj-1B6HQ=
+Tu0k5mig2tCbCQEEeM7WEEXyLBJpM1zPWmJvGGtcYQq_9oV9xNXcH7GT9MDH4sFD_WaPGB0eE6=
+30--tmXZSzDM8G5k49WPWBGq5CJV_eta0ZJdnI2K-7Cl7aoQtaFaIZgBmYq_RcMk3AAyhLZTEU=
+56koJHfzmZ9UvyjbYvJO8T5Bp_GxnKMhnjfQAvgSJTjzsdr9eoE3yt2ncyFiFSwVYjvBd6RLvR=
+TgOCTWDH6u0>
+> =20
+> You have received this important update about your Google Workspace =
+account because you are the designated admin recipient for this alert =
+type. You can turn off these alerts or change the email recipients in =
+the System defined rules =
+<https://notifications.google.com/g/p/ANiao5ouzZr_q0slJlmii3W6XaCxb8bcH-vx=
+lA5HX0yOFnEq30bVa2O0jrB-YiY4_ApqAByT9YI_HJsgrbKb9UHZoG8bKL3_cq-MDhhhTAFLxr=
+4KeKnfG0CEOHX7mJXWpZEUzVBpWFy2vA66pqGjSl3YM2svPsmkjOhMD_nzn9wWh6q7-h6gw1yU=
+Dt-YPBEJpTMKSAw3ZtZZhUsToOsjfqcmGsfCFTmkruE> section of the Admin =
+Console.
+>=20
+> Google LLC 1600 Amphitheatre Parkway Mountain View, CA 94043
+>=20
+
+
+--Apple-Mail=_E40EF888-1DB2-4A72-8689-2ECF84BD6F93
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><br><div>
+<meta =
+charset=3D"UTF-8"><div>=E3=81=93=E3=82=8C=E3=81=8D=E3=81=A6=E3=81=9F=E3=81=
+=AE=E3=81=A7=E4=B8=80=E5=BF=9C=E3=83=AD=E3=82=B0=E3=81=A8=E3=81=8B=E6=B0=97=
+=E3=82=92=E3=81=A4=E3=81=91=E3=81=A6=E8=A6=8B=E3=81=A6=E3=81=8A=E3=81=84=E3=
+=81=A6=E3=80=82</div><div>=E3=81=93=E3=81=AE=E5=89=8Dmusa=E3=81=8B=E3=82=89=
+=E3=82=82=E4=BF=BA=E3=81=AE=E3=83=A1=E3=83=BC=E3=83=AB=E3=82=A2=E3=83=89=E3=
+=83=AC=E3=82=B9=E5=81=BD=E8=A3=85=E3=81=97=E3=81=9Fspam</div><div>=E6=9D=A5=
+=E3=81=9F=E3=82=89=E3=81=97=E3=81=84=E3=81=AE=E3=81=A7=E3=80=82</div>
+</div>
+<br><br><div><blockquote =
+type=3D"cite"><div>=E8=BB=A2=E9=80=81=E3=81=95=E3=82=8C=E3=81=9F=E3=83=A1=E3=
+=83=83=E3=82=BB=E3=83=BC=E3=82=B8:</div><br =
+class=3D"Apple-interchange-newline"><div style=3D"margin-top: 0px; =
+margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>=E5=B7=AE=E5=87=BA=E4=BA=BA: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;">Google Workspace Alerts =
+&lt;google-workspace-alerts-noreply@google.com&gt;<br></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>=E4=BB=B6=E5=90=8D: </b></span><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif;"><b>Alert: =
+Spike in user-reported spam</b><br></span></div><div style=3D"margin-top: =
+0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;"><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif; color:rgba(0, 0, 0, 1.0);"><b>=E6=97=A5=E4=BB=98: =
+</b></span><span style=3D"font-family: -webkit-system-font, Helvetica =
+Neue, Helvetica, sans-serif;">2023=E5=B9=B48=E6=9C=888=E6=97=A5 16:15:06 =
+JST<br></span></div><div style=3D"margin-top: 0px; margin-right: 0px; =
+margin-bottom: 0px; margin-left: 0px;"><span style=3D"font-family: =
+-webkit-system-font, Helvetica Neue, Helvetica, sans-serif; =
+color:rgba(0, 0, 0, 1.0);"><b>=E5=AE=9B=E5=85=88: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">yamadera@nowhere.co.jp<br></span></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px;"><span style=3D"font-family: -webkit-system-font, =
+Helvetica Neue, Helvetica, sans-serif; color:rgba(0, 0, 0, =
+1.0);"><b>=E8=BF=94=E4=BF=A1=E5=85=88: </b></span><span =
+style=3D"font-family: -webkit-system-font, Helvetica Neue, Helvetica, =
+sans-serif;">Google Workspace Alerts =
+&lt;google-workspace-alerts-noreply@google.com&gt;<br></span></div><br><di=
+v><meta charset=3D"UTF-8"><table class=3D"body" style=3D"letter-spacing: =
+normal; orphans: auto; text-transform: none; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; text-decoration: none; =
+border-collapse: collapse; border-spacing: 0px; color: rgb(60, 64, 67); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; height: 650px; line-height: inherit; margin: 0px; =
+padding: 0px; vertical-align: top; width: 600px; background: rgb(248, =
+249, 250) !important;"><tbody><tr style=3D"padding: 0px; vertical-align: =
+top;"><td align=3D"center" class=3D"center" valign=3D"top" =
+style=3D"-webkit-hyphens: none; color: rgb(60, 64, 67); font-family: =
+Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; =
+line-height: inherit; margin: 0px; padding: 0px; vertical-align: top; =
+border-collapse: collapse !important;"><center data-parsed=3D"" =
+style=3D"min-width: 600px; width: 600px;"><table align=3D"center" =
+class=3D"container float-center" style=3D"background: rgb(250, 250, =
+250); border-collapse: collapse; border-spacing: 0px; float: none; =
+margin: 0px auto; padding: 0px; text-align: center; vertical-align: top; =
+width: 600px;"><tbody><tr style=3D"padding: 0px; vertical-align: =
+top;"><td style=3D"-webkit-hyphens: none; color: rgb(60, 64, 67); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; line-height: inherit; margin: 0px; padding: 0px; =
+vertical-align: top; border-collapse: collapse !important;"><table =
+class=3D"row header" style=3D"background: rgb(248, 249, 250); =
+border-collapse: collapse; border-spacing: 0px; display: table; =
+font-size: 12px; padding: 0px; position: relative; text-align: left; =
+vertical-align: top; width: 600px;"><tbody><tr style=3D"padding: 0px; =
+vertical-align: top;"><th class=3D"small-3 large-6 columns first" =
+style=3D"color: rgb(60, 64, 67); font-family: Roboto, Helvetica, Arial, =
+sans-serif; font-size: 14px; font-weight: 400; line-height: inherit; =
+margin: 0px auto; padding: 40px 20px 0px 40px; width: 260px;"><table =
+style=3D"border-collapse: collapse; border-spacing: 0px; margin-bottom: =
+24px; padding: 0px; text-align: left; vertical-align: top; width: =
+285px;"><tbody><tr style=3D"padding: 0px; vertical-align: bottom;"><th =
+style=3D"color: rgb(60, 64, 67); font-family: Roboto, Helvetica, Arial, =
+sans-serif; font-size: 14px; font-weight: 400; line-height: inherit; =
+margin: 0px; padding: 0px;"><img alt=3D"Google Workspace Image" =
+src=3D"https://www.gstatic.com/apps/signup/resources/google-workspace-lock=
+up.png" style=3D"clear: both; display: block; margin-top: 0px; outline: =
+0px; text-decoration: none;"></th></tr></tbody></table></th><th =
+class=3D"small-3 large-6 columns last" style=3D"color: rgb(60, 64, 67); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; line-height: inherit; margin: 0px auto; padding: 12px =
+40px 0px 0px; width: 260px;">&nbsp;</th></tr></tbody></table><table =
+class=3D"row info" style=3D"align-items: center; background: rgb(255, =
+255, 255); border-collapse: collapse; border-color: rgb(232, 234, 237); =
+border-spacing: 0px; border-style: solid; border-width: 1px; display: =
+table; padding: 0px; position: relative; text-align: left; =
+vertical-align: top; width: 600px;"><tbody><tr style=3D"padding: 0px; =
+vertical-align: top;"><th class=3D"small-12 large-12 columns first last" =
+style=3D"color: rgb(60, 64, 67); font-family: Roboto, Helvetica, Arial, =
+sans-serif; font-size: 14px; font-weight: 400; line-height: inherit; =
+margin: 0px auto; padding: 0px 40px; width: 560px;"><table =
+style=3D"border-collapse: collapse; border-spacing: 0px; padding: 0px; =
+vertical-align: top; width: 518px;"><tbody><tr style=3D"padding: 0px; =
+vertical-align: top;"><th style=3D"color: rgb(60, 64, 67); font-family: =
+Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; =
+line-height: inherit; margin: 0px; padding: 0px;">&nbsp;<div =
+style=3D"color: rgb(60, 64, 67); font-family: Roboto, Helvetica, Arial, =
+sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; =
+margin: 0px 0px 16px; padding: 0px;"><p style=3D"color: rgb(60, 64, 67); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; line-height: 24px; margin: 0px 0px 16px; padding: =
+0px;">This Spike in user-reported spam&nbsp;alert is to inform you that =
+an unusually high volume of messages from a sender have been marked as =
+spam.</p><p>The alert details include:</p><ul style=3D"padding-left: =
+20px;"><li>Summary: 7 message(s) were reported as spam by users in your =
+domain. There was 2 recipient(s).</li><li>Activity date: =E7=81=AB=E6=9B=9C=
+=E6=97=A5, 2023/08/08 4:16:55 (UTC)</li><li>Total user reports: =
+7</li><li>Reported by:<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@aizu.com">yamadera@aizu.com</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>,<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a></li><li>=
+Severity: HIGH</li></ul></div><p style=3D"color: rgb(60, 64, 67); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; line-height: 24px; margin: 0px 0px 16px; padding: =
+0px;"><span>Please view the alert center for additional details, =
+investigation options, and remediation recommendations.</span></p><table =
+class=3D"button radius thumbnail" style=3D"width: =
+518px;"><tbody><tr><td><center><span class=3D"button radius thumbnail =
+align-center" style=3D"-webkit-hyphens: none; background: rgb(74, 144, =
+226); border: medium; border-radius: 3px; color: rgb(255, 255, 255); =
+font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-weight: 400; line-height: inherit; margin: 0px; vertical-align: =
+top; padding: 10px; border-collapse: collapse !important;"><a =
+href=3D"https://notifications.google.com/g/p/ANiao5oswHSy-MaysZiYLT3S8kS2G=
+5syM8v8nv9iJHIX4Rsy9fknSt6Q41wGtWWGlZezaW2aiaItF12oF8lDopNmLKuNY6AzlpaKVXX=
+j-1B6HQTu0k5mig2tCbCQEEeM7WEEXyLBJpM1zPWmJvGGtcYQq_9oV9xNXcH7GT9MDH4sFD_Wa=
+PGB0eE630--tmXZSzDM8G5k49WPWBGq5CJV_eta0ZJdnI2K-7Cl7aoQtaFaIZgBmYq_RcMk3AA=
+yhLZTEU56koJHfzmZ9UvyjbYvJO8T5Bp_GxnKMhnjfQAvgSJTjzsdr9eoE3yt2ncyFiFSwVYjv=
+Bd6RLvRTgOCTWDH6u0" style=3D"color: rgb(255, 255, 255); display: =
+inline-block; font-family: Roboto, Helvetica, Arial, sans-serif; =
+font-size: 14px; font-weight: 500; text-decoration: none;">Go to Alert =
+Center</a></span></center></td></tr></tbody></table><div>&nbsp;<br =
+class=3D"webkit-block-placeholder"></div></th></tr></tbody></table></th></=
+tr></tbody></table><table class=3D"row footer" style=3D"background: =
+rgb(248, 249, 250); border-collapse: collapse; border-spacing: 0px; =
+display: table; font-size: 12px; padding: 0px; position: relative; =
+text-align: left; vertical-align: top; width: 600px;"><tbody><tr =
+style=3D"padding: 0px; vertical-align: top;"><th class=3D"small-3 =
+large-6 columns first" style=3D"color: rgb(60, 64, 67); font-family: =
+Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; =
+line-height: inherit; margin: 0px auto; padding: 12px 20px 0px 40px; =
+width: 260px;"><p style=3D"color: rgb(108, 115, 127); font-family: =
+Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; =
+line-height: 16px; margin: 0px 0px 14px; padding: 0px;">You have =
+received this important update about your Google Workspace&nbsp;account =
+because you are the designated admin recipient for this alert type. You =
+can turn off these alerts or change the email recipients in the<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"https://notifications.google.com/g/p/ANiao5ouzZr_q0slJlmii3W6XaCxb=
+8bcH-vxlA5HX0yOFnEq30bVa2O0jrB-YiY4_ApqAByT9YI_HJsgrbKb9UHZoG8bKL3_cq-MDhh=
+hTAFLxr4KeKnfG0CEOHX7mJXWpZEUzVBpWFy2vA66pqGjSl3YM2svPsmkjOhMD_nzn9wWh6q7-=
+h6gw1yUDt-YPBEJpTMKSAw3ZtZZhUsToOsjfqcmGsfCFTmkruE">System defined =
+rules</a><span class=3D"Apple-converted-space">&nbsp;</span>section of =
+the Admin Console.<br><br>Google LLC 1600 Amphitheatre Parkway Mountain =
+View, CA =
+94043</p></th></tr></tbody></table></td></tr></tbody></table></center></td=
+></tr></tbody></table></div></blockquote></div><br></body></html>=
+
+--Apple-Mail=_E40EF888-1DB2-4A72-8689-2ECF84BD6F93--

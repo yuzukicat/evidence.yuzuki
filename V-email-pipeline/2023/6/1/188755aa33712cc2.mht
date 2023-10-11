@@ -1,0 +1,719 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:6501:b0:127:cdfe:9d74 with SMTP id v1csp98755rwg;
+        Wed, 31 May 2023 22:07:34 -0700 (PDT)
+X-Received: by 2002:a05:620a:6082:b0:75b:23a1:424 with SMTP id dx2-20020a05620a608200b0075b23a10424mr8472248qkb.58.1685596054178;
+        Wed, 31 May 2023 22:07:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685596054; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xHC/YjRK5v7NmMuRHl0V+bi3SezBi6d/4E4K2T/uBlwRKgyGvlhj2Q4//nYZmheBjq
+         x4aBU7VOXFmxVMC5XhSgMXjPkwdMUggF/4wsOyt5rZagaVszLxWELKR5KpeBbBqDTD18
+         y7qHDRXd01Hc34XAlbE532nc/3Dm9PRwKiRtLPcKB5AlzRrqjBJFbsjCM8RqRcnYnDNQ
+         0N9oEyCiHKXllLbsU0/1KtgjXShBYOwftnJXcQ52M+hOBMKUZkgncSMYNZNXHOdhpiWE
+         OHp3cZiRTM5O+jHelzoxUVhk2PPVjT9NLmXLzr9L2q57+WtZBCuEXPNSibe3wOJPxZvl
+         F8Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=6hBjsyTzXMbPutaYKiwEc1QjD0SVxj5xQrRxP/S8TLg=;
+        b=IwOuNJ5DYCaGgCPtJK8x8ewDf16l7yyjke7JHW2oU9jfHUkY1NTzyTGDs3fUkgZyP4
+         9ujyU0SIK3n+f/5z1F94La57GSEo/6Llr+kkMdHzOPLOcrnHyt7Q0SGFqj02h17GzidL
+         ME+HSWN4HD6bHjjJ+d9vSXmOYALzzR7pWUmjV6qR8EctgZ1YBh7d9O91CN716YRbzgXC
+         gEwkv8384T7iGV8mts/j7BDQG5uFXLKWXKP+JCy9KFD2kg8E0kJ+DFXaJlZDeR95p5lA
+         tN6tD5zZm1ONHnQ8iN2h3rrJjry1fh0HlvnH6iIw9Any2WSx+x+lYr05J7mc2Db4Wbz1
+         XAaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="ItTaGA/X";
+       spf=pass (google.com: domain of tang@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=tang@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <tang@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id j65-20020a378744000000b0075b13a942acsor5867516qkd.0.2023.05.31.22.07.33
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Wed, 31 May 2023 22:07:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tang@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="ItTaGA/X";
+       spf=pass (google.com: domain of tang@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=tang@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1685596053; x=1688188053;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6hBjsyTzXMbPutaYKiwEc1QjD0SVxj5xQrRxP/S8TLg=;
+        b=ItTaGA/XYaxX9sGAe/a2IIoUDRKl0weZvCnNUEEh2ken6u+D7h4/HzF+pL0H6JrHGF
+         0H0iqyntATogd6WaP5oP7pYNk3C81YIGepOSJqjEdY4zMR8H7zDIU1Fu1zSm4emqHoIJ
+         WPRzyAqjv1U6OmYypj0tfAPhbt70WAkD4mzqA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685596053; x=1688188053;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6hBjsyTzXMbPutaYKiwEc1QjD0SVxj5xQrRxP/S8TLg=;
+        b=JAkezUujHL25gVzJEGHJJQGWqGdvUXGN+24rd/YUxqGor30mpcg5vBJBuOf+JQAA+P
+         3pezcghayIIDH7imbe61pzum5Xy2gM4gz6qbcQGiLYCBRQa3DIi0CsdMuTZ6sFDojDwT
+         Fi4BongGyiyaUGil4X4s8UG4RaTgvh1o89efqGOhKMuhV/0tOKjC4ACvDtd58TSlyXm7
+         xW+OBVueVUS16E/izw1J689+SG2Jk5Oh8UpGd/SVpdiMbISavdY4aYpRRLHGJcuR314O
+         E19kQsO2nr7R9l/qZI5/exYXg8iJCsZV1YlK5zfk3AEqwkEoaB6/BaWBpdqBFY6Qj7UZ
+         IHMQ==
+X-Gm-Message-State: AC+VfDxLbD3REn5nciPo4i31xUQP69DRK5Q9eVse8BUCrQ+eVKHkz6IO
+	ZGNSbjnUw/UzH2d2nGZ/1uwRSOaNDySSSLtb1TmpBYUJTNS9oRuXnT6YNPRP
+X-Google-Smtp-Source: ACHHUZ4/8HxlkN6WJVBvZKcID69wyQ6XegZUxPmfOhDb/EjzPb+OAgSoTNIMl2lmUL1c2s8mw3+uRvhahQdQLgcGD2U=
+X-Received: by 2002:ac8:5708:0:b0:3f2:19dd:979a with SMTP id
+ 8-20020ac85708000000b003f219dd979amr8534489qtw.23.1685596053569; Wed, 31 May
+ 2023 22:07:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <1a671d6b-2371-4b6e-a417-b95cdd5706aa@az.westus3.unknown.microsoft.com>
+ <99D987F6-750B-41F7-9EB2-D3E087D46255@nowhere.co.jp>
+In-Reply-To: <99D987F6-750B-41F7-9EB2-D3E087D46255@nowhere.co.jp>
+From: Tang Li <tang@nowhere.co.jp>
+Date: Thu, 1 Jun 2023 14:07:22 +0900
+Message-ID: <CAMonfW1+hO-Wa+SjKKmZb=6y5UnJL3fMj2ouM7r_+eZHjdd05Q@mail.gmail.com>
+Subject: Re: [eyes 10919] Fwd: [admin 8536] Important: Your cost is forecasted
+ to exceed its threshold value for your Azure budget, pd
+To: Jun Yamadera <yamadera@nowhere.co.jp>
+Cc: JIANG DAWEI <dawei.jiang@nowhere.co.jp>, Jueming Feng <feng.jueming@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="00000000000002169e05fd0a6a96"
+
+--00000000000002169e05fd0a6a96
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I think this PD Azure is managed by Yuzuki san. I tried to log in as
+admin@nowhere.co.jp but failed because the password from Bitwarden is not
+correct.
+Should we wait until Yuzuki comes to the office tomorrow?
+
+On Thu, Jun 1, 2023 at 1:17=E2=80=AFPM Jun Yamadera <yamadera@nowhere.co.jp=
+> wrote:
+
+>
+> ALAN PD uses more than 5,000 yen/day? Is there any mistake in setting???
+>
+> Jueming or Yuzuki?
+>
+> =E8=BB=A2=E9=80=81=E3=81=95=E3=82=8C=E3=81=9F=E3=83=A1=E3=83=83=E3=82=BB=
+=E3=83=BC=E3=82=B8:
+>
+> *=E5=B7=AE=E5=87=BA=E4=BA=BA: *"'Microsoft Azure' via admin" <admin@nowhe=
+re.co.jp>
+> *=E4=BB=B6=E5=90=8D: **[admin 8536] Important: Your cost is forecasted to=
+ exceed its
+> threshold value for your Azure budget, pd*
+> *=E6=97=A5=E4=BB=98: *2023=E5=B9=B46=E6=9C=881=E6=97=A5 11:35:25 JST
+> *=E5=AE=9B=E5=85=88: *admin@nowhere.co.jp
+> *=E8=BF=94=E4=BF=A1=E5=85=88: *Microsoft Azure <azure-noreply@microsoft.c=
+om>
+>
+> [image: Microsoft Azure]
+> Your cost is forecasted to exceed its threshold value for your Azure
+> budget, pd
+> The total spend for your budget, pd, is forecasted to reach =C2=A55,567 b=
+efore
+> the end of the period. This amount exceeds your specified budget threshol=
+d
+> of =C2=A55,000. Please review your budget in the Azure portal and analyze=
+ your
+> cost and usage.
+> Review budget >
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fportal.azure.com%2F%23%40dde609af-2949-448b-9f6e-6fbda58c34ad%2Fblade%2=
+FMicrosoft_Azure_CostManagement%2FBudgetDetailBlade%2FbudgetId%2F%252Fsubsc=
+riptions%252F06046ac6-c6e5-46e0-be6e-083e1e4838a8%252FresourceGroups%252Fpd=
+%252Fproviders%252FMicrosoft.Consumption%252Fbudgets%252Fpd&p=3DbT0xYTY3MWQ=
+2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS=
+0wODNlMWU0ODM4YTgmdT1hZW8mbD1wb3J0YWwuYXp1cmUuY29t>
+> Budget name:pd
+> Budget start date:June 1, 2023
+> Budget type:Cost
+> Budget amount:=C2=A510,000
+> Notification threshold for forecast alert:=C2=A55,000
+> Total forecasted for period:=C2=A55,567
+> Alert generation time:June 1, 2023 2:35 UTC
+>
+> To see more information about this alert, view the alert details
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fportal.azure.com%2F%23%40dde609af-2949-448b-9f6e-6fbda58c34ad%2Fblade%2=
+FMicrosoft_Azure_CostManagement%2Falerts%2Fscope%2F%252Fsubscriptions%252F0=
+6046ac6-c6e5-46e0-be6e-083e1e4838a8%252FresourceGroups%252Fpd%252F%2FalertI=
+d%2Fsubscriptions%252F06046ac6-c6e5-46e0-be6e-083e1e4838a8%252FresourceGrou=
+ps%252Fpd%252Fproviders%252FMicrosoft.CostManagement%252Falerts%252Fdecebab=
+0-7488-4c9d-8730-ce42ed6c7396&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZ=
+GQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1w=
+b3J0YWwuYXp1cmUuY29tXzI%3D>
+>  in the Azure portal. If you need additional help, visit budgets tutorial
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fcost-management-billing%2Fcosts%2F=
+tutorial-acm-create-budgets&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ=
+1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD10dX=
+RvcmlhbC1hY20tY3JlYXRlLWJ1ZGdldHM%3D>.
+> If you need help, please contact support
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fportal.azure.com%2F%23blade%2FMicrosoft_Azure_Support%2FHelpAndSupportB=
+lade%2Foverview&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0=
+wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1wb3J0YWwuYXp1cm=
+UuY29tXzM%3D>
+> .
+> If you no longer want to receive alerts for pd, contact
+> yuzuki@nowhere.co.jp.
+> Account information
+>
+> *Subscription ID:* 06046ac6-c6e5-46e0-be6e-083e1e4838a8
+>
+> *Resource group name:* pd
+> *Tenant ID:* dde609af-2949-448b-9f6e-6fbda58c34ad
+> [image: Facebook]
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fwww.facebook.com%2Fmicrosoftazure&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxN=
+y1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1h=
+ZW8mbD1mb290ZXIlM0FmYWNlYm9vaw%3D%3D> [image:
+> Twitter]
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Ftwitter.com%2Fazure&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA=
+2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1mb290ZX=
+IlM0F0d2l0dGVy> [image:
+> YouTube]
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fwww.youtube.com%2F%40MicrosoftAzure&p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQ=
+xNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT=
+1hZW8mbD1mb290ZXIlM0F5b3V0dWJl> [image:
+> LinkedIn]
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fwww.linkedin.com%2Fshowcase%2Fmicrosoft-developers&p=3DbT0xYTY3MWQ2Yi0y=
+MzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODN=
+lMWU0ODM4YTgmdT1hZW8mbD1mb290ZXIlM0FsaW5rZWRpbg%3D%3D>
+>
+> Privacy Statement
+> <https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2=
+F%2Fgo.microsoft.com%2Ffwlink%2F%3FLinkId%3D521839&p=3DbT0xYTY3MWQ2Yi0yMzcx=
+LTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU=
+0ODM4YTgmdT1hZW8mbD1wcml2YWN5LXN0YXRlbWVudA%3D%3D>
+>
+> Microsoft Corporation, One Microsoft Way, =E2=80=8BRedmond, WA 98052=E2=
+=80=8B
+> [image: Microsoft]
+>
+>
+>
+
+--00000000000002169e05fd0a6a96
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I think this PD Azure is managed by Yuzuki san. I tri=
+ed to log in as <a href=3D"mailto:admin@nowhere.co.jp">admin@nowhere.co.jp<=
+/a> but failed because the password from Bitwarden is not correct. <br></di=
+v><div>Should we wait until Yuzuki comes to the office tomorrow?<br></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Thu, Jun 1, 2023 at 1:17=E2=80=AFPM Jun Yamadera &lt;<a href=3D"mailto:ya=
+madera@nowhere.co.jp">yamadera@nowhere.co.jp</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div><br><div>
+<div>ALAN PD uses more than 5,000 yen/day? Is there any mistake in setting?=
+??</div><div><br></div><div>Jueming or Yuzuki?</div><div><br></div></div><d=
+iv><blockquote type=3D"cite"><div>=E8=BB=A2=E9=80=81=E3=81=95=E3=82=8C=E3=
+=81=9F=E3=83=A1=E3=83=83=E3=82=BB=E3=83=BC=E3=82=B8:</div><br><div style=3D=
+"margin:0px"><span style=3D"font-family:-webkit-system-font,Helvetica Neue,=
+Helvetica,sans-serif;color:rgb(0,0,0)"><b>=E5=B7=AE=E5=87=BA=E4=BA=BA: </b>=
+</span><span style=3D"font-family:-webkit-system-font,Helvetica Neue,Helvet=
+ica,sans-serif">&quot;&#39;Microsoft Azure&#39; via admin&quot; &lt;<a href=
+=3D"mailto:admin@nowhere.co.jp" target=3D"_blank">admin@nowhere.co.jp</a>&g=
+t;<br></span></div><div style=3D"margin:0px"><span style=3D"font-family:-we=
+bkit-system-font,Helvetica Neue,Helvetica,sans-serif;color:rgb(0,0,0)"><b>=
+=E4=BB=B6=E5=90=8D: </b></span><span style=3D"font-family:-webkit-system-fo=
+nt,Helvetica Neue,Helvetica,sans-serif"><b>[admin 8536] Important: Your cos=
+t is forecasted to exceed its threshold value for your Azure budget, pd</b>=
+<br></span></div><div style=3D"margin:0px"><span style=3D"font-family:-webk=
+it-system-font,Helvetica Neue,Helvetica,sans-serif;color:rgb(0,0,0)"><b>=E6=
+=97=A5=E4=BB=98: </b></span><span style=3D"font-family:-webkit-system-font,=
+Helvetica Neue,Helvetica,sans-serif">2023=E5=B9=B46=E6=9C=881=E6=97=A5 11:3=
+5:25 JST<br></span></div><div style=3D"margin:0px"><span style=3D"font-fami=
+ly:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif;color:rgb(0,0,0)=
+"><b>=E5=AE=9B=E5=85=88: </b></span><span style=3D"font-family:-webkit-syst=
+em-font,Helvetica Neue,Helvetica,sans-serif"><a href=3D"mailto:admin@nowher=
+e.co.jp" target=3D"_blank">admin@nowhere.co.jp</a><br></span></div><div sty=
+le=3D"margin:0px"><span style=3D"font-family:-webkit-system-font,Helvetica =
+Neue,Helvetica,sans-serif;color:rgb(0,0,0)"><b>=E8=BF=94=E4=BF=A1=E5=85=88:=
+ </b></span><span style=3D"font-family:-webkit-system-font,Helvetica Neue,H=
+elvetica,sans-serif">Microsoft Azure &lt;<a href=3D"mailto:azure-noreply@mi=
+crosoft.com" target=3D"_blank">azure-noreply@microsoft.com</a>&gt;<br></spa=
+n></div><br><div><table role=3D"presentation" style=3D"font-family:&quot;Se=
+goe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;let=
+ter-spacing:normal;text-transform:none;word-spacing:0px;text-decoration:non=
+e;border-spacing:0px;border-collapse:collapse;vertical-align:top;background=
+:rgb(255,255,255);height:1107px;width:872px;color:rgb(17,16,15);font-weight=
+:400;padding:0px;margin:0px;text-align:left;font-size:14px;line-height:20px=
+"><tbody><tr style=3D"padding:0px;vertical-align:top;text-align:left"><td s=
+tyle=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);fon=
+t-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Ari=
+al,sans-serif;font-weight:400;padding:0px;font-size:14px;line-height:20px;m=
+argin:0px auto;float:none;text-align:center" valign=3D"top" align=3D"center=
+"><center style=3D"width:872px;min-width:640px"><table role=3D"presentation=
+" style=3D"border-spacing:0px;border-collapse:collapse;padding:0px;vertical=
+-align:top;margin:0px auto;float:none;text-align:center" bgcolor=3D"#ffffff=
+" align=3D"center"><tbody><tr style=3D"padding:0px;vertical-align:top;text-=
+align:left"><td style=3D"border-collapse:collapse;vertical-align:top;color:=
+rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helveti=
+ca Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-=
+align:left;font-size:14px;line-height:20px"><table role=3D"presentation" di=
+r=3D"ltr" style=3D"border-spacing:0px;border-collapse:collapse;padding:0px;=
+vertical-align:top;background:rgb(255,255,255);width:640px;margin:0px auto;=
+text-align:inherit" align=3D"center"><tbody><tr style=3D"padding:0px;vertic=
+al-align:top;text-align:left"><td style=3D"border-collapse:collapse;vertica=
+l-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Ro=
+boto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0p=
+x;margin:0px;text-align:left;font-size:14px;line-height:20px"><table role=
+=3D"presentation" style=3D"border-spacing:0px;border-collapse:collapse;padd=
+ing:0px;vertical-align:top;width:640px;text-align:left" align=3D"left"><tbo=
+dy><tr style=3D"padding:0px;vertical-align:top;text-align:left"><td style=
+=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);font-fa=
+mily:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,s=
+ans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;font-size:=
+14px;line-height:20px"><table role=3D"presentation" style=3D"border-spacing=
+:0px;border-collapse:collapse;vertical-align:top;padding:0px;width:640px;te=
+xt-align:left;display:table" align=3D"left"><tbody><tr style=3D"padding:0px=
+;vertical-align:top;text-align:left"><th style=3D"border-collapse:collapse;=
+vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,Seg=
+oeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;fon=
+t-size:14px;line-height:20px;margin:0px auto;width:616px;text-align:left;pa=
+dding:24px" align=3D"left"><table role=3D"presentation" style=3D"border-spa=
+cing:0px;border-collapse:collapse;padding:0px;vertical-align:top;text-align=
+:left;width:592px"><tbody><tr style=3D"padding:0px;vertical-align:top;text-=
+align:left"><th style=3D"border-collapse:collapse;vertical-align:top;color:=
+rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helveti=
+ca Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-=
+align:left;font-size:14px;line-height:20px"><img src=3D"https://images.ecom=
+m.microsoft.com/cdn/mediahandler/azure-emails-templates/production/shared/i=
+mages/templates/shared/images/logos/microsoft-azure.png" alt=3D"Microsoft A=
+zure" title=3D"Microsoft Azure" style=3D"outline: none; text-decoration: no=
+ne; max-width: 100%; clear: both; display: block; height: 20px; width: auto=
+;" width=3D"auto" height=3D"20"></th><th style=3D"border-collapse:collapse;=
+vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,Seg=
+oeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;mar=
+gin:0px;text-align:left;font-size:14px;line-height:20px;width:0px;padding:0=
+px"></th></tr></tbody></table></th></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table><table role=3D"presentation" style=3D"bord=
+er-spacing:0px;border-collapse:collapse;padding:0px;vertical-align:top;back=
+ground:rgb(255,255,255);width:640px;margin:0px auto;text-align:inherit" ali=
+gn=3D"center"><tbody><tr style=3D"padding:0px;vertical-align:top;text-align=
+:left"><td style=3D"border-collapse:collapse;vertical-align:top;color:rgb(1=
+7,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Ne=
+ue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-align=
+:left;font-size:14px;line-height:20px"><table role=3D"presentation" style=
+=3D"border-spacing:0px;border-collapse:collapse;padding:0px;vertical-align:=
+top;text-align:left;width:640px" align=3D"center"><tbody><tr style=3D"paddi=
+ng:0px;vertical-align:top;text-align:left"><td style=3D"border-collapse:col=
+lapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quo=
+t;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:4=
+00;padding:6px 0px 12px;margin:0px;text-align:left;font-size:14px;line-heig=
+ht:20px"><center style=3D"width:640px;min-width:640px"><table role=3D"prese=
+ntation" style=3D"border-spacing:0px;border-collapse:collapse;vertical-alig=
+n:top;padding:0px;width:640px;margin:0px auto;float:none;text-align:center;=
+display:table" align=3D"center"><tbody><tr style=3D"padding:0px;vertical-al=
+ign:top;text-align:left"><th style=3D"border-collapse:collapse;vertical-ali=
+gn:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,=
+&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;text-align:left=
+;font-size:14px;line-height:20px;margin:0px auto;width:616px;padding:6px 24=
+px 12px"><table role=3D"presentation" style=3D"border-spacing:0px;border-co=
+llapse:collapse;padding:0px;vertical-align:top;text-align:left;width:592px"=
+><tbody><tr style=3D"padding:0px;vertical-align:top;text-align:left"><th st=
+yle=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);font=
+-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Aria=
+l,sans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;font-si=
+ze:14px;line-height:20px"><h1 style=3D"padding:0px;margin:0px 0px 16px;text=
+-align:left;color:inherit;letter-spacing:-0.01em;font-family:&quot;Segoe UI=
+ Semibold&quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;H=
+elvetica Neue&quot;,Arial,sans-serif;font-weight:600;font-size:28px;line-he=
+ight:36px">Your cost is forecasted to exceed its threshold value for your A=
+zure budget, pd</h1><div style=3D"color:rgb(17,16,15);font-family:&quot;Seg=
+oe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font=
+-weight:400;padding:0px;margin:0px;text-align:left;font-size:16px;line-heig=
+ht:22px">The total spend for your budget, pd, is forecasted to reach =C2=A5=
+5,567 before the end of the period. This amount exceeds your specified budg=
+et threshold of =C2=A55,000. Please review your budget in the Azure portal =
+and analyze your cost and usage.</div></th><th style=3D"border-collapse:col=
+lapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quo=
+t;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:4=
+00;margin:0px;text-align:left;font-size:14px;line-height:20px;width:0px;pad=
+ding:0px"></th></tr></tbody></table></th></tr></tbody></table><table role=
+=3D"presentation" style=3D"border-spacing:0px;border-collapse:collapse;vert=
+ical-align:top;padding:0px;width:640px;margin:0px auto;float:none;text-alig=
+n:center;display:table" align=3D"center"><tbody><tr style=3D"padding:0px;ve=
+rtical-align:top;text-align:left"><th style=3D"border-collapse:collapse;ver=
+tical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeU=
+I,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;text-a=
+lign:left;font-size:14px;line-height:20px;margin:0px auto;width:616px;paddi=
+ng:12px 24px"><table role=3D"presentation" style=3D"border-spacing:0px;bord=
+er-collapse:collapse;padding:0px;vertical-align:top;text-align:left;width:5=
+92px"><tbody><tr style=3D"padding:0px;vertical-align:top;text-align:left"><=
+th style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15)=
+;font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;=
+,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;fo=
+nt-size:14px;line-height:20px"><table role=3D"presentation" style=3D"border=
+-spacing:0px;border-collapse:collapse;padding:0px;vertical-align:top;text-a=
+lign:left;margin:0px;width:auto"><tbody><tr style=3D"padding:0px;vertical-a=
+lign:top;text-align:left"><td style=3D"border-collapse:collapse;vertical-al=
+ign:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto=
+,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;ma=
+rgin:0px;text-align:left;font-size:14px;line-height:20px"><table role=3D"pr=
+esentation" style=3D"border-spacing:0px;border-collapse:collapse;padding:0p=
+x;vertical-align:top;text-align:left;width:159.531px"><tbody><tr style=3D"p=
+adding:0px;vertical-align:top;text-align:left"><td style=3D"border-collapse=
+:collapse;vertical-align:top;font-family:&quot;Segoe UI&quot;,SegoeUI,Robot=
+o,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;m=
+argin:0px;font-size:14px;line-height:20px;color:rgb(255,255,255);background=
+:rgb(0,120,212);border:0px none;border-radius:2px;text-align:center"><a hre=
+f=3D"https://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A=
+%2F%2Fportal.azure.com%2F%23%40dde609af-2949-448b-9f6e-6fbda58c34ad%2Fblade=
+%2FMicrosoft_Azure_CostManagement%2FBudgetDetailBlade%2FbudgetId%2F%252Fsub=
+scriptions%252F06046ac6-c6e5-46e0-be6e-083e1e4838a8%252FresourceGroups%252F=
+pd%252Fproviders%252FMicrosoft.Consumption%252Fbudgets%252Fpd&amp;p=3DbT0xY=
+TY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAt=
+YmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1wb3J0YWwuYXp1cmUuY29t" style=3D"font-siz=
+e:16px;color:rgb(255,255,255);text-decoration:none;text-align:left;display:=
+inline-block;padding:12px 16px;border:0px solid rgb(0,120,212);border-radiu=
+s:2px;line-height:1;font-family:&quot;Segoe UI Semibold&quot;,SegoeUISemibo=
+ld,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,san=
+s-serif;font-weight:600" target=3D"_blank">Review budget &gt;</a></td></tr>=
+</tbody></table></td></tr></tbody></table></th><th style=3D"border-collapse=
+:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI=
+&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weig=
+ht:400;margin:0px;text-align:left;font-size:14px;line-height:20px;width:0px=
+;padding:0px"></th></tr></tbody></table></th></tr></tbody></table><table ro=
+le=3D"presentation" style=3D"border-spacing:0px;border-collapse:collapse;ve=
+rtical-align:top;padding:0px;width:640px;margin:0px auto;float:none;text-al=
+ign:center;display:table" align=3D"center"><tbody><tr style=3D"padding:0px;=
+vertical-align:top;text-align:left"><th style=3D"border-collapse:collapse;v=
+ertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,Sego=
+eUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;text=
+-align:left;font-size:14px;line-height:20px;margin:0px auto;width:616px;pad=
+ding:12px 24px"><table role=3D"presentation" style=3D"border-spacing:0px;bo=
+rder-collapse:collapse;padding:0px;vertical-align:top;text-align:left;width=
+:592px"><tbody><tr style=3D"padding:0px;vertical-align:top;text-align:left"=
+><th style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,1=
+5);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quo=
+t;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;=
+font-size:14px;line-height:20px"><table role=3D"presentation" style=3D"bord=
+er-spacing:0px;border-collapse:collapse;padding:0px;vertical-align:top;text=
+-align:left;width:592px;border-top:2px solid rgb(201,201,201);border-bottom=
+:2px solid rgb(201,201,201)"><tbody><tr style=3D"padding:0px;vertical-align=
+:top;text-align:left"><th style=3D"border-collapse:collapse;vertical-align:=
+top;color:rgb(17,16,15);margin:0px;text-align:left;font-size:16px;line-heig=
+ht:22px;padding:8px 0px;width:246.672px;font-family:&quot;Segoe UI Semibold=
+&quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica =
+Neue&quot;,Arial,sans-serif;font-weight:600;border-top:1px solid rgb(222,22=
+2,222)">Budget name:</th><th style=3D"border-collapse:collapse;vertical-ali=
+gn:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,=
+&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;margin:0px;text=
+-align:left;font-size:16px;line-height:22px;padding:8px 0px;width:345.344px=
+;border-top:1px solid rgb(222,222,222)">pd</th></tr><tr style=3D"padding:0p=
+x;vertical-align:top;text-align:left"><th style=3D"border-collapse:collapse=
+;vertical-align:top;color:rgb(17,16,15);margin:0px;text-align:left;font-siz=
+e:16px;line-height:22px;padding:8px 0px;width:246.672px;font-family:&quot;S=
+egoe UI Semibold&quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,=
+&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:600;border-top:1px =
+solid rgb(222,222,222)">Budget start date:</th><th style=3D"border-collapse=
+:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI=
+&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weig=
+ht:400;margin:0px;text-align:left;font-size:16px;line-height:22px;padding:8=
+px 0px;width:345.344px;border-top:1px solid rgb(222,222,222)">June 1, 2023<=
+/th></tr><tr style=3D"padding:0px;vertical-align:top;text-align:left"><th s=
+tyle=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);mar=
+gin:0px;text-align:left;font-size:16px;line-height:22px;padding:8px 0px;wid=
+th:246.672px;font-family:&quot;Segoe UI Semibold&quot;,SegoeUISemibold,&quo=
+t;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif=
+;font-weight:600;border-top:1px solid rgb(222,222,222)">Budget type:</th><t=
+h style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);=
+font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,=
+Arial,sans-serif;font-weight:400;margin:0px;text-align:left;font-size:16px;=
+line-height:22px;padding:8px 0px;width:345.344px;border-top:1px solid rgb(2=
+22,222,222)">Cost</th></tr><tr style=3D"padding:0px;vertical-align:top;text=
+-align:left"><th style=3D"border-collapse:collapse;vertical-align:top;color=
+:rgb(17,16,15);margin:0px;text-align:left;font-size:16px;line-height:22px;p=
+adding:8px 0px;width:246.672px;font-family:&quot;Segoe UI Semibold&quot;,Se=
+goeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot=
+;,Arial,sans-serif;font-weight:600;border-top:1px solid rgb(222,222,222)">B=
+udget amount:</th><th style=3D"border-collapse:collapse;vertical-align:top;=
+color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;H=
+elvetica Neue&quot;,Arial,sans-serif;font-weight:400;margin:0px;text-align:=
+left;font-size:16px;line-height:22px;padding:8px 0px;width:345.344px;border=
+-top:1px solid rgb(222,222,222)">=C2=A510,000</th></tr><tr style=3D"padding=
+:0px;vertical-align:top;text-align:left"><th style=3D"border-collapse:colla=
+pse;vertical-align:top;color:rgb(17,16,15);margin:0px;text-align:left;font-=
+size:16px;line-height:22px;padding:8px 0px;width:246.672px;font-family:&quo=
+t;Segoe UI Semibold&quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Robo=
+to,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:600;border-top:1=
+px solid rgb(222,222,222)">Notification threshold for forecast alert:</th><=
+th style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15)=
+;font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;=
+,Arial,sans-serif;font-weight:400;margin:0px;text-align:left;font-size:16px=
+;line-height:22px;padding:8px 0px;width:345.344px;border-top:1px solid rgb(=
+222,222,222)">=C2=A55,000</th></tr><tr style=3D"padding:0px;vertical-align:=
+top;text-align:left"><th style=3D"border-collapse:collapse;vertical-align:t=
+op;color:rgb(17,16,15);margin:0px;text-align:left;font-size:16px;line-heigh=
+t:22px;padding:8px 0px;width:246.672px;font-family:&quot;Segoe UI Semibold&=
+quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica N=
+eue&quot;,Arial,sans-serif;font-weight:600;border-top:1px solid rgb(222,222=
+,222)">Total forecasted for period:</th><th style=3D"border-collapse:collap=
+se;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,=
+SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;=
+margin:0px;text-align:left;font-size:16px;line-height:22px;padding:8px 0px;=
+width:345.344px;border-top:1px solid rgb(222,222,222)">=C2=A55,567</th></tr=
+><tr style=3D"padding:0px;vertical-align:top;text-align:left"><th style=3D"=
+border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);margin:0px;=
+text-align:left;font-size:16px;line-height:22px;padding:8px 0px;width:246.6=
+72px;font-family:&quot;Segoe UI Semibold&quot;,SegoeUISemibold,&quot;Segoe =
+UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-we=
+ight:600;border-top:1px solid rgb(222,222,222)">Alert generation time:</th>=
+<th style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15=
+);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot=
+;,Arial,sans-serif;font-weight:400;margin:0px;text-align:left;font-size:16p=
+x;line-height:22px;padding:8px 0px;width:345.344px;border-top:1px solid rgb=
+(222,222,222)">June 1, 2023 2:35 UTC</th></tr></tbody></table></th><th styl=
+e=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);font-f=
+amily:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,=
+sans-serif;font-weight:400;margin:0px;text-align:left;font-size:14px;line-h=
+eight:20px;width:0px;padding:0px"></th></tr></tbody></table></th></tr></tbo=
+dy></table><table role=3D"presentation" style=3D"border-spacing:0px;border-=
+collapse:collapse;vertical-align:top;padding:0px;width:640px;margin:0px aut=
+o;float:none;text-align:center;display:table" align=3D"center"><tbody><tr s=
+tyle=3D"padding:0px;vertical-align:top;text-align:left"><th style=3D"border=
+-collapse:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot=
+;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;=
+font-weight:400;text-align:left;font-size:14px;line-height:20px;margin:0px =
+auto;width:616px;padding:12px 24px"><table role=3D"presentation" style=3D"b=
+order-spacing:0px;border-collapse:collapse;padding:0px;vertical-align:top;t=
+ext-align:left;width:592px"><tbody><tr style=3D"padding:0px;vertical-align:=
+top;text-align:left"><th style=3D"border-collapse:collapse;vertical-align:t=
+op;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quo=
+t;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:=
+0px;text-align:left;font-size:14px;line-height:20px"><p style=3D"color:rgb(=
+17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica N=
+eue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px 0px 12px;=
+text-align:left;font-size:16px;line-height:22px">To see more information ab=
+out this alert,<span>=C2=A0</span><a href=3D"https://nam.safelink.emails.az=
+ure.net/redirect/?destination=3Dhttps%3A%2F%2Fportal.azure.com%2F%23%40dde6=
+09af-2949-448b-9f6e-6fbda58c34ad%2Fblade%2FMicrosoft_Azure_CostManagement%2=
+Falerts%2Fscope%2F%252Fsubscriptions%252F06046ac6-c6e5-46e0-be6e-083e1e4838=
+a8%252FresourceGroups%252Fpd%252F%2FalertId%2Fsubscriptions%252F06046ac6-c6=
+e5-46e0-be6e-083e1e4838a8%252FresourceGroups%252Fpd%252Fproviders%252FMicro=
+soft.CostManagement%252Falerts%252Fdecebab0-7488-4c9d-8730-ce42ed6c7396&amp=
+;p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNm=
+U1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1wb3J0YWwuYXp1cmUuY29tXzI%3D" s=
+tyle=3D"color:rgb(0,120,212);font-family:&quot;Segoe UI&quot;,SegoeUI,Robot=
+o,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;t=
+ext-align:left;line-height:20px;text-decoration:none;margin:inherit" target=
+=3D"_blank">view the alert details</a><span>=C2=A0</span>in the Azure porta=
+l. If you need additional help, visit<span>=C2=A0</span><a href=3D"https://=
+nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2F%2Fdocs.mi=
+crosoft.com%2Fen-us%2Fazure%2Fcost-management-billing%2Fcosts%2Ftutorial-ac=
+m-create-budgets&amp;p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YW=
+Emcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD10dXRvcmlhb=
+C1hY20tY3JlYXRlLWJ1ZGdldHM%3D" style=3D"color:rgb(0,120,212);font-family:&q=
+uot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-ser=
+if;font-weight:400;padding:0px;text-align:left;line-height:20px;text-decora=
+tion:none;margin:inherit" target=3D"_blank">budgets tutorial</a>. If you ne=
+ed help, please<span>=C2=A0</span><a href=3D"https://nam.safelink.emails.az=
+ure.net/redirect/?destination=3Dhttps%3A%2F%2Fportal.azure.com%2F%23blade%2=
+FMicrosoft_Azure_Support%2FHelpAndSupportBlade%2Foverview&amp;p=3DbT0xYTY3M=
+WQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2=
+ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1wb3J0YWwuYXp1cmUuY29tXzM%3D" style=3D"color:=
+rgb(0,120,212);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvet=
+ica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;text-align:left=
+;line-height:20px;text-decoration:none;margin:inherit" target=3D"_blank">co=
+ntact support</a>.</p><div style=3D"color:rgb(17,16,15);font-family:&quot;S=
+egoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;fo=
+nt-weight:400;padding:0px;margin:0px;text-align:left;font-size:16px;line-he=
+ight:22px">If you no longer want to receive alerts for pd, contact<span>=C2=
+=A0</span><a href=3D"mailto:yuzuki@nowhere.co.jp" target=3D"_blank">yuzuki@=
+nowhere.co.jp</a>.</div></th><th style=3D"border-collapse:collapse;vertical=
+-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Rob=
+oto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;margin:0px;=
+text-align:left;font-size:14px;line-height:20px;width:0px;padding:0px"></th=
+></tr></tbody></table></th></tr></tbody></table></center></td></tr></tbody>=
+</table><table role=3D"presentation" style=3D"border-spacing:0px;border-col=
+lapse:collapse;padding:0px;vertical-align:top;text-align:left;width:640px;b=
+order-top:1px solid rgb(234,235,236)" align=3D"center"><tbody><tr style=3D"=
+padding:0px;vertical-align:top;text-align:left"><td style=3D"border-collaps=
+e:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe U=
+I&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-wei=
+ght:400;padding:12px 0px;margin:0px;text-align:left;font-size:14px;line-hei=
+ght:20px"><center style=3D"width:640px;min-width:640px"><table role=3D"pres=
+entation" style=3D"border-spacing:0px;border-collapse:collapse;vertical-ali=
+gn:top;padding:0px;width:640px;margin:0px auto;float:none;text-align:center=
+;display:table" align=3D"center"><tbody><tr style=3D"padding:0px;vertical-a=
+lign:top;text-align:left"><th style=3D"border-collapse:collapse;vertical-al=
+ign:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto=
+,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;text-align:lef=
+t;font-size:14px;line-height:20px;margin:0px auto;width:616px;padding:12px =
+24px"><table role=3D"presentation" style=3D"border-spacing:0px;border-colla=
+pse:collapse;padding:0px;vertical-align:top;text-align:left;width:592px"><t=
+body><tr style=3D"padding:0px;vertical-align:top;text-align:left"><th style=
+=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);font-fa=
+mily:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,s=
+ans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;font-size:=
+14px;line-height:20px"><h2 style=3D"padding:0px;margin:0px 0px 16px;text-al=
+ign:left;color:inherit;font-family:&quot;Segoe UI Semibold&quot;,SegoeUISem=
+ibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,=
+sans-serif;font-weight:600;font-size:24px;line-height:32px">Account informa=
+tion</h2><p style=3D"color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,S=
+egoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;p=
+adding:0px;margin:0px 0px 12px;text-align:left;font-size:16px;line-height:2=
+2px"><strong style=3D"font-family:&quot;Segoe UI Semibold&quot;,SegoeUISemi=
+bold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,s=
+ans-serif;font-weight:600">Subscription ID:</strong><span>=C2=A0</span>0604=
+6ac6-c6e5-46e0-be6e-083e1e4838a8</p><p style=3D"color:rgb(17,16,15);font-fa=
+mily:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,s=
+ans-serif;font-weight:400;padding:0px;margin:0px 0px 12px;text-align:left;f=
+ont-size:16px;line-height:22px"><strong style=3D"font-family:&quot;Segoe UI=
+ Semibold&quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;H=
+elvetica Neue&quot;,Arial,sans-serif;font-weight:600">Resource group name:<=
+/strong><span>=C2=A0</span>pd</p><div style=3D"color:rgb(17,16,15);font-fam=
+ily:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sa=
+ns-serif;font-weight:400;padding:0px;margin:0px;text-align:left;font-size:1=
+6px;line-height:22px"><strong style=3D"font-family:&quot;Segoe UI Semibold&=
+quot;,SegoeUISemibold,&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica N=
+eue&quot;,Arial,sans-serif;font-weight:600">Tenant ID:</strong><span>=C2=A0=
+</span>dde609af-2949-448b-9f6e-6fbda58c34ad</div></th><th style=3D"border-c=
+ollapse:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;S=
+egoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;fo=
+nt-weight:400;margin:0px;text-align:left;font-size:14px;line-height:20px;wi=
+dth:0px;padding:0px"></th></tr></tbody></table></th></tr></tbody></table></=
+center></td></tr></tbody></table></td></tr></tbody></table><table role=3D"p=
+resentation" dir=3D"ltr" style=3D"border-spacing:0px;border-collapse:collap=
+se;padding:0px;vertical-align:top;background:rgb(255,255,255);width:640px;m=
+argin:0px auto;text-align:inherit" align=3D"center"><tbody><tr style=3D"pad=
+ding:0px;vertical-align:top;text-align:left"><td style=3D"border-collapse:c=
+ollapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&q=
+uot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight=
+:400;padding:0px;margin:0px;text-align:left;font-size:14px;line-height:20px=
+"><table role=3D"presentation" style=3D"border-spacing:0px;border-collapse:=
+collapse;padding:0px;vertical-align:top;text-align:left;width:640px;backgro=
+und-color:rgb(240,240,240)" align=3D"center"><tbody><tr style=3D"padding:0p=
+x;vertical-align:top;text-align:left"><td style=3D"border-collapse:collapse=
+;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,Se=
+goeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;pa=
+dding:12px 0px;margin:0px;text-align:left;font-size:14px;line-height:20px">=
+<center style=3D"width:640px;min-width:640px"><table role=3D"presentation" =
+style=3D"border-spacing:0px;border-collapse:collapse;vertical-align:top;tex=
+t-align:left;padding:0px;width:640px;display:table"><tbody><tr style=3D"pad=
+ding:0px;vertical-align:top;text-align:left"><th style=3D"border-collapse:c=
+ollapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&q=
+uot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight=
+:400;text-align:left;font-size:14px;line-height:20px;margin:0px auto;paddin=
+g:12px 24px 0px;width:auto"><table role=3D"presentation" style=3D"border-sp=
+acing:0px;border-collapse:collapse;padding:0px;vertical-align:top;text-alig=
+n:left;width:592px"><tbody><tr style=3D"padding:0px;vertical-align:top;text=
+-align:left"><th style=3D"border-collapse:collapse;vertical-align:top;color=
+:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvet=
+ica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text=
+-align:left;font-size:14px;line-height:20px"><table role=3D"presentation" v=
+align=3D"middle" style=3D"border-spacing:0px;border-collapse:collapse;paddi=
+ng:0px;vertical-align:top;text-align:left;width:auto"><tbody><tr style=3D"p=
+adding:0px;vertical-align:top;text-align:left"><td style=3D"border-collapse=
+:collapse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI=
+&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weig=
+ht:400;padding:0px 8px 0px 0px;margin:0px;text-align:left;font-size:14px;li=
+ne-height:1"><a href=3D"https://nam.safelink.emails.azure.net/redirect/?des=
+tination=3Dhttps%3A%2F%2Fwww.facebook.com%2Fmicrosoftazure&amp;p=3DbT0xYTY3=
+MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU=
+2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1mb290ZXIlM0FmYWNlYm9vaw%3D%3D" style=3D"fon=
+t-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Ari=
+al,sans-serif;font-weight:400;padding:0px;text-align:left;line-height:20px;=
+color:rgb(72,70,68);display:inline-block;text-decoration:underline" target=
+=3D"_blank"><img src=3D"https://images.ecomm.microsoft.com/cdn/mediahandler=
+/azure-emails-templates/production/shared/images/templates/shared/images/lo=
+gos/footer-facebook-4x.png" alt=3D"Facebook" title=3D"Facebook" style=3D"ou=
+tline: none; text-decoration: none; max-width: 100%; border: medium none; h=
+eight: 16px; width: auto; clear: none; display: inline;" width=3D"auto" hei=
+ght=3D"16"></a></td><td style=3D"border-collapse:collapse;vertical-align:to=
+p;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot=
+;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px 8px 0px =
+0px;margin:0px;text-align:left;font-size:14px;line-height:1"><a href=3D"htt=
+ps://nam.safelink.emails.azure.net/redirect/?destination=3Dhttps%3A%2F%2Ftw=
+itter.com%2Fazure&amp;p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2Y=
+WEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1mb290ZXIl=
+M0F0d2l0dGVy" style=3D"font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quo=
+t;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;text-al=
+ign:left;line-height:20px;color:rgb(72,70,68);display:inline-block;text-dec=
+oration:underline" target=3D"_blank"><img src=3D"https://images.ecomm.micro=
+soft.com/cdn/mediahandler/azure-emails-templates/production/shared/images/t=
+emplates/shared/images/logos/footer-twitter-4x.png" alt=3D"Twitter" title=
+=3D"Twitter" style=3D"outline: none; text-decoration: none; max-width: 100%=
+; border: medium none; height: 16px; width: 18px; clear: none; display: inl=
+ine;" width=3D"18" height=3D"16"></a></td><td style=3D"border-collapse:coll=
+apse;vertical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot=
+;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:40=
+0;padding:0px 8px 0px 0px;margin:0px;text-align:left;font-size:14px;line-he=
+ight:1"><a href=3D"https://nam.safelink.emails.azure.net/redirect/?destinat=
+ion=3Dhttps%3A%2F%2Fwww.youtube.com%2F%40MicrosoftAzure&amp;p=3DbT0xYTY3MWQ=
+2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS=
+0wODNlMWU0ODM4YTgmdT1hZW8mbD1mb290ZXIlM0F5b3V0dWJl" style=3D"font-family:&q=
+uot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-ser=
+if;font-weight:400;padding:0px;text-align:left;line-height:20px;color:rgb(7=
+2,70,68);display:inline-block;text-decoration:underline" target=3D"_blank">=
+<img src=3D"https://images.ecomm.microsoft.com/cdn/mediahandler/azure-email=
+s-templates/production/shared/images/templates/shared/images/logos/footer-y=
+outube-4x.png" alt=3D"YouTube" title=3D"YouTube" style=3D"outline: none; te=
+xt-decoration: none; max-width: 100%; border: medium none; height: 16px; wi=
+dth: 24px; clear: none; display: inline;" width=3D"24" height=3D"16"></a></=
+td><td style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16=
+,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&q=
+uot;,Arial,sans-serif;font-weight:400;padding:0px 8px 0px 0px;margin:0px;te=
+xt-align:left;font-size:14px;line-height:1"><a href=3D"https://nam.safelink=
+.emails.azure.net/redirect/?destination=3Dhttps%3A%2F%2Fwww.linkedin.com%2F=
+showcase%2Fmicrosoft-developers&amp;p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1=
+iOTVjZGQ1NzA2YWEmcz0wNjA0NmFjNi1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW=
+8mbD1mb290ZXIlM0FsaW5rZWRpbg%3D%3D" style=3D"font-family:&quot;Segoe UI&quo=
+t;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:4=
+00;padding:0px;text-align:left;line-height:20px;color:rgb(72,70,68);display=
+:inline-block;text-decoration:underline" target=3D"_blank"><img src=3D"http=
+s://images.ecomm.microsoft.com/cdn/mediahandler/azure-emails-templates/prod=
+uction/shared/images/templates/shared/images/logos/footer-linkedin-4x.png" =
+alt=3D"LinkedIn" title=3D"LinkedIn" style=3D"outline: none; text-decoration=
+: none; max-width: 100%; border: medium none; height: 16px; width: 16px; cl=
+ear: none; display: inline;" width=3D"16" height=3D"16"></a></td></tr></tbo=
+dy></table></th><th style=3D"border-collapse:collapse;vertical-align:top;co=
+lor:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Hel=
+vetica Neue&quot;,Arial,sans-serif;font-weight:400;margin:0px;text-align:le=
+ft;font-size:14px;line-height:20px;width:0px;padding:0px"></th></tr></tbody=
+></table></th></tr></tbody></table><table role=3D"presentation" style=3D"bo=
+rder-spacing:0px;border-collapse:collapse;vertical-align:top;text-align:lef=
+t;padding:0px;width:640px;display:table"><tbody><tr style=3D"padding:0px;ve=
+rtical-align:top;text-align:left"><th style=3D"border-collapse:collapse;ver=
+tical-align:top;color:rgb(17,16,15);font-family:&quot;Segoe UI&quot;,SegoeU=
+I,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;text-a=
+lign:left;font-size:14px;line-height:20px;margin:0px auto;padding:12px 24px=
+;width:auto"><table role=3D"presentation" style=3D"border-spacing:0px;borde=
+r-collapse:collapse;padding:0px;vertical-align:top;text-align:left;width:59=
+2px"><tbody><tr style=3D"padding:0px;vertical-align:top;text-align:left"><t=
+h style=3D"border-collapse:collapse;vertical-align:top;color:rgb(17,16,15);=
+font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,=
+Arial,sans-serif;font-weight:400;padding:0px;margin:0px;text-align:left;fon=
+t-size:14px;line-height:20px"><div style=3D"font-family:&quot;Segoe UI&quot=
+;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:40=
+0;padding:0px;margin:0px;text-align:left;font-size:12px;line-height:16px;co=
+lor:rgb(72,70,68)"><a href=3D"https://nam.safelink.emails.azure.net/redirec=
+t/?destination=3Dhttps%3A%2F%2Fgo.microsoft.com%2Ffwlink%2F%3FLinkId%3D5218=
+39&amp;p=3DbT0xYTY3MWQ2Yi0yMzcxLTRiNmUtYTQxNy1iOTVjZGQ1NzA2YWEmcz0wNjA0NmFj=
+Ni1jNmU1LTQ2ZTAtYmU2ZS0wODNlMWU0ODM4YTgmdT1hZW8mbD1wcml2YWN5LXN0YXRlbWVudA%=
+3D%3D" title=3D"Privacy Statement" style=3D"font-family:&quot;Segoe UI&quot=
+;,SegoeUI,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif;font-weight:40=
+0;padding:0px;text-align:left;line-height:20px;color:rgb(72,70,68);display:=
+inline-block;text-decoration:underline" target=3D"_blank">Privacy Statement=
+</a></div><p style=3D"font-family:&quot;Segoe UI&quot;,SegoeUI,Roboto,&quot=
+;Helvetica Neue&quot;,Arial,sans-serif;font-weight:400;padding:0px;margin:8=
+px 0px 12px;text-align:left;font-size:12px;line-height:16px;color:rgb(72,70=
+,68)">Microsoft Corporation,<span>=C2=A0</span><span style=3D"display:inlin=
+e-block;word-break:keep-all">One Microsoft Way, =E2=80=8BRedmond, WA 98052=
+=E2=80=8B</span></p><img src=3D"https://images.ecomm.microsoft.com/cdn/medi=
+ahandler/azure-emails-templates/production/shared/images/templates/shared/i=
+mages/logos/microsoft-logo-2x.png" alt=3D"Microsoft" title=3D"Microsoft" st=
+yle=3D"outline: none; text-decoration: none; max-width: 100%; clear: both; =
+display: block; height: 20px; max-height: 20px; width: auto;" width=3D"auto=
+" height=3D"20"></th></tr></tbody></table></th></tr></tbody></table></cente=
+r></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></t=
+able></center></td></tr></tbody></table></div></blockquote></div><br></div>=
+</blockquote></div>
+
+--00000000000002169e05fd0a6a96--

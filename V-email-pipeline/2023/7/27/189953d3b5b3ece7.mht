@@ -1,0 +1,237 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:c6a2:b0:134:c132:59db with SMTP id fe34csp752570rwb;
+        Wed, 26 Jul 2023 19:46:05 -0700 (PDT)
+X-Received: by 2002:a0c:c3c1:0:b0:63d:10b2:55ea with SMTP id p1-20020a0cc3c1000000b0063d10b255eamr3208825qvi.27.1690425965235;
+        Wed, 26 Jul 2023 19:46:05 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1690425965; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=JB2woZYQPLm8wewfBmuCD1TokHjAjEGETyoaQ/WJ2bu8+89uvyp8Hcg6eHexjqbTYp
+         VtE/N6KElehjXS6Y/xuQFJ4xfzXLlgnXGm/DeRQnRzLvTX0ujQrjFud1oRmedMuGgOCp
+         TBnicUueWZii+RtE5YlsPveL3zbV1L89hbjYczSHGIX5ZANmoaY9P9jUYObhrY1v2/oZ
+         MUBW06d3UKuvvWDWvY5Pa3aHJ2YJC1WAe/pqMZUM5/mUXOE6tiBXruGRXDzjrQJUhKao
+         qDmlD56k5xEqh6agnLDX0ivMekoxPDA8C0+U2xzxgVWo9opVud9OsX31X/uFKX+YR14a
+         Ypiw==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:reply-to:to:cc:date:message-id:subject
+         :mime-version:content-transfer-encoding:from:dkim-signature;
+        bh=mELFBJ9ACD1hmZqy9w0ZYmsRHj0d4WaUzdhU5f8qJR0=;
+        fh=U+gye5SqLwBNT91Y9mdIL+PmsZjGaHYncfs29WOvFxs=;
+        b=fHYUZZOSx2cmdL5InU91WVYg+CRV08tZ09mcvreurHDxmgKO+itBNVutmtFiAL/qGe
+         2KEtKMETETwYl6Rhk+TB1cA40WCYu88TUAQX3mZyNEWbbyL8iiHYH1cKfXJ/jG/ojwwu
+         hQRNz0S5/fhxs4UnAcJd9YnoWDLO0niwbXEWGZAA4YHCGpRyz7Y1QWdE1JkyK+7+jbYc
+         jOBkBy65QrfTPZBmuQby/F6a7sq5roSY3PthFXbsjIWMyrQSZrCH1fllRR/383PJwBOf
+         ZnN4kNVL3iTMi20e11uWDOXiuktkBWPOUht/NjRV8p2W4lVVZfXl7Q6WF/9+yDOQ9typ
+         IWBw==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=dV8Tkpw7;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of staff+bncbdpnxxpdz4krb3fuq6tamgqexitm4ry@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=staff+bncBDPNXXPDZ4KRB3FUQ6TAMGQEXITM4RY@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <staff+bncBDPNXXPDZ4KRB3FUQ6TAMGQEXITM4RY@nowhere.co.jp>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id b20-20020a05620a0cd400b007683c124138sor167399qkj.13.2023.07.26.19.46.05
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Wed, 26 Jul 2023 19:46:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of staff+bncbdpnxxpdz4krb3fuq6tamgqexitm4ry@nowhere.co.jp designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=dV8Tkpw7;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of staff+bncbdpnxxpdz4krb3fuq6tamgqexitm4ry@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=staff+bncBDPNXXPDZ4KRB3FUQ6TAMGQEXITM4RY@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+ARC-Seal: i=2; a=rsa-sha256; t=1690425965; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=RWDm/hdm39ElbQtpB7mu5rRdhD7P2opnEvCZltTgafe7CD9VqKEvZajgo+ETAOh/SE
+         ONcuqunSwY7BEDRCrptSlm7U1Fe58BhrjEmNRej6in8os1HqYnhCNmXTLBeWR2S+VsNM
+         ciS1OoQ6axFfnZP3iqdOhMEywluLg2AJCPUysOtNqTdfc0UoP0g+1sK2v0Nj2GtXr17w
+         XXGdcbRWYOx858janx+SGJB+sYXY5HcXb9StDVJjEhKq7XGWgjgcIb5RAAu2oKV3Ktjy
+         NIxpyPrVw/DfhyUICREEE8k80+Gbstcn09tjLevwO4INbSP+7hmnJkpxV/f/zU+i2Z8G
+         1pjw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:reply-to:to:cc:date:message-id:subject
+         :mime-version:content-transfer-encoding:from:dkim-signature;
+        bh=mELFBJ9ACD1hmZqy9w0ZYmsRHj0d4WaUzdhU5f8qJR0=;
+        fh=U+gye5SqLwBNT91Y9mdIL+PmsZjGaHYncfs29WOvFxs=;
+        b=f45VQX2o5MeQBUGDWzHUAfDyrph9p5bsFu+lHN1lKmka5RGbGl3ynV7GmMunvuE4LA
+         PMx3GWxBk6poUanFZSo8+ciE4CfqeFjW8kF4SHLdKtjpFFy+jY9U9pRmi6xaLWWCokcr
+         OW8y7QF2MuTh+E2ZPXPdQ3d0xDcAFDNlJoAcuGVzafjp91Wq3NJ/Gv/F5NoMBTk4zTg9
+         TLzEwJgdM/q5o0Mhi0lhXsrvS6iK3Ba9eOKTy23O/uefB6vWLSeuwDO6oUY/FxANfc1D
+         SDTqhj7PUc+4Xgft6yJ1VUcW/azpHLFs/82Ep50BWJeFSxHR7DPeXgVJLCUwwZ/Aw705
+         rKPA==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="OGKK/BQC";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1690425965; x=1691030765;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:reply-to:x-original-authentication-results
+         :x-original-sender:to:cc:date:message-id:subject:mime-version
+         :content-transfer-encoding:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mELFBJ9ACD1hmZqy9w0ZYmsRHj0d4WaUzdhU5f8qJR0=;
+        b=dV8Tkpw7Ozav7KGfgM4VMOSeXW28dMJHEI1+eUCsXtspSCOEjUPMxW/MX6GCBCgHAw
+         M9ninH9YYSbV3qX/u5EfjEktqjLfzs/1xFAsC445sSOONTyxXl7CDKtT2OvCecTNn+5e
+         b5iC+SGvU1h+gxs5gUuevHDD+0ctuw/8SdAtc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690425965; x=1691030765;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence:reply-to
+         :x-original-authentication-results:x-original-sender:to:cc:date
+         :message-id:subject:mime-version:content-transfer-encoding:from
+         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mELFBJ9ACD1hmZqy9w0ZYmsRHj0d4WaUzdhU5f8qJR0=;
+        b=fMBid00/5QRSVhn2+F2FtPjhXeSzIhwDaVs0AQVolSys0qJcpDpFKu3p3XdDDEymxm
+         hy9607T21uwcnGCFTnnMkZFEf8eq7hctU0D7DH9/03T4wVBJPak2PphCHJ2ixnrJIYjC
+         NWMGHzCevCKHkgva6bwVv+aGS58zvzCEgYn0b816zlP9LHdq+gAdCgXpdyTTNQ4DMHdo
+         5hYdUCyt8T7cmPLLes9VqFoNOrShe1WI+xFj4FfLrSxIavB0Lgdwo7zefli5RBRvYz/f
+         auaXP2jR6mFtY96f1zQJZIvmkbYZCLUy5K2csF8ukzIek7lbIa2EEmy31duYmLX6aacy
+         9qrw==
+X-Gm-Message-State: ABy/qLZvs5lfDWI2gdZFrC7PWhNbRv+xYdLCZXLb4Q29gbM9G1/QdIwr
+	iSTgcIcaGnCwwe2RwCtE1FA8+Sw8
+X-Google-Smtp-Source: APBJJlFZAAfu4Nk3+emG93BC6YQptoy25llZfJJkb46mW/iOsVvZBUb2EpGVcP+/ziPG4Hu/S/NuYg==
+X-Received: by 2002:a05:620a:ec2:b0:768:64a:fe56 with SMTP id x2-20020a05620a0ec200b00768064afe56mr3560394qkm.77.1690425964822;
+        Wed, 26 Jul 2023 19:46:04 -0700 (PDT)
+X-BeenThere: staff@nowhere.co.jp
+Received: by 2002:a17:902:6548:b0:1b8:9bba:77a7 with SMTP id
+ d8-20020a170902654800b001b89bba77a7ls159377pln.2.-pod-prod-02-us; Wed, 26 Jul
+ 2023 19:46:03 -0700 (PDT)
+X-Received: by 2002:a05:6a21:47c8:b0:122:8096:7012 with SMTP id as8-20020a056a2147c800b0012280967012mr3277257pzc.3.1690425963191;
+        Wed, 26 Jul 2023 19:46:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690425963; cv=none;
+        d=google.com; s=arc-20160816;
+        b=HvQ4ksEXTjjQKxaH0d3SOYaqNJ9I51Dq8GExPEEH++leZ4nRmJRdw4IRkzmJ4sJR/T
+         k4CoAfDNGM3MYs8FurC//zqodUECKNlDUg/qQhKPzibAeVhjXWNZuSTop11Ujo1ASqUc
+         aFfFLHlJpt/jGobvrzEZy3YA0cMlbl8abb2sfp2qx+2FEwcT7ON9csq+zkEtusb+RuDj
+         1OkGNRK6ODq1sp61Acw+89Vtf0+vqPK7CClSCJ9QiW9Et1/TkXKfgIrFNJI37yTxJihW
+         T52b8B2B+uuYbW1bZLR7EEAMlfAKQwvsKIrYZRPsFdXmfgjkcFGLQ5MmjrYWsUNTPm3Z
+         hYJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:cc:date:message-id:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=mELFBJ9ACD1hmZqy9w0ZYmsRHj0d4WaUzdhU5f8qJR0=;
+        fh=U+gye5SqLwBNT91Y9mdIL+PmsZjGaHYncfs29WOvFxs=;
+        b=xU6zisswnkn2pHomsbGftfD2T34k7m1YUwA+ryJaMV+p0F2xeE0owjJMelQpt1vSrM
+         2hKXFFWLM24Q/lZkJpfVhrgLYq5I2KmSy7dVjty6Fb1pz2qw1S/B24vAvoEJytsplTvQ
+         IhkFOA5nB/5gX4kmcpa/YQCIyooTlu0NP/K+UXAfYcFITyLQHDvnHiAe49bETqPSRt5z
+         0GKIzIl5MWvGNZkBqFwrp6n7cFmTpKWeb++cqfRjOfX82fE6HIK1TaNynE7TcUk+upxF
+         RzEBdhxQ4zTn555lJNSZ8dnDroskngVDkavdkyvHRajj9h4en6IVfi/bGZ1lGAOTX4NJ
+         wctQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="OGKK/BQC";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id f5-20020a170902684500b001b9e7e505f6sor123160pln.19.2023.07.26.19.46.03
+        for <staff@nowhere.co.jp>
+        (Google Transport Security);
+        Wed, 26 Jul 2023 19:46:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+X-Received: by 2002:a17:902:f682:b0:1b6:bced:1dc2 with SMTP id l2-20020a170902f68200b001b6bced1dc2mr4040239plg.0.1690425961972;
+        Wed, 26 Jul 2023 19:46:01 -0700 (PDT)
+Received: from smtpclient.apple ([240b:13:31e1:6200:478:6996:9f4d:ed3c])
+        by smtp.gmail.com with ESMTPSA id c13-20020a170902d48d00b001b558c37f91sm247404plg.288.2023.07.26.19.45.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 26 Jul 2023 19:46:01 -0700 (PDT)
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: base64
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6\))
+Subject: [ej-staff 441] BBQ on the beach, this Sun?
+Message-Id: <96708A86-598A-4014-A9CB-87457475798E@nowhere.co.jp>
+Date: Thu, 27 Jul 2023 11:45:47 +0900
+Cc: =?utf-8?Q?Juli=C3=A1n_Villegas?= <julian@u-aizu.ac.jp>,
+ Michael Cohen <mcohen@u-aizu.ac.jp>,
+ "Ben Abdallah Abderazek," <benab@u-aizu.ac.jp>,
+ =?utf-8?B?5Ye65p2R6KOV6Iux?= <demura@u-aizu.ac.jp>,
+ Jashan Sai <thinkofjash@gmail.com>,
+ Chunhua Su <chsu@u-aizu.ac.jp>
+To: staff@nowhere.co.jp
+X-Mailer: Apple Mail (2.3731.700.6)
+X-Original-Sender: yamadera@nowhere.co.jp
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="OGKK/BQC";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates
+ 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Reply-To: staff@nowhere.co.jp
+Precedence: list
+Mailing-list: list staff@nowhere.co.jp; contact staff+owners@nowhere.co.jp
+List-ID: <staff.nowhere.co.jp>
+X-Spam-Checked-In-Group: staff@nowhere.co.jp
+X-Google-Group-Id: 759455057328
+List-Post: <https://groups.google.com/a/nowhere.co.jp/group/staff/post>, <mailto:staff@nowhere.co.jp>
+List-Help: <https://support.google.com/a/nowhere.co.jp/bin/topic.py?topic=25838>,
+ <mailto:staff+help@nowhere.co.jp>
+List-Archive: <https://groups.google.com/a/nowhere.co.jp/group/staff/>
+List-Unsubscribe: <mailto:googlegroups-manage+759455057328+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/nowhere.co.jp/group/staff/subscribe>
+
+DQpZb3XigJlyZSB2ZXJ5IHdlbGNvbWUuIFBsZWFzZSBpbnZpdGUgeW91ciBmcmllbmRzIGFuZCBm
+YW1pbHkhDQoNCnAucy4gSWYgeW91IGFyZSBub3QgRXllcywgSkFQQU4gc3RhZmYgYW5kIHdhbnQg
+dG8gam9pbiwganVzdCBsZXQgbWUNCktub3cgc2luY2Ugd2Ugd2lsbCBwcmVwYXJlIHNvbWUgZm9v
+ZCBhbmQgZHJpbmsgZm9yIHlvdS4NCg0KLS0tIDxFbmdsaXNoPiAtLS0NCg0KVGhpcyB5ZWFyJ3Mg
+QkJRIHBhcnR5IGlzIHNjaGVkdWxlZCB0byBiZSBoZWxkIGFzIGZvbGxvd3MuIA0KV2Ugd2lsbCBw
+cmVwYXJlIHJlbGlnaW91cyBmb29kIGFuZCBzbyBvbi4NCg0KKiBUaW1lIDogNy8zMCAoU3VuKSA5
+OjMwfjE2OjAwIA0KKiBNZWV0aW5nIHBsYWNlICYgdGltZSA6IDk6MzAgYW0gYXQgRXllcywgSkFQ
+QU4gcGFya2luZyANCklmIHlvdSBnbyB0aGVyZSBieSBiaWtlLCBqdXN0IGxldCB1cyBrbm93IGlu
+IGFkdmFuY2UuIA0KDQoqIEZlZTogQXJvdW5kIDIsMDAwIHllbiAoT3ZlciAxOCB5ZWFycyBvbGQg
+b25seSkgDQoNCiogQkJRIFBsYWNlOiBTYWtrYSBCZWFjaCwgTGFrZSBJbmF3YXNoaXJvIA0KaHR0
+cHM6Ly9nb28uZ2wvbWFwcy9pQ2NGcnlRM2tZckhGcThTOA0KDQotLS0gPEphcGFuZXNlPiAtLS0N
+Cg0K5LuK5bm044Gu56S+5YaFQkJR44Gv5Lul5LiL44Gu5LqI5a6a44Gn6KGM44GE44G+44GZ44CC
+IOeahuOBleOCk+WlruOBo+OBpuWPguWKoOS4i+OBleOBhOOAgiANCg0KKiDml6XmmYIgOiA3LzMw
+ICjml6UpIDk6MzB+MTY6MDAgDQoqIOmbhuWQiCA6IOS8muekvumnkOi7iuWgtOOBqzk6MzDvvIjm
+mYLplpPljrPlrojvvIkgDQrvvIjmmKjlubTlkIzmp5joh6rou6Lou4rntYTjga/ml6njgoHjgavl
+h7rnmbrjgZfjgb7jgZnjgILliKXpgJTpgKPntaHjgZnjgovjga7jgafkuovliY3jgavmlZnjgYjj
+gabkuIvjgZXjgYTvvIkNCg0KKiDkvJrosrs6IDIsMDAw5YaG5L2N44KS5LqI5a6a77yIMTjmrbPk
+u6XkuIrvvIkNCg0KKiDloLTmiYA6IOeMquiLl+S7o+a5luOAgOW0juW3nea1nA0KaHR0cHM6Ly9n
+b28uZ2wvbWFwcy9pQ2NGcnlRM2tZckhGcThTOA0KDQrpo5/mnZAv5YKZ5ZOB44Gu6LK344GE5Ye6
+44GX44CB56mN44G/6L6844G/44Gv6YeR5puc5pel44Go5b2T5pel44Gr5rqW5YKZDQoNCi0tLSBC
+QlHjg4Hjgqfjg4Pjgq/jg6rjgrnjg4ggLS0tDQoNCuKWoSDjgrXjg6njg4DmsrkNCuKWoSDlibLj
+gornrrgNCuKWoSDjgrTjg5/ooovvvIjliIbliKXjga/jgZfjgaPjgYvjgorjgoTjgonjgarjgYTj
+gajmjajjgabjgovpmpvlho3liIbpoZ7jgYzlv4XopoHjgafms6PjgY3jgpLopovjgovvvIkNCuKW
+oSDntJnnmr/vvIjmt7HjgZXjgYzjgYLjgovjgajjgqvjg6zjg7znrYnjgavjgoLoia/jgYTvvIkN
+CuKWoSDmipjjgorjgZ/jgZ/jgb/jg4bjg7zjg5bjg6sNCuKWoSDjg5Pjg4vjg7zjg6vjgrfjg7zj
+g4gNCuKWoSDmnKjngq3vvIgz566x56iL5bqm77yJDQrilqEg44OB44Oj44OD44Kr44Oe44OzK+ed
+gOeBq+adkOOBi+OCrOOCueODkOODvOODiuODvA0K4pahIOOBhuOBoeOCj+OAgeOBhuOBoeOCj+OA
+geOBhuOBoeOCj++8iOeBq+OBiuOBk+OBl+eUqO+8iQ0K4pahIOawtOedgOOAgeawtOedgOOAgeaw
+tOedgO+8iOeEoeOBhOOBqOODkeODs+ODhOOBp+azs+OBkOOBr+OCgeOBq++8iQ0K4pahIOOCv+OC
+quODqw0K4pahIOawtO+8iOWkmuOCgeOBq++8iW9yIOODneODquOCv+ODs+OCrw0K4pahIOawtw0K
+4pahIOOCueOCpOOCqw0K4pahIOiCiQ0K4pahIOeEvOOBjeiCieOBruOBn+OCjA0K4pahIOmHjuiP
+nA0K4pahIOWMheS4gSvjgb7jgarmnb8NCuKWoSDngorpo6/jgrjjg6Pjg7zjgafngorjgYTjgZ/j
+gZTpo6/vvIjlkIToh6rlpJrjgoHjgavmupblgpnvvIkNCuKWoSDjgoTjgY3jgZ3jgbANCuKWoSDo
+qr/lkbPmlpnvvIjloanjgIHjgrPjgrfjg6fjgqbnrYnvvIkNCuKWoSDjg5zjg7zjg4gr56m65rCX
+5YWl44KMDQrilqEg6ZW3566477yI6Kq/55CG55So77yJDQrilqEg44Kr44Oh44Op77yI6Ziy5rC0
+44Gg44Go44Gq44GK6Imv44GX77yJDQrilqEg44OG44Kj44K344Ol44Oa44O844OR44O8DQrilqEg
+5Y+L5Lq6DQrilqEg44Os44OI44Or44OI44Kr44Os44O8DQrilqEg6Iqx54GrK+a2iOeBq+eUqOOD
+kOOCseODhA0K4pahIOi7jeaJiw0KDQrjgYrjgb7jgZENCuKWoSDnnYDngavmnZDjga/lpJrjgoHj
+gavjgIHmlrDogZ7ntJnjgYvjgonolqrjgavjga/ntbblr77ngavjga/jgaTjgYvjgarjgYQNCuKW
+oSDogonjga/liY3jgoLjgaPjgabogonlsYvjgafpoLzjgpPjgafjgYrjgY/jgajlronjgYQNCuKW
+oSDph47oj5zjgpLliIfjgovjgarjgonjgqvjg4Pjg4jph47oj5zjgYzkvr/liKkNCuKWoSDngorj
+gYTjgZ/nsbPjgpLjgrjjg6Pjg7zjgZTjgajmjIHjgaPjgabooYzjgaPjgabjg6zjg4jjg6vjg4jj
+gqvjg6zjg7zjgafjgoLjgYbjgb7jgZ3jgYYNCuKWoSDkvJrnpL7jgavjgoLjgYLjgovjgYzjgIHm
+joPpmaTjgYzpnaLlgJLjgarjgonkuovliY3jgavjg6jjg7zjgq/jg5njg4vjg57jg6vjgavkuojn
+tITjgZnjgovjgahCQlHjgrvjg4Pjg4jjgYzlgJ/jgorjgozjgosNCuKWoSDlsI/nn7Pjg7bmtZzj
+gafjga8x5Lq6MzAw5YaG44GM44GL44GL44KLDQrilqEg5b+F44Ga6YGF5Yi744GZ44KL5aW044GM
+44GE44KL44Gu44Gn5pC65biv6Zu76Kmx44Gu55Wq5Y+344Gv5o6n44GI44G+44GX44KH44GGDQri
+lqEg6LuK6auY44Gu5L2O44GE6LuK44Gv5rOo5oSPDQrilqEg54S844GN44Gd44Gw44Gu5ZGz44Gu
+5r+D5reh44Gv44GG44KL44GV44GE5pa544GM5aSa44GEDQrilqEg5biw44KK44Gr5rKz5p2x55S6
+44Gu5Zar6Iy25bqX44CM44OQ44O844OH44Oz44OQ44O844OH44Oz44CN44Gn5ZKM44KA44KC44KI
+44GXDQrilqEg54S844GR44Gf44GP44Gq44GE44Gq44KJ5pel54S844GR5q2i44KB44Kv44Oq44O8
+44OgDQrilqEg44K144Oz44OA44Or44GM44GC44KL44Go44CB5rC06L6644Gu5bCP55+z44Gn44KC
+5aSn5LiI5aSrDQrilqEg54yq6IuX5Luj44Gu55u05b6E44GvMmtt5Lul5LiK44GC44KLDQrilqEg
+44Oc44O844OI44Gn6YGt6Zuj44GX44Gq44GE44GT44GoDQoNCueMquiLl+S7o+a5lu+8miANCmh0
+dHA6Ly9qYS53aWtpcGVkaWEub3JnL3dpa2kv54yq6IuX5Luj5rmWIA0KDQpGWUk6IOOCreODo+OD
+s+ODl+OBruOBqOOBjeOAgeWls+aAp+OBr+eUt+aAp+OBruOCs+OCs+OCkuimi+OBpuOBhOOCi+OA
+giANCuOCouOCpuODiOODieOCouOBp+ODouODhuOCi+OBn+OCgeOBruW/g+W+lyAtIOODqeOCpOOD
+lSANCi0g6YCx44OX44OsTkVXUyBodHRwOi8vYml0Lmx5L25uQ0s3SCANCg0K5Lul5LiK44CB44KI
+44KN44GX44GP44GK6aGY44GE6Ie044GX44G+44GZ44CCDQoNCi0tLS0tLS0tLS0tLS0gdGhlIE1p
+ZGRsZSBvZiBOb3doZXJlLCBFeWVzLCBKQVBBTiBDby4gTHRkLi0tLS0tLS0tLS0tDQogICAgICAg
+SnVuIFlhbWFkZXJhICAgZS1tYWlsOiAgeWFtYWRlcmFAbm93aGVyZS5jby5qcA0KIkFueSBzdWZm
+aWNpZW50bHkgYWR2YW5jZWQgdGVjaG5vbG9neSBpcyBpbmRpc3Rpbmd1aXNoYWJsZQ0KZnJvbSBt
+YWdpYyLjgIBBcnRodXIgQy4gQ2xhcmtlDQotLVVSTDogaHR0cHM6Ly93d3cubm93aGVyZS5jby5q
+cCAgIGUtbWFpbDogIGluZm9Abm93aGVyZS5jby5qcCAtLQ0KDQo=

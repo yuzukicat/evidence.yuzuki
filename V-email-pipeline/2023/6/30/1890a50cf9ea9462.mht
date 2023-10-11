@@ -1,0 +1,193 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:7404:b0:12f:24f9:7e58 with SMTP id s4csp8561950rwg;
+        Thu, 29 Jun 2023 20:20:15 -0700 (PDT)
+X-Received: by 2002:a25:901:0:b0:c11:a10:aad0 with SMTP id 1-20020a250901000000b00c110a10aad0mr1678814ybj.37.1688095215620;
+        Thu, 29 Jun 2023 20:20:15 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1688095215; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=iEKUDQ0MhK2AKLDhJoDj9xF7xuwlY7t9U+pHHZmWeyDSGyPuSHk+nJ497I/T1fZQ09
+         q55APgzZW83n4Ain4wTqfoXtv0gUBTYmWqULe7RA5wROcqquM6cYurYotYEupEWCVhSN
+         7Nf/5SGU2dDTFZwcpy0Gu8Uqdo1CocJvwuPN/0jZBLNMhjKUrE2vNFm8J3JmUf19r5sh
+         BcPWfBAE3HcNQ4ZZiTLgX4/OCbJJhekLtSuim4Jw+K0s8G2sC3Bdt0LLrnyJ3w9CuvIn
+         P521JVsjin6ad5SDx004YLdiuYaMXnMtrbVxZKXuc+7JvseYbQUF12tuSK0CjWbZF1Sq
+         ZY8g==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:message-id:in-reply-to:to:references:date
+         :subject:mime-version:content-transfer-encoding:from:dkim-signature;
+        bh=9Zb4VgrRgfi5xQR893Thj/GmJ9CJ0k5W6WBjX0Is1Yk=;
+        fh=r170TOv2QpRcpxeyPPioo9QsooLlhxZJqR+8ormqrfg=;
+        b=dkz4Bynf+Lry2hUWpR3eOBsVgz6yMLNyy62qPSttTQCvXOQjr16jy1YByp17lD3Osp
+         kWGN7aQ/nJIQeRDc9ZFe13Gtde+AHczRnaLpvEnrw/a9gwInqUQL8DRKNpIBLmR5d+NN
+         ujfLDudRYveuSjZ/ZQHirLshtkBaKQnuhEsigrmsE9Tny9BM44Y0Z5Rtrm5tCJ3HhgpH
+         Qd2nI4wvCa2RuZ8FPiwar0bp6UCGd9lraQmUYw9mLtigOBB25OdDfGs3TLy1IX2MHtRO
+         KGVsDhCK1JEbJlccuGNTQYsWOiaMCLIxlMohEN01yzIPQjdfqCpHoHA9GiWYQei4AchR
+         uJLQ==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=H0L5vCVw;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of admin+bncbdpnxxpdz4krb34t7gsamgqeexzce6q@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBDPNXXPDZ4KRB34T7GSAMGQEEXZCE6Q@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <admin+bncBDPNXXPDZ4KRB34T7GSAMGQEEXZCE6Q@nowhere.co.jp>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 14-20020a250d0e000000b00bc656e5a2f2sor4641371ybn.4.2023.06.29.20.20.15
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Thu, 29 Jun 2023 20:20:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of admin+bncbdpnxxpdz4krb34t7gsamgqeexzce6q@nowhere.co.jp designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=H0L5vCVw;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of admin+bncbdpnxxpdz4krb34t7gsamgqeexzce6q@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBDPNXXPDZ4KRB34T7GSAMGQEEXZCE6Q@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+ARC-Seal: i=2; a=rsa-sha256; t=1688095215; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=D5102Ept5Mg9G9/ddwqR2YYJCB6lqPljiMSxRqpNvKxwC89PrF3icnxpaGQf50P4zr
+         nCDpUVwOeXUxuy/xHtEK+ca1eLLVmfE1HThv1KPUWiuGgCGNBEiIFaxiMqNe3CHcqsk1
+         1Tf+BJaF8kDhYglIvozNRSeM0vcfVys1a402UjQKZgYga78jqQoPCgQnUi60IPdsmOP2
+         curnsUP0WTC7LjcocTWVrEoLuTunArapwLRUFLqb8LkGE9vAIpWwC0T2e/trt6qpUQXg
+         yuiqhvMHPjmpIkEtZCXXx2DTaK4F+OvDtuVpRasgATW1VvMZ2Mp6nfvfw95MpokKcyG3
+         fvbQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:message-id:in-reply-to:to:references:date
+         :subject:mime-version:content-transfer-encoding:from:dkim-signature;
+        bh=9Zb4VgrRgfi5xQR893Thj/GmJ9CJ0k5W6WBjX0Is1Yk=;
+        fh=uD38H4vzQzmuhKX++0ruu7TYj/mSS4moWVENXFJB8+Y=;
+        b=AaerJTBxp9FeS1hwum5l7flGNjs8QZn8XBsYSuDAYFGiBnIwz/IhS0vqy/HSEZDCyH
+         aFZ/6F5WdFLSqbPrxieSWwmUWOC+d9cuB2JLr6NFZ1YpMoNpGl8/tEbcWC5AB8IuIYWi
+         VYxSNblEIqbLtJneWvJjIVxLpdsUgGaJV/iRYhuoqX0QGFn9rBcOGvufJIsLgo7FeBTx
+         8+DCgvExR+c+HOr/Sq7tNU6DCorSS9n+AysTk0qVTCY6X5Ul6urlJg919leLhOOTJkoh
+         e/xjXvtbko02TlIGGHWXuTOsS8Z5/tcC+rROny+Cw54WZ2UIXR8UmF6EGYXr+vQizkIT
+         UTCw==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=SaU9A2jb;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1688095215; x=1690687215;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:x-original-authentication-results
+         :x-original-sender:message-id:in-reply-to:to:references:date:subject
+         :mime-version:content-transfer-encoding:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Zb4VgrRgfi5xQR893Thj/GmJ9CJ0k5W6WBjX0Is1Yk=;
+        b=H0L5vCVwmdZ1drdj/kRXs+ki0twCig2H6IeTUI5B4U+5VGwLok/HdAw0FbfmLJhia2
+         lVcETBejEMaW9BByjC3ROLbUuF64u/rvXoFJitQHQEWFzB91KaXGOvIGjZzny48wqDh1
+         1mp3oC0uAYhaPJXScj6P30dD5akX+6LaT0VsQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688095215; x=1690687215;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence
+         :x-original-authentication-results:x-original-sender:message-id
+         :in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:x-beenthere:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9Zb4VgrRgfi5xQR893Thj/GmJ9CJ0k5W6WBjX0Is1Yk=;
+        b=bXRQyO85iKldOGNRzszAqPwR6uyiMjyflImypJVPwO9Y15vpnZm+Kh+KL2y2vTVb8v
+         vRUpoWW6ru3jqmBfxFBxX/IypwouLSiBfdYcliS3iuga7Jszs3kHrD4TBd8N/IIcH20y
+         CW7P5cqNf3zUkSw2fXvkGoDoVL+ueB0PPIzp9a/WPDGW/sESdkc/CBCtnDDfZismEQSY
+         tSFI7ozkufn4z6i9Z58owzQkr0mzdiJcPZTgjMmcy97XGRASGV3hJNuD7swB9Wgplmh4
+         ptU6OPq0qYeXSR2GjXo7d+ks+lZENRfpvr+PbNnxJ2T3AanXZ0tCplM+plAIgAbA9Nff
+         7V5Q==
+X-Gm-Message-State: ABy/qLZuAt6MILvdLl6y1f7exi0hRUbzqiyiuNZPD2VViiHHptWyLfXT
+	nSPZZ7edcZ9BjLk1XDwxJHHy4kSb
+X-Google-Smtp-Source: APBJJlFkx3sI8K9emjUsWPeC6Wumrm7E85xw89YFhcGXuwwGJ/cPWXrztG2F07UPPAFkkrIjkf55Dg==
+X-Received: by 2002:a25:a045:0:b0:c12:29ac:1d3c with SMTP id x63-20020a25a045000000b00c1229ac1d3cmr1550507ybh.6.1688095215316;
+        Thu, 29 Jun 2023 20:20:15 -0700 (PDT)
+X-BeenThere: admin@nowhere.co.jp
+Received: by 2002:a25:ab33:0:b0:bc3:f09f:1d92 with SMTP id u48-20020a25ab33000000b00bc3f09f1d92ls1380261ybi.0.-pod-prod-01-us;
+ Thu, 29 Jun 2023 20:20:14 -0700 (PDT)
+X-Received: by 2002:a81:6dcc:0:b0:573:ad40:682 with SMTP id i195-20020a816dcc000000b00573ad400682mr1322323ywc.6.1688095213473;
+        Thu, 29 Jun 2023 20:20:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1688095213; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NILHnyJG+x/scY07vbcfT0CP1m4oOp7NMwdEHpLijQzxiuZorwaVZKb7IIPyQzdGGb
+         AV4S2vcQtPQc1DR64Xs4s69pMYXqvIysUmoQgGOHtksYWTJZM35ZOFQpsyreX9QbogW6
+         Fkmsr+prNBy2qELW/qiysbGHUKgop3zfdkZ7V3an6t8Do/AbtXyvNuQhkY650qiYHn1S
+         Bf/vuhEkGOyeIScAXjx/1SybhORbvtpD6ajsMmB1CRRjaieVuGqJ7yk/SViygKadk2Xl
+         xFk4fo5cgNOCdbiN70bG4sP14xEOMCEBrjZCL0qGdccIIh5Gy3UwsxVQPJ1KQcYX5ckK
+         qzTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=9Zb4VgrRgfi5xQR893Thj/GmJ9CJ0k5W6WBjX0Is1Yk=;
+        fh=r170TOv2QpRcpxeyPPioo9QsooLlhxZJqR+8ormqrfg=;
+        b=dqMj/XyNTTm9vQQHWp6mla9wLn1nE8m0qa3HgVbJZGz8Rc14NPrCIfAQs7Ds9dtaX8
+         NNbJJaMF5NFYoqZSRzSNGZTLbP8mjskJIactEpVRAJjCxNt4armLBhbPCwtzZepqrTzJ
+         xK23D9ZztnOm9XGQl7larIHBIO1eUmCwKQkmq358tuLZTGWbLwLI/1r07qEYt4BLop0x
+         aAP5yW6gyZgakfey8n1KArT3R4NkQ527CwCMC7uWsZ2QtQkZVycgd4kKhNKWL6u9A7Xx
+         3/l6UnCYpvR+Hfb9Ak7f2XGdTn8g4hubudGhf5AvlaWcKSHcKhQ7hxrcKYGPU55iOH1k
+         atUg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=SaU9A2jb;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id h2-20020a17090a710200b00262d4eccb05sor3474302pjk.4.2023.06.29.20.20.13
+        for <admin@nowhere.co.jp>
+        (Google Transport Security);
+        Thu, 29 Jun 2023 20:20:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+X-Received: by 2002:a17:90a:10d7:b0:262:e9c2:7d0f with SMTP id b23-20020a17090a10d700b00262e9c27d0fmr957949pje.20.1688095212269;
+        Thu, 29 Jun 2023 20:20:12 -0700 (PDT)
+Received: from smtpclient.apple ([240b:13:31e1:6200:d1a:c9b0:5233:6fc3])
+        by smtp.gmail.com with ESMTPSA id 10-20020a17090a19ca00b0026333ad02c1sm4069433pjj.10.2023.06.29.20.20.10
+        for <admin@nowhere.co.jp>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 29 Jun 2023 20:20:11 -0700 (PDT)
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: [admin 8810] A refund has been issued for Microsoft 365 Family
+Date: Fri, 30 Jun 2023 12:19:59 +0900
+References: <d9518b92-6c69-4bb6-8e90-210ef88bbca0@az.northcentralus.unknown.microsoft.com>
+To: admin <admin@nowhere.co.jp>
+In-Reply-To: <d9518b92-6c69-4bb6-8e90-210ef88bbca0@az.northcentralus.unknown.microsoft.com>
+Message-Id: <46CB850C-4B13-4D89-938B-21EAF806A174@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.600.7)
+X-Original-Sender: yamadera@nowhere.co.jp
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=SaU9A2jb;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates
+ 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Precedence: list
+Mailing-list: list admin@nowhere.co.jp; contact admin+owners@nowhere.co.jp
+List-ID: <admin.nowhere.co.jp>
+X-Spam-Checked-In-Group: admin@nowhere.co.jp
+X-Google-Group-Id: 370051093590
+List-Post: <https://groups.google.com/a/nowhere.co.jp/group/admin/post>, <mailto:admin@nowhere.co.jp>
+List-Help: <https://support.google.com/a/nowhere.co.jp/bin/topic.py?topic=25838>,
+ <mailto:admin+help@nowhere.co.jp>
+List-Archive: <https://groups.google.com/a/nowhere.co.jp/group/admin/>
+List-Unsubscribe: <mailto:googlegroups-manage+370051093590+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/nowhere.co.jp/group/admin/subscribe>
+
+
+=
+admin=E3=81=A8dev=E3=81=A7=E3=82=A2=E3=82=AB=E3=82=A6=E3=83=B3=E3=83=88=E3=
+=81=8C=E3=83=80=E3=83=96=E3=81=A3=E3=81=A6=E3=81=84=E3=81=9F=E3=81=AE=E3=81=
+=A7dev=E3=81=AE=E6=96=B9=E3=81=AF=E5=89=8A=E9=99=A4=E3=81=97=E3=81=BE=E3=81=
+=97=E3=81=9F=E3=80=82
+=E4=BB=8A=E5=BE=8C=E3=81=AFadmin=E3=81=A0=E3=81=91=E3=81=A7=E9=81=8B=E7=94=
+=A8=E3=81=97=E3=81=BE=E3=81=97=E3=82=87=E3=81=86=E3=80=82
+
+> 2023/06/30 12:18=E3=80=81'Microsoft' via admin =
+<admin@nowhere.co.jp>=E3=81=AE=E3=83=A1=E3=83=BC=E3=83=AB:
+>=20
+> A Microsoft Store refund for Microsoft 365 Family has been processed
+> Per your request, we=E2=80=99ve canceled your Microsoft 365 Family =
+subscription and issued a refund of JPY 21,000.00 to your American =
+Express **4001.
+> Sign into your Microsoft account to manage your subscriptions, =
+including changing your payment method or canceling a subscription to =
+prevent future charges.Manage subscriptions >Dates are displayed per =
+Coordinated Universal Time. Order date may vary based on your =
+location.Privacy Statement
+> Microsoft Corporation, One Microsoft Way, =E2=80=8BRedmond, WA =
+98052=E2=80=8B
+
+

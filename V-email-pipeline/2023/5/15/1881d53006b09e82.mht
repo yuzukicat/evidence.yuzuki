@@ -1,0 +1,1147 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:2603:b0:123:4e67:2415 with SMTP id l3csp1054129rwc;
+        Sun, 14 May 2023 19:52:39 -0700 (PDT)
+X-Received: by 2002:a5d:4745:0:b0:306:3ad3:94f2 with SMTP id o5-20020a5d4745000000b003063ad394f2mr23374119wrs.42.1684119159027;
+        Sun, 14 May 2023 19:52:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1684119159; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Qubvc/m/bzD86XU3J8UHpNoeNogUByTlmzW9MY2zvh48VjbP3g7EcTkRUvyCgA9Ih6
+         A1rToBy57Nqrl/LQLrCa+UfvJDDGDMRUWsq/jfa0RZnANCSG8a3p22M38jaFOecUAMIV
+         DJjdIVYIItgXuB/0UYgyYz3+xNWFZ6tK7CWwzpeK0DTgz2eMg2MNaL6bAh24c/FZEqFs
+         uxfqPV8snx2BBrGbffyNyfqu6FS/grDO9KzDV4+mfFF+MtSFp5jW49KL07WtafPO4hQ+
+         249LmxOFkS1u3SK4cMNuTykKKO6KmoMAz10SLvfwWbFKej78thpZK/V2mWxG7fg70svR
+         tw/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=OPBT3G8PEldbWypEjWeWKFqSwIZWqpbbqr2HMqD15O8=;
+        b=c/e5/v5i4WwWZBsnESzL/7zaz0CsxntnZztm9E3bbEV5jBio6ZZ2JG4DQ6ua7ZdwnV
+         /CIqmRf8Zjsl+lttGdfVaC8iZJhNmdj8Y57Ye9em91wb0y6CU2ujydgq9gZKPKtqX9y1
+         hPaQMhpNkUr5TzomtpJsnEe2+XiUR3SZfqIRp3BmBxSpnAB+QKCuov9j/XqCl4mloidH
+         sY4zpcqAOZMI2UhCFNuiqmAISUitd0BZEM03jFE+T9kO6IJLOoXrbJQGj2LJ80W9i7G9
+         oUDP9hTSMK0vj5gjdAaMVpyffdXdHJILamTpicrJO0REPKFCBLjlvIbhJks9HDPvwJgy
+         YolQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=hSWd37Vw;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id u9-20020a056000038900b003062b3c41a5sor6841579wrf.9.2023.05.14.19.52.38
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Sun, 14 May 2023 19:52:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=hSWd37Vw;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1684119158; x=1686711158;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OPBT3G8PEldbWypEjWeWKFqSwIZWqpbbqr2HMqD15O8=;
+        b=hSWd37VwDwbwLCtyJC+YshaLmcj6teqzfwNJqn0C/VFqZKQdAz22DkHvqWmW0vYEd4
+         1EtQtZXClr4QzNpR1HDaVthKMQc3Aw9K1LvyiP5LyBQETJilLYuPBpnXlKy0CO0z1Id1
+         6NzHIuBBD0Cz8rlT4gq2RzSTR3Mk17WxZuzls=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684119158; x=1686711158;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OPBT3G8PEldbWypEjWeWKFqSwIZWqpbbqr2HMqD15O8=;
+        b=dvnebJoPlqGE7yMfOCmUdXOxzFR9Kmo7CvkZwLHbvPMtMcIHFqPlq0GZXpMg6Yy4rE
+         1G5nOdRlIdQ0eoHcLCxmKE4ydvF+nq/4ra7pCrdWttQn8mjGmxaz1TtALYR+9J1v8/8L
+         EgiOcEguSBJN5ZTDGnv0Oj6pWjAmBCTTa+48dt9o7xUnK8q7WFJeDpHFwelIflwiGa7G
+         QMjxnmp/MMGx+M34f9R7tGFkwryoD3h0p6fbios3YHa5D5q1uyIMnhvI1iqEc+wae6i9
+         mE/aTpB6a5MSDlBBp3JYF2WBza1c0kr2W92j0JgaVPa3dVk/YFtwNFLwWw1WCJZGyt8Q
+         AlkQ==
+X-Gm-Message-State: AC+VfDy7HAtWWCgiEZ+ena8hQXT5El7x+HQvdcIvCq6GkBTosnaEsEM4
+	dIa3HiD8crKWKJaZTDgU7pFbWKvYTte3JY6/tiN6kp9TfSWpZfksLi0=
+X-Google-Smtp-Source: ACHHUZ7E5IQNFVGpNgZJXC5TVoG8BpFN9mWeDi16uS/UhCMO3mqdi9YKOjSRlPevtsCNN2C22UiiKDcdovzStLMPQT4=
+X-Received: by 2002:adf:e784:0:b0:309:99c:f23f with SMTP id
+ n4-20020adfe784000000b00309099cf23fmr4382639wrm.63.1684119158167; Sun, 14 May
+ 2023 19:52:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOkOQaGXSHs+oxjnpLAmHKRA+TY-Odi93b+top7LXKfDaJUFBQ@mail.gmail.com>
+ <DE502A2A-D45F-4E70-965A-2577391F4894@nowhere.co.jp>
+In-Reply-To: <DE502A2A-D45F-4E70-965A-2577391F4894@nowhere.co.jp>
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Date: Mon, 15 May 2023 11:52:26 +0900
+Message-ID: <CANo=jaQNAzXX3t1_dCPY+gu0pZtB6u3azzHWp58qvvwjzejsYw@mail.gmail.com>
+Subject: Re: Yuzuki - Get the instructions from Yamadera san to contact you
+ working on supermarket AI
+To: Victor Khaustov <victor@nowhere.co.jp>
+Cc: JIANG DAWEI <dawei.jiang@nowhere.co.jp>, Mark Ogbodo <ogbodo.mark@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="0000000000002eb2af05fbb28ca8"
+
+--0000000000002eb2af05fbb28ca8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Victor. Got it, thanks! Will buy the template!
+
+2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88) 11:28 Victor Khaustov <victor=
+@nowhere.co.jp>:
+
+> Hi Yuzuki,
+>
+> Please also see the recent email from Yamadera san.
+>
+> After providing some details, I hope you can see now, that trying to
+> implement a web-based solution will require a lot of additional tasks:
+> database creation, user authentication, developing frontend, etc. That is
+> why you were asked to use an existing visualization tool (Looker Studio) =
+to
+> make a demo in a month. By using it, we=E2=80=99ll only need to a) modify=
+ an
+> existing template, b) convert the data into appropriate format once, c)
+> upload it to Google Drive (or other source), and d) set viewing permissio=
+ns
+> to customer=E2=80=99s account.
+>
+> If you check our supermarket-ai repository, you can see that visualizatio=
+n
+> can be easily done in Python:
+> https://github.com/eyesjapan/supermarket-ai/blob/main/visualise_json.py
+> What we need on top of it is a nicer web-based interface, permissions and
+> data integration that Looker Studio (the old name is Google Data Studio)
+> provides. You need to follow the tutorials, read the documentation and
+> customize the templates.
+>
+> Jun, I think that if we surely decide to proceed with Looker Studio, we
+> can buy the following template, remove currently unnecessary parts and
+> pages, and customize it to our needs (change logo, data sources, names).
+> Because I think it=E2=80=99s a really good example of use of Looker Studi=
+o that
+> contains a lot of great features:
+> <https://www.databloo.com/product/ecommerce-revenue-template/>
+> GA4 Ecommerce Revenue Template
+> <https://www.databloo.com/product/ecommerce-revenue-template/>
+> databloo.com
+> <https://www.databloo.com/product/ecommerce-revenue-template/>
+> <https://www.databloo.com/product/ecommerce-revenue-template/>
+>
+> As for the costs justification (79 euro ~=3D 11,500 yen), see my previous
+> email.
+>
+> Best regards,
+> Victor Khaustov
+>
+>
+> Begin forwarded message:
+>
+>
+> *From: *JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+> *Subject: **Re: Yuzuki - Get the instructions from Yamadera san to
+> contact you working on supermarket AI*
+> *Date: *May 15, 2023 at 10:47:54 GMT+9
+> *To: *Victor Khaustov <victor@nowhere.co.jp>, Jun Yamadera <
+> yamadera@nowhere.co.jp>, Mark Ogbodo <ogbodo.mark@nowhere.co.jp>
+>
+> Subject: Machine Learning Project: Tool Suggestions and Next Steps
+>
+> Dear Victor and Yamadera-san,
+>
+> I hope this email finds you both well. I have received Victor's reply
+> regarding the machine learning project and the expectations for visualizi=
+ng
+> hourly and daily sales for customers. Based on the information provided, =
+I
+> have researched and identified several tools that could be suitable for o=
+ur
+> project:
+>
+> 1. Apache Echarts: https://github.com/apache/echarts
+> 2. React Rcharts: https://github.com/recharts/recharts
+> 3. Chart.js: https://www.chartjs.org/
+> 4. Tableau (not free): https://www.tableau.com/
+>
+> These tools are data visualization front-end solutions that fit our task
+> and are easier to customize than PaaS or SaaS. However, as a back-end
+> engineer, I would like to emphasize that directly connecting to CSV files
+> might not be the most efficient solution. Instead, I suggest importing da=
+ta
+> from CSV files into a database like MySQL or PostgreSQL and then providin=
+g
+> an API for the front-end to consume.
+>
+> As for the front-end design, I can develop a simple demo to showcase the
+> functionality to our customers, but I believe that refining the visual
+> aspects should be done in collaboration with our customers to ensure thei=
+r
+> preferences are met, and work with designers && front-end engineers to
+> customize the view layer of data virtulation.
+>
+> Moving forward, I will study the documentation and templates for the
+> suggested tools and learn how to customize them to achieve our goal. I wi=
+ll
+> also explore how to change the data sources and determine the appropriate
+> data format.
+>
+> I am eager to apply my creativity and engineering skills to this project
+> and will keep you both updated on my progress. If you have any further
+> suggestions or guidance, please do not hesitate to share. And wait for yo=
+ur
+> reply to have a scheduled meeting including Yamadara san maybe together t=
+o
+> review the current status.
+>
+> Best regards,
+>
+> Yuzuki
+>
+> On Sun, May 14, 2023 at 8:23=E2=80=AFPM Victor Khaustov <victor@nowhere.c=
+o.jp>
+> wrote:
+>
+>> Hi Yuzuki, (cc Yamadera san, Mark)
+>>
+>> There is no need to complete the demo for Supermarket AI project on
+>> Monday, as far as I know It=E2=80=99s until the end of the month. What I=
+ meant to
+>> do by Monday is to showcase an AWS tool that you=E2=80=99re familiar wit=
+h and
+>> mentioned in the previous email. Here is a quote from you:
+>>
+>> 1. Is using Google Data Studio a mandatory requirement from our customer=
+s
+>>> or Yamadera-san? I have no experience with this product, but I do have
+>>> experience with similar products from AWS. If the feasibility of Looker
+>>> Studio has already been tested, I believe it should be fine. However, a=
+s
+>>> you know, some SaaS or PaaS products can be challenging to customize.
+>>>
+>>>
+>> And here is my reply:
+>>
+>> 1. It=E2=80=99s a requirement from Yamadera san. But if you have experie=
+nce in a
+>>> similar AWS product and can make a quick demo until Monday, it probably
+>>> will be fine too.
+>>
+>>
+>> The demo of the AWS product that answers to the following questions:
+>> - what is the name of the tool you suggest?
+>> - does it fit for our task?
+>> - is it easy to customize?
+>> - is it easy to connect data sources? (In our case it can be a simple cs=
+v
+>> file, but you can define the data format to your liking).
+>>
+>> And quick answer to some other questions from your email:
+>>
+>> Additionally, I would like to request further clarification on the
+>> specific requirements of the project. As you may be aware, data science
+>> involves various aspects, and there is a significant difference between
+>> data virtualization and data visualization with notation. These two
+>> concepts require different approaches, timeframes, and solutions.
+>>
+>> To better understand your needs and deliver a suitable demo, I kindly as=
+k
+>> that you provide a clear definition of your requirements, rather than
+>> screenshots from Google searches. This will enable me to tailor the demo=
+ to
+>> your exact needs and expectations.
+>>
+>>
+>> Look, for example, at the following page with free Looker Studio
+>> templates (specifically pay attention to eCommerce Dashboard):
+>> Free Looker Studio Templates (Formerly Data Studio)
+>> <https://www.metricized.com/looker-studio-templates/>
+>> metricized.com <https://www.metricized.com/looker-studio-templates/>
+>> <https://www.metricized.com/looker-studio-templates/>
+>> <https://www.metricized.com/looker-studio-templates/>
+>>
+> <https://www.metricized.com/looker-studio-templates/>
+>> <https://www.metricized.com/looker-studio-templates/>
+>>
+>> When I was writing about the quick demo about AWS tool that you might us=
+e
+>> instead, I meant sharing a similar page that showcases the abilities of =
+the
+>> proposed tool.
+>>
+>> Back to the task. The initial expectation is to study the documentation
+>> and templates and learn how to customize them to achieve our goal:
+>> visualizing hourly and daily sales for customers. Please use your
+>> creativity and engineering skills to decide how to solve this problem us=
+ing
+>> some widely-known tool. After studying how it works, the next thing will
+>> probably be to figure out how to change the data sources and in what for=
+mat
+>> the data should be represented.
+>>
+>> By the way, there are even more advanced templates, e.g. the following
+>> one for 79 euro. It might sound a bit expensive, but it is a one-time
+>> payment and can be used and customized many times for different projects=
+.
+>> It's also costs less than one day of an engineer=E2=80=99s work. So if y=
+ou decide
+>> that it's in the company's interest, you can request Yamadera san to
+>> purchase this template:
+>>
+>> Data Bloo =F0=9F=94=B7 GA4 Ecommerce Revenue Template (Demo)
+>> Looker Studio Overview <http://lookerstudio.google.com>
+>> lookerstudio.google.com
+>> <http://lookerstudio.google.com> <http://lookerstudio.google.com>
+>>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>>
+> <http://lookerstudio.google.com> <http://lookerstudio.google.com>
+>>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>>
+>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>>
+>> Thank you!
+>>
+>> Best regards,
+>> Victor Khaustov
+>>
+>>
+>> On May 14, 2023, at 16:16, JIANG DAWEI <dawei.jiang@nowhere.co.jp> wrote=
+:
+>>
+>> Subject: Update on Quick Demo Schedule and Request for Clarification on
+>> Requirements
+>>
+>> Dear Victor, Mark and Yamadera-san,
+>>
+>> I hope this email finds you well. I wanted to provide you with an update
+>> on the quick demo requirement. Unfortunately, I will not be able to
+>> complete it by Monday as your hope, since I have been asked to take a
+>> holiday on Friday and will resume work on Monday.
+>>
+>> However, if it is crucial for you to have the demo by Monday, I am
+>> willing to work overtime including today from 18:00--23:00 and Monday
+>> 09:00--23:00 to ensure it is delivered on time. Please let me know if th=
+is
+>> is necessary, and I will do my best to accommodate your needs.
+>>
+>> Additionally, I would like to request further clarification on the
+>> specific requirements of the project. As you may be aware, data science
+>> involves various aspects, and there is a significant difference between
+>> data virtualization and data visualization with notation. These two
+>> concepts require different approaches, timeframes, and solutions.
+>>
+>> To better understand your needs and deliver a suitable demo, I kindly as=
+k
+>> that you provide a clear definition of your requirements, rather than
+>> screenshots from Google searches. This will enable me to tailor the demo=
+ to
+>> your exact needs and expectations.
+>>
+>> Thank you for your attention to this matter, and I look forward to
+>> receiving your feedback on both the timeline and the project requirement=
+s.
+>>
+>> Best regards,
+>>
+>> Yuzuki
+>>
+>> On Fri, May 12, 2023 at 1:07=E2=80=AFPM Victor Khaustov <victor@nowhere.=
+co.jp>
+>> wrote:
+>>
+>>> Hi Yuzuki,
+>>>
+>>> I=E2=80=99m busy with the RDS project now, so here is a quick reply to =
+your
+>>> questions:
+>>>
+>>> 1. It=E2=80=99s a requirement from Yamadera san. But if you have experi=
+ence in a
+>>> similar AWS product and can make a quick demo until Monday, it probably
+>>> will be fine too.
+>>>
+>>> 2. It=E2=80=99s a quick demo for a customer. It should provide the inte=
+rface to
+>>> communicate with the data they provide and the prediction model. But
+>>> basically, you need to develop a tool that takes actual sales data and =
+data
+>>> predicted by the model (model is not implemented yet) and visualize it =
+as
+>>> per screenshot.
+>>>
+>>> 3. While developing a demo, you need to decide the required format for
+>>> the data. The data itself is already processed and cleaned. Project=E2=
+=80=99s
+>>> repository (you have access to it as EJ member, here=E2=80=99s the link=
+:
+>>> https://github.com/eyesjapan/supermarket-ai/) which contains the code
+>>> for analysis and some visualization of the data using Python. The data
+>>> itself can be downloaded from here:
+>>> https://drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tv=
+X?usp=3Dsharing
+>>>
+>>> 4. You don=E2=80=99t have to be an expert on the tools, but you need to=
+ be able
+>>> to learn from the documentation and have some general programming skill=
+s.
+>>>
+>>> Thank you!
+>>>
+>>> Best regards,
+>>> Victor
+>>>
+>>>
+>>> On May 12, 2023, at 12:12, JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+>>> wrote:
+>>>
+>>> ---------- Forwarded message ---------
+>>> Subject: Fwd: Yuzuki - Get the instructions from Yamadera san to contac=
+t
+>>> you working on supermarket AI
+>>> To: Jun Yamadera <yamadera@nowhere.co.jp>, Mark Ogbodo <
+>>> ogbodo.mark@nowhere.co.jp>
+>>>
+>>>
+>>> Subject: Questions and Clarifications on Supermarket AI Task
+>>>
+>>> Dear Yamadera san, Victor, and Mark:
+>>>
+>>> I hope this email finds you well. Thank you for providing me with the
+>>> information about the project. Before diving into the task, I have a fe=
+w
+>>> questions and concerns that I would like to discuss with you to ensure =
+I
+>>> have a clear understanding of the project requirements and my role in i=
+t.
+>>>
+>>> 1. Is using Google Data Studio a mandatory requirement from our
+>>> customers or Yamadera-san? I have no experience with this product, but =
+I do
+>>> have experience with similar products from AWS. If the feasibility of
+>>> Looker Studio has already been tested, I believe it should be fine.
+>>> However, as you know, some SaaS or PaaS products can be challenging to
+>>> customize.
+>>>
+>>> 2. I am currently unsure about the overall architecture of the project
+>>> and my role in the pipeline. From my understanding, there are some
+>>> well-established patterns for implementing ML in a product, and our pro=
+ject
+>>> seems to fit some of them. It would be helpful to have more information=
+ on
+>>> this aspect.
+>>>
+>>> 3. I am still unclear about the expected input and output for my part o=
+f
+>>> the project. Will I be given raw data (which means I would need to perf=
+orm
+>>> data cleaning), or will I receive serialized data (which means I would =
+be
+>>> responsible for data visualization)? I would appreciate some clarificat=
+ion
+>>> on this.
+>>>
+>>> 4. Lastly, I would like to share some articles from my blog to give you
+>>> an idea of my technical background, what I know, and what I don't know.
+>>> This will help ensure that the project is delivered to our customers on
+>>> time and with high quality.
+>>>
+>>>
+>>> https://kamisu66.com/2022/05/14/Introduction-to-Machine-Learning-Artifi=
+cial-Intelligence-Machine-Learning-Deep-Learning-Neural-Networks-Algorithms=
+/
+>>>
+>>>
+>>> https://kamisu66.com/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker=
+-WorkFlow-Process/
+>>>
+>>> Although I am not an expert in machine learning, I am eager to learn
+>>> from my colleagues and expand my knowledge in this area. I understand t=
+hat
+>>> this project is important to our company and our customers, and I am
+>>> committed to delivering high-quality work. To maximize my contribution =
+to
+>>> the project and enhance my understanding of machine learning, I kindly
+>>> request your support and guidance.
+>>>
+>>> If you could provide me with any articles, websites, or step-by-step
+>>> guidelines related to machine learning, I would greatly appreciate it. =
+And
+>>> I think it is necessary to have a meeting. These resources will help me
+>>> develop the necessary skills for this project and ensure that I can
+>>> contribute effectively to the team. Additionally, I would be grateful f=
+or
+>>> any advice or best practices that you could share based on your experie=
+nce
+>>> in the field.
+>>>
+>>> Once I have a better understanding of these points, I will be more
+>>> confident in proceeding with the task. I am looking forward to your
+>>> response and guidance on this project.
+>>>
+>>> Best regards,
+>>>
+>>> Yuzuki
+>>>
+>>> On Wed, May 10, 2023 at 6:10=E2=80=AFPM Victor Khaustov <victor@nowhere=
+.co.jp>
+>>> wrote:
+>>>
+>>>> Hi Yuzuki,
+>>>>
+>>>> Please start from learning about the Looker Studio (formerly known as
+>>>> Google Data Studio): https://cloud.google.com/looker-studio
+>>>>
+>>>> Here is the Quickstart guide:
+>>>> Quick start guide - Looker Studio Help
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> support.google.com
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>>
+>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>>
+>>>> When learning the basics, please keep in mind that we need to create
+>>>> the report that is somewhat similar to the attached screenshot. The us=
+er
+>>>> can select a store via dropdown list (currently, there are 3 stores to
+>>>> choose from) and select the date. Next, the time series plot should ap=
+pear
+>>>> with actual sales and predicted sales by the AI model (the model will =
+be
+>>>> developed later, probably by Mark).
+>>>>
+>>>> You need to figure out what data format is required to build such plot=
+,
+>>>> and how to connect the data sources from Google Drive (or other resour=
+ces).
+>>>>
+>>>> Once you learn about Looker Studio and how to create a similar plot, w=
+e
+>>>> can organize a meeting to discuss some details.
+>>>>
+>>>> Thank you!
+>>>>
+>>>> Best regards,
+>>>> Victor
+>>>>
+>>>>
+>>>> On May 10, 2023, at 17:21, JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+>>>> wrote:
+>>>>
+>>>> I hope this email finds you well.
+>>>>
+>>>> Yuzuki was asked by Yamadera san, to contact you regarding the
+>>>> supermarket AI project.
+>>>>
+>>>> However, I must admit that I know very little about the project,
+>>>> including what my role is or how I can contribute to it.
+>>>>
+>>>> I was wondering if you could provide me with some information about th=
+e
+>>>> project, such as any documents or resources that I should read or any
+>>>> preparation or code reading that I should do. I want to make sure that=
+ I am
+>>>> fully prepared to contribute to the project in any way possible.
+>>>>
+>>>> Additionally, if you have any questions for me, please do not hesitate
+>>>> to ask. Like my technical background (or stack).
+>>>>
+>>>> I am eager to learn more about the project and to work with you and
+>>>> your team to ensure its success.
+>>>>
+>>>> Thank you for your time and consideration. I look forward to hearing
+>>>> back from you soon.
+>>>>
+>>>> Best regards.
+>>>>
+>>>> Yuzuki
+>>>>
+>>>>
+>>>
+>>
+> --
+------------- the Middle of Nowhere, Eyes, JAPAN Co. Ltd.-----------
+       Jun Yamadera   e-mail:  yamadera@nowhere.co.jp
+"Any sufficiently advanced technology is indistinguishable
+from magic" Arthur C. Clarke
+--URL: http://www.nowhere.co.jp   e-mail:  info@nowhere.co.jp --
+
+--0000000000002eb2af05fbb28ca8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><br></div><div dir=3D"auto">Victor. Got it, thanks! Will =
+buy the template!=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88)=
+ 11:28 Victor Khaustov &lt;<a href=3D"mailto:victor@nowhere.co.jp">victor@n=
+owhere.co.jp</a>&gt;:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D=
+"line-break:after-white-space"><span style=3D"color:rgb(0,0,0)">Hi Yuzuki,<=
+/span><div><font color=3D"#000000"><span><br></span></font></div><div><font=
+ color=3D"#000000"><span>Please also see the recent email from Yamadera san=
+. =C2=A0<br></span></font><div style=3D"color:rgb(0,0,0)"><br></div><div st=
+yle=3D"color:rgb(0,0,0)">After providing some details, I hope you can see n=
+ow, that trying to implement a web-based solution will require a lot of add=
+itional tasks: database creation, user authentication, developing frontend,=
+ etc. That is why you were asked to use an existing visualization tool (Loo=
+ker Studio) to make a demo in a month. By using it, we=E2=80=99ll only need=
+ to a) modify an existing template, b) convert the data into appropriate fo=
+rmat once, c) upload it to Google Drive (or other source), and d) set viewi=
+ng permissions to customer=E2=80=99s account.</div><div style=3D"color:rgb(=
+0,0,0)"><br></div><div style=3D"color:rgb(0,0,0)">If you check our supermar=
+ket-ai repository, you can see that visualization can be easily done in Pyt=
+hon:=C2=A0<a href=3D"https://github.com/eyesjapan/supermarket-ai/blob/main/=
+visualise_json.py" target=3D"_blank">https://github.com/eyesjapan/supermark=
+et-ai/blob/main/visualise_json.py</a></div><div style=3D"color:rgb(0,0,0)">=
+What we need on top of it is a nicer web-based interface, permissions and d=
+ata integration that Looker Studio (the old name is Google Data Studio) pro=
+vides. You need to follow the tutorials, read the documentation and customi=
+ze the templates.</div><div style=3D"color:rgb(0,0,0)"><br></div><div style=
+=3D"color:rgb(0,0,0)">Jun, I think that if we surely decide to proceed with=
+ Looker Studio, we can buy the following template, remove currently unneces=
+sary parts and pages, and customize it to our needs (change logo, data sour=
+ces, names). Because I think it=E2=80=99s a really good example of use of L=
+ooker Studio that contains a lot of great features:</div><div style=3D"colo=
+r:rgb(0,0,0)"><div style=3D"display:block"><div style=3D"display:inline-blo=
+ck" role=3D"link"><a style=3D"border-radius:10px;font-family:-apple-system,=
+Helvetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-d=
+ecoration:none" rel=3D"nofollow" href=3D"https://www.databloo.com/product/e=
+commerce-revenue-template/" dir=3D"ltr" role=3D"button" width=3D"300" targe=
+t=3D"_blank"><table style=3D"table-layout:fixed;border-collapse:collapse;wi=
+dth:300px;background-color:#e5e6e9;font-family:-apple-system,Helvetica,Aria=
+l,sans-serif" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"300=
+"><tbody><tr><td align=3D"center"></td></tr></tbody></table></a></div></div=
+></div></div></div><div style=3D"line-break:after-white-space"><div><div st=
+yle=3D"color:rgb(0,0,0)"><div style=3D"display:block"><div style=3D"display=
+:inline-block" role=3D"link"><a style=3D"border-radius:10px;font-family:-ap=
+ple-system,Helvetica,Arial,sans-serif;display:block;width:300px;overflow:hi=
+dden;text-decoration:none" rel=3D"nofollow" href=3D"https://www.databloo.co=
+m/product/ecommerce-revenue-template/" dir=3D"ltr" role=3D"button" width=3D=
+"300" target=3D"_blank"><table style=3D"table-layout:fixed;border-collapse:=
+collapse;width:300px;background-color:#e5e6e9;font-family:-apple-system,Hel=
+vetica,Arial,sans-serif" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" w=
+idth=3D"300"><tbody><tr><td align=3D"center"></td></tr><tr><td><table bgcol=
+or=3D"#E5E6E9" cellpadding=3D"0" cellspacing=3D"0" width=3D"300" style=3D"f=
+ont-family:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;back=
+ground-color:rgba(229,230,233,1)"><tbody><tr><td style=3D"padding:8px 0px 8=
+px 0px"><div style=3D"max-width:100%;margin:0px 16px 0px 16px;overflow:hidd=
+en"><div style=3D"word-wrap:break-word;font-weight:500;font-size:12px;overf=
+low:hidden;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=
+=3D"https://www.databloo.com/product/ecommerce-revenue-template/" style=3D"=
+text-decoration:none" target=3D"_blank"><font color=3D"#272727" style=3D"co=
+lor:rgba(0,0,0,0.847059)">GA4 Ecommerce Revenue Template</font></a></div><d=
+iv style=3D"word-wrap:break-word;font-weight:400;font-size:11px;overflow:hi=
+dden;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=3D"ht=
+tps://www.databloo.com/product/ecommerce-revenue-template/" style=3D"text-d=
+ecoration:none" target=3D"_blank"><font color=3D"#808080" style=3D"color:rg=
+ba(0,0,0,0.498039)">databloo.com</font></a></div></div></td></tr></tbody></=
+table></td></tr></tbody></table></a></div></div><br></div><div style=3D"col=
+or:rgb(0,0,0)">As for the costs justification (79 euro ~=3D 11,500 yen), se=
+e my previous email.</div><div style=3D"color:rgb(0,0,0)"><br></div><div st=
+yle=3D"color:rgb(0,0,0)">Best regards,</div><div style=3D"color:rgb(0,0,0)"=
+>Victor Khaustov=C2=A0</div><div><font color=3D"#000000"><span></span></fon=
+t></div><div style=3D"color:rgb(0,0,0)"><br></div><div><br><blockquote type=
+=3D"cite"><div>Begin forwarded message:</div></blockquote></div></div></div=
+><div style=3D"line-break:after-white-space"><div><div><blockquote type=3D"=
+cite"><br><div style=3D"margin-top:0px;margin-right:0px;margin-bottom:0px;m=
+argin-left:0px"><span style=3D"font-family:-webkit-system-font,Helvetica Ne=
+ue,Helvetica,sans-serif;color:rgba(0,0,0,1.0)"><b>From: </b></span><span st=
+yle=3D"font-family:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif"=
+>JIANG DAWEI &lt;<a href=3D"mailto:dawei.jiang@nowhere.co.jp" target=3D"_bl=
+ank">dawei.jiang@nowhere.co.jp</a>&gt;<br></span></div><div style=3D"margin=
+-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px"><span style=3D=
+"font-family:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif;color:=
+rgba(0,0,0,1.0)"><b>Subject: </b></span><span style=3D"font-family:-webkit-=
+system-font,Helvetica Neue,Helvetica,sans-serif"><b>Re: Yuzuki - Get the in=
+structions from Yamadera san to contact you working on supermarket AI</b><b=
+r></span></div><div style=3D"margin-top:0px;margin-right:0px;margin-bottom:=
+0px;margin-left:0px"><span style=3D"font-family:-webkit-system-font,Helveti=
+ca Neue,Helvetica,sans-serif;color:rgba(0,0,0,1.0)"><b>Date: </b></span><sp=
+an style=3D"font-family:-webkit-system-font,Helvetica Neue,Helvetica,sans-s=
+erif">May 15, 2023 at 10:47:54 GMT+9<br></span></div><div style=3D"margin-t=
+op:0px;margin-right:0px;margin-bottom:0px;margin-left:0px"><span style=3D"f=
+ont-family:-webkit-system-font,Helvetica Neue,Helvetica,sans-serif;color:rg=
+ba(0,0,0,1.0)"><b>To: </b></span><span style=3D"font-family:-webkit-system-=
+font,Helvetica Neue,Helvetica,sans-serif">Victor Khaustov &lt;<a href=3D"ma=
+ilto:victor@nowhere.co.jp" target=3D"_blank">victor@nowhere.co.jp</a>&gt;, =
+Jun Yamadera &lt;<a href=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank=
+">yamadera@nowhere.co.jp</a>&gt;, Mark Ogbodo &lt;<a href=3D"mailto:ogbodo.=
+mark@nowhere.co.jp" target=3D"_blank">ogbodo.mark@nowhere.co.jp</a>&gt;<br>=
+</span></div><br><div><div dir=3D"ltr">Subject: Machine Learning Project: T=
+ool Suggestions and Next Steps<br><br>Dear Victor and Yamadera-san,<br><br>=
+I hope this email finds you both well. I have received Victor&#39;s reply r=
+egarding the machine learning project and the expectations for visualizing =
+hourly and daily sales for customers. Based on the information provided, I =
+have researched and identified several tools that could be suitable for our=
+ project:<br><br>1. Apache Echarts: <a href=3D"https://github.com/apache/ec=
+harts" target=3D"_blank">https://github.com/apache/echarts</a><br>2. React =
+Rcharts: <a href=3D"https://github.com/recharts/recharts" target=3D"_blank"=
+>https://github.com/recharts/recharts</a><br>3. Chart.js: <a href=3D"https:=
+//www.chartjs.org/" target=3D"_blank">https://www.chartjs.org/</a><br>4. Ta=
+bleau (not free): <a href=3D"https://www.tableau.com/" target=3D"_blank">ht=
+tps://www.tableau.com/</a><br><br>These tools are data visualization front-=
+end solutions that fit our task and are easier to customize than PaaS or Sa=
+aS. However, as a back-end engineer, I would like to emphasize that directl=
+y connecting to CSV files might not be the most efficient solution. Instead=
+, I suggest importing data from CSV files into a database like MySQL or Pos=
+tgreSQL and then providing an API for the front-end to consume.<br><br>As f=
+or the front-end design, I can develop a simple demo to showcase the functi=
+onality to our customers, but I believe that refining the visual aspects sh=
+ould be done in collaboration with our customers to ensure their preference=
+s are met, and work with designers &amp;&amp; front-end engineers to custom=
+ize the view layer of data virtulation.<br><br>Moving forward, I will study=
+ the documentation and templates for the suggested tools and learn how to c=
+ustomize them to achieve our goal. I will also explore how to change the da=
+ta sources and determine the appropriate data format.<br><br>I am eager to =
+apply my creativity and engineering skills to this project and will keep yo=
+u both updated on my progress. If you have any further suggestions or guida=
+nce, please do not hesitate to share. And wait for your reply to have a sch=
+eduled meeting including Yamadara san maybe together to review the current =
+status.<br><br>Best regards,<br><div><br></div><div>Yuzuki<br></div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun,=
+ May 14, 2023 at 8:23=E2=80=AFPM Victor Khaustov &lt;<a href=3D"mailto:vict=
+or@nowhere.co.jp" target=3D"_blank">victor@nowhere.co.jp</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Yuzuki, (cc Yama=
+dera san, Mark)<div><br></div><div>There is no need to complete the demo fo=
+r Supermarket AI project on Monday, as far as I know It=E2=80=99s until the=
+ end of the month. What I meant to do by Monday is to showcase an AWS tool =
+that you=E2=80=99re familiar with and mentioned in the previous email. Here=
+ is a quote from you:</div><div><br></div><div><blockquote type=3D"cite"><d=
+iv dir=3D"ltr"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><blockquote type=3D"cite"><div dir=3D"ltr"><div class=3D"g=
+mail_quote"><div dir=3D"ltr">1. Is using Google Data Studio a mandatory req=
+uirement from our customers or Yamadera-san? I have no experience with this=
+ product, but I do have experience with similar products from AWS. If the f=
+easibility of Looker Studio has already been tested, I believe it should be=
+ fine. However, as you know, some SaaS or PaaS products can be challenging =
+to customize.</div></div></div></blockquote></blockquote></div></div></bloc=
+kquote><div><br></div><div>And here is my reply:</div><div><br></div><div><=
+blockquote type=3D"cite"><div dir=3D"ltr"><div class=3D"gmail_quote"><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">1. It=E2=80=99s a requirement f=
+rom Yamadera san. But if you have experience in a similar AWS product and c=
+an make a quick demo until Monday, it probably will be fine too.</blockquot=
+e></div></div></blockquote></div><div><br></div><div>The demo of the AWS pr=
+oduct that answers to the following questions:=C2=A0</div><div>- what is th=
+e name of the tool you suggest?</div><div>- does it fit for our task?</div>=
+<div>- is it easy to customize?</div><div>- is it easy to connect data sour=
+ces? (In our case it can be a simple csv file, but you can define the data =
+format to your liking).</div><div><br></div><div>And quick answer to some o=
+ther questions from your email:</div><div><br></div><div><blockquote type=
+=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Additionally, I would like to r=
+equest further clarification on the specific requirements of the project. A=
+s you may be aware, data science involves various aspects, and there is a s=
+ignificant difference between data virtualization and data visualization wi=
+th notation. These two concepts require different approaches, timeframes, a=
+nd solutions.</div></div></blockquote></div><div><blockquote type=3D"cite">=
+<div dir=3D"ltr"><div dir=3D"ltr">To better understand your needs and deliv=
+er a suitable demo, I kindly ask that you provide a clear definition of you=
+r requirements, rather than screenshots from Google searches. This will ena=
+ble me to tailor the demo to your exact needs and expectations.</div></div>=
+</blockquote><br></div><div>Look, for example, at the following page with f=
+ree Looker Studio templates (specifically pay attention to eCommerce Dashbo=
+ard):</div><div><div style=3D"display:block"><div style=3D"display:inline-b=
+lock" role=3D"link"><a style=3D"border-radius:10px;font-family:-apple-syste=
+m,Helvetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text=
+-decoration:none" rel=3D"nofollow" href=3D"https://www.metricized.com/looke=
+r-studio-templates/" dir=3D"ltr" role=3D"button" width=3D"300" target=3D"_b=
+lank"><table style=3D"table-layout:fixed;border-collapse:collapse;width:300=
+px;background-color:rgb(229,230,233);font-family:-apple-system,Helvetica,Ar=
+ial,sans-serif" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0"><tbody><tr><td><table style=3D"font-family:-apple-system,Helvetica,Aria=
+l,sans-serif;table-layout:fixed;background-color:rgb(229,230,233)" width=3D=
+"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><tbody><tr><t=
+d style=3D"padding:8px 0px"><div style=3D"max-width:100%;margin:0px 16px;ov=
+erflow:hidden"><div style=3D"font-weight:500;font-size:12px;overflow:hidden=
+;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=3D"https:=
+//www.metricized.com/looker-studio-templates/" style=3D"text-decoration:non=
+e" target=3D"_blank"><font color=3D"#272727">Free Looker Studio Templates (=
+Formerly Data Studio)</font></a></div><div style=3D"font-weight:400;font-si=
+ze:11px;overflow:hidden;text-overflow:ellipsis;text-align:left"><a rel=3D"n=
+ofollow" href=3D"https://www.metricized.com/looker-studio-templates/" style=
+=3D"text-decoration:none" target=3D"_blank"><font color=3D"#808080">metrici=
+zed.com</font></a></div></div></td><td style=3D"padding:6px 12px 6px 0px" w=
+idth=3D"36"><a rel=3D"nofollow" href=3D"https://www.metricized.com/looker-s=
+tudio-templates/" target=3D"_blank"></a></td></tr></tbody></table></td></tr=
+></tbody></table></a></div></div></div></div></blockquote></div></div></blo=
+ckquote></div></div></div><div style=3D"line-break:after-white-space"><div>=
+<div><blockquote type=3D"cite"></blockquote></div></div></div><div style=3D=
+"line-break:after-white-space"><div><div><blockquote type=3D"cite"><div><di=
+v class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div><div><div style=3D"display:block"><div style=3D"display:inline-block" r=
+ole=3D"link"><a style=3D"border-radius:10px;font-family:-apple-system,Helve=
+tica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-decora=
+tion:none" rel=3D"nofollow" href=3D"https://www.metricized.com/looker-studi=
+o-templates/" dir=3D"ltr" role=3D"button" width=3D"300" target=3D"_blank"><=
+table style=3D"table-layout:fixed;border-collapse:collapse;width:300px;back=
+ground-color:rgb(229,230,233);font-family:-apple-system,Helvetica,Arial,san=
+s-serif" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tb=
+ody><tr><td><table style=3D"font-family:-apple-system,Helvetica,Arial,sans-=
+serif;table-layout:fixed;background-color:rgb(229,230,233)" width=3D"300" c=
+ellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><tbody><tr><td style=
+=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nofollow" href=3D"http=
+s://www.metricized.com/looker-studio-templates/" target=3D"_blank"></a></td=
+></tr></tbody></table></td></tr></tbody></table></a></div></div></div><div>=
+<br></div><div>When I was writing about the quick demo about AWS tool that =
+you might use instead, I meant sharing a similar page that showcases the ab=
+ilities of the proposed tool.=C2=A0</div><div><br></div><div><font><span>Ba=
+ck to the task. The initial expectation is to study the documentation and t=
+emplates and learn how to customize them to achieve our goal: visualizing h=
+ourly and daily=C2=A0</span></font><span>sales for customers</span><font><s=
+pan>. Please use your creativity and engineering skills to decide how to so=
+lve this problem using some widely-known tool. After studying how it works,=
+ the next thing will probably be to figure out how to change the data sourc=
+es and in what format the data should be represented.=C2=A0</span></font></=
+div><div><br></div><div>By the way, there are even more advanced templates,=
+ e.g. the following one for 79 euro. It might sound a bit expensive, but it=
+ is a one-time payment and can be used and customized many times for differ=
+ent projects. It&#39;s also costs less than one day of an engineer=E2=80=99=
+s work. So if you decide that it&#39;s in the company&#39;s interest, you c=
+an request Yamadera san to purchase this template:</div><div><br></div><div=
+></div><div><div style=3D"display:block"><div style=3D"display:inline-block=
+" role=3D"link"><a style=3D"border-radius:10px;font-family:-apple-system,He=
+lvetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-dec=
+oration:none" rel=3D"nofollow" href=3D"https://lookerstudio.google.com/repo=
+rting/0dcc27d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" dir=3D"ltr" r=
+ole=3D"button" width=3D"300" target=3D"_blank"><table style=3D"table-layout=
+:fixed;border-collapse:collapse;width:300px;background-color:rgb(229,230,23=
+3);font-family:-apple-system,Helvetica,Arial,sans-serif" width=3D"300" cell=
+spacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td><table style=3D=
+"font-family:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;ba=
+ckground-color:rgb(229,230,233)" width=3D"300" cellspacing=3D"0" cellpaddin=
+g=3D"0" bgcolor=3D"#E5E6E9"><tbody><tr><td style=3D"padding:8px 0px"><div s=
+tyle=3D"max-width:100%;margin:0px 16px;overflow:hidden"><div style=3D"font-=
+weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;text-align=
+:left"><font style=3D"text-decoration:none" color=3D"#272727">Data Bloo =F0=
+=9F=94=B7 GA4 Ecommerce Revenue Template (Demo)</font></div><div style=3D"o=
+verflow:hidden;text-overflow:ellipsis;text-align:left"><div style=3D"displa=
+y:block"><div style=3D"font-size:11px;font-weight:400;display:inline-block"=
+ role=3D"link"><a style=3D"border-radius:10px;font-family:-apple-system,Hel=
+vetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-deco=
+ration:none" rel=3D"nofollow" href=3D"http://lookerstudio.google.com" dir=
+=3D"ltr" role=3D"button" width=3D"300" target=3D"_blank"><table style=3D"ta=
+ble-layout:fixed;border-collapse:collapse;width:300px;background-color:#e5e=
+6e9;font-family:-apple-system,Helvetica,Arial,sans-serif" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" width=3D"300"><tbody><tr><td><table bgcolor=
+=3D"#E5E6E9" cellpadding=3D"0" cellspacing=3D"0" width=3D"300" style=3D"fon=
+t-family:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;backgr=
+ound-color:rgba(229,230,233,1)"><tbody><tr><td style=3D"padding:8px 0px 8px=
+ 0px"><div style=3D"max-width:100%;margin:0px 16px 0px 16px;overflow:hidden=
+"><div style=3D"word-wrap:break-word;font-weight:500;font-size:12px;overflo=
+w:hidden;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=
+=3D"http://lookerstudio.google.com" style=3D"text-decoration:none" target=
+=3D"_blank"><font color=3D"#272727" style=3D"color:rgba(0,0,0,0.847059)">Lo=
+oker Studio Overview</font></a></div><div style=3D"word-wrap:break-word;fon=
+t-weight:400;font-size:11px;overflow:hidden;text-overflow:ellipsis;text-ali=
+gn:left"><a rel=3D"nofollow" href=3D"http://lookerstudio.google.com" style=
+=3D"text-decoration:none" target=3D"_blank"><font color=3D"#808080" style=
+=3D"color:rgba(0,0,0,0.498039)">lookerstudio.google.com</font></a></div></d=
+iv></td><td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nofol=
+low" href=3D"http://lookerstudio.google.com" target=3D"_blank"></a></td></t=
+r></tbody></table></td></tr></tbody></table></a></div></div></div></div></t=
+d></tr></tbody></table></td></tr></tbody></table></a></div></div></div></di=
+v></blockquote></div></div></blockquote></div></div></div><div style=3D"lin=
+e-break:after-white-space"><div><div><blockquote type=3D"cite"><div><div cl=
+ass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>=
+<div><div style=3D"display:block"><div style=3D"display:inline-block" role=
+=3D"link"><a style=3D"border-radius:10px;font-family:-apple-system,Helvetic=
+a,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-decoratio=
+n:none" rel=3D"nofollow" href=3D"https://lookerstudio.google.com/reporting/=
+0dcc27d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" dir=3D"ltr" role=3D=
+"button" width=3D"300" target=3D"_blank"><table style=3D"table-layout:fixed=
+;border-collapse:collapse;width:300px;background-color:rgb(229,230,233);fon=
+t-family:-apple-system,Helvetica,Arial,sans-serif" width=3D"300" cellspacin=
+g=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-=
+family:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;backgrou=
+nd-color:rgb(229,230,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0=
+" bgcolor=3D"#E5E6E9"><tbody><tr><td style=3D"padding:8px 0px"><div style=
+=3D"max-width:100%;margin:0px 16px;overflow:hidden"><div style=3D"overflow:=
+hidden;text-overflow:ellipsis;text-align:left"><div style=3D"display:block"=
+><div style=3D"font-size:11px;font-weight:400;display:inline-block" role=3D=
+"link"><a style=3D"border-radius:10px;font-family:-apple-system,Helvetica,A=
+rial,sans-serif;display:block;width:300px;overflow:hidden;text-decoration:n=
+one" rel=3D"nofollow" href=3D"http://lookerstudio.google.com" dir=3D"ltr" r=
+ole=3D"button" width=3D"300" target=3D"_blank"><table style=3D"table-layout=
+:fixed;border-collapse:collapse;width:300px;background-color:#e5e6e9;font-f=
+amily:-apple-system,Helvetica,Arial,sans-serif" cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" width=3D"300"><tbody><tr><td><table bgcolor=3D"#E5E6E=
+9" cellpadding=3D"0" cellspacing=3D"0" width=3D"300" style=3D"font-family:-=
+apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;background-color=
+:rgba(229,230,233,1)"><tbody><tr><td style=3D"padding:6px 12px 6px 0px" wid=
+th=3D"36"><a rel=3D"nofollow" href=3D"http://lookerstudio.google.com" targe=
+t=3D"_blank"></a></td></tr></tbody></table></td></tr></tbody></table></a></=
+div><a rel=3D"nofollow" href=3D"https://lookerstudio.google.com/reporting/0=
+dcc27d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" dir=3D"ltr" role=3D"=
+button" width=3D"300" style=3D"border-radius:10px;width:300px;overflow:hidd=
+en;display:inline!important" target=3D"_blank"><table width=3D"300" cellspa=
+cing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"table-layout:fixed;borde=
+r-collapse:collapse;width:300px;display:inline!important"><tbody style=3D"d=
+isplay:inline!important"><tr style=3D"display:inline!important"><td style=
+=3D"display:inline!important"><table width=3D"300" cellspacing=3D"0" cellpa=
+dding=3D"0" bgcolor=3D"#E5E6E9" style=3D"table-layout:fixed;display:inline!=
+important"><tbody style=3D"display:inline!important"><tr style=3D"display:i=
+nline!important"><td style=3D"padding:8px 0px;display:inline!important"><di=
+v style=3D"max-width:100%;margin:0px 16px;overflow:hidden;display:inline!im=
+portant"><div style=3D"overflow:hidden;text-overflow:ellipsis;display:inlin=
+e!important;font-size:11px"><font color=3D"#ffffff"></font></div></div></td=
+></tr></tbody></table></td></tr></tbody></table></a></div></div></div></td>=
+<td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nofollow" hre=
+f=3D"https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e=
+1dd78bf1/page/p_ezd7e96m0c" target=3D"_blank"></a></td></tr></tbody></table=
+></td></tr></tbody></table></a></div></div></div></div></blockquote></div><=
+/div></blockquote></div></div></div><div style=3D"line-break:after-white-sp=
+ace"><div><div><blockquote type=3D"cite"><div><div class=3D"gmail_quote"><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div><div><div style=3D"dis=
+play:block"><div style=3D"display:inline-block" role=3D"link"><a style=3D"b=
+order-radius:10px;font-family:-apple-system,Helvetica,Arial,sans-serif;disp=
+lay:block;width:300px;overflow:hidden;text-decoration:none" rel=3D"nofollow=
+" href=3D"https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd=
+-a09e1dd78bf1/page/p_ezd7e96m0c" dir=3D"ltr" role=3D"button" width=3D"300" =
+target=3D"_blank"><table style=3D"table-layout:fixed;border-collapse:collap=
+se;width:300px;background-color:rgb(229,230,233);font-family:-apple-system,=
+Helvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0" cellpadding=3D"=
+0" border=3D"0"><tbody><tr><td><table style=3D"font-family:-apple-system,He=
+lvetica,Arial,sans-serif;table-layout:fixed;background-color:rgb(229,230,23=
+3)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><=
+tbody><tr><td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nof=
+ollow" href=3D"https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025=
+-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" target=3D"_blank"></a></td></tr></tbo=
+dy></table></td></tr></tbody></table></a></div></div></div><div><br></div><=
+div>Thank you!</div><div><br></div><div>Best regards,</div><div>Victor Khau=
+stov</div><div><br></div><div></div><div><br><blockquote type=3D"cite"><div=
+>On May 14, 2023, at 16:16, JIANG DAWEI &lt;<a href=3D"mailto:dawei.jiang@n=
+owhere.co.jp" target=3D"_blank">dawei.jiang@nowhere.co.jp</a>&gt; wrote:</d=
+iv><br><div><div dir=3D"ltr"><div dir=3D"ltr"><div>Subject: Update on Quick=
+ Demo Schedule and Request for Clarification on Requirements<br><br>Dear Vi=
+ctor, Mark and Yamadera-san,<br><br>I hope this email finds you well. I wan=
+ted to provide you with an update on the quick demo requirement. Unfortunat=
+ely, I will not be able to complete it by Monday as your hope, since I have=
+ been asked to take a holiday on Friday and will resume work on Monday.<br>=
+<br>However, if it is crucial for you to have the demo by Monday, I am will=
+ing to work overtime including today from 18:00--23:00 and Monday 09:00--23=
+:00 to ensure it is delivered on time. Please let me know if this is necess=
+ary, and I will do my best to accommodate your needs.<br><br>Additionally, =
+I would like to request further clarification on the specific requirements =
+of the project. As you may be aware, data science involves various aspects,=
+ and there is a significant difference between data virtualization and data=
+ visualization with notation. These two concepts require different approach=
+es, timeframes, and solutions.<br><br>To better understand your needs and d=
+eliver a suitable demo, I kindly ask that you provide a clear definition of=
+ your requirements, rather than screenshots from Google searches. This will=
+ enable me to tailor the demo to your exact needs and expectations.<br><br>=
+Thank you for your attention to this matter, and I look forward to receivin=
+g your feedback on both the timeline and the project requirements.<br><br>B=
+est regards,<br><br></div>Yuzuki<br></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Fri, May 12, 2023 at 1:07=E2=80=AFPM=
+ Victor Khaustov &lt;<a href=3D"mailto:victor@nowhere.co.jp" target=3D"_bla=
+nk">victor@nowhere.co.jp</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div>Hi Yuzuki,<div><br></div><div>I=E2=80=99m busy=
+ with the RDS project now, so here is a quick reply to your questions:</div=
+><div><br></div><div>1. It=E2=80=99s a requirement from Yamadera san. But i=
+f you have experience in a similar AWS product and can make a quick demo un=
+til Monday, it probably will be fine too.</div><div><br></div><div>2. It=E2=
+=80=99s a quick demo for a customer. It should provide the interface to com=
+municate with the data they provide and the prediction model. But basically=
+, you need to develop a tool that takes actual sales data and data predicte=
+d by the model (model is not implemented yet) and visualize it as per scree=
+nshot.</div><div><br></div><div>3.=C2=A0<font>While developing a demo, you =
+need to decide the required format for the data. The data itself is already=
+ processed and cleaned. Project=E2=80=99s repository (you have access to it=
+ as EJ member, here=E2=80=99s the link:=C2=A0</font><a href=3D"https://gith=
+ub.com/eyesjapan/supermarket-ai/" target=3D"_blank">https://github.com/eyes=
+japan/supermarket-ai/</a>)<font>=C2=A0which contains the code for analysis =
+and some visualization of the data using Python. <span>The</span>=C2=A0data=
+ itself can be downloaded from here:=C2=A0</font><a href=3D"https://drive.g=
+oogle.com/drive/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tvX?usp=3Dsharing" ta=
+rget=3D"_blank">https://drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4u=
+Ngj73-VCV6tvX?usp=3Dsharing</a></div><div><font><span><br></span></font></d=
+iv><div><font>4. You don=E2=80=99t have to be an expert on the tools, but y=
+ou need to be able to learn from the documentation and have some general pr=
+ogramming skills.</font></div><div><font><br></font></div><div><font>Thank =
+you!=C2=A0</font></div><div><font><br></font></div><div><font>Best regards,=
+</font></div><div><font>Victor</font></div><div>=C2=A0 =C2=A0<br><div><br><=
+blockquote type=3D"cite"><div>On May 12, 2023, at 12:12, JIANG DAWEI &lt;<a=
+ href=3D"mailto:dawei.jiang@nowhere.co.jp" target=3D"_blank">dawei.jiang@no=
+where.co.jp</a>&gt; wrote:</div><br><div><div dir=3D"ltr" style=3D"font-fam=
+ily:Helvetica;font-size:14px;font-style:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">----=
+------ Forwarded message ---------<div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">Subject: Fwd: Yuzuki - Get the instructions from Ya=
+madera san to contact you working on supermarket AI<br>To: Jun Yamadera &lt=
+;<a href=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank">yamadera@nowhe=
+re.co.jp</a>&gt;, Mark Ogbodo &lt;<a href=3D"mailto:ogbodo.mark@nowhere.co.=
+jp" target=3D"_blank">ogbodo.mark@nowhere.co.jp</a>&gt;<br></div><br><br><d=
+iv dir=3D"ltr">Subject: Questions and Clarifications on Supermarket AI Task=
+<br><br>Dear Yamadera san, Victor, and Mark:<br><br>I hope this email finds=
+ you well. Thank you for providing me with the information about the projec=
+t. Before diving into the task, I have a few questions and concerns that I =
+would like to discuss with you to ensure I have a clear understanding of th=
+e project requirements and my role in it.<br><br>1. Is using Google Data St=
+udio a mandatory requirement from our customers or Yamadera-san? I have no =
+experience with this product, but I do have experience with similar product=
+s from AWS. If the feasibility of Looker Studio has already been tested, I =
+believe it should be fine. However, as you know, some SaaS or PaaS products=
+ can be challenging to customize.<br><br>2. I am currently unsure about the=
+ overall architecture of the project and my role in the pipeline. From my u=
+nderstanding, there are some well-established patterns for implementing ML =
+in a product, and our project seems to fit some of them. It would be helpfu=
+l to have more information on this aspect.<br><br>3. I am still unclear abo=
+ut the expected input and output for my part of the project. Will I be give=
+n raw data (which means I would need to perform data cleaning), or will I r=
+eceive serialized data (which means I would be responsible for data visuali=
+zation)? I would appreciate some clarification on this.<br><br>4. Lastly, I=
+ would like to share some articles from my blog to give you an idea of my t=
+echnical background, what I know, and what I don&#39;t know. This will help=
+ ensure that the project is delivered to our customers on time and with hig=
+h quality.<br><br><a href=3D"https://kamisu66.com/2022/05/14/Introduction-t=
+o-Machine-Learning-Artificial-Intelligence-Machine-Learning-Deep-Learning-N=
+eural-Networks-Algorithms/" target=3D"_blank">https://kamisu66.com/2022/05/=
+14/Introduction-to-Machine-Learning-Artificial-Intelligence-Machine-Learnin=
+g-Deep-Learning-Neural-Networks-Algorithms/</a><br><br><div><a href=3D"http=
+s://kamisu66.com/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker-WorkFlo=
+w-Process/" target=3D"_blank">https://kamisu66.com/2022/05/22/Machine-Learn=
+ing-Pipeline-AWS-Sagemaker-WorkFlow-Process/</a><br></div><div><br></div><d=
+iv>Although I am not an expert in machine learning, I am eager to learn fro=
+m my colleagues and expand my knowledge in this area. I understand that thi=
+s project is important to our company and our customers, and I am committed=
+ to delivering high-quality work. To maximize my contribution to the projec=
+t and enhance my understanding of machine learning, I kindly request your s=
+upport and guidance.</div><div><br></div><div>If you could provide me with =
+any articles, websites, or step-by-step guidelines related to machine learn=
+ing, I would greatly appreciate it. And I think it is necessary to have a m=
+eeting. These resources will help me develop the necessary skills for this =
+project and ensure that I can contribute effectively to the team. Additiona=
+lly, I would be grateful for any advice or best practices that you could sh=
+are based on your experience in the field.<br><br>Once I have a better unde=
+rstanding of these points, I will be more confident in proceeding with the =
+task. I am looking forward to your response and guidance on this project.<b=
+r><br>Best regards,<br><br>Yuzuki<br></div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 10, 2023 at 6:10=E2=
+=80=AFPM Victor Khaustov &lt;<a href=3D"mailto:victor@nowhere.co.jp" target=
+=3D"_blank">victor@nowhere.co.jp</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div>Hi Yuzuki,<div><br></div><div>Please =
+start from learning about the Looker Studio (formerly known as Google Data =
+Studio):=C2=A0<a href=3D"https://cloud.google.com/looker-studio" target=3D"=
+_blank">https://cloud.google.com/looker-studio</a></div><div><br></div><div=
+>Here is the Quickstart guide:</div><div><div style=3D"display:block"><div =
+role=3D"link" style=3D"display:inline-block"><a rel=3D"nofollow" href=3D"ht=
+tps://support.google.com/looker-studio/answer/9171315" dir=3D"ltr" role=3D"=
+button" width=3D"300" style=3D"border-radius:10px;font-family:-apple-system=
+,Helvetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-=
+decoration:none" target=3D"_blank"><table style=3D"table-layout:fixed;borde=
+r-collapse:collapse;width:300px;background-color:rgb(229,230,233);font-fami=
+ly:-apple-system,Helvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-family=
+:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;background-col=
+or:rgb(229,230,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgco=
+lor=3D"#E5E6E9"><tbody><tr><td style=3D"padding:8px 0px"><div style=3D"max-=
+width:100%;margin:0px 16px;overflow:hidden"><div style=3D"font-weight:500;f=
+ont-size:12px;overflow:hidden;text-overflow:ellipsis;text-align:left"><a re=
+l=3D"nofollow" href=3D"https://support.google.com/looker-studio/answer/9171=
+315" style=3D"text-decoration:none" target=3D"_blank"><font color=3D"#27272=
+7">Quick start guide - Looker Studio Help</font></a></div><div style=3D"fon=
+t-weight:400;font-size:11px;overflow:hidden;text-overflow:ellipsis;text-ali=
+gn:left"><a rel=3D"nofollow" href=3D"https://support.google.com/looker-stud=
+io/answer/9171315" style=3D"text-decoration:none" target=3D"_blank"><font c=
+olor=3D"#808080">support.google.com</font></a></div></div></td><td style=3D=
+"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nofollow" href=3D"https:/=
+/support.google.com/looker-studio/answer/9171315" target=3D"_blank"></a></t=
+d></tr></tbody></table></td></tr></tbody></table></a></div></div></div></di=
+v></blockquote></div></div></div></div></blockquote></div></div></div><div>=
+<div><div><blockquote type=3D"cite"><div><div dir=3D"ltr" style=3D"font-fam=
+ily:Helvetica;font-size:14px;font-style:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;text-decoration:none"><div=
+ class=3D"gmail_quote"><div class=3D"gmail_quote"><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div><div><div style=3D"display:block"><div role=
+=3D"link" style=3D"display:inline-block"><a rel=3D"nofollow" href=3D"https:=
+//support.google.com/looker-studio/answer/9171315" dir=3D"ltr" role=3D"butt=
+on" width=3D"300" style=3D"border-radius:10px;font-family:-apple-system,Hel=
+vetica,Arial,sans-serif;display:block;width:300px;overflow:hidden;text-deco=
+ration:none" target=3D"_blank"><table style=3D"table-layout:fixed;border-co=
+llapse:collapse;width:300px;background-color:rgb(229,230,233);font-family:-=
+apple-system,Helvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0" ce=
+llpadding=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-family:-ap=
+ple-system,Helvetica,Arial,sans-serif;table-layout:fixed;background-color:r=
+gb(229,230,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=
+=3D"#E5E6E9"><tbody><tr><td style=3D"padding:6px 12px 6px 0px" width=3D"36"=
+><a rel=3D"nofollow" href=3D"https://support.google.com/looker-studio/answe=
+r/9171315" target=3D"_blank"></a></td></tr></tbody></table></td></tr></tbod=
+y></table></a></div></div><br><div>When learning the basics, please keep in=
+ mind that we need to create the report that is somewhat similar to the att=
+ached screenshot. The user can select a store via dropdown list (currently,=
+ there are 3 stores to choose from) and select the date. Next, the time ser=
+ies plot should appear with actual sales and predicted sales by the AI mode=
+l (the model will be developed later, probably by Mark).</div><div><br></di=
+v><div>You need to figure out what data format is required to build such pl=
+ot, and how to connect the data sources from Google Drive (or other resourc=
+es).=C2=A0</div><div><br></div><div>Once you learn about Looker Studio and =
+how to create a similar plot, we can organize a meeting to discuss some det=
+ails.</div><div><br></div><div>Thank you!</div><div><br></div><div>Best reg=
+ards,</div><div>Victor =C2=A0</div><div><br></div><div></div></div></div></=
+blockquote></div></div></div></div></blockquote></div></div></div><div><div=
+><div><blockquote type=3D"cite"><div><div dir=3D"ltr" style=3D"font-family:=
+Helvetica;font-size:14px;font-style:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;text-decoration:none"><div cla=
+ss=3D"gmail_quote"><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div><div><div><br><blockquote type=3D"cite"><div>On M=
+ay 10, 2023, at 17:21, JIANG DAWEI &lt;<a href=3D"mailto:dawei.jiang@nowher=
+e.co.jp" target=3D"_blank">dawei.jiang@nowhere.co.jp</a>&gt; wrote:</div><b=
+r><div><div dir=3D"ltr"><div>I hope this email finds you well.<span>=C2=A0<=
+/span><br></div><div><br></div><div>Yuzuki was asked by Yamadera san, to co=
+ntact you regarding the supermarket AI project.</div><div><br></div><div>Ho=
+wever, I must admit that I know very little about the project, including wh=
+at my role is or how I can contribute to it.</div><br>I was wondering if yo=
+u could provide me with some information about the project, such as any doc=
+uments or resources that I should read or any preparation or code reading t=
+hat I should do. I want to make sure that I am fully prepared to contribute=
+ to the project in any way possible.<br><br><div>Additionally, if you have =
+any questions for me, please do not hesitate to ask. Like my technical back=
+ground (or stack).<span>=C2=A0</span><br></div><div><br></div><div>I am eag=
+er to learn more about the project and to work with you and your team to en=
+sure its success.</div><br>Thank you for your time and consideration. I loo=
+k forward to hearing back from you soon.<br><br><div>Best regards.</div><di=
+v><br></div><div>Yuzuki</div></div></div></blockquote></div></div></div></b=
+lockquote></div></div></div></div></blockquote></div><br></div></div></bloc=
+kquote></div></div>
+</div></blockquote></div><br></div></blockquote></div>
+</div></blockquote></div><br></div></div></blockquote></div></div><span cla=
+ss=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail=
+_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><span style=
+=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">------------- th=
+e Middle of Nowhere, Eyes, JAPAN Co. Ltd.-----------</span><br style=3D"col=
+or:rgb(0,0,0);font-family:Helvetica;font-size:12px"><span style=3D"color:rg=
+b(0,0,0);font-family:Helvetica;font-size:12px">=C2=A0 =C2=A0 =C2=A0 =C2=A0J=
+un Yamadera =C2=A0 e-mail: =C2=A0<a href=3D"mailto:yamadera@nowhere.co.jp" =
+target=3D"_blank">yamadera@nowhere.co.jp</a></span><br style=3D"color:rgb(0=
+,0,0);font-family:Helvetica;font-size:12px"><span style=3D"color:rgb(0,0,0)=
+;font-family:Helvetica;font-size:12px">&quot;Any sufficiently advanced tech=
+nology is indistinguishable</span><br style=3D"color:rgb(0,0,0);font-family=
+:Helvetica;font-size:12px"><span style=3D"color:rgb(0,0,0);font-family:Helv=
+etica;font-size:12px">from magic&quot;=E3=80=80Arthur C. Clarke</span><br s=
+tyle=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px"><span style=
+=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">--URL: <a href=
+=3D"http://www.nowhere.co.jp" target=3D"_blank">http://www.nowhere.co.jp</a=
+> =C2=A0 e-mail: =C2=A0<a href=3D"mailto:info@nowhere.co.jp" target=3D"_bla=
+nk">info@nowhere.co.jp</a> --</span><br></div></div>
+
+--0000000000002eb2af05fbb28ca8--

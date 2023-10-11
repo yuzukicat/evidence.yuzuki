@@ -1,0 +1,2 @@
+1. Osaka Uni Project: Testing the driver for the camera. I am pleased to report that this task has been executed successfully, and we are now moving forward as planned.
+2. PD Project: We had planned with Tang san to discuss the integrated Android app, which includes our intern's contribution. Unfortunately, the meeting could not take place as expected since Tang san has been tied up with other commitments. As an added factor, the ReadMe to be completed by Tang san is still pending. However, we have scheduled a follow-up discussion tomorrow.

@@ -1,0 +1,18 @@
+* Last Week
+** Supermarket AI
+*** Coordinating
+*** Collaborating
+**** Collaborating with Cherubin to:
+**** Impliment suggestions && feature requests discussed last Thursday's meeting.
+**** Integrating Japanese Translation with the current version of look studio.
+**** MTG with Cherubin to discuss the details.
+** Others
+**** Morning Meeting.
+**** Catch up && Back up E-Mails && Discord Message.
+**** Weekly meeting.
+* Next Week
+** Supermarket AI
+*** Coordinating
+*** Collaborating
+**** Make sure the project can be delivered on Friday.
+** Others

@@ -1,0 +1,143 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:6501:b0:127:cdfe:9d74 with SMTP id v1csp120953rwg;
+        Wed, 31 May 2023 23:08:00 -0700 (PDT)
+X-Received: by 2002:a05:6808:9a8:b0:398:9ee4:1dac with SMTP id e8-20020a05680809a800b003989ee41dacmr6515304oig.32.1685599680548;
+        Wed, 31 May 2023 23:08:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685599680; cv=none;
+        d=google.com; s=arc-20160816;
+        b=n5vKDN1WJtKEE/bODbm/IIN6ackIbcBD3PKLHhiJrFRLWfHsjj0S+xYYtwTGBXKiRV
+         Ivz8xIHzjcRyeeBkAQd6JEzDRjSaHj2M8S+o9pNrVW5dXX3+K4rsUogzDSoB4uNERL83
+         Z3J81oQr56xDnP8Rv2rNfSw93dKLbcXXwNPnMwKRrsFEbg1A5CRZt1AydLk3rM6peJRq
+         4kxkF5UL8zW877aTPSnEQiKwrs36Jt4q55azvsXh2qDFoDq4agygf4w8K//0jNLwsb8Z
+         +pcuMztOq3xtQBHHrizaoyBIfeNyir7z8ltEBIXVzPrW9XrXBqKoYL7sb8XnTef5M9hC
+         uqjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:dkim-signature;
+        bh=OXbMclstodnX8QnLeQB10ipZYIe8qSCX3ZKoI+fLni4=;
+        b=yBOOVscIpJiN31DDh+VvHcXwm5wZuFqdLd4NMxeYdxgxFlMMuuQ2Wd0GlqHWdb3Clb
+         3BVSQ2GuyVjACrUGu966wQOPfJfKa5r3PNcnqt6oYbTIlG8DAmuAkmhW0JtaD7/2u1Q9
+         dCq1uGDQ+FNrBnlvRZfvF/+gcpq0VjmBrX/BEcUkaUyoNJbp0enFG5fyGzgfIF2RKYAe
+         tzHikLeKEb2WnxqlL77Vh8rig3fZMM5YwKmc9Bi+xqt+M3d2OsO1nAfA5JiZK0+xtqgp
+         mVJEdBS4zdMPcVxoTRz8bd1aZ4tkkhlVtR2nVS2V3Jb2TADoGg6iJ8SyeQlkAq65nwFZ
+         V0wg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=QvR5gIpf;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id x63-20020acae042000000b003962146a13bsor1270838oig.1.2023.05.31.23.08.00
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Wed, 31 May 2023 23:08:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=QvR5gIpf;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1685599680; x=1688191680;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OXbMclstodnX8QnLeQB10ipZYIe8qSCX3ZKoI+fLni4=;
+        b=QvR5gIpfZKKoLvIBkkl/qgHG1QDvHjCdJLUzJXQ8o63nRor8r0QsvLt0et/TpKgkI4
+         OSLcGJaIqT8pGk0EU2pzLey92ditKTZNEXHH41t+5RoVd6kvtHN+OVe7qE/G+SLLERmZ
+         W6Mthsh4IRD2jPbpQQJzCUAKze2Je5i1el/co=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685599680; x=1688191680;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OXbMclstodnX8QnLeQB10ipZYIe8qSCX3ZKoI+fLni4=;
+        b=aoO/uNoSiab9ADuUZepmNEMVOuLX6JfP4TpMBopE6mL/VlVx++UfbT08Kqxnoxcgj5
+         tTm0qapRqLeb51I+RZolT5ao4Sb1E8BFaGO0KHGUyVyMxHFwW1qU3CJLm5i7bvdMNxJ3
+         5nRrxKRkTrIMVOkE3q0Idc9j/Sf7/ofcBe90IzTM4vso9Wu8nfDRmJtBRaDSlXXhB2+m
+         OJng+pJ0IyuopyzWWge+3jAqb6viVNDy9htinIF4d3sBA4YTo+G0V6MAQInx3IHQPp1Y
+         xYYwQqXS/B/NIq3C5PJcEqvh38CK/aANSwYxggT/nTnMOgwXOzavKocAULNB3pXfF5ck
+         yXxw==
+X-Gm-Message-State: AC+VfDzzfmLv0YSY200QBKZT+DrK8R8eKBZ+uWqkmFXS2mFZG0T9j3fl
+	roc6NjipUEh0hGIEfQ9Lm7cF4dL9esJxmodmtf1zcHmb
+X-Google-Smtp-Source: ACHHUZ72jE/++0QvzAIVvzNSabKafANDPGJCx1/uWqUGGEpoMCdsP9BRhsLUsZFU7ElhpH/Spa5cpw==
+X-Received: by 2002:a05:6808:1414:b0:398:5929:fab2 with SMTP id w20-20020a056808141400b003985929fab2mr9085841oiv.14.1685599679698;
+        Wed, 31 May 2023 23:07:59 -0700 (PDT)
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from smtpclient.apple ([240b:13:31e1:6200:8db1:6c8f:121:d50e])
+        by smtp.gmail.com with ESMTPSA id x18-20020aa784d2000000b0062d859a33d1sm4276661pfn.84.2023.05.31.23.07.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 May 2023 23:07:58 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: [eyes 10919] [admin 8536] Important: Your cost is forecasted to
+ exceed its threshold value for your Azure budget, pd
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+In-Reply-To: <CAMonfW1+hO-Wa+SjKKmZb=6y5UnJL3fMj2ouM7r_+eZHjdd05Q@mail.gmail.com>
+Date: Thu, 1 Jun 2023 15:07:45 +0900
+Cc: JIANG DAWEI <dawei.jiang@nowhere.co.jp>,
+ Jueming Feng <feng.jueming@nowhere.co.jp>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <EDFC591C-E293-42A2-961B-CCDA349630E8@nowhere.co.jp>
+References: <1a671d6b-2371-4b6e-a417-b95cdd5706aa@az.westus3.unknown.microsoft.com>
+ <99D987F6-750B-41F7-9EB2-D3E087D46255@nowhere.co.jp>
+ <CAMonfW1+hO-Wa+SjKKmZb=6y5UnJL3fMj2ouM7r_+eZHjdd05Q@mail.gmail.com>
+To: Tang Li <tang@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.600.7)
+
+
+Ah=E2=80=A6. Can you fix other admin staff can log in asap? > Yuzuki
+
+> 2023/06/01 14:07=E3=80=81Tang Li <tang@nowhere.co.jp>=E3=81=AE=E3=83=A1=E3=
+=83=BC=E3=83=AB:
+>=20
+> I think this PD Azure is managed by Yuzuki san. I tried to log in as =
+admin@nowhere.co.jp but failed because the password from Bitwarden is =
+not correct.=20
+> Should we wait until Yuzuki comes to the office tomorrow?
+>=20
+> On Thu, Jun 1, 2023 at 1:17=E2=80=AFPM Jun Yamadera =
+<yamadera@nowhere.co.jp> wrote:
+>=20
+> ALAN PD uses more than 5,000 yen/day? Is there any mistake in =
+setting???
+>=20
+> Jueming or Yuzuki?
+>=20
+>> =E8=BB=A2=E9=80=81=E3=81=95=E3=82=8C=E3=81=9F=E3=83=A1=E3=83=83=E3=82=BB=
+=E3=83=BC=E3=82=B8:
+>>=20
+>> =E5=B7=AE=E5=87=BA=E4=BA=BA: "'Microsoft Azure' via admin" =
+<admin@nowhere.co.jp>
+>> =E4=BB=B6=E5=90=8D: [admin 8536] Important: Your cost is forecasted =
+to exceed its threshold value for your Azure budget, pd
+>> =E6=97=A5=E4=BB=98: 2023=E5=B9=B46=E6=9C=881=E6=97=A5 11:35:25 JST
+>> =E5=AE=9B=E5=85=88: admin@nowhere.co.jp
+>> =E8=BF=94=E4=BF=A1=E5=85=88: Microsoft Azure =
+<azure-noreply@microsoft.com>
+>>=20
+>> Your cost is forecasted to exceed its threshold value for your Azure =
+budget, pd
+>> The total spend for your budget, pd, is forecasted to reach =C2=A55,567=
+ before the end of the period. This amount exceeds your specified budget =
+threshold of =C2=A55,000. Please review your budget in the Azure portal =
+and analyze your cost and usage.Review budget >Budget name: pd
+>> Budget start date: June 1, 2023
+>> Budget type: Cost
+>> Budget amount: =C2=A510,000
+>> Notification threshold for forecast alert: =C2=A55,000
+>> Total forecasted for period: =C2=A55,567
+>> Alert generation time: June 1, 2023 2:35 UTCTo see more information =
+about this alert, view the alert details in the Azure portal. If you =
+need additional help, visit budgets tutorial. If you need help, please =
+contact support.
+>> If you no longer want to receive alerts for pd, contact =
+yuzuki@nowhere.co.jp.Account information
+>> Subscription ID: 06046ac6-c6e5-46e0-be6e-083e1e4838a8
+>> Resource group name: pd
+>> Tenant ID: dde609af-2949-448b-9f6e-6fbda58c34adPrivacy Statement
+>> Microsoft Corporation, One Microsoft Way, =E2=80=8BRedmond, WA =
+98052=E2=80=8B
+>=20
+>=20
+

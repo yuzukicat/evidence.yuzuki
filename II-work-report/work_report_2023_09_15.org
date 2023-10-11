@@ -1,0 +1,5 @@
+2023-09-15
+PD project - the Android App Development.
+Writing a GraphQL schema.Taken into consideration the JSON example data provided by Tang, which proved to be a reliable guide.
+The translation process from JSON to GraphQL has been methodological, ensuring that each field in the JSON data is properly represented in the GraphQL schema. The progress is on schedule, and we are confident in the integrated, efficient, and powerful API that this schema will provide for our Android application development.
+Finalizing the representation of each data type, relations between types, and validating the structure of the executed queries.

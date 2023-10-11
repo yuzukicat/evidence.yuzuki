@@ -1,0 +1,453 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:7404:b0:12f:24f9:7e58 with SMTP id s4csp402112rwg;
+        Fri, 16 Jun 2023 18:04:50 -0700 (PDT)
+X-Received: by 2002:a25:41d3:0:b0:ba7:ca1d:70f3 with SMTP id o202-20020a2541d3000000b00ba7ca1d70f3mr684192yba.39.1686963890002;
+        Fri, 16 Jun 2023 18:04:50 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1686963889; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=rF3uukhaE+yEubjlJfNush5/92bXXv/f6wCJlBIK0v8q83PmQ1uVnVxatE/UFoJT3Q
+         6xTPNFBpzHV2gHqIhyOs2sSglqzYxxopqoCctMlVoJYUrueB10+Sp4cDipWPmW5/FwcL
+         uK4Ub2x/8c+VQYCsiFgwwWfQCVDV8MKu419RCwns7Pkw2pvLT+G/VspoaCO1cWxAKx99
+         WuMFM/tpwN6iY5WcbtOFLwxVfQoYue1XMHlhK0yQ1opqdosx1oTSR/wRcF4OCQMKcCwf
+         wBGgt6/rMoO3+D92/Q2tSmCuOS915w0FkjF3BMLG82XsxueaiHa1nLEa4I2NUNon12iU
+         LG1w==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:mime-version:date:message-id:feedback-id:to
+         :reply-to:subject:from:dkim-signature;
+        bh=FfNDdF0pPNsgA1b4hMMaLKvJB2bVNoOaGFEceuW+QZU=;
+        b=ynYKfOFS3mcQke3Fu+zWNWCIgvGI4sWD3IewUgqrmWkgQXbtzp7ts1Lacxo458E2ea
+         Pegahqv3Q5ros8IHbrVG1LrCUb29Jvs/DXKiTk86N2pIWVSIB/KEfK/GXKgsNYH6B48k
+         6MQkZ/SRff1oRwh55kYHfMLl94c9UmTRtilBhQ2R2Q+PCpu3aA/sAwICM+GHH8tfIxIu
+         FHivk25znr6X5gK3kl1m6Qg9k35W+3hVeB8217Q0iJkUI57oT6/R0YVaUj4tJOHoneJH
+         n/WKyMGMhR+O7eKjv6MvLhsWkfEZdoCOloh8fEKkJsMmc7Czo3yOngSxeN8uE4tuAtg5
+         VfHw==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Gzn3wpy9;
+       arc=pass (i=2 spf=pass spfdomain=mandrillapp.com dkim=pass dkdomain=tm.openai.com dkim=pass dkdomain=mandrillapp.com dmarc=pass fromdomain=openai.com);
+       spf=pass (google.com: domain of admin+bncbcgzj4nurifbbmmnwssamgqewts7dbi@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBCGZJ4NURIFBBMMNWSSAMGQEWTS7DBI@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <admin+bncBCGZJ4NURIFBBMMNWSSAMGQEWTS7DBI@nowhere.co.jp>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id j72-20020a25234b000000b00bce3c3c6e6esor3724338ybj.16.2023.06.16.18.04.49
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Fri, 16 Jun 2023 18:04:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of admin+bncbcgzj4nurifbbmmnwssamgqewts7dbi@nowhere.co.jp designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Gzn3wpy9;
+       arc=pass (i=2 spf=pass spfdomain=mandrillapp.com dkim=pass dkdomain=tm.openai.com dkim=pass dkdomain=mandrillapp.com dmarc=pass fromdomain=openai.com);
+       spf=pass (google.com: domain of admin+bncbcgzj4nurifbbmmnwssamgqewts7dbi@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=admin+bncBCGZJ4NURIFBBMMNWSSAMGQEWTS7DBI@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+ARC-Seal: i=2; a=rsa-sha256; t=1686963889; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=vjyU31pJBA0ZIibPezIHokQ9JO4RDTrc0uTaFZAJG/eM9Jgo8rL7/P3r2rU4iEy2eX
+         osE+9pk5eIV7lTsKWxfJTXHiFUnFfKsbnzh/iIKuLghOSqj8I8PC5Aym0r870cFDCb9e
+         YtVtEcFgWTR0mS5r7jwZ1pOABpiHK6fI9+X5bNDssNC0xNpRM5qkCK+xBsoqc36dbmLp
+         9Zle41ZAaWqIrfERUPgYI1+igorog/6XbFM2ZBdWAdIwlSy4xLoTE0VzYrnoehbOB9tu
+         VJzbVb9DkBTvkH7Jyfe1eYGeISF+v8TvKRgGnl0+h9Gjew/PCNwyJw9SZmp9bqMjXXZZ
+         WUmw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:mime-version:date:message-id:feedback-id:to
+         :reply-to:subject:from:dkim-signature;
+        bh=FfNDdF0pPNsgA1b4hMMaLKvJB2bVNoOaGFEceuW+QZU=;
+        b=H8sOsyMUwNtEyVT+6LiiOPUt21D08AOkiA+ZCafZRv5JjLDOrMwJ9L0Vd2Ck+UnXXa
+         ihcFSjqUBXSh/Nb5hlNWFoxiSiaGVh0KFfYbLrpDt5PqjqxEoSpQ8vUjTZFdkbwOMm7g
+         avztbiVKR30lcW95fa5yQeodhxiMjtC0ezGmoqDgpahojnhYnb7BFEUQaocQvZQMUSKM
+         tjfo1nXNTCRBP7of2OUVB825lO8nI4/cdnvZw6Bs9dYXrUXBhdhJjnOlL5UIY9+Il4j+
+         yDKbYnsN0vYj2Zuu+dfq9hcU15YJv6sAgbcg+MSr+V/IuWT4oRse8nuUZW6zHB6itLnM
+         UhuA==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@tm.openai.com header.s=mandrill header.b=Nl8ZjksA;
+       dkim=pass header.i=@mandrillapp.com header.s=mandrill header.b=k+TWI4z5;
+       spf=pass (google.com: domain of bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com designates 198.2.180.3 as permitted sender) smtp.mailfrom=bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=openai.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1686963889; x=1689555889;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:x-original-authentication-results
+         :x-original-sender:mime-version:date:message-id:feedback-id:to
+         :reply-to:subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FfNDdF0pPNsgA1b4hMMaLKvJB2bVNoOaGFEceuW+QZU=;
+        b=Gzn3wpy9hs04Ky7s/NITBO0Q7YsxYv5eahL7N4ySAOjVbR22ldu7U2PJMsXWhkqUk6
+         MhTIUqfXL+VBxANW7U5N/plfyChOaCQF4PNEZB5Ie+yKuTQucSpd5zVii1eS4ZF7M4ff
+         CUAMPH+9IWDFz2iVs0VNvMdUfjiQtKreQGwq0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686963889; x=1689555889;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence
+         :x-original-authentication-results:x-original-sender:mime-version
+         :date:message-id:feedback-id:to:reply-to:subject:from:x-beenthere
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FfNDdF0pPNsgA1b4hMMaLKvJB2bVNoOaGFEceuW+QZU=;
+        b=MXb32K70HwfnkGdP+pM51yg3eVDKZqFzhlEJGqIsIW7YUT0aWh7/2CVF4JWXDiUaqy
+         +CIoRxd1ClCj8GOsD6YiPcht2XnaPpNUZKYe+0Gj6tOiLuhfwyAWxvoEH/4CYTNrH4r8
+         3oC09HuvWdCdnW1rpRHRSQR0Qs1Rx/O0msfOykiQyu/5ubJKF6yeofxV02+u9wPr6kw6
+         qq24bTMTTARtFE+VtMV2DlGXbH7oExcppkeXt0NmiwdoIXrX1zINY8Pvj7E94h6l7cYz
+         dvd9Lzs1wzX/gn77dLaz3bzhqmpwN8HrqMsPdw7bGKnORkHm5KBXtqRtEjWuF7Jy+fiy
+         JEFQ==
+X-Gm-Message-State: AC+VfDwKN2DlekH7pz8GETNE79AuaYKK/rPkfZ7cs+6rBBs0Sxn7q5nf
+	w1ftCB+eswflbFHyCYMIlR/jhqx+
+X-Google-Smtp-Source: ACHHUZ66UYI71A3a6yIRfe6dcyLx15jU76NMuL9Xy8/ifzoyW4wu8utiIi3dbcqAnfJHAZiPZiI2Lg==
+X-Received: by 2002:a25:da94:0:b0:bc7:d7ba:4e8b with SMTP id n142-20020a25da94000000b00bc7d7ba4e8bmr814605ybf.13.1686963889537;
+        Fri, 16 Jun 2023 18:04:49 -0700 (PDT)
+X-BeenThere: admin@nowhere.co.jp
+Received: by 2002:a25:dfd2:0:b0:bb2:cd6a:9be4 with SMTP id w201-20020a25dfd2000000b00bb2cd6a9be4ls1090817ybg.1.-pod-prod-01-us;
+ Fri, 16 Jun 2023 18:04:48 -0700 (PDT)
+X-Received: by 2002:a0d:ea52:0:b0:56f:fa68:2e34 with SMTP id t79-20020a0dea52000000b0056ffa682e34mr3865789ywe.35.1686963888344;
+        Fri, 16 Jun 2023 18:04:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686963888; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BOR172QNeXVQLJ4Y8NPpeud+ekIJo8aQB+Ba9RWDBeO1tYr6TI6cxnLzfQKeXoKun7
+         7m5af4Cx+TX8y5D963MtEhju3OoqDLEpDBD/nsKxuGubdjkV40/Q43MUd5RKtJF2aDZj
+         ujqngQwMhvzD7oT+mD6X+/DI0/TdfUXe810jEpVvyIyJeyioROHrXDnizXRidESdFYAN
+         J+uQtLsiaqaDyqm13WeRzTS+dOyoxAPnYGT7LL/9s+wtwkowAPyrisMOTfbCheyZ0Vyj
+         F8qIgiZNPCVcX1XetXOidHLN7wRKGGWoPEz6Ynforz/AJg63ff6C9/3qWM4jVtnizr6W
+         2v0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:date:message-id:feedback-id:to:reply-to:subject:from
+         :dkim-signature:dkim-signature;
+        bh=FfNDdF0pPNsgA1b4hMMaLKvJB2bVNoOaGFEceuW+QZU=;
+        b=u7kzyH0hN4A/bLcpuP1e9iZPAu6eVVvX+kB3dfzTCjZaV9W8u1BojVyFdQqb1HZtLB
+         GxN/z1F75QHJWaAHjhXlNGSO+hJECer1pd/idaklLt2snGpBdNfILyQc9kB4JiD+yExI
+         RUGwwd33jPE6Rgdv60x8radkv//cytQa5VhEtwf6ybiqqLKmREtfBiw7aNjqtEAJTLoP
+         6t5nvdp/43uV45r9YRm4VwXaqh4XQYg3j30wgyig9Ty/0LmFhelvi/wawEXX3ehmx1Gb
+         xSRILpwACPTazoEGh7ryN8Ft4rCHuFwEj1PWdruuGloFsJRXb5fCClynbnAIWWozKYFu
+         WuYQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@tm.openai.com header.s=mandrill header.b=Nl8ZjksA;
+       dkim=pass header.i=@mandrillapp.com header.s=mandrill header.b=k+TWI4z5;
+       spf=pass (google.com: domain of bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com designates 198.2.180.3 as permitted sender) smtp.mailfrom=bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=openai.com
+Received: from mail180-3.suw31.mandrillapp.com (mail180-3.suw31.mandrillapp.com. [198.2.180.3])
+        by mx.google.com with ESMTPS id w196-20020a8149cd000000b00570324a7255si4075910ywa.52.2023.06.16.18.04.48
+        for <admin@nowhere.co.jp>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jun 2023 18:04:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com designates 198.2.180.3 as permitted sender) client-ip=198.2.180.3;
+Received: from pmta11.mandrill.prod.suw01.rsglab.com (localhost [127.0.0.1])
+	by mail180-3.suw31.mandrillapp.com (Mailchimp) with ESMTP id 4Qjd9D1XXxzDRJSMy
+	for <admin@nowhere.co.jp>; Sat, 17 Jun 2023 01:04:48 +0000 (GMT)
+From: "'OpenAI' via admin" <admin@nowhere.co.jp>
+Subject: [admin 8673] OpenAI API Invoice 34D8012A-0003
+Received: from [40.84.182.32] by mandrillapp.com id 8ae24c24624a4eb192139cf2ea48faf3; Sat, 17 Jun 2023 01:04:48 +0000
+Reply-To: support@openai.com
+To: yamadera@nowhere.co.jp, admin@nowhere.co.jp, feng.jueming@nowhere.co.jp
+X-Native-Encoded: 1
+X-Report-Abuse: =?UTF-8?Q?Please=20forward=20a=20copy=20of=20this=20message,=20including=20all=20headers,=20to=20abuse@mandrill.com.=20You=20can=20also=20report=20abuse=20here:=20https://mandrillapp.com/contact/abuse=3Fid=3D31165340.8ae24c24624a4eb192139cf2ea48faf3?=
+X-Mandrill-User: md_31165340
+Feedback-ID: 31165340:31165340.20230617:md
+Message-Id: <31165340.20230617010448.648d06b0294649.27939935@mail180-3.suw31.mandrillapp.com>
+Date: Sat, 17 Jun 2023 01:04:48 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="_av-_Hr22jeSRNJoS9VIdQNodw"
+X-Original-Sender: noreply@tm.openai.com
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@tm.openai.com header.s=mandrill header.b=Nl8ZjksA;       dkim=pass
+ header.i=@mandrillapp.com header.s=mandrill header.b=k+TWI4z5;       spf=pass
+ (google.com: domain of bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com
+ designates 198.2.180.3 as permitted sender) smtp.mailfrom=bounce-md_31165340.648d06b0.v1-8ae24c24624a4eb192139cf2ea48faf3@mandrillapp.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=openai.com
+X-Original-From: OpenAI <noreply@tm.openai.com>
+Precedence: list
+Mailing-list: list admin@nowhere.co.jp; contact admin+owners@nowhere.co.jp
+List-ID: <admin.nowhere.co.jp>
+X-Spam-Checked-In-Group: admin@nowhere.co.jp
+X-Google-Group-Id: 370051093590
+List-Post: <https://groups.google.com/a/nowhere.co.jp/group/admin/post>, <mailto:admin@nowhere.co.jp>
+List-Help: <https://support.google.com/a/nowhere.co.jp/bin/topic.py?topic=25838>,
+ <mailto:admin+help@nowhere.co.jp>
+List-Archive: <https://groups.google.com/a/nowhere.co.jp/group/admin/>
+List-Unsubscribe: <mailto:googlegroups-manage+370051093590+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/nowhere.co.jp/group/admin/subscribe>
+
+--_av-_Hr22jeSRNJoS9VIdQNodw
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+     OpenAI API Invoice 34D8012A-0003      Your invoice 34D8012A-0003 has
+been fully paid 
+                      Hi Eyes, JAPAN,
+
+  Here is your invoice *34D8012A-0003* for *$2.43* USD. 
+
+  The invoice has been fully paid with your credit card ending in 4001. 
+
+           View Invoice
+<https://invoice.stripe.com/i/acct_1HOrSwC6h1nxGoI3/live_YWNjdF8xSE9yU3dDNmgxbnhHb0kzLF9PMVp4V1pzMXFwYVRIS1YyU2E5M1g0bW1jT00xV1dwLDc3NTA0Njg30200GyElFc6D?s=ap>
+           This invoice link expires after 30 days 
+
+      Thanks for being part of our API developer community! 
+
+  Best,
+The OpenAI team 
+
+  P.S. If you have any questions about this invoice, get in touch with us
+at ar@openai.com <mailto:ar@openai.com> 
+
+               You received this email because you have a paid account with
+OpenAI
+--_av-_Hr22jeSRNJoS9VIdQNodw
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>OpenAI API Invoice 34D8012A-0003</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+  /**
+   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
+   */
+  @media screen {
+    @font-face {
+      font-family: Colfax;
+      src: url(https://openai-public.s3-us-west-2.amazonaws.com/beta/fonts/ColfaxAIRegular.woff2);
+      font-weight: normal;
+    }
+
+    @font-face {
+      font-family: Colfax;
+      src: url(https://openai-public.s3-us-west-2.amazonaws.com/beta/fonts/ColfaxAIMedium.woff2);
+      font-weight: bold;
+    }
+  }
+
+  /**
+   * Avoid browser level font resizing.
+   * 1. Windows Mobile
+   * 2. iOS / OSX
+   */
+  body,
+  table,
+  td,
+  a {
+    -ms-text-size-adjust: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    font-family: Colfax, Helvetica, Arial, sans-serif;
+  }
+
+  /**
+   * Remove extra space added to tables and cells in Outlook.
+   */
+  table,
+  td {
+    mso-table-rspace: 0pt;
+    mso-table-lspace: 0pt;
+  }
+
+  /**
+   * Better fluid images in Internet Explorer.
+   */
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
+
+  /**
+   * Remove blue links for iOS devices.
+   */
+  a[x-apple-data-detectors] {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  /**
+   * Fix centering issues in Android 4.4.
+   */
+  div[style*="margin: 16px 0;"] {
+    margin: 0 !important;
+  }
+
+  body {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /**
+   * Collapse table borders to avoid space between cells.
+   */
+  table {
+    border-collapse: collapse !important;
+  }
+
+  a {
+    color: #10A37F;
+  }
+
+  img {
+    height: auto;
+    line-height: 100%;
+    text-decoration: none;
+    border: 0;
+    outline: none;
+  }
+
+  h1 {
+      font-size: 26px;
+      line-height: 1.4;
+      font-weight: 700;
+      margin: 0;
+  }
+  h2 {
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: 700;
+      margin: 0;
+  }
+  p {
+      margin: 0;
+  }
+  p + p {
+      margin-top: 16px;
+  }
+  </style>
+
+  
+</head>
+<body style="background-color:#ffffff;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;width:100% ;height:100% ;padding:0 ;margin:0 ;">
+
+  <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+      Your invoice 34D8012A-0003 has been fully paid
+  </div>
+
+  <!-- start body -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+    <!-- start body block -->
+    <tr>
+      <td align="center" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width:560px;background-color:#fff;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+            <!-- header image -->
+            <tr>
+                <td valign="top" style="padding:27px 20px 24px 15px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width:100%;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+                        <tbody><tr>
+                            <td valign="top" style="padding-top:0;padding-bottom:0;text-align:left;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+                                <img align="left" alt="" src="https://cdn.openai.com/API/logo-assets/openai-logo-email-header-1.png" width="560" height="168" style="width:140px;max-width:100%;padding-bottom:0;display:inline !important;vertical-align:bottom;-ms-interpolation-mode:bicubic;height:auto;line-height:100%;text-decoration:none;border:0;outline:none;">
+                            </td>
+                        </tr>
+                        </tbody></table>
+                </td>
+            </tr>
+
+          
+<tr>
+    <td align="left" bgcolor="#ffffff" style="padding:16px 24px;font-size:16px;line-height:24px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+        
+    <p style="margin:0;">Hi Eyes, JAPAN,</p>
+  
+        <p style="margin:0;margin-top:16px;">
+            Here is your invoice <b>34D8012A-0003</b> for <b>$2.43</b> USD.
+        </p>
+        <p style="margin:0;margin-top:16px;">
+            The invoice has been fully paid
+            
+                with your credit card ending in 4001.
+            
+        </p>
+        
+    </td>
+</tr>
+
+<tr>
+    <td align="left" bgcolor="#ffffff" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+        <tr>
+          <td align="left" bgcolor="#ffffff" style="padding:12px 24px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+            <table border="0" cellpadding="0" cellspacing="0" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+              <tr>
+                <td align="left" bgcolor="#10A37F" style="border-radius:3px;background-color:#10A37F;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+                  <a href="https://mandrillapp.com/track/click/31165340/invoice.stripe.com?p=eyJzIjoiMGpCWmx1QkZ5NDFuMkVHcmZRSnZyQzE2djgwIiwidiI6MSwicCI6IntcInVcIjozMTE2NTM0MCxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL2ludm9pY2Uuc3RyaXBlLmNvbVxcXC9pXFxcL2FjY3RfMUhPclN3QzZoMW54R29JM1xcXC9saXZlX1lXTmpkRjh4U0U5eVUzZERObWd4Ym5oSGIwa3pMRjlQTVZwNFYxcHpNWEZ3WVZSSVMxWXlVMkU1TTFnMGJXMWpUMDB4VjFkd0xEYzNOVEEwTmpnMzAyMDBHeUVsRmM2RD9zPWFwXCIsXCJpZFwiOlwiOGFlMjRjMjQ2MjRhNGViMTkyMTM5Y2YyZWE0OGZhZjNcIixcInVybF9pZHNcIjpbXCIyNDdjNTUzNzI0OTk0NjM3NWQ1MzgyZTY4NGI2OWI1NzYxZGU2ZGExXCJdfSJ9" target="_blank" style="display:inline-block;padding:12px 20px 11px;font-weight:400;font-size:16px;line-height:24px;color:#ffffff;text-decoration:none;border-radius:3px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;">View Invoice</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<tr>
+    <td align="left" bgcolor="#ffffff" style="padding:0 24px;font-size:16px;line-height:24px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+        <p style="font-size:14px;color:#666;margin:0;">
+            This invoice link expires after 30 days
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td align="left" bgcolor="#ffffff" style="padding:16px 24px;font-size:16px;line-height:24px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+        <p style="margin:0;">
+            Thanks for being part of our API developer community!
+        </p>
+        <p style="margin:0;margin-top:16px;">
+            Best,<br>The OpenAI team
+        </p>
+        <p style="margin:0;margin-top:16px;">
+            P.S. If you have any questions about this invoice, get in touch with us at <a href="mailto:ar@openai.com" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;color:#10A37F;">ar@openai.com</a>
+        </p>
+    </td>
+</tr>
+
+
+
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end body block -->
+
+    <!-- start footer -->
+    <tr>
+      <td align="center" style="padding:24px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:collapse ;">
+            
+    <tr>
+    <td align="left" style="padding:4px 24px;font-size:14px;line-height:20px;color:#666;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:Colfax, Helvetica, Arial, sans-serif;mso-table-rspace:0pt;mso-table-lspace:0pt;">
+      <p style="margin: 0;">You received this email because you have a paid account with OpenAI</p>
+    </td>
+  </tr>
+
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end footer -->
+
+  </table>
+  <!-- end body -->
+  <div class="debug-string" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #ececf1; opacity: 0;">
+      
+  </div>
+
+<img src="https://mandrillapp.com/track/open.php?u=31165340&id=8ae24c24624a4eb192139cf2ea48faf3" height="1" width="1" alt=""></body>
+</html>
+--_av-_Hr22jeSRNJoS9VIdQNodw--
+

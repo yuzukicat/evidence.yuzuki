@@ -1,0 +1,15 @@
+Hi Edward,
+
+I wanted to discuss some feature improvements that we believe would greatly benefit our project. Here’s a brief on the changes required:
+
++ Japanese translation accuracy needs improvement. There are translations to be replaced with more accurate ones.
++ The hourly data under hourly section in Google Data Studio is actual sales data cleaned up by Mark. Please adjust it accordingly, and make sure the line color is changed to blue, matching the daily section.
++ Can we modify the hourly data display to only show the timeline from 09:00 to 23:00 and remove the blank part from 23:00 to 09:00?
++ Our predictions extend to only one month, hence we need a section that includes data pertaining to that specific duration only. Also, capping the section beyond the range of this monthly predicted data would be helpful.
++ Once we receive the weather data from the machine learning team, they need to be virtualized in the future.
+
+Given these are quite detailed, I'd appreciate if you could come to the company office on Thursday. We can discuss these changes elaborately then.
+
+Looking forward to your availability confirmation.
+
+Best.

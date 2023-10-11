@@ -1,0 +1,1261 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:2603:b0:123:4e67:2415 with SMTP id l3csp1038576rwc;
+        Sun, 14 May 2023 19:04:37 -0700 (PDT)
+X-Received: by 2002:adf:d4ca:0:b0:306:26fa:1812 with SMTP id w10-20020adfd4ca000000b0030626fa1812mr22354676wrk.33.1684116277548;
+        Sun, 14 May 2023 19:04:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1684116277; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RdVK4aQaIBGt1DWvV3fJOpEzX2Ui3im6G7D64UquZ9KjHMKgMWWmhdVWZpRMm6/r2K
+         kVdKnSJLeLKxhrTdKiAGD/fdwjialzBKkeSzhwHgFzTb+wJVI/dDlsPYCYaIGXEraMFd
+         dxKOsjpzq3H7GfxDEGYHZRvg+bBnkBDaiE5TxOUdeg6ydLDWk/UgbbsBISFRmUbPw0Aq
+         CiWTUNl4dN7phPUZhayDSo0Ibj7/kBixgRlbgk1o9DVbcb5T1Ox6TJPPpMb9CjkjUBJn
+         vNrUvNa4lfCsTCzif4sGRT/hEkJtFjJzYVjmK8Gi2ogO5zGZkoafXgw7SX8R3xnT5VBF
+         QqpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=20/e0xjGO/y4wF5m6/zcIJmbYOvqLVk5C5edrrHa950=;
+        b=VMsaPDjmLfojKmVFTvRspD1KFxNvAWSvYAn+woL0O+/QK+SEvclqP0nI5eVX+veYxb
+         hfOJ3Qk1d2TTbKPD5HYVgu28ui0RaETo4sZwVYJ+019hcv2RbneVY/movVgOM7d7ybef
+         ndg1UGsPP+fnBCKw0/jltzgFJ50jnCKSIaVesBIkjPIHk25/PD02Eyz9HkDQQEBwdHOr
+         FqWCDjQUNGzGmdjNMDfm2/qioXPEMhNc3CQZkB5U5Xmhm9o2+VhAK8CD9oQP9mTBkg1z
+         ueE7uo3e9gPiWJslWnCToH0gCLFlKYtoUfgzuxJddXYXM3UhXBFD+sTnPe+mXBx805RL
+         wWhg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=QBqyoG6V;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a17-20020a5d5711000000b00308f130cbcbsor1562807wrv.7.2023.05.14.19.04.37
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Sun, 14 May 2023 19:04:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=QBqyoG6V;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1684116276; x=1686708276;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=20/e0xjGO/y4wF5m6/zcIJmbYOvqLVk5C5edrrHa950=;
+        b=QBqyoG6VLAljzLbfxwCSu4lenZ+1mNTMydTel8AnM49tU8xrAOxOBC7973MZlYx9pP
+         BSalz5b3jzQyltaU6tdEMu9nueF7vaS4tOLlW5OzAjaBJgG/VHuRG6Ek8UQTJ6nbVo8H
+         W9r/SZRH9wlzCjDu279VscTf6S1zXi+7X+BOg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684116276; x=1686708276;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=20/e0xjGO/y4wF5m6/zcIJmbYOvqLVk5C5edrrHa950=;
+        b=Eo5wcVXBbU0eo5V33hJdEOmKQ4cLNYBUFMNVEPkIhyx/t9G/HueLPokYN3dsL/gvYd
+         1CK+fONXtbCNhu95heXfmNPrjI7zY3+NTRE8fq17aCBGcP1SjjnUjoDDZeoywCrA8O40
+         QS5DpC9yFxhKOqOLaaLNmRhjl+wWBPRs6X+JPGZV0oDYv7sDXofy6LBnUg5NqUQcmAk3
+         XZBhIP1KgQpiDMPdmH2D2K9l7IRNbgEn2kV6ByZhzEnVGks+8f8It9umCAqHwvHx8bbT
+         dY6KQncrtpD7Fxkz9ENCT9uUv72svIqOszoAj7ub/BZIE6rmHafXUMSLlsSBqwmJ/lGm
+         F2eQ==
+X-Gm-Message-State: AC+VfDyocUD9Y8aZ2edtgjqacoWE2xGxA26jBJ+JtKLILBVDWZsD0kTb
+	P3M22NTpVsExPRX4/03XxfwxM9Zc52Fxa768WBsp67jYw0/q6lwzU4DI/w==
+X-Google-Smtp-Source: ACHHUZ51CTKQKzwQayZJCqy/eiYt7Xquc/WqDlHtr2OMCONZFcZx8BqSdDteBIjrwbOzyZQ2mfMVu5YWeq3e1RnZ9SI=
+X-Received: by 2002:adf:f0cc:0:b0:306:2979:8ab0 with SMTP id
+ x12-20020adff0cc000000b0030629798ab0mr20460634wro.24.1684116276132; Sun, 14
+ May 2023 19:04:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOkOQaFU69na6pEYOr_dCdf2+zt6D_rqQ5bXuHuey2JSEoYBeQ@mail.gmail.com>
+ <5A2B0339-7F6A-4813-A1A8-E09DD0F26448@nowhere.co.jp> <CAOkOQaFTX=1QKg0w+s1Ncsqz9m2OYhZvDdqf+pHNt1bNJxiZDQ@mail.gmail.com>
+ <CAOkOQaFwPhpuWoEUOWb_cUwTZbhTWvfP77i1eC09csrgEGJHXg@mail.gmail.com>
+ <04E7BB1E-FDA8-4CA7-A176-42AE4FA38F10@nowhere.co.jp> <CAOkOQaEg9uJ0DBSqzfHEY=x_z5pbXHJxeexjOc-ksNNxB8gm4g@mail.gmail.com>
+ <63F48A28-3494-4609-8680-1B5FCBEA448C@nowhere.co.jp> <CAOkOQaGXSHs+oxjnpLAmHKRA+TY-Odi93b+top7LXKfDaJUFBQ@mail.gmail.com>
+In-Reply-To: <CAOkOQaGXSHs+oxjnpLAmHKRA+TY-Odi93b+top7LXKfDaJUFBQ@mail.gmail.com>
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Date: Mon, 15 May 2023 11:04:24 +0900
+Message-ID: <CANo=jaT_y9Azf2kH+RLLKMnUU3k61JmriGqdE1VWT4d1MJntoQ@mail.gmail.com>
+Subject: Re: Yuzuki - Get the instructions from Yamadera san to contact you
+ working on supermarket AI
+To: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+Content-Type: multipart/related; boundary="0000000000006676db05fbb1e0cf"
+
+--0000000000006676db05fbb1e0cf
+Content-Type: multipart/alternative; boundary="0000000000006676d905fbb1e0ce"
+
+--0000000000006676d905fbb1e0ce
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I just replied, please read my email.
+
+2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88) 10:48 JIANG DAWEI <dawei.jian=
+g@nowhere.co.jp>:
+
+> Subject: Machine Learning Project: Tool Suggestions and Next Steps
+>
+> Dear Victor and Yamadera-san,
+>
+> I hope this email finds you both well. I have received Victor's reply
+> regarding the machine learning project and the expectations for visualizi=
+ng
+> hourly and daily sales for customers. Based on the information provided, =
+I
+> have researched and identified several tools that could be suitable for o=
+ur
+> project:
+>
+> 1. Apache Echarts: https://github.com/apache/echarts
+> 2. React Rcharts: https://github.com/recharts/recharts
+> 3. Chart.js: https://www.chartjs.org/
+> 4. Tableau (not free): https://www.tableau.com/
+>
+> These tools are data visualization front-end solutions that fit our task
+> and are easier to customize than PaaS or SaaS. However, as a back-end
+> engineer, I would like to emphasize that directly connecting to CSV files
+> might not be the most efficient solution. Instead, I suggest importing da=
+ta
+> from CSV files into a database like MySQL or PostgreSQL and then providin=
+g
+> an API for the front-end to consume.
+>
+> As for the front-end design, I can develop a simple demo to showcase the
+> functionality to our customers, but I believe that refining the visual
+> aspects should be done in collaboration with our customers to ensure thei=
+r
+> preferences are met, and work with designers && front-end engineers to
+> customize the view layer of data virtulation.
+>
+> Moving forward, I will study the documentation and templates for the
+> suggested tools and learn how to customize them to achieve our goal. I wi=
+ll
+> also explore how to change the data sources and determine the appropriate
+> data format.
+>
+> I am eager to apply my creativity and engineering skills to this project
+> and will keep you both updated on my progress. If you have any further
+> suggestions or guidance, please do not hesitate to share. And wait for yo=
+ur
+> reply to have a scheduled meeting including Yamadara san maybe together t=
+o
+> review the current status.
+>
+> Best regards,
+>
+> Yuzuki
+>
+> On Sun, May 14, 2023 at 8:23=E2=80=AFPM Victor Khaustov <victor@nowhere.c=
+o.jp>
+> wrote:
+>
+>> Hi Yuzuki, (cc Yamadera san, Mark)
+>>
+>> There is no need to complete the demo for Supermarket AI project on
+>> Monday, as far as I know It=E2=80=99s until the end of the month. What I=
+ meant to
+>> do by Monday is to showcase an AWS tool that you=E2=80=99re familiar wit=
+h and
+>> mentioned in the previous email. Here is a quote from you:
+>>
+>> 1. Is using Google Data Studio a mandatory requirement from our customer=
+s
+>>> or Yamadera-san? I have no experience with this product, but I do have
+>>> experience with similar products from AWS. If the feasibility of Looker
+>>> Studio has already been tested, I believe it should be fine. However, a=
+s
+>>> you know, some SaaS or PaaS products can be challenging to customize.
+>>>
+>>>
+>> And here is my reply:
+>>
+>> 1. It=E2=80=99s a requirement from Yamadera san. But if you have experie=
+nce in a
+>>> similar AWS product and can make a quick demo until Monday, it probably
+>>> will be fine too.
+>>
+>>
+>> The demo of the AWS product that answers to the following questions:
+>> - what is the name of the tool you suggest?
+>> - does it fit for our task?
+>> - is it easy to customize?
+>> - is it easy to connect data sources? (In our case it can be a simple cs=
+v
+>> file, but you can define the data format to your liking).
+>>
+>> And quick answer to some other questions from your email:
+>>
+>> Additionally, I would like to request further clarification on the
+>> specific requirements of the project. As you may be aware, data science
+>> involves various aspects, and there is a significant difference between
+>> data virtualization and data visualization with notation. These two
+>> concepts require different approaches, timeframes, and solutions.
+>>
+>> To better understand your needs and deliver a suitable demo, I kindly as=
+k
+>> that you provide a clear definition of your requirements, rather than
+>> screenshots from Google searches. This will enable me to tailor the demo=
+ to
+>> your exact needs and expectations.
+>>
+>>
+>> Look, for example, at the following page with free Looker Studio
+>> templates (specifically pay attention to eCommerce Dashboard):
+>> Free Looker Studio Templates (Formerly Data Studio)
+>> <https://www.metricized.com/looker-studio-templates/>
+>> metricized.com <https://www.metricized.com/looker-studio-templates/>
+>> [image: favicon.ico]
+>> <https://www.metricized.com/looker-studio-templates/>
+>> <https://www.metricized.com/looker-studio-templates/>
+>>
+>> When I was writing about the quick demo about AWS tool that you might us=
+e
+>> instead, I meant sharing a similar page that showcases the abilities of =
+the
+>> proposed tool.
+>>
+>> Back to the task. The initial expectation is to study the documentation
+>> and templates and learn how to customize them to achieve our goal:
+>> visualizing hourly and daily sales for customers. Please use your
+>> creativity and engineering skills to decide how to solve this problem us=
+ing
+>> some widely-known tool. After studying how it works, the next thing will
+>> probably be to figure out how to change the data sources and in what for=
+mat
+>> the data should be represented.
+>>
+>> By the way, there are even more advanced templates, e.g. the following
+>> one for 79 euro. It might sound a bit expensive, but it is a one-time
+>> payment and can be used and customized many times for different projects=
+.
+>> It's also costs less than one day of an engineer=E2=80=99s work. So if y=
+ou decide
+>> that it's in the company's interest, you can request Yamadera san to
+>> purchase this template:
+>>
+>> Data Bloo =F0=9F=94=B7 GA4 Ecommerce Revenue Template (Demo)
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>> lookerstudio.google.com
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>> [image: favicon.ico]
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>> <https://lookerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1=
+dd78bf1/page/p_ezd7e96m0c>
+>>
+>> Thank you!
+>>
+>> Best regards,
+>> Victor Khaustov
+>>
+>>
+>> On May 14, 2023, at 16:16, JIANG DAWEI <dawei.jiang@nowhere.co.jp> wrote=
+:
+>>
+>> Subject: Update on Quick Demo Schedule and Request for Clarification on
+>> Requirements
+>>
+>> Dear Victor, Mark and Yamadera-san,
+>>
+>> I hope this email finds you well. I wanted to provide you with an update
+>> on the quick demo requirement. Unfortunately, I will not be able to
+>> complete it by Monday as your hope, since I have been asked to take a
+>> holiday on Friday and will resume work on Monday.
+>>
+>> However, if it is crucial for you to have the demo by Monday, I am
+>> willing to work overtime including today from 18:00--23:00 and Monday
+>> 09:00--23:00 to ensure it is delivered on time. Please let me know if th=
+is
+>> is necessary, and I will do my best to accommodate your needs.
+>>
+>> Additionally, I would like to request further clarification on the
+>> specific requirements of the project. As you may be aware, data science
+>> involves various aspects, and there is a significant difference between
+>> data virtualization and data visualization with notation. These two
+>> concepts require different approaches, timeframes, and solutions.
+>>
+>> To better understand your needs and deliver a suitable demo, I kindly as=
+k
+>> that you provide a clear definition of your requirements, rather than
+>> screenshots from Google searches. This will enable me to tailor the demo=
+ to
+>> your exact needs and expectations.
+>>
+>> Thank you for your attention to this matter, and I look forward to
+>> receiving your feedback on both the timeline and the project requirement=
+s.
+>>
+>> Best regards,
+>>
+>> Yuzuki
+>>
+>> On Fri, May 12, 2023 at 1:07=E2=80=AFPM Victor Khaustov <victor@nowhere.=
+co.jp>
+>> wrote:
+>>
+>>> Hi Yuzuki,
+>>>
+>>> I=E2=80=99m busy with the RDS project now, so here is a quick reply to =
+your
+>>> questions:
+>>>
+>>> 1. It=E2=80=99s a requirement from Yamadera san. But if you have experi=
+ence in a
+>>> similar AWS product and can make a quick demo until Monday, it probably
+>>> will be fine too.
+>>>
+>>> 2. It=E2=80=99s a quick demo for a customer. It should provide the inte=
+rface to
+>>> communicate with the data they provide and the prediction model. But
+>>> basically, you need to develop a tool that takes actual sales data and =
+data
+>>> predicted by the model (model is not implemented yet) and visualize it =
+as
+>>> per screenshot.
+>>>
+>>> 3. While developing a demo, you need to decide the required format for
+>>> the data. The data itself is already processed and cleaned. Project=E2=
+=80=99s
+>>> repository (you have access to it as EJ member, here=E2=80=99s the link=
+:
+>>> https://github.com/eyesjapan/supermarket-ai/) which contains the code
+>>> for analysis and some visualization of the data using Python. The data
+>>> itself can be downloaded from here:
+>>> https://drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tv=
+X?usp=3Dsharing
+>>>
+>>> 4. You don=E2=80=99t have to be an expert on the tools, but you need to=
+ be able
+>>> to learn from the documentation and have some general programming skill=
+s.
+>>>
+>>> Thank you!
+>>>
+>>> Best regards,
+>>> Victor
+>>>
+>>>
+>>> On May 12, 2023, at 12:12, JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+>>> wrote:
+>>>
+>>> ---------- Forwarded message ---------
+>>> Subject: Fwd: Yuzuki - Get the instructions from Yamadera san to contac=
+t
+>>> you working on supermarket AI
+>>> To: Jun Yamadera <yamadera@nowhere.co.jp>, Mark Ogbodo <
+>>> ogbodo.mark@nowhere.co.jp>
+>>>
+>>>
+>>> Subject: Questions and Clarifications on Supermarket AI Task
+>>>
+>>> Dear Yamadera san, Victor, and Mark:
+>>>
+>>> I hope this email finds you well. Thank you for providing me with the
+>>> information about the project. Before diving into the task, I have a fe=
+w
+>>> questions and concerns that I would like to discuss with you to ensure =
+I
+>>> have a clear understanding of the project requirements and my role in i=
+t.
+>>>
+>>> 1. Is using Google Data Studio a mandatory requirement from our
+>>> customers or Yamadera-san? I have no experience with this product, but =
+I do
+>>> have experience with similar products from AWS. If the feasibility of
+>>> Looker Studio has already been tested, I believe it should be fine.
+>>> However, as you know, some SaaS or PaaS products can be challenging to
+>>> customize.
+>>>
+>>> 2. I am currently unsure about the overall architecture of the project
+>>> and my role in the pipeline. From my understanding, there are some
+>>> well-established patterns for implementing ML in a product, and our pro=
+ject
+>>> seems to fit some of them. It would be helpful to have more information=
+ on
+>>> this aspect.
+>>>
+>>> 3. I am still unclear about the expected input and output for my part o=
+f
+>>> the project. Will I be given raw data (which means I would need to perf=
+orm
+>>> data cleaning), or will I receive serialized data (which means I would =
+be
+>>> responsible for data visualization)? I would appreciate some clarificat=
+ion
+>>> on this.
+>>>
+>>> 4. Lastly, I would like to share some articles from my blog to give you
+>>> an idea of my technical background, what I know, and what I don't know.
+>>> This will help ensure that the project is delivered to our customers on
+>>> time and with high quality.
+>>>
+>>>
+>>> https://kamisu66.com/2022/05/14/Introduction-to-Machine-Learning-Artifi=
+cial-Intelligence-Machine-Learning-Deep-Learning-Neural-Networks-Algorithms=
+/
+>>>
+>>>
+>>> https://kamisu66.com/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker=
+-WorkFlow-Process/
+>>>
+>>> Although I am not an expert in machine learning, I am eager to learn
+>>> from my colleagues and expand my knowledge in this area. I understand t=
+hat
+>>> this project is important to our company and our customers, and I am
+>>> committed to delivering high-quality work. To maximize my contribution =
+to
+>>> the project and enhance my understanding of machine learning, I kindly
+>>> request your support and guidance.
+>>>
+>>> If you could provide me with any articles, websites, or step-by-step
+>>> guidelines related to machine learning, I would greatly appreciate it. =
+And
+>>> I think it is necessary to have a meeting. These resources will help me
+>>> develop the necessary skills for this project and ensure that I can
+>>> contribute effectively to the team. Additionally, I would be grateful f=
+or
+>>> any advice or best practices that you could share based on your experie=
+nce
+>>> in the field.
+>>>
+>>> Once I have a better understanding of these points, I will be more
+>>> confident in proceeding with the task. I am looking forward to your
+>>> response and guidance on this project.
+>>>
+>>> Best regards,
+>>>
+>>> Yuzuki
+>>>
+>>> On Wed, May 10, 2023 at 6:10=E2=80=AFPM Victor Khaustov <victor@nowhere=
+.co.jp>
+>>> wrote:
+>>>
+>>>> Hi Yuzuki,
+>>>>
+>>>> Please start from learning about the Looker Studio (formerly known as
+>>>> Google Data Studio): https://cloud.google.com/looker-studio
+>>>>
+>>>> Here is the Quickstart guide:
+>>>> Quick start guide - Looker Studio Help
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> support.google.com
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>>
+>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>> <https://support.google.com/looker-studio/answer/9171315>
+>>>>
+>>>> When learning the basics, please keep in mind that we need to create
+>>>> the report that is somewhat similar to the attached screenshot. The us=
+er
+>>>> can select a store via dropdown list (currently, there are 3 stores to
+>>>> choose from) and select the date. Next, the time series plot should ap=
+pear
+>>>> with actual sales and predicted sales by the AI model (the model will =
+be
+>>>> developed later, probably by Mark).
+>>>>
+>>>> You need to figure out what data format is required to build such plot=
+,
+>>>> and how to connect the data sources from Google Drive (or other resour=
+ces).
+>>>>
+>>>> Once you learn about Looker Studio and how to create a similar plot, w=
+e
+>>>> can organize a meeting to discuss some details.
+>>>>
+>>>> Thank you!
+>>>>
+>>>> Best regards,
+>>>> Victor
+>>>>
+>>>>
+>>>> On May 10, 2023, at 17:21, JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+>>>> wrote:
+>>>>
+>>>> I hope this email finds you well.
+>>>>
+>>>> Yuzuki was asked by Yamadera san, to contact you regarding the
+>>>> supermarket AI project.
+>>>>
+>>>> However, I must admit that I know very little about the project,
+>>>> including what my role is or how I can contribute to it.
+>>>>
+>>>> I was wondering if you could provide me with some information about th=
+e
+>>>> project, such as any documents or resources that I should read or any
+>>>> preparation or code reading that I should do. I want to make sure that=
+ I am
+>>>> fully prepared to contribute to the project in any way possible.
+>>>>
+>>>> Additionally, if you have any questions for me, please do not hesitate
+>>>> to ask. Like my technical background (or stack).
+>>>>
+>>>> I am eager to learn more about the project and to work with you and
+>>>> your team to ensure its success.
+>>>>
+>>>> Thank you for your time and consideration. I look forward to hearing
+>>>> back from you soon.
+>>>>
+>>>> Best regards.
+>>>>
+>>>> Yuzuki
+>>>>
+>>>>
+>>>
+>> --
+------------- the Middle of Nowhere, Eyes, JAPAN Co. Ltd.-----------
+       Jun Yamadera   e-mail:  yamadera@nowhere.co.jp
+"Any sufficiently advanced technology is indistinguishable
+from magic" Arthur C. Clarke
+--URL: http://www.nowhere.co.jp   e-mail:  info@nowhere.co.jp --
+
+--0000000000006676d905fbb1e0ce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">I just replied, please read my email.</div=
+><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88) 10:48 JIANG DAWEI &lt;<a href=
+=3D"mailto:dawei.jiang@nowhere.co.jp">dawei.jiang@nowhere.co.jp</a>&gt;:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Subject: Machine Lea=
+rning Project: Tool Suggestions and Next Steps<br><br>Dear Victor and Yamad=
+era-san,<br><br>I hope this email finds you both well. I have received Vict=
+or&#39;s reply regarding the machine learning project and the expectations =
+for visualizing hourly and daily sales for customers. Based on the informat=
+ion provided, I have researched and identified several tools that could be =
+suitable for our project:<br><br>1. Apache Echarts: <a href=3D"https://gith=
+ub.com/apache/echarts" target=3D"_blank">https://github.com/apache/echarts<=
+/a><br>2. React Rcharts: <a href=3D"https://github.com/recharts/recharts" t=
+arget=3D"_blank">https://github.com/recharts/recharts</a><br>3. Chart.js: <=
+a href=3D"https://www.chartjs.org/" target=3D"_blank">https://www.chartjs.o=
+rg/</a><br>4. Tableau (not free): <a href=3D"https://www.tableau.com/" targ=
+et=3D"_blank">https://www.tableau.com/</a><br><br>These tools are data visu=
+alization front-end solutions that fit our task and are easier to customize=
+ than PaaS or SaaS. However, as a back-end engineer, I would like to emphas=
+ize that directly connecting to CSV files might not be the most efficient s=
+olution. Instead, I suggest importing data from CSV files into a database l=
+ike MySQL or PostgreSQL and then providing an API for the front-end to cons=
+ume.<br><br>As for the front-end design, I can develop a simple demo to sho=
+wcase the functionality to our customers, but I believe that refining the v=
+isual aspects should be done in collaboration with our customers to ensure =
+their preferences are met, and work with designers &amp;&amp; front-end eng=
+ineers to customize the view layer of data virtulation.<br><br>Moving forwa=
+rd, I will study the documentation and templates for the suggested tools an=
+d learn how to customize them to achieve our goal. I will also explore how =
+to change the data sources and determine the appropriate data format.<br><b=
+r>I am eager to apply my creativity and engineering skills to this project =
+and will keep you both updated on my progress. If you have any further sugg=
+estions or guidance, please do not hesitate to share. And wait for your rep=
+ly to have a scheduled meeting including Yamadara san maybe together to rev=
+iew the current status.<br><br>Best regards,<br><div><br></div><div>Yuzuki<=
+br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Sun, May 14, 2023 at 8:23=E2=80=AFPM Victor Khaustov &lt;<a hre=
+f=3D"mailto:victor@nowhere.co.jp" target=3D"_blank">victor@nowhere.co.jp</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v>Hi Yuzuki, (cc Yamadera san, Mark)<div><br></div><div>There is no need to=
+ complete the demo for Supermarket AI project on Monday, as far as I know I=
+t=E2=80=99s until the end of the month. What I meant to do by Monday is to =
+showcase an AWS tool that you=E2=80=99re familiar with and mentioned in the=
+ previous email. Here is a quote from you:</div><div><br></div><div><blockq=
+uote type=3D"cite"><div dir=3D"ltr"><div class=3D"gmail_quote"><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><blockquote type=3D"cite"><div dir=3D=
+"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">1. Is using Google Data S=
+tudio a mandatory requirement from our customers or Yamadera-san? I have no=
+ experience with this product, but I do have experience with similar produc=
+ts from AWS. If the feasibility of Looker Studio has already been tested, I=
+ believe it should be fine. However, as you know, some SaaS or PaaS product=
+s can be challenging to customize.</div></div></div></blockquote></blockquo=
+te></div></div></blockquote><div><br></div><div>And here is my reply:</div>=
+<div><br></div><div><blockquote type=3D"cite"><div dir=3D"ltr"><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">1. It=E2=
+=80=99s a requirement from Yamadera san. But if you have experience in a si=
+milar AWS product and can make a quick demo until Monday, it probably will =
+be fine too.</blockquote></div></div></blockquote></div><div><br></div><div=
+>The demo of the AWS product that answers to the following questions:=C2=A0=
+</div><div>- what is the name of the tool you suggest?</div><div>- does it =
+fit for our task?</div><div>- is it easy to customize?</div><div>- is it ea=
+sy to connect data sources? (In our case it can be a simple csv file, but y=
+ou can define the data format to your liking).</div><div><br></div><div>And=
+ quick answer to some other questions from your email:</div><div><br></div>=
+<div><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">Additional=
+ly, I would like to request further clarification on the specific requireme=
+nts of the project. As you may be aware, data science involves various aspe=
+cts, and there is a significant difference between data virtualization and =
+data visualization with notation. These two concepts require different appr=
+oaches, timeframes, and solutions.</div></div></blockquote></div><div><bloc=
+kquote type=3D"cite"><div dir=3D"ltr"><div dir=3D"ltr">To better understand=
+ your needs and deliver a suitable demo, I kindly ask that you provide a cl=
+ear definition of your requirements, rather than screenshots from Google se=
+arches. This will enable me to tailor the demo to your exact needs and expe=
+ctations.</div></div></blockquote><br></div><div>Look, for example, at the =
+following page with free Looker Studio templates (specifically pay attentio=
+n to eCommerce Dashboard):</div><div><div style=3D"display:block"><div styl=
+e=3D"display:inline-block" role=3D"link"><a style=3D"border-radius:10px;fon=
+t-family:-apple-system,Helvetica,Arial,sans-serif;display:block;width:300px=
+;overflow:hidden;text-decoration:none" rel=3D"nofollow" href=3D"https://www=
+.metricized.com/looker-studio-templates/" dir=3D"ltr" role=3D"button" width=
+=3D"300" target=3D"_blank"><table style=3D"table-layout:fixed;border-collap=
+se:collapse;width:300px;background-color:rgb(229,230,233);font-family:-appl=
+e-system,Helvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0" cellpa=
+dding=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-family:-apple-=
+system,Helvetica,Arial,sans-serif;table-layout:fixed;background-color:rgb(2=
+29,230,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#=
+E5E6E9"><tbody><tr><td style=3D"padding:8px 0px"><div style=3D"max-width:10=
+0%;margin:0px 16px;overflow:hidden"><div style=3D"font-weight:500;font-size=
+:12px;overflow:hidden;text-overflow:ellipsis;text-align:left"><a rel=3D"nof=
+ollow" href=3D"https://www.metricized.com/looker-studio-templates/" style=
+=3D"text-decoration:none" target=3D"_blank"><font style=3D"color:rgba(0,0,0=
+,0.847)" color=3D"#272727">Free Looker Studio Templates (Formerly Data Stud=
+io)</font></a></div><div style=3D"font-weight:400;font-size:11px;overflow:h=
+idden;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=3D"h=
+ttps://www.metricized.com/looker-studio-templates/" style=3D"text-decoratio=
+n:none" target=3D"_blank"><font style=3D"color:rgba(0,0,0,0.498)" color=3D"=
+#808080">metricized.com</font></a></div></div></td><td style=3D"padding:6px=
+ 12px 6px 0px" width=3D"36"><a rel=3D"nofollow" href=3D"https://www.metrici=
+zed.com/looker-studio-templates/" target=3D"_blank"><img alt=3D"favicon.ico=
+" src=3D"cid:1881d135018e7117bb1" style=3D"width:48px;max-width:100%"></a><=
+/td></tr></tbody></table></td></tr></tbody></table></a></div></div></div><d=
+iv><br></div><div>When I was writing about the quick demo about AWS tool th=
+at you might use instead, I meant sharing a similar page that showcases the=
+ abilities of the proposed tool.=C2=A0</div><div><br></div><div><font color=
+=3D"#000000"><span>Back to the task. The initial expectation is to study th=
+e documentation and templates and learn how to customize them to achieve ou=
+r goal: visualizing hourly and daily=C2=A0</span></font><span style=3D"colo=
+r:rgb(0,0,0)">sales for customers</span><font color=3D"#000000"><span>. Ple=
+ase use your creativity and engineering skills to decide how to solve this =
+problem using some widely-known tool. After studying how it works, the next=
+ thing will probably be to figure out how to change the data sources and in=
+ what format the data should be represented.=C2=A0</span></font></div><div>=
+<br></div><div>By the way, there are even more advanced templates, e.g. the=
+ following one for 79 euro. It might sound a bit expensive, but it is a one=
+-time payment and can be used and customized many times for different proje=
+cts. It&#39;s also costs less than one day of an engineer=E2=80=99s work. S=
+o if you decide that it&#39;s in the company&#39;s interest, you can reques=
+t Yamadera san to purchase this template:</div><div><br></div><div></div><d=
+iv><div style=3D"display:block"><div style=3D"display:inline-block" role=3D=
+"link"><a style=3D"border-radius:10px;font-family:-apple-system,Helvetica,A=
+rial,sans-serif;display:block;width:300px;overflow:hidden;text-decoration:n=
+one" rel=3D"nofollow" href=3D"https://lookerstudio.google.com/reporting/0dc=
+c27d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" dir=3D"ltr" role=3D"bu=
+tton" width=3D"300" target=3D"_blank"><table style=3D"table-layout:fixed;bo=
+rder-collapse:collapse;width:300px;background-color:rgb(229,230,233);font-f=
+amily:-apple-system,Helvetica,Arial,sans-serif" width=3D"300" cellspacing=
+=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-f=
+amily:-apple-system,Helvetica,Arial,sans-serif;table-layout:fixed;backgroun=
+d-color:rgb(229,230,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0"=
+ bgcolor=3D"#E5E6E9"><tbody><tr><td style=3D"padding:8px 0px"><div style=3D=
+"max-width:100%;margin:0px 16px;overflow:hidden"><div style=3D"font-weight:=
+500;font-size:12px;overflow:hidden;text-overflow:ellipsis;text-align:left">=
+<a rel=3D"nofollow" href=3D"https://lookerstudio.google.com/reporting/0dcc2=
+7d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" style=3D"text-decoration=
+:none" target=3D"_blank"><font style=3D"color:rgba(0,0,0,0.847)" color=3D"#=
+272727">Data Bloo =F0=9F=94=B7 GA4 Ecommerce Revenue Template (Demo)</font>=
+</a></div><div style=3D"font-weight:400;font-size:11px;overflow:hidden;text=
+-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=3D"https://loo=
+kerstudio.google.com/reporting/0dcc27d8-13a8-4025-b9dd-a09e1dd78bf1/page/p_=
+ezd7e96m0c" style=3D"text-decoration:none" target=3D"_blank"><font style=3D=
+"color:rgba(0,0,0,0.498)" color=3D"#808080">lookerstudio.google.com</font><=
+/a></div></div></td><td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a =
+rel=3D"nofollow" href=3D"https://lookerstudio.google.com/reporting/0dcc27d8=
+-13a8-4025-b9dd-a09e1dd78bf1/page/p_ezd7e96m0c" target=3D"_blank"><img alt=
+=3D"favicon.ico" src=3D"cid:1881d135019e7117bb2" style=3D"width:160px;max-w=
+idth:100%"></a></td></tr></tbody></table></td></tr></tbody></table></a></di=
+v></div></div><div><br></div><div>Thank you!</div><div><br></div><div>Best =
+regards,</div><div>Victor Khaustov</div><div><br></div><div></div><div><br>=
+<blockquote type=3D"cite"><div>On May 14, 2023, at 16:16, JIANG DAWEI &lt;<=
+a href=3D"mailto:dawei.jiang@nowhere.co.jp" target=3D"_blank">dawei.jiang@n=
+owhere.co.jp</a>&gt; wrote:</div><br><div><div dir=3D"ltr"><div dir=3D"ltr"=
+><div>Subject: Update on Quick Demo Schedule and Request for Clarification =
+on Requirements<br><br>Dear Victor, Mark and Yamadera-san,<br><br>I hope th=
+is email finds you well. I wanted to provide you with an update on the quic=
+k demo requirement. Unfortunately, I will not be able to complete it by Mon=
+day as your hope, since I have been asked to take a holiday on Friday and w=
+ill resume work on Monday.<br><br>However, if it is crucial for you to have=
+ the demo by Monday, I am willing to work overtime including today from 18:=
+00--23:00 and Monday 09:00--23:00 to ensure it is delivered on time. Please=
+ let me know if this is necessary, and I will do my best to accommodate you=
+r needs.<br><br>Additionally, I would like to request further clarification=
+ on the specific requirements of the project. As you may be aware, data sci=
+ence involves various aspects, and there is a significant difference betwee=
+n data virtualization and data visualization with notation. These two conce=
+pts require different approaches, timeframes, and solutions.<br><br>To bett=
+er understand your needs and deliver a suitable demo, I kindly ask that you=
+ provide a clear definition of your requirements, rather than screenshots f=
+rom Google searches. This will enable me to tailor the demo to your exact n=
+eeds and expectations.<br><br>Thank you for your attention to this matter, =
+and I look forward to receiving your feedback on both the timeline and the =
+project requirements.<br><br>Best regards,<br><br></div>Yuzuki<br></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, M=
+ay 12, 2023 at 1:07=E2=80=AFPM Victor Khaustov &lt;<a href=3D"mailto:victor=
+@nowhere.co.jp" target=3D"_blank">victor@nowhere.co.jp</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Yuzuki,<div><=
+br></div><div>I=E2=80=99m busy with the RDS project now, so here is a quick=
+ reply to your questions:</div><div><br></div><div>1. It=E2=80=99s a requir=
+ement from Yamadera san. But if you have experience in a similar AWS produc=
+t and can make a quick demo until Monday, it probably will be fine too.</di=
+v><div><br></div><div>2. It=E2=80=99s a quick demo for a customer. It shoul=
+d provide the interface to communicate with the data they provide and the p=
+rediction model. But basically, you need to develop a tool that takes actua=
+l sales data and data predicted by the model (model is not implemented yet)=
+ and visualize it as per screenshot.</div><div><br></div><div>3.=C2=A0<font=
+>While developing a demo, you need to decide the required format for the da=
+ta. The data itself is already processed and cleaned. Project=E2=80=99s rep=
+ository (you have access to it as EJ member, here=E2=80=99s the link:=C2=A0=
+</font><a href=3D"https://github.com/eyesjapan/supermarket-ai/" target=3D"_=
+blank">https://github.com/eyesjapan/supermarket-ai/</a>)<font>=C2=A0which c=
+ontains the code for analysis and some visualization of the data using Pyth=
+on. <span>The</span>=C2=A0data itself can be downloaded from here:=C2=A0</f=
+ont><a href=3D"https://drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4uN=
+gj73-VCV6tvX?usp=3Dsharing" target=3D"_blank">https://drive.google.com/driv=
+e/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tvX?usp=3Dsharing</a></div><div><fo=
+nt><span><br></span></font></div><div><font>4. You don=E2=80=99t have to be=
+ an expert on the tools, but you need to be able to learn from the document=
+ation and have some general programming skills.</font></div><div><font><br>=
+</font></div><div><font>Thank you!=C2=A0</font></div><div><font><br></font>=
+</div><div><font>Best regards,</font></div><div><font>Victor</font></div><d=
+iv>=C2=A0 =C2=A0<br><div><br><blockquote type=3D"cite"><div>On May 12, 2023=
+, at 12:12, JIANG DAWEI &lt;<a href=3D"mailto:dawei.jiang@nowhere.co.jp" ta=
+rget=3D"_blank">dawei.jiang@nowhere.co.jp</a>&gt; wrote:</div><br><div><div=
+ dir=3D"ltr" style=3D"font-family:Helvetica;font-size:14px;font-style:norma=
+l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
+:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
+0px;text-decoration:none">---------- Forwarded message ---------<div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Subject: Fwd: Yuzuki=
+ - Get the instructions from Yamadera san to contact you working on superma=
+rket AI<br>To: Jun Yamadera &lt;<a href=3D"mailto:yamadera@nowhere.co.jp" t=
+arget=3D"_blank">yamadera@nowhere.co.jp</a>&gt;, Mark Ogbodo &lt;<a href=3D=
+"mailto:ogbodo.mark@nowhere.co.jp" target=3D"_blank">ogbodo.mark@nowhere.co=
+.jp</a>&gt;<br></div><br><br><div dir=3D"ltr">Subject: Questions and Clarif=
+ications on Supermarket AI Task<br><br>Dear Yamadera san, Victor, and Mark:=
+<br><br>I hope this email finds you well. Thank you for providing me with t=
+he information about the project. Before diving into the task, I have a few=
+ questions and concerns that I would like to discuss with you to ensure I h=
+ave a clear understanding of the project requirements and my role in it.<br=
+><br>1. Is using Google Data Studio a mandatory requirement from our custom=
+ers or Yamadera-san? I have no experience with this product, but I do have =
+experience with similar products from AWS. If the feasibility of Looker Stu=
+dio has already been tested, I believe it should be fine. However, as you k=
+now, some SaaS or PaaS products can be challenging to customize.<br><br>2. =
+I am currently unsure about the overall architecture of the project and my =
+role in the pipeline. From my understanding, there are some well-establishe=
+d patterns for implementing ML in a product, and our project seems to fit s=
+ome of them. It would be helpful to have more information on this aspect.<b=
+r><br>3. I am still unclear about the expected input and output for my part=
+ of the project. Will I be given raw data (which means I would need to perf=
+orm data cleaning), or will I receive serialized data (which means I would =
+be responsible for data visualization)? I would appreciate some clarificati=
+on on this.<br><br>4. Lastly, I would like to share some articles from my b=
+log to give you an idea of my technical background, what I know, and what I=
+ don&#39;t know. This will help ensure that the project is delivered to our=
+ customers on time and with high quality.<br><br><a href=3D"https://kamisu6=
+6.com/2022/05/14/Introduction-to-Machine-Learning-Artificial-Intelligence-M=
+achine-Learning-Deep-Learning-Neural-Networks-Algorithms/" target=3D"_blank=
+">https://kamisu66.com/2022/05/14/Introduction-to-Machine-Learning-Artifici=
+al-Intelligence-Machine-Learning-Deep-Learning-Neural-Networks-Algorithms/<=
+/a><br><br><div><a href=3D"https://kamisu66.com/2022/05/22/Machine-Learning=
+-Pipeline-AWS-Sagemaker-WorkFlow-Process/" target=3D"_blank">https://kamisu=
+66.com/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker-WorkFlow-Process/=
+</a><br></div><div><br></div><div>Although I am not an expert in machine le=
+arning, I am eager to learn from my colleagues and expand my knowledge in t=
+his area. I understand that this project is important to our company and ou=
+r customers, and I am committed to delivering high-quality work. To maximiz=
+e my contribution to the project and enhance my understanding of machine le=
+arning, I kindly request your support and guidance.</div><div><br></div><di=
+v>If you could provide me with any articles, websites, or step-by-step guid=
+elines related to machine learning, I would greatly appreciate it. And I th=
+ink it is necessary to have a meeting. These resources will help me develop=
+ the necessary skills for this project and ensure that I can contribute eff=
+ectively to the team. Additionally, I would be grateful for any advice or b=
+est practices that you could share based on your experience in the field.<b=
+r><br>Once I have a better understanding of these points, I will be more co=
+nfident in proceeding with the task. I am looking forward to your response =
+and guidance on this project.<br><br>Best regards,<br><br>Yuzuki<br></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Wed, May 10, 2023 at 6:10=E2=80=AFPM Victor Khaustov &lt;<a href=3D"mailt=
+o:victor@nowhere.co.jp" target=3D"_blank">victor@nowhere.co.jp</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Yuzuk=
+i,<div><br></div><div>Please start from learning about the Looker Studio (f=
+ormerly known as Google Data Studio):=C2=A0<a href=3D"https://cloud.google.=
+com/looker-studio" target=3D"_blank">https://cloud.google.com/looker-studio=
+</a></div><div><br></div><div>Here is the Quickstart guide:</div><div><div =
+style=3D"display:block"><div role=3D"link" style=3D"display:inline-block"><=
+a rel=3D"nofollow" href=3D"https://support.google.com/looker-studio/answer/=
+9171315" dir=3D"ltr" role=3D"button" width=3D"300" style=3D"border-radius:1=
+0px;font-family:-apple-system,Helvetica,Arial,sans-serif;display:block;widt=
+h:300px;overflow:hidden;text-decoration:none" target=3D"_blank"><table styl=
+e=3D"table-layout:fixed;border-collapse:collapse;width:300px;background-col=
+or:rgb(229,230,233);font-family:-apple-system,Helvetica,Arial,sans-serif" w=
+idth=3D"300" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><t=
+d><table style=3D"font-family:-apple-system,Helvetica,Arial,sans-serif;tabl=
+e-layout:fixed;background-color:rgb(229,230,233)" width=3D"300" cellspacing=
+=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><tbody><tr><td style=3D"paddin=
+g:8px 0px"><div style=3D"max-width:100%;margin:0px 16px;overflow:hidden"><d=
+iv style=3D"font-weight:500;font-size:12px;overflow:hidden;text-overflow:el=
+lipsis;text-align:left"><a rel=3D"nofollow" href=3D"https://support.google.=
+com/looker-studio/answer/9171315" style=3D"text-decoration:none" target=3D"=
+_blank"><font color=3D"#272727">Quick start guide - Looker Studio Help</fon=
+t></a></div><div style=3D"font-weight:400;font-size:11px;overflow:hidden;te=
+xt-overflow:ellipsis;text-align:left"><a rel=3D"nofollow" href=3D"https://s=
+upport.google.com/looker-studio/answer/9171315" style=3D"text-decoration:no=
+ne" target=3D"_blank"><font color=3D"#808080">support.google.com</font></a>=
+</div></div></td><td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=
+=3D"nofollow" href=3D"https://support.google.com/looker-studio/answer/91713=
+15" target=3D"_blank"></a></td></tr></tbody></table></td></tr></tbody></tab=
+le></a></div></div></div></div></blockquote></div></div></div></div></block=
+quote></div></div></div><div><div><div><blockquote type=3D"cite"><div><div =
+dir=3D"ltr" style=3D"font-family:Helvetica;font-size:14px;font-style:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;text-decoration:none"><div class=3D"gmail_quote"><div class=3D"gmail_quo=
+te"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div><div style=
+=3D"display:block"><div role=3D"link" style=3D"display:inline-block"><a rel=
+=3D"nofollow" href=3D"https://support.google.com/looker-studio/answer/91713=
+15" dir=3D"ltr" role=3D"button" width=3D"300" style=3D"border-radius:10px;f=
+ont-family:-apple-system,Helvetica,Arial,sans-serif;display:block;width:300=
+px;overflow:hidden;text-decoration:none" target=3D"_blank"><table style=3D"=
+table-layout:fixed;border-collapse:collapse;width:300px;background-color:rg=
+b(229,230,233);font-family:-apple-system,Helvetica,Arial,sans-serif" width=
+=3D"300" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td><t=
+able style=3D"font-family:-apple-system,Helvetica,Arial,sans-serif;table-la=
+yout:fixed;background-color:rgb(229,230,233)" width=3D"300" cellspacing=3D"=
+0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><tbody><tr><td style=3D"padding:6p=
+x 12px 6px 0px" width=3D"36"><a rel=3D"nofollow" href=3D"https://support.go=
+ogle.com/looker-studio/answer/9171315" target=3D"_blank"></a></td></tr></tb=
+ody></table></td></tr></tbody></table></a></div></div><br><div>When learnin=
+g the basics, please keep in mind that we need to create the report that is=
+ somewhat similar to the attached screenshot. The user can select a store v=
+ia dropdown list (currently, there are 3 stores to choose from) and select =
+the date. Next, the time series plot should appear with actual sales and pr=
+edicted sales by the AI model (the model will be developed later, probably =
+by Mark).</div><div><br></div><div>You need to figure out what data format =
+is required to build such plot, and how to connect the data sources from Go=
+ogle Drive (or other resources).=C2=A0</div><div><br></div><div>Once you le=
+arn about Looker Studio and how to create a similar plot, we can organize a=
+ meeting to discuss some details.</div><div><br></div><div>Thank you!</div>=
+<div><br></div><div>Best regards,</div><div>Victor =C2=A0</div><div><br></d=
+iv><div></div></div></div></blockquote></div></div></div></div></blockquote=
+></div></div></div><div><div><div><blockquote type=3D"cite"><div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica;font-size:14px;font-style:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
+rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+text-decoration:none"><div class=3D"gmail_quote"><div class=3D"gmail_quote"=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div><div><br><bloc=
+kquote type=3D"cite"><div>On May 10, 2023, at 17:21, JIANG DAWEI &lt;<a hre=
+f=3D"mailto:dawei.jiang@nowhere.co.jp" target=3D"_blank">dawei.jiang@nowher=
+e.co.jp</a>&gt; wrote:</div><br><div><div dir=3D"ltr"><div>I hope this emai=
+l finds you well.<span>=C2=A0</span><br></div><div><br></div><div>Yuzuki wa=
+s asked by Yamadera san, to contact you regarding the supermarket AI projec=
+t.</div><div><br></div><div>However, I must admit that I know very little a=
+bout the project, including what my role is or how I can contribute to it.<=
+/div><br>I was wondering if you could provide me with some information abou=
+t the project, such as any documents or resources that I should read or any=
+ preparation or code reading that I should do. I want to make sure that I a=
+m fully prepared to contribute to the project in any way possible.<br><br><=
+div>Additionally, if you have any questions for me, please do not hesitate =
+to ask. Like my technical background (or stack).<span>=C2=A0</span><br></di=
+v><div><br></div><div>I am eager to learn more about the project and to wor=
+k with you and your team to ensure its success.</div><br>Thank you for your=
+ time and consideration. I look forward to hearing back from you soon.<br><=
+br><div>Best regards.</div><div><br></div><div>Yuzuki</div></div></div></bl=
+ockquote></div></div></div></blockquote></div></div></div></div></blockquot=
+e></div><br></div></div></blockquote></div></div>
+</div></blockquote></div><br></div></div></blockquote></div>
+</blockquote></div></div><span class=3D"gmail_signature_prefix">-- </span><=
+br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:Helvetic=
+a;font-size:12px">------------- the Middle of Nowhere, Eyes, JAPAN Co. Ltd.=
+-----------</span><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-=
+size:12px"><span style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:=
+12px">=C2=A0 =C2=A0 =C2=A0 =C2=A0Jun Yamadera =C2=A0 e-mail: =C2=A0<a href=
+=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank">yamadera@nowhere.co.jp=
+</a></span><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12=
+px"><span style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">&=
+quot;Any sufficiently advanced technology is indistinguishable</span><br st=
+yle=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px"><span style=
+=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">from magic&quot;=
+=E3=80=80Arthur C. Clarke</span><br style=3D"color:rgb(0,0,0);font-family:H=
+elvetica;font-size:12px"><span style=3D"color:rgb(0,0,0);font-family:Helvet=
+ica;font-size:12px">--URL: <a href=3D"http://www.nowhere.co.jp" target=3D"_=
+blank">http://www.nowhere.co.jp</a> =C2=A0 e-mail: =C2=A0<a href=3D"mailto:=
+info@nowhere.co.jp" target=3D"_blank">info@nowhere.co.jp</a> --</span><br><=
+/div></div>
+
+--0000000000006676d905fbb1e0ce--
+--0000000000006676db05fbb1e0cf
+Content-Type: application/octet-stream; name="favicon.ico"
+Content-Disposition: inline; filename="favicon.ico"
+Content-Transfer-Encoding: base64
+Content-ID: <1881d135018e7117bb1>
+X-Attachment-Id: 1881d135018e7117bb1
+
+AAABAAMAEBAAAAEAIABoBAAANgAAACAgAAABACAAKBEAAJ4EAAAwMAAAAQAgAGgmAADGFQAAKAAA
+ABAAAAAgAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO2cHn7unCD57pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg+e2cHn7unCD57pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD57pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/8a5I//fWo//unCD/7pwg/+6cIP/416X/+Nem/+6cIP/unCD/7pwg//fWo//xr0r/
+7pwg/+6cIP/unCD/7pwg//CtRv/++/f/7pwg/+6cIP/voSv//vv2//779v/voSz/7pwg/+6cIP/+
++/f/8a5J/+6cIP/unCD/7pwg/+6cIP/uoCn////+/++kNP/unCD/9MBw//vozP/76Mv/9MBx/+6c
+IP/vpDT//////++hLP/unCD/7pwg/+6cIP/unCD/7pwg//326v/xsE//7pwg//rivv/1xn//9cV+
+//riv//unCD/8bBP//337v/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/76c3/871q/++jMP/++/f/
+76U0/++lNP/++/f/76Qx//O9av/769H/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/+dyw//XJhv/0
+w3j/+uTE/+6cIP/unCD/+uTC//XEev/1yYb/+d60/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//bP
+k//31aH/+uXF//TCd//unCD/7pwg//TCdf/65sj/99Wh//fRl//unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/0wnb/++vS//789//voy//7pwg/+6cIP/voi7//vv3//vs1P/0xHr/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/8rVZ///////64bz/7pwg/+6cIP/unCD/7pwg//nguv//////8rdd/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg//CnOP/88d//87tn/+6cIP/unCD/7pwg/+6cIP/zu2b//PHf//Co
+O//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg+e6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg+e2cHn7unCD57pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg+e2cHn4AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAACAAAABAAAAAAQAg
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+AAALsmh987pwg5u6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg5uyaH3z/gAAC7JwffO6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+ycH3zunCDm
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg5u6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/8a9K//TCd//xsU//7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8Ko///rl
+xP/65cX/8KpA/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//GxUP/0wnf/8a9M/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/30Zf///////rmxv/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/2z5P////////////2z5P/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/+ubG///////3
+1J7/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//TEev///////PLi/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg//zx4P////////////zx4P/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/88uL///////XHgf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+8rdd///////+/fv/7p0i/+6cIP/unCD/7pwg/+6cIP/xsE7///////79+v/+/fr///////GxT//u
+nCD/7pwg/+6cIP/unCD/7p0i//79+///////87pk/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/wqkD////////////wpzr/7pwg/+6cIP/unCD/7pwg//fSm///////+uK/
+//rivv//////99Oc/+6cIP/unCD/7pwg/+6cIP/wpzr////////////xrUf/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6eJf///vz///////KzVf/unCD/7pwg/+6cIP/u
+nSH//fTm///////0wHL/9MBx///////99ej/7p0i/+6cIP/unCD/7pwg//KzVf/////////+/+6g
+Kv/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//3z5f//////9L9w
+/+6cIP/unCD/7pwg//K0Vv///////vz4/++hLP/voSv//vv3///////ytVj/7pwg/+6cIP/unCD/
+9L9w///////99uz/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/+ubH///////2y4z/7pwg/+6cIP/unCD/+Naj///////537f/7pwg/+6cIP/53rb///////jX
+pv/unCD/7pwg/+6cIP/2y4z///////vpz//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/42ar///////jYp//unCD/7pwg/+6dI//99uz///////O9av/unCD/
+7pwg//O8aP///////vfu/+6eJP/unCD/7pwg//jYp///////+d2x/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//bMjf//////+uTC/+6cIP/unCD/8rde////
+///++vT/7qAo/+6cIP/unCD/7p8n//758v//////87lh/+6cIP/unCD/+uTC///////20JT/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/9MBw///////88N7/
+7pwg/+6cIP/42av///////nbr//unCD/7pwg/+6cIP/unCD/+dqt///////5267/7pwg/+6cIP/8
+8N7///////TDd//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/ys1P///////78+P/unCH/7p8m//758f//////87li/+6cIP/unCD/7pwg/+6cIP/yuF//////
+//769P/unyj/7pwh//78+P//////8rZa/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/++mNv///////////++lNv/zumX///////747//uniX/7pwg/+6cIP/u
+nCD/7pwg/+6eJP/99+3///////O9av/vpTb////////////wqT3/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwh//779///////8bFR//ndsv//////+Nio
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//jWpP//////+d+3//GxUf////////37/+6eJP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD//O/b///////0
+wnb//vv1///////ytlv/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8rRX///////+/Pj/9MN5////
+///88uL/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/64r7///////vs1P///////fbq/+6dI//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unSL/
+/fTn///////77tr///////rlxf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg//fVof/////////////////31KD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/305v/////////////////+Nio/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/9ciD//////////////////KyU//unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//GwTv/////////////////2y4v/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/zu2b/////////
+///98+T/7pwh/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//zx3///////////
+//S+bv/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg//CoPP/648D/+uPA//TDeP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/9MN4//rjwP/64r7/8Kk+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCDm7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg5uyaH3zunCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/s
+mh98/4AAAuycH3zunCDm7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCDm7JwffP+AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAADAAAABgAAAA
+AQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADumSIP7JseXO6cIMbunSD27pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unSD27pwgxuybHlzumSIPAAAAAO6ZIg/unCGV
+7psg+O6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6bIPjunCGV7pkiD+ybHlzumyD47pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/umyD47JseXO6cIMbunCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwgxu6d
+IPbunCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7p0g9u6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCH/8KY3//CpPf/wqTz/76Ao/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6eJf/0vWv/+NWg//jVof/0vWz/7p4l/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/++gKf/wqTz/8Kk9//CmN//unSH/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/voCr/+uTC//305v/98+T/9MF0
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//CnOv/879z////////////879z/
+8Kc6/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//TBdP/98+T//fTm//rlxf/v
+oi7/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/uniT//O7Z////////////+Nmp/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+//O6ZP///vz//////////////vz/87tl/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg//jZqf////////////zw3f/voCr/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/+eK9////////////+ubH/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg//netv//////////////////////+d+3/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//rmx/////////////voyf/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/99Od////////
+/////fPl/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8KY3//769f//////////////
+/////////vv1//CnOP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//3z5f//////////
+//jZqf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/9cV9//////////////79/+6fJ//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/9ceC/////////////vnz//758/////////////XIhf/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7p8n///+/f////////////bLif/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/87dd//////////////////CrQ//unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unyb/++nP////////////+Nmp//jZqf////////////zq0P/u
+nyf/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8KtD//////////////////O8aP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8Kk9
+//////////////////O5Yf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/xslL//fbq///////+/Pn/
+8rdc//K2W//+/Pn///////326//ys1T/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/87lh////////
+//////////CuSP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7p0j//78+P////////////XGgP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIf/1yYX///37///////77NT/8KY3//CmN//77NT////////9+//2yof/7pwh/+6cIP/unCD/
+7pwg/+6cIP/unCD/9caA//////////////7+/+6gKf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//zv2/////////////fU
+nv/unCD/7pwg/+6cIP/unCD/7pwg/++iLv/54Lj//////////v/31aH/7p8n/+6fJv/31aD////+
+///////54bv/76Iv/+6cIP/unCD/7pwg/+6cIP/unCD/99Se/////////////fTn/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg//nhu/////////////rhvP/unCD/7pwg/+6cIP/unCD/7pwg//GrQv/99en///////76
+9P/0vm7/7pwg/+6cIP/zvmz//vrz///////99uv/8axE/+6cIP/unCD/7pwg/+6cIP/unCD/+uG8
+////////////+ubH/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//fSmv////////////zt1//unSP/7pwg/+6cIP/u
+nCD/7pwg//XFfP////7///////3y4//wqDv/7pwg/+6cIP/vpzn//fLi//////////7/9ceB/+6c
+IP/unCD/7pwg/+6cIP/unSP//O3X////////////+Nin/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//XEev//////
+//////3x4P/vpTP/7pwg/+6cIP/unCD/7p0i//vpzv////////////ncsf/unCD/7pwg/+6cIP/u
+nCD/+dut/////////////OvT/+6dI//unCD/7pwg/+6cIP/vpTP//fHg////////////9sqG/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg//K1Wv////////////305v/wrEX/7pwg/+6cIP/unCD/8a5J///+/f//////
+//////K3W//unCD/7pwg/+6cIP/unCD/8rVY//////////////79//GwTv/unCD/7pwg/+6cIP/w
+rEX//fTm////////////87tl/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//GsRP/+/Pf///////337P/ytFj/7pwg
+/+6cIP/unCD/99Oc/////////////PHh/+6eJf/unCD/7pwg/+6cIP/unCD/7p4k//zw3f//////
+//////jWov/unCD/7pwg/+6cIP/ytFf//ffs/////////vz/8a5J/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//Cp
+Pf/98+X///////758v/0vWr/7pwg/+6cIP/vozD//O/d////////////982Q/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg//bMjP////////////3w3v/vpDP/7pwg/+6cIP/0vWr//vny///////99uz/
+8Ko//+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg//CmNv/769H///////78+f/1xXz/7pwg/+6cIP/zuWL//vjw////
+///++fL/8a9M/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//GvSv/++PD///////758f/zu2b/7pwg
+/+6cIP/1xXz//vz5///////87tj/8Kc4/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/++jMP/64r7//////////v/2
+zY//7pwh/+6eI//30JX///79///////75cX/76Qy/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/++k
+Mf/65ML////////+/v/30pn/7p4l/+6cIf/2zY7////+///////65cX/76Qy/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/++gKf/42ar////////////41aH/7p8m/++kM//75sj////////+/f/2z5L/7p0j/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6dIv/2zY////78///////76c3/8KU1/+6fJv/41aH/////////
+///53LL/76Er/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6dI//30Zf////////////53bP/76Es//GxT//++vP/
+//////747//yuF//7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/ytlv//vft///////+
++/b/8rNT/++hLP/53bP////////////31J7/7p4l/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/1yIP///37
+///////65cX/76Qy//fQlf////////////zv2//voi7/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/voSv//O3X////////////99Od/++kMv/65cX////////+/f/2zIv/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/0v3D//vr0///////87tf/8Kk+//3z5f////////////fRl//unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/9s6Q/////////////vbs//CqQP/87df/
+//////779//0w3j/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/yt13//vfu///////99er/9cZ/////
+//////////37//GtRf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/8KpA
+///9+v////////////XKiP/99en///////758P/zumT/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/x
+r0n//fXn///////+/fv/++/a////////////++jK/+6dIv/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwh//rlxP////////////zy4v/+/fv///////326v/yslH/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/vpjb//fLh/////////////////////////v7/9MJ3/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg//TAcP///v3/////////
+//////////////3z4//wqT3/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/uniX//O3X////////////
+///////////99Of/8KpA/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg//CpPv/98+P///////////////////////zv3P/uoCr/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/+uK9///////////////////////53rb/76It/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/++hK//53LH///////////////////////vnyf/u
+nCH/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/99Sd///////////////////9+v/1yIL/7pwh
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/1xn3/
+/vz5//////////////////jZqf/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/9cV8////
+//////////////316f/xsU//7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/xrkr//fXo//////////////////XKiP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/8Kc5//fQlf/30Jb/99CW//TBdP/uniX/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/uniT/9cR6//fQlv/30Jb/986S
+//CmN//unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6dIPbunCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7p0g9u6cIMbunCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwgxuybHlzumyD47pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg
+/+6cIP/unCD/7pwg/+6cIP/umyD47JseXO6ZIg/unCGV7psg+O6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6c
+IP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6bIPjunCGV7pkiDwAAAADumSIP7Jse
+XO6cIMbunSD27pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/
+7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/u
+nCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unCD/7pwg/+6cIP/unSD27pwgxuyb
+HlzumSIPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAA==
+--0000000000006676db05fbb1e0cf
+Content-Type: application/octet-stream; name="favicon.ico"
+Content-Disposition: inline; filename="favicon.ico"
+Content-Transfer-Encoding: base64
+Content-ID: <1881d135019e7117bb2>
+X-Attachment-Id: 1881d135019e7117bb2
+
+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
+vuFPBvTnfX8DpLcAAAAASUVORK5CYII=
+--0000000000006676db05fbb1e0cf--

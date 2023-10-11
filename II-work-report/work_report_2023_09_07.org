@@ -1,0 +1,10 @@
+Work Report 2023-09-07
+Osaka University Project:
+1. Understanding the updated dockerfile code as well as reviewing the updated documents received from Tang.
+2. PHP Docker Environment: Extensive testing and debugging of the PHP docker environment has been done to ensure its optimal functioning.
+3 .VanillaJS Business Logic: Discussions with Tang were initiated to flesh out the details of the business logic part of the VanillaJS. We are making headway towards streamlining the functionality.
+Study Session Preparation:
+Anticipating the upcoming study session, requisite preparations were made to ensure a seamless learning experience.
+Supermarket AI Project:
+1. Progress for the Supermarket AI project was reported to Yamadera san. Pursuant to his requests, minor changes were implemented to refine the project further.
+2. Md Page Title Translation: In collaboration with Cherubin, we have commenced the process of translating the Md page title.

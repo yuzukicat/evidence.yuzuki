@@ -1,0 +1,16 @@
+--text follows this line--
+* Work Report 2023-07-28
+** 09:38--18:00 (I do not take a rest in the middle of the day!!!)
+*** 09:38--10:00 Information Exchange with Tang && Tamahashi :SupermarketAI:PD:
+*** 10:00--10:05 Morning Meeting :Others:
+*** 10:05--10:30 Catch up E-Mails && Discord Message :Others:
+*** 10:30--11:00 Learn how to write Work Report :Others:
+*** 11:00--11:45 Back up E-Mails && Discord Message
+*** 11:45--12:45 Write the e-mail to report the progress of Supermarket AI Project :SupermarketAI:
+*** 12:45--14:00 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 14:00--14:10 Fw the the e-mail to Cherubin Mugisha :SupermarketAI:
+*** 14:10--14:20 Write Work Report :Others:
+*** 14:20--15:22 Review the predicted data provided by machine learning team :SupermarketAI:
+**** 15:22--15:44 Take a break
+*** 17:00--17:30 Write Work Report && Report the visualization of working time, progress of supermarketai, docker admin account, flexing time to Yamadera san
+*** 17:30--18:00 Review the predicted data provided by machine learning team :SupermarketAI:

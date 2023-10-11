@@ -1,0 +1,18 @@
+Others:
+Feedback Incorporation & Team Dynamics: Self-improvement initiatives utilizing constructive feedback.
+
+Supermarket AI Project Overview:
+1. Successfully made revisions to the color schema in Google Data Studio.
+2. Discrepancies on the MD page, specifically to Cherubin's work, were identified and are being addressed.
+3. Cherubin and I collaborated to translate the Md page title.
+4. Other changes requested by Yamadera san.
+
+ Osaka University Project:
+1. Deep-dive into PHP Docker environment set–up. Debugging and coding the Docker file to ensure a robust and smooth environment for PHP development.
+2. Documenting the process in a Docker Readme was also prioritized.
+3. Conversations surrounding the VanillaJS business logic and AWS python lambda function logical with Tang have begun.
+4. Although uncertainty remains around my expected contribution to the project.
+
+Study Session:
+Leave Approval:
+My request for paid leave received approval. Due attention will be given to seamless transition of work responsibilities during my time away.

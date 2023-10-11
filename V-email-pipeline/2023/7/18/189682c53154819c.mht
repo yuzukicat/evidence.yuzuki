@@ -1,0 +1,123 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:4d83:b0:134:c132:59db with SMTP id cc3csp3283895rwb;
+        Tue, 18 Jul 2023 01:44:43 -0700 (PDT)
+X-Received: by 2002:a05:6808:1a:b0:3a3:9073:856f with SMTP id u26-20020a056808001a00b003a39073856fmr2300401oic.3.1689669882809;
+        Tue, 18 Jul 2023 01:44:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1689669882; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MAQVNXRqHqWpcbmHPhyXTyhg4e5+h95xTCTnuQyVbvyuzOPrwv3n59S0xSoRDUkS6t
+         TCYhxY97ElQRLgEWSh/IrIF6TSPjKqnu1Bx6pwYQl8CuGS9x9VI9tgOATqjsjc8zm5jC
+         72u7/uEOOad9fxuZUtQscRIc2WZjgZFVINMuJnCjtP4RkLd+uxFVDZ6nkIb/sGqpXgLd
+         W/kenbSikFMawGy4AI5TyhxvEE7zu3ybJakhG0yJC4LgeNt7yvty0G6/G169LB7lgdP4
+         lhSuRpp96gslGbAB/+WAg2Jl8YO253kohT4lN7wtEgfA6O6s5dED/i5zMhneZY3aJRK7
+         LSqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:dkim-signature;
+        bh=p6+//byBPAo9ipuvZ9K/QR+YxwYkuNV6EpRp4nJnJGg=;
+        fh=WEHjTMBFXastXSRiHdGWvMfgQkY7IHh5/tScsfppyvo=;
+        b=SRMBg1mcv7chJnh5IQB6FNTjXuNEIBn8XL7uw/Vvkx0OWC52t/v6VGmIaaELU/wfgs
+         VdSUiWAl99q/mxru6T4u7NiN3L4EhivATcNOhBk1PP4wJTBpBnMSx6aKp2+3q5fYBVZZ
+         MP47yjvqmxC+ewlyd/zEBxxMj4qjfgCCdjcJ4+ho8/9kB1w/KZIt0kwe3crZtimtkDov
+         VVg/zxvy8iKaV/BxOXUHgNoU5F9+vesJokh5fp7ZrH5t9Vsrv1CU19ZCL+cR/mXmJ8Jc
+         tI9sJVTgivAeF6evJ5p51ok6Wo1Jr0PoL/ntjJYcghdTG08H/rQc2Em7VG9pT+KFsVes
+         OePg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="M1ydZ/HF";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id k75-20020a636f4e000000b0053f18935d7csor429957pgc.3.2023.07.18.01.44.42
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 18 Jul 2023 01:44:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b="M1ydZ/HF";
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1689669882; x=1692261882;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p6+//byBPAo9ipuvZ9K/QR+YxwYkuNV6EpRp4nJnJGg=;
+        b=M1ydZ/HF8esfXQMumG78oYpHIrPfE5ihEPVIdQq4XbaxYpm5czWarSRXjBL5h4FjVK
+         wUgtmxoGvtqUibzcPOcZLBs1N7Ce//Q4jFuzcHQTkVBD3fE0NcmGUUpF0cG5sPVRnNAF
+         IHOfHSHEgjQ87FYXXF8pzvhULDga/qGP4nGKU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689669882; x=1692261882;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p6+//byBPAo9ipuvZ9K/QR+YxwYkuNV6EpRp4nJnJGg=;
+        b=FjtArhALXUovZWiF6bseBZ24TUiFXkNOEesw9LkmY/YbGMBOP2ekged/v4plUwmemV
+         pEpv5JRZvTsM7rBynDGz/15F13peF4L2gHGWJl1VhEqrHSJ4uRhce2Jj9ZHv7O5qE5eo
+         UDu9VQOtyxKmwhsNdqsOKPrJgJ0+hKEDWuhkTBZtIazDg7gQo+KFRgZd0cgfTeistUBg
+         3s8icw6xucGzQRI0usWvo4WQK5WtotgWlmdrdA3AlOxHCh8w9VjMKEua4KwimMcGecDi
+         xHR+s6KgcSIrjw8jyE1CO5q8FHeuZ9sSFqss4oGFmGnhZjFnkreo1WlPYqzoukvZHHFW
+         HXGg==
+X-Gm-Message-State: ABy/qLYWVpmn8bMJWrMax2xumm0KXGaYyd+8IidVWsZoR/Kai9BU/R6D
+	XTQ/7x/3sBb8IG2L1wX5SVGXphFYyd03K/JMCZeXLlro
+X-Google-Smtp-Source: APBJJlH8wZj4JTl3YBvn0kKPAWItRfyqZ/+q8lHr3mzSmXtOPDPzktrmpDUU3ipqqQ7TMXyylyh5SQ==
+X-Received: by 2002:a05:6a20:6a0a:b0:134:11c9:46bd with SMTP id p10-20020a056a206a0a00b0013411c946bdmr1908736pzk.3.1689669881656;
+        Tue, 18 Jul 2023 01:44:41 -0700 (PDT)
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from smtpclient.apple ([240b:13:31e1:6200:cc2e:343a:1ae0:8ba8])
+        by smtp.gmail.com with ESMTPSA id m1-20020a170902db0100b001b567bbe82dsm1266255plx.150.2023.07.18.01.44.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jul 2023 01:44:40 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: =?utf-8?B?UmU6IOOAkOS8keaah+eUs+iri+OAkVl1enVraSAyMDIzLzcvMjYs?=
+ =?utf-8?B?Mjc=?=
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+In-Reply-To: <9da148b9-4536-eb6d-c163-20f76aa39582@nowhere.co.jp>
+Date: Tue, 18 Jul 2023 17:44:29 +0900
+Cc: Naomi Yamadera <oguma@nowhere.co.jp>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <8DECEA31-F439-4EBA-A0D6-52B8F7B8FB41@nowhere.co.jp>
+References: <9da148b9-4536-eb6d-c163-20f76aa39582@nowhere.co.jp>
+To: Sara Yuzuki <dawei.jiang@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.600.7)
+
+=E4=BA=86=E8=A7=A3=E3=81=A7=E3=81=99=E3=80=82
+
+> 2023/07/18 17:38=E3=80=81Sara Yuzuki =
+<dawei.jiang@nowhere.co.jp>=E3=81=AE=E3=83=A1=E3=83=BC=E3=83=AB:
+>=20
+> =E5=B1=B1=E5=AF=BA=E3=81=95=E3=82=93=E3=80=81=E5=B0=8F=E7=86=8A=E3=81=95=
+=E3=82=93=20
+> =E3=81=8A=E7=96=B2=E3=82=8C=E6=A7=98=E3=81=A7=E3=81=99=E3=80=82Yuzuki =
+=E3=81=A7=E3=81=99=E3=80=82=20
+> =
+=E4=B8=8B=E8=A8=98=E3=81=AE=E9=80=9A=E3=82=8A=E4=BC=91=E6=9A=87=E3=82=92=E3=
+=81=84=E3=81=9F=E3=81=A0=E3=81=8D=E3=81=9F=E3=81=84=E3=81=AE=E3=81=A7=E3=81=
+=99=E3=81=8C=E3=80=81=E3=82=88=E3=82=8D=E3=81=97=E3=81=84=E3=81=A7=E3=81=97=
+=E3=82=87=E3=81=86=E3=81=8B=E3=80=82=20
+> =E3=81=94=E6=A4=9C=E8=A8=8E=E3=81=AE=E7=A8=8B=E3=82=88=E3=82=8D=E3=81=97=
+=E3=81=8F=E3=81=8A=E9=A1=98=E3=81=84=E3=81=84=E3=81=9F=E3=81=97=E3=81=BE=E3=
+=81=99=E3=80=82=20
+> =E4=BC=91=E6=9A=87=E7=A8=AE=E5=88=A5: =E6=9C=89=E7=B5=A6 =E4=BC=91=E6=9A=
+=87=E6=97=A5: <2023-07-26 Wed> <2023-07-27 Thu> =E4=BC=91=E6=9A=87=E7=90=86=
+=E7=94=B1: Tokyo for hosp keio=20
+> =E6=9C=89=E7=B5=A6=E5=88=A9=E7=94=A8=E7=8A=B6=E6=B3=81: 2023=E5=B9=B4=E5=
+=88=86: |[0/12]|
+>     =E2=80=A2 |[ ]| <2023-07-27 Thu>
+>     =E2=80=A2 |[ ]| <2023-07-26 Wed>
+> 2022=E5=B9=B4=E5=88=86: |[11/11]|
+>     =E2=80=A2 |[X]| <2023-07-13 Thu> |[11/11]|
+>     =E2=80=A2 |[X]| <2023-07-12 Wed> |[10/11]|
+>     =E2=80=A2 |[X]| <2023-06-01 Thu> |[9/11]|
+>     =E2=80=A2 |[X]| <2023-05-31 Wed> |[8/11]|
+>     =E2=80=A2 |[X]| <2023-04-06 Thu> |[7/11]|
+>     =E2=80=A2 |[X]| <2023-02-09 Thu> |[6/11]|
+>     =E2=80=A2 |[X]| <2022-12-22 Thu> |[5/11]|
+>     =E2=80=A2 |[X]| <2022-11-10 Thu> |[4/11]|
+>     =E2=80=A2 |[X]| <2022-11-09 Wed> |[3/11]|
+>     =E2=80=A2 |[X]| <2022-09-22 Thu> |[2/11]|
+>     =E2=80=A2 |[X]| <2022-09-21 Wed> |[1/11]|
+> <Attached Message Part.txt>
+

@@ -1,0 +1,10 @@
+2023-09-19
+Android Application project.
+
+1. API Types Testing: 
+Our team carried out extensive testing on the API types within the application. The focus was to ensure data integrity, correct responses, and to avoid redundancies. We have confirmed that the API types are operating within the desired parameters.
+
+2. GraphQL Resolvers Testing:
+Alongside this, the team tackled the task of testing GraphQL resolvers. By scrutinizing every resolver, we wanted to ensure efficient data pulls and accurate feeds to our client-driven requests, essentially strengthening the interactivity of our application. 
+
+The outcome of the testing process was largely positive, with both the API types and resolvers functioning as expected. We did encounter minor issues, but they have been rectified swiftly.

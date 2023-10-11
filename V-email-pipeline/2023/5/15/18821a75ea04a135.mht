@@ -1,0 +1,884 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:2603:b0:123:4e67:2415 with SMTP id l3csp1640810rwc;
+        Mon, 15 May 2023 16:03:17 -0700 (PDT)
+X-Received: by 2002:a05:6a20:6a24:b0:101:136a:a061 with SMTP id p36-20020a056a206a2400b00101136aa061mr33515686pzk.9.1684191797106;
+        Mon, 15 May 2023 16:03:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1684191797; cv=none;
+        d=google.com; s=arc-20160816;
+        b=BqSpHrXkeLMwSOdil5H9HicBPGjf6n6p4z9JrkZzKJkq0iqrR/IL8AfYjvVWbJjY18
+         1xXRj7+f9458dBcLz2ycGJaPC1uWrf0YDBRaBGBXis29aBZQvlIB5PXp0dBxKmq2gmjJ
+         sXzUSYCNqmGcMeSbahy4Myj4LbGPdEdX3OiYeuOz4rbLy+JaP4/1mynFru2l5b4UnCPw
+         uUOV6H7aZTo0eGYn9ZzKXdZpynJeUTIa0rHgJW00QnV89Gw2GcTZpFwXDKX9bkbfw9Gj
+         CrUaHoGrFZYX+ZRBzpp+ZORw3ERKRz99+mV7MEbGzFRuU8S3pHi5ZvV/BUa1F+dtdkGa
+         i5Nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=b6tqY59rsNzUtICEjtK0knocDle2IPHsoqf21HAXo+E=;
+        b=YZmooXSUhHL2LmhZKds9GFHlNActo2EJgXvCfzyiYzGkcuSMIx2au8gZtTCBavhBOG
+         a1v+vUuBKeTrFElxlt/fIafTJxRFfZZL7mIUdGHNYb5NNRlIWq4pBsHRnIEvFVdr2Faq
+         YTw0p79UdMvhP+mHqs+wVPIda5oQims5+LqjtVxXyD3SsopYtjVVtXskuyuaYrRUoFiI
+         f6kyuGZel9GvmzWLFUpC8PkIbOC4tZEJ+ZvKXkGOW6VVJIZACEa6EUnvW9JwiuFY3gya
+         TxSzYp5WrSpezlp0zzPUkZA9mKs8r6zaQgBT2Zlxcx9NZDbyMQY5gw/Tjh0iySilDRFT
+         cyyQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=DAEkzWXi;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <victor@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ay33-20020a056a00302100b0064390d0c4aesor13651268pfb.11.2023.05.15.16.03.16
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Mon, 15 May 2023 16:03:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=DAEkzWXi;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1684191796; x=1686783796;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b6tqY59rsNzUtICEjtK0knocDle2IPHsoqf21HAXo+E=;
+        b=DAEkzWXiA8QsrTUgjXr/XAqo7TtzTP8kTFrWYZ45cFpyZx9seL2frXjErP2A/f0PW0
+         YcJqs8vzRCKNteAbvBtWPIBVjWPJNcoG26upA5T1tEdPvwZF2jT3ZKuZcMWY1K+lLH9z
+         wmSngW1yUGTuKTn+m6X3tdAQh48MeEnZCYUEE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684191796; x=1686783796;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b6tqY59rsNzUtICEjtK0knocDle2IPHsoqf21HAXo+E=;
+        b=Ar2p4LvqbfgNXXEjzrEzkWpxLIaYKjkCY3155WXDn98zo0RLp/BNg4P9db8k3Mdfdv
+         R5eCHQXxbFGoy4xyxaSs8GqJVnISpKX0z1vj6zD7kJjl4HXwM1frv/96JOTKR7WSu8xp
+         dQq8h7almLQe/iHd0obgNKPqJVV6wuVu3dCiGPGcfztdtBg/YXiKl/0s+4GTSmFW0NRk
+         6bk/4vtJZT6hpALZfyXoZ6TQdGzQPSIb0oux/kbUG+J88yBzOgEE+muu4QGBcdcj3BfD
+         qiJN78NVy8XozmfLVLTHQ6spDvFoa4JIt/AZf+GkhNYORIEChBSO0Xk8CjhzwK86bkeM
+         RyNA==
+X-Gm-Message-State: AC+VfDzNPBULlp6BrLi0zRlLA4SaPHJD8hQJ1ZJcOxQcmUcRl+RzTiZw
+	uyzUi82XeDdMiT1s0ThkhALvtbYAz37qG+bizMzWBxui
+X-Google-Smtp-Source: ACHHUZ67cJ8uJAPLuzpGCan8KahKpHQRsaegfPqVebCUiCvlxNBwIjjVJ3ceGD2Qa2RNeaDFhFx9GQ==
+X-Received: by 2002:a17:90a:e281:b0:24b:3123:8dd8 with SMTP id d1-20020a17090ae28100b0024b31238dd8mr34245777pjz.27.1684191796333;
+        Mon, 15 May 2023 16:03:16 -0700 (PDT)
+Return-Path: <victor@nowhere.co.jp>
+Received: from smtpclient.apple ([2001:f73:30c0:1e00:1c39:ad80:9cfc:f14c])
+        by smtp.gmail.com with ESMTPSA id gj8-20020a17090b108800b00246b7b8b43asm124615pjb.49.2023.05.15.16.03.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 15 May 2023 16:03:15 -0700 (PDT)
+From: Victor Khaustov <victor@nowhere.co.jp>
+Message-Id: <2F97D9B2-FE8E-4D7A-A5C5-61AA608E4333@nowhere.co.jp>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_7BBE9258-0A51-4ACB-8DEB-CF43AD0A5F29"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.500.231\))
+Subject: =?utf-8?Q?Re=3A_=5Badmin_8313=5D_Great_news!_We=E2=80=99ve_got_yo?=
+ =?utf-8?Q?ur_Data_Bloo_order_=2335663?=
+Date: Tue, 16 May 2023 08:03:02 +0900
+In-Reply-To: <CAOkOQaFfY4TDHhPFivHoyRAb+Ge_bro9c+AZNsxMC5v-o07ohA@mail.gmail.com>
+Cc: Jun Yamadera <yamadera@nowhere.co.jp>,
+ Mark Ogbodo <ogbodo.mark@nowhere.co.jp>
+To: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+References: <6fU36Zz4ToKu2GH4mNZlyw@geopod-ismtpd-11>
+ <CANo=jaSa7JcKYR6dEeUuPb1FZctAJ7SNZpkgTa7C3XVB_C7jEg@mail.gmail.com>
+ <CAOkOQaFfY4TDHhPFivHoyRAb+Ge_bro9c+AZNsxMC5v-o07ohA@mail.gmail.com>
+X-Mailer: Apple Mail (2.3731.500.231)
+
+
+--Apple-Mail=_7BBE9258-0A51-4ACB-8DEB-CF43AD0A5F29
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Yuzuki,
+
+We know it. It is impossible to find the template that exactly fits our =
+data. But at the same time, it=E2=80=99s very helpful to find some nice =
+looking template and learn how to build solution with similar =
+functionality. The purchased template is for our reference: it has =
+pages, nicely organized charts on the main page, a dedicated =
+=E2=80=9CProducts=E2=80=9D page that summarizes revenue per item or =
+category and contains filters to quickly search for products, and =
+=E2=80=9CTime=E2=80=9D page with Total and Monthly Performance charts. =
+The =E2=80=9CTime=E2=80=9D and =E2=80=9CProducts=E2=80=9D pages are =
+especially useful for us.
+
+Before I finish, I=E2=80=99d like to make a few IMPORTANT POINTS about =
+communications (I=E2=80=99m using CAPS LOCK to get your attention):
+1. Yesterday I asked you NOT TO SEND A COPY OF THE MESSAGE IN DISCORD, =
+but you still do it. I regularly check emails, so please don=E2=80=99t =
+duplicate messages.
+2. To save time, DON=E2=80=99T START THE EMAIL with "I hope this email =
+finds you both well=E2=80=9D or similar sentences. It takes time for you =
+to write it, it takes time for us to read (and skip it). Please get =
+straight to the point.
+
+Thank you!
+
+Victor
+
+> On May 16, 2023, at 07:28, JIANG DAWEI <dawei.jiang@nowhere.co.jp> =
+wrote:
+>=20
+> Dear Yamadera-san and Victor,
+>=20
+> I hope this email finds you both well. I am writing to provide an =
+update on the Google Data Studio template that was shared with me. After =
+examining the template, I discovered that it is designed to work only =
+with Google Analytics as the data source. So it can not be used with our =
+data. If you know it can work, please let me know. (I think I said =
+directly but seems you didn't get the point, I am not asking you =
+questions, I am reporting to you that the template can not be used with =
+our data, it only works with google analysis, and please search what =
+google analysis is.)
+>=20
+> On Mon, May 15, 2023, 11:56 Jun Yamadera <yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>> wrote:
+>>=20
+>>=20
+>> ---------- =E8=BB=A2=E9=80=81=E3=83=A1=E3=83=83=E3=82=BB=E3=83=BC=E3=82=
+=B8 ---------
+>> From: Data Bloo <info@databloo.com <mailto:info@databloo.com>>
+>> =E6=97=A5=E4=BB=98: 2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88) =
+11:55
+>> =E4=BB=B6=E5=90=8D: [admin 8313] Great news! We=E2=80=99ve got your =
+Data Bloo order #35663
+>> To: <admin@nowhere.co.jp <mailto:admin@nowhere.co.jp>>
+>>=20
+>>=20
+>> =20
+>>=20
+>> Thank you for your Order
+>> Dear customer,
+>>=20
+>> Thank you for purchasing our product. Attached you will find the =
+invoice for your order.
+>>=20
+>> To get started, you first need to check our configuration guide. =
+Simply open the link below and then go to the instructions tab. You can =
+use our step-by-step guide & video tutorials in order to make your own =
+copy.
+>>=20
+>> Here is your payment information:
+>>=20
+>> Templates
+>>=20
+>> Product	Product link
+>> GA4 Ecommerce Revenue Template =
+<https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAahD2FBD-2=
+BIjGUANdjJCe9EvUaru8FVumY6XQMMn2IKpI-2FQZuL8YPVthgygIrFLWxM72DmNh8DnmT-2BK=
+Pfd5b-2BLp5M8iFiw-3DLuRz_r-2BDMsuWuYVmb7-2F1Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-=
+2BA6uYmIfkwf5I751CM-2Fy6TY4hSHYAbDVZElHvDUdhFe6D09-2BAmVRYkt7mBkFKnbS-2F3u=
+PTG37-2FLO7FkPLDIrq-2BBorLuBXo1LTCx5WQjls-2BEaPkuCXZYiau9Bx0KkIdU6FCsogljW=
+tGyqkwMSxWSETrDbAwTH5ytAy7dSerlKWFrtc8Q-3D-3D>	Template (Universal =
+Analytics) =
+<https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAahD2FBD-2=
+BIjGUANdjJCe9EvUaru8FOw2p3hWye8ef0QeSqQ9LH1btHFQG7aL8VeZe-2FQsrWNpuX2M-2BD=
+t-2FheaNe6xldDixwCmcfH6eYiOeIov7gGObtRYLNND6-2Fp5qY6kR987EgCCdpaFvrGUyK40m=
+57Cc6TiL5DCr08shZR44InAd8nSe6ZVNkduWICqBqnzfk-2FMuhrBOH4HNsyW-2BqiVxNNblzN=
+OjqoXowGUiCvWjVhPFZj9klOHN2vmMuzKyfiEhp-2B0G9Urw-3D-3DJwax_r-2BDMsuWuYVmb7=
+-2F1Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4rycoxJDgbcyn-=
+2F7NifREJlq-2Fja9pb0Uid5t9wiv-2FJCKn-2BsGLAEUsZvV47UWxGM4o4SEZapriy2IndbeJ=
+wLF0VTUm7lBEsQ2rIXe9MgIe45Vt5t521iNTD8uNncdoJwGFeZ-2F-2BDawK-2FNibOW2JxYkr=
+2bw-3D-3D>
+>> GA4 Ecommerce Revenue Template =
+<https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAahD2FBD-2=
+BIjGUANdjJCe9EvUaru8FVumY6XQMMn2IKpI-2FQZuL8YPVthgygIrFLWxM72DmNh8DnmT-2BK=
+Pfd5b-2BLp5M8iFiw-3Dv2PR_r-2BDMsuWuYVmb7-2F1Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-=
+2BA6uYmIfkwf5I751CM-2Fy6TY4S2Tn9SDhm6ItJkfW1LUi4Zl6HPuv6EHbdrh5UbTbFLbDR8M=
+-2BKzz8M1kxVBnxv-2Bvo-2FZQ5RMDjiABvKZoQ-2BDPHfOH2OlqTRAehozcq7Qw9-2FrAlbH6=
+yZc4qY0jr5haXLarpcAuVUc-2Fb1DzJqErX5blPUw-3D-3D>	Template (Google =
+Analytics 4) =
+<https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAahD2FBD-2=
+BIjGUANdjJCe9EvUaru8FOw2p3hWye8ef0QeSqQ9LH1btHFQG7aL8VeZe-2FQsrWNpuX2M-2BD=
+t-2FheaNe6xldDixwCmcfH6eYiOeIov7gGObtRYLNND6-2Fp5qY6kR987EgCCdpaFvrGUyK40m=
+57Cc6TiL5DCr08shZR44InAd8nSe6ZuG1LWZVqNClYiumpcy2e8GHzsOSqBgnsNTwYobqF3-2F=
+s4jACDIWJb9T9LRhG5edvS2j5o09Ldb7HmRuv9IRVBwQ-3D-3DCvmd_r-2BDMsuWuYVmb7-2F1=
+Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4JuMp1wspysDLYS-2B=
+X1ynvU2chz5TIlLbRdBAlUykaeczbo7m1RQV6i9tQlQWSkgceNRh0MIWNgJFG5g3ja1Ri4Y7Ge=
+leBdkG-2BsgE-2FwAKweraD0MxGzlR6UPHNtYsVXlCYk1vRWmGTe-2F7GyL5AOwcN9g-3D-3D>=
+
+>> Order #35663
+>>=20
+>> Product	Price
+>> GA4 Ecommerce Revenue Template	=E2=82=AC79
+>> Subtotal:	=E2=82=AC79
+>> VAT:	=E2=82=AC0
+>> Payment method:	Amex ending in 4001
+>> Total:	=E2=82=AC79
+>> Billing address
+>>=20
+>> 9-15 Higashisakae Aizuwakamatsu Fukushima
+>> Jun Yamadera
+>> Japan=20
+>> admin@nowhere.co.jp <mailto:admin@nowhere.co.jp>
+>> It=E2=80=99s great having you as a customer and I'd be happy to offer =
+you a 20% discount on your next purchase. Please use our coupon code =
+WELCOME20 at checkout.
+>>=20
+>> If you ever need any help with Google Data Studio, please contact me =
+directly at info@databloo.com <mailto:info@databloo.com>.
+>>=20
+>> Happy Dashboarding!
+>>=20
+>>=20
+>> Giannis at Data Bloo
+>>=20
+>> Data Bloo in Numbers
+>>=20
+>> 20+
+>> Templates
+>>=20
+>> #1 Contributor
+>> Google Data Studio Gallery
+>>=20
+>> 10,000+
+>> Monthly Viewers
+>>=20
+>> 1,000+
+>> Clients
+>>=20
+>> Copyright =C2=A9 Data Bloo P.C., All rights reserved.
+>>=20
+>> Prousis 12, Pefki, Athens 15121
+>>=20
+>>=20
+>>=20
+>>=20
+>> --=20
+>> ------------- the Middle of Nowhere, Eyes, JAPAN Co. Ltd.-----------
+>>        Jun Yamadera   e-mail:  yamadera@nowhere.co.jp =
+<mailto:yamadera@nowhere.co.jp>
+>> "Any sufficiently advanced technology is indistinguishable
+>> from magic"=E3=80=80Arthur C. Clarke
+>> --URL: http://www.nowhere.co.jp <http://www.nowhere.co.jp/>   e-mail: =
+ info@nowhere.co.jp <mailto:info@nowhere.co.jp> --
+
+
+--Apple-Mail=_7BBE9258-0A51-4ACB-8DEB-CF43AD0A5F29
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Hi =
+Yuzuki,<div><br></div><div>We know it. It is impossible to find the =
+template that exactly fits our data. But at the same time, it=E2=80=99s =
+very helpful to find some nice looking template and learn how to build =
+solution with similar functionality. The purchased template is for our =
+reference: it has pages, nicely organized charts on the main page, a =
+dedicated =E2=80=9CProducts=E2=80=9D page that summarizes revenue per =
+item or category and contains filters to quickly search for products, =
+and =E2=80=9CTime=E2=80=9D page with Total and Monthly Performance =
+charts. The =E2=80=9CTime=E2=80=9D and =E2=80=9CProducts=E2=80=9D pages =
+are especially useful for us.</div><div><br></div><div>Before I finish, =
+I=E2=80=99d like to make a few IMPORTANT POINTS about communications =
+(I=E2=80=99m using CAPS LOCK to get your attention):</div><div>1. =
+Yesterday I asked you NOT TO SEND A COPY OF THE MESSAGE IN DISCORD, but =
+you still do it. I regularly check emails, so please don=E2=80=99t =
+duplicate messages.</div><div>2. To save time, DON=E2=80=99T START THE =
+EMAIL with "<span style=3D"font-size: 12.8px;">I hope this email finds =
+you both well=E2=80=9D or similar sentences. It takes time for you to =
+write it, it takes time for us to read (and skip it). Please get =
+straight to the point.</span></div><div><span style=3D"font-size: =
+12.8px;"><br></span></div><div><span style=3D"font-size: 12.8px;">Thank =
+you!</span></div><div><br></div><div><span style=3D"font-size: =
+12.8px;">Victor</span></div><div><div><br><blockquote =
+type=3D"cite"><div>On May 16, 2023, at 07:28, JIANG DAWEI =
+&lt;dawei.jiang@nowhere.co.jp&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"auto"><span =
+style=3D"font-size:12.8px">Dear Yamadera-san and Victor,</span><div =
+dir=3D"auto" style=3D"font-size:12.8px"><br></div><div dir=3D"auto" =
+style=3D"font-size:12.8px">I hope this email finds you both well. I am =
+writing to provide an update on the Google Data Studio template that was =
+shared with me. After examining the template, I discovered that it is =
+designed to work only with Google Analytics as the data source. So it =
+can not be used with our data. If you know it can work, please&nbsp;let =
+me know. (I think I said directly but seems you didn't get the point, I =
+am not asking you questions, I am reporting to you that the template can =
+not be used with our data, it only works with google analysis, and =
+please search what google analysis is.)</div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May =
+15, 2023, 11:56 Jun Yamadera &lt;<a =
+href=3D"mailto:yamadera@nowhere.co.jp">yamadera@nowhere.co.jp</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc =
+solid;padding-left:1ex"><div><br></div><div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- =
+=E8=BB=A2=E9=80=81=E3=83=A1=E3=83=83=E3=82=BB=E3=83=BC=E3=82=B8 =
+---------<br>From: <strong class=3D"gmail_sendername" dir=3D"auto">Data =
+Bloo</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:info@databloo.com" =
+target=3D"_blank" =
+rel=3D"noreferrer">info@databloo.com</a>&gt;</span><br>=E6=97=A5=E4=BB=98:=
+ 2023=E5=B9=B45=E6=9C=8815=E6=97=A5(=E6=9C=88) 11:55<br>=E4=BB=B6=E5=90=8D=
+: [admin 8313] Great news! We=E2=80=99ve got your Data Bloo order =
+#35663<br>To:  &lt;<a href=3D"mailto:admin@nowhere.co.jp" =
+target=3D"_blank" =
+rel=3D"noreferrer">admin@nowhere.co.jp</a>&gt;<br></div><br><br><u></u>
+
+=09
+	=09
+   =20
+   =20
+
+	=09
+=09
+  <div style=3D"margin:0;padding:0">
+
+
+
+
+
+ =20
+
+
+  <div style=3D"background-color:#aaaaaa" bgcolor=3D"#aaaaaa">
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" =
+bgcolor=3D"#0f82c3" =
+style=3D"border-collapse:separate;background-color:#0f82c3;width:100%" =
+width=3D"100%">
+      <tbody>
+        <tr>
+          <td style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;vertical-align:top">
+            <div style=3D"margin:0 auto;padding:30px =
+0;padding-left:0;padding-right:0;max-width:100%;padding-top:30px;padding-b=
+ottom:30px">
+             =20
+              <div style=3D"margin:0 auto;padding:30px 0 10px">
+                <div>
+                  <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse:separate;table-layout:fixed">
+                    <tbody>
+                      <tr>
+                        <td align=3D"center" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;vertical-align:top">
+                         =20
+                            <div =
+style=3D"display:block;max-width:100px"><img =
+src=3D"https://embed.filekitcdn.com/e/w1HPovkKaZFDQdti44nR9K/hQrnj7D8aZ5TM=
+XC6ro8up8?w=3D800&amp;fit=3Dmax" alt=3D"Data Bloo" width=3D"100" =
+style=3D"font-size:14px;font-weight:bold;text-transform:capitalize;vertica=
+l-align:middle;margin-right:10px;border:0 =
+none;display:block;height:auto;line-height:100%;outline:none;text-decorati=
+on:none;max-width:100%;width:100px;border-radius:4px"></div>
+                           =20
+                         =20
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><div style=3D"margin: 1em 0px; font-size: =
+16px; line-height: 1.5; font-family: &quot;Century Gothic&quot;, Avenir, =
+&quot;Trebuchet MS&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe =
+UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica =
+Neue&quot;, sans-serif; color: rgb(64, 64, 64);"><br =
+class=3D"webkit-block-placeholder"></div>
+                </div>
+              </div>
+              <div =
+style=3D"margin-bottom:20px;overflow:hidden;padding:50px =
+35px;background-color:#ffffff" bgcolor=3D"#ffffff">
+                <div =
+style=3D"padding-bottom:10px;background-color:#ffffff" =
+bgcolor=3D"#ffffff">
+                  <h1 =
+style=3D"font-weight:normal;font-style:normal;font-size:2em;margin:0;font-=
+family:'Century Gothic',Avenir,'Trebuchet =
+MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#222222;line-height:1.5;text-align:center"><span =
+style=3D"font-size:24px"><strong>Thank you for your =
+Order</strong></span></h1><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">Dear customer,</p><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">Thank you for purchasing our product. =
+Attached you will find the invoice for your order.</p><p =
+style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">To get started, you first need to check =
+our configuration guide. Simply open the link below and then go to the =
+instructions tab. You can use our <strong>step-by-step guide &amp; video =
+tutorials</strong> in order to make your own copy.</p><p =
+style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">Here is your payment information:</p>
+                </div>
+                <div style=3D"background-color:#ffffff" =
+bgcolor=3D"#ffffff">
+                  <div>
+                  <h2 style=3D"display: block; font-family: =
+&quot;Century Gothic&quot;, Avenir, &quot;Trebuchet MS&quot;, =
+-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, =
+Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; =
+font-size: 18px; font-weight: bold; line-height: 130%; margin: 0px 0px =
+18px; text-align: left;">Templates</h2>
+
+<table cellspacing=3D"0" cellpadding=3D"6" border=3D"1" =
+style=3D"color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;width:100%;font-family:'Helvetica =
+Neue',Helvetica,Roboto,Arial,sans-serif;margin-bottom:40px" =
+width=3D"100%">
+	<thead>
+		<tr>
+							<th scope=3D"col" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;width:50%;text-align:left" width=3D"50%" =
+align=3D"left">Product</th>
+							<th scope=3D"col" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;width:50%;text-align:left" width=3D"50%" =
+align=3D"left">Product link</th>
+					</tr>
+	</thead>
+
+			<tbody><tr>
+							<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">
+										=
+			<a =
+href=3D"https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAah=
+D2FBD-2BIjGUANdjJCe9EvUaru8FVumY6XQMMn2IKpI-2FQZuL8YPVthgygIrFLWxM72DmNh8D=
+nmT-2BKPfd5b-2BLp5M8iFiw-3DLuRz_r-2BDMsuWuYVmb7-2F1Mu1QL1OBy5HcL-2BKY3V-2F=
+LC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4hSHYAbDVZElHvDUdhFe6D09-2BAmVRYkt7mBkFKn=
+bS-2F3uPTG37-2FLO7FkPLDIrq-2BBorLuBXo1LTCx5WQjls-2BEaPkuCXZYiau9Bx0KkIdU6F=
+CsogljWtGyqkwMSxWSETrDbAwTH5ytAy7dSerlKWFrtc8Q-3D-3D" =
+style=3D"font-weight:normal;text-decoration:underline;font-family:&quot;Ce=
+ntury Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#404040;font-size:16px" target=3D"_blank" =
+rel=3D"noreferrer">GA4 Ecommerce Revenue Template</a>
+										=
+		</td>
+							<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">
+										=
+			<a =
+href=3D"https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAah=
+D2FBD-2BIjGUANdjJCe9EvUaru8FOw2p3hWye8ef0QeSqQ9LH1btHFQG7aL8VeZe-2FQsrWNpu=
+X2M-2BDt-2FheaNe6xldDixwCmcfH6eYiOeIov7gGObtRYLNND6-2Fp5qY6kR987EgCCdpaFvr=
+GUyK40m57Cc6TiL5DCr08shZR44InAd8nSe6ZVNkduWICqBqnzfk-2FMuhrBOH4HNsyW-2BqiV=
+xNNblzNOjqoXowGUiCvWjVhPFZj9klOHN2vmMuzKyfiEhp-2B0G9Urw-3D-3DJwax_r-2BDMsu=
+WuYVmb7-2F1Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4rycoxJ=
+Dgbcyn-2F7NifREJlq-2Fja9pb0Uid5t9wiv-2FJCKn-2BsGLAEUsZvV47UWxGM4o4SEZapriy=
+2IndbeJwLF0VTUm7lBEsQ2rIXe9MgIe45Vt5t521iNTD8uNncdoJwGFeZ-2F-2BDawK-2FNibO=
+W2JxYkr2bw-3D-3D" =
+style=3D"font-weight:normal;text-decoration:underline;font-family:&quot;Ce=
+ntury Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#404040;font-size:16px" target=3D"_blank" =
+rel=3D"noreferrer">Template (Universal Analytics)</a>
+										=
+		</td>
+					</tr>
+			<tr>
+							<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">
+										=
+			<a =
+href=3D"https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAah=
+D2FBD-2BIjGUANdjJCe9EvUaru8FVumY6XQMMn2IKpI-2FQZuL8YPVthgygIrFLWxM72DmNh8D=
+nmT-2BKPfd5b-2BLp5M8iFiw-3Dv2PR_r-2BDMsuWuYVmb7-2F1Mu1QL1OBy5HcL-2BKY3V-2F=
+LC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4S2Tn9SDhm6ItJkfW1LUi4Zl6HPuv6EHbdrh5UbTb=
+FLbDR8M-2BKzz8M1kxVBnxv-2Bvo-2FZQ5RMDjiABvKZoQ-2BDPHfOH2OlqTRAehozcq7Qw9-2=
+FrAlbH6yZc4qY0jr5haXLarpcAuVUc-2Fb1DzJqErX5blPUw-3D-3D" =
+style=3D"font-weight:normal;text-decoration:underline;font-family:&quot;Ce=
+ntury Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#404040;font-size:16px" target=3D"_blank" =
+rel=3D"noreferrer">GA4 Ecommerce Revenue Template</a>
+										=
+		</td>
+							<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">
+										=
+			<a =
+href=3D"https://u28994402.ct.sendgrid.net/ls/click?upn=3DHO8HzQa4eNbCNlAah=
+D2FBD-2BIjGUANdjJCe9EvUaru8FOw2p3hWye8ef0QeSqQ9LH1btHFQG7aL8VeZe-2FQsrWNpu=
+X2M-2BDt-2FheaNe6xldDixwCmcfH6eYiOeIov7gGObtRYLNND6-2Fp5qY6kR987EgCCdpaFvr=
+GUyK40m57Cc6TiL5DCr08shZR44InAd8nSe6ZuG1LWZVqNClYiumpcy2e8GHzsOSqBgnsNTwYo=
+bqF3-2Fs4jACDIWJb9T9LRhG5edvS2j5o09Ldb7HmRuv9IRVBwQ-3D-3DCvmd_r-2BDMsuWuYV=
+mb7-2F1Mu1QL1OBy5HcL-2BKY3V-2FLC0xN1-2BA6uYmIfkwf5I751CM-2Fy6TY4JuMp1wspys=
+DLYS-2BX1ynvU2chz5TIlLbRdBAlUykaeczbo7m1RQV6i9tQlQWSkgceNRh0MIWNgJFG5g3ja1=
+Ri4Y7GeleBdkG-2BsgE-2FwAKweraD0MxGzlR6UPHNtYsVXlCYk1vRWmGTe-2F7GyL5AOwcN9g=
+-3D-3D" =
+style=3D"font-weight:normal;text-decoration:underline;font-family:&quot;Ce=
+ntury Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#404040;font-size:16px" target=3D"_blank" =
+rel=3D"noreferrer">Template (Google Analytics 4)</a>
+										=
+		</td>
+					</tr>
+	</tbody></table>
+
+<h2 style=3D"display:block;font-weight:bold;line-height:130%;margin:0 0 =
+18px;text-align:left;font-family:'Century Gothic',Avenir,'Trebuchet =
+MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#111;font-size:18px">
+	Order #35663</h2>
+
+<div style=3D"margin-bottom:40px">
+	<table cellspacing=3D"0" cellpadding=3D"6" border=3D"1" =
+style=3D"border:1px solid =
+#e5e5e5;vertical-align:middle;width:100%;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;font-size:16px;line-height:1.5" =
+width=3D"100%">
+		<thead>
+			<tr>
+				<th scope=3D"col" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">Product</th>=
+
+				<th scope=3D"col" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+		<td style=3D"color:#636363;border:1px solid =
+#e5e5e5;width:50%;text-align:left;vertical-align:middle;font-family:'Centu=
+ry Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;word-wrap:break-word" width=3D"50%" align=3D"left">
+		GA4 Ecommerce Revenue Template		</td>
+	=09
+		<td style=3D"color:#636363;border:1px solid =
+#e5e5e5;width:50%;text-align:left;vertical-align:middle;font-family:'Centu=
+ry Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif" =
+width=3D"50%" align=3D"left">
+			<span><u></u><span>=E2=82=AC</span>79<u></u></span=
+>		</td>
+	</tr>
+=09
+		</tbody>
+		<tfoot>
+								<tr>
+						<th scope=3D"row" =
+colspan=3D"1" style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left;border-top-width:4px" =
+align=3D"left">Subtotal:</th>
+						<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left;border-top-width:4px" =
+align=3D"left"><span><u></u><span>=E2=82=AC</span>79<u></u></span></td>
+					</tr>
+										=
+<tr>
+						<th scope=3D"row" =
+colspan=3D"1" style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">VAT:</th>
+						<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" =
+align=3D"left"><span><u></u><span>=E2=82=AC</span>0<u></u></span></td>
+					</tr>
+										=
+<tr>
+						<th scope=3D"row" =
+colspan=3D"1" style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">Payment =
+method:</th>
+						<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">Amex =
+ending in 4001</td>
+					</tr>
+										=
+<tr>
+						<th scope=3D"row" =
+colspan=3D"1" style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" align=3D"left">Total:</th>
+						<td =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;color:#636363;border:1px solid =
+#e5e5e5;vertical-align:middle;text-align:left" =
+align=3D"left"><span><u></u><span>=E2=82=AC</span>79<u></u></span></td>
+					</tr>
+							</tfoot>
+	</table>
+</div>
+
+<table id=3D"m_-8693669439784435822m_7363902783773878926addresses" =
+cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+style=3D"width:100%;vertical-align:top;margin-bottom:40px;padding:0" =
+width=3D"100%">
+	<tbody><tr>
+		<td valign=3D"top" width=3D"50%" =
+style=3D"text-align:left;font-family:'Century Gothic',Avenir,'Trebuchet =
+MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;font-size:16px;border:0;padding:0" =
+align=3D"left">
+			<h2 style=3D"display: block; font-family: =
+&quot;Century Gothic&quot;, Avenir, &quot;Trebuchet MS&quot;, =
+-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, =
+Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; =
+font-size: 18px; font-weight: bold; line-height: 130%; margin: 0px 0px =
+18px; text-align: left;">Billing address</h2>
+
+			<address style=3D"padding:12px;border:1px solid =
+#e5e5e5;font-family:'Century Gothic',Avenir,'Trebuchet =
+MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;font-size:16px">
+				9-15 Higashisakae Aizuwakamatsu =
+Fukushima<br>Jun Yamadera<br>Japan						=
+							<br><a =
+href=3D"mailto:admin@nowhere.co.jp" target=3D"_blank" =
+rel=3D"noreferrer">admin@nowhere.co.jp</a>					=
+		</address>
+		</td>
+			</tr>
+</tbody></table>
+                  </div>
+                                    </div>
+                <div style=3D"padding-top:10px;background-color:#ffffff" =
+bgcolor=3D"#ffffff"><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">It=E2=80=99s great having you as a =
+customer and I'd be happy to offer you a <strong>20% discount</strong> =
+on your next purchase. Please use our coupon code =
+<strong>WELCOME20</strong> at checkout.</p><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">If you ever need any help with Google =
+Data Studio, please contact me directly at <a =
+href=3D"mailto:info@databloo.com" target=3D"_blank" =
+rel=3D"noreferrer">info@databloo.com</a>.</p><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">Happy Dashboarding! </p>
+                  <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse:separate;table-layout:fixed">
+                    <tbody>
+                      <tr>
+                        <td align=3D"left" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;vertical-align:top">
+                         =20
+                            <div =
+style=3D"display:block;max-width:100px"><img =
+src=3D"https://embed.filekitcdn.com/e/w1HPovkKaZFDQdti44nR9K/8LhWPZcWSDu8a=
+9gWZT4FKi?w=3D800&amp;fit=3Dmax" width=3D"100" =
+style=3D"font-size:14px;font-weight:bold;text-transform:capitalize;vertica=
+l-align:middle;margin-right:10px;border:0 =
+none;display:block;height:auto;line-height:100%;outline:none;text-decorati=
+on:none;max-width:100%;width:100px;border-radius:100px"></div>
+                           =20
+                         =20
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040">Giannis at Data Bloo </p>
+                  <hr><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;text-align:center" =
+align=3D"center"><strong>Data Bloo in Numbers</strong></p><p =
+style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;text-align:center" align=3D"center"><span =
+style=3D"color:#0f82c3"><strong>20+</strong></span><br>Templates</p><p =
+style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;text-align:center" align=3D"center"><span =
+style=3D"color:#0f82c3"><strong>#1 Contributor</strong></span><br>Google =
+Data Studio Gallery</p><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;text-align:center" align=3D"center"><span =
+style=3D"color:#0f82c3"><strong>10,000+</strong></span><br>Monthly =
+Viewers</p><p style=3D"margin:1em =
+0;font-size:16px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#404040;text-align:center" align=3D"center"><span =
+style=3D"color:#0f82c3"><strong>1,000+</strong></span><span =
+style=3D"color:#0f82c3"><br></span>Clients</p>
+                </div>
+              </div>
+              <div><p style=3D"margin:1em =
+0;font-size:12px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#ffffff;text-align:center" align=3D"center"><span =
+style=3D"font-size:12px">Copyright =C2=A9 Data Bloo P.C., All rights =
+reserved.</span></p><p style=3D"margin:1em =
+0;font-size:12px;line-height:1.5;font-family:'Century =
+Gothic',Avenir,'Trebuchet MS',-apple-system,BlinkMacSystemFont,'Segoe =
+UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica =
+Neue',sans-serif;color:#ffffff;text-align:center" align=3D"center"><span =
+style=3D"font-size:12px">Prousis 12, Pefki, Athens 15121</span></p>
+                <table width=3D"100%" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" style=3D"border-collapse:separate;table-layout:fixed">
+                  <tbody>
+                    <tr>
+                      <td align=3D"center" =
+style=3D"font-family:&quot;Century Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;vertical-align:top">
+                       =20
+                          <div style=3D"display:block;max-width:50px"><img=
+ =
+src=3D"https://embed.filekitcdn.com/e/w1HPovkKaZFDQdti44nR9K/8CGZGYZup1KAS=
+4wAbdFwRf/email" alt=3D"Data Bloo" width=3D"50" =
+style=3D"font-size:14px;font-weight:bold;text-transform:capitalize;vertica=
+l-align:middle;margin-right:10px;border:0 =
+none;display:block;height:auto;line-height:100%;outline:none;text-decorati=
+on:none;max-width:100%;width:50px;border-radius:4px"></div>
+                         =20
+                       =20
+                      </td>
+                    </tr>
+                  </tbody>
+                </table><div style=3D"margin: 1em 0px; font-size: 12px; =
+line-height: 1.5; font-family: &quot;Century Gothic&quot;, Avenir, =
+&quot;Trebuchet MS&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe =
+UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica =
+Neue&quot;, sans-serif; color: rgb(255, 255, 255);"><br =
+class=3D"webkit-block-placeholder"></div>
+              </div>
+             =20
+            </div>
+          </td>
+          <td style=3D"font-family:&quot;Century =
+Gothic&quot;,Avenir,&quot;Trebuchet =
+MS&quot;,-apple-system,BlinkMacSystemFont,&quot;Segoe =
+UI&quot;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&quot;Helvetica =
+Neue&quot;,sans-serif;vertical-align:top"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<img =
+src=3D"https://u28994402.ct.sendgrid.net/wf/open?upn=3DuoQOw53Jnd2odJf4vBw=
+XdbS2sksJJzBhOY5WQY2Z2DZaU2Ri-2FeRV9KZwbfUC2W7W-2B-2FhSe-2BvMsmPkBsoUFy2GX=
+pe8XEd4ewkZUuHeo8ABFycdCjvGiKqGceaLdSdprZWoNUT7fagBAZ-2F2LAQ0Iedxr3MtcXY6-=
+2BUl1XEjqzZvZh6nZvmuoyAS8Mn6ZjeU1kAEJtMSnjXsVHlRP2VY-2BeDakTMRUKHQMkFrPZZ9=
+z-2Bc09R2s-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" =
+style=3D"height:1px!important;width:1px!important;border-width:0!important=
+;margin-top:0!important;margin-bottom:0!important;margin-right:0!important=
+;margin-left:0!important;padding-top:0!important;padding-bottom:0!importan=
+t;padding-right:0!important;padding-left:0!important"></div>
+
+</div></div><span>-- </span><br><div dir=3D"ltr" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><span =
+style=3D"font-family: Helvetica; font-size: 12px;">------------- the =
+Middle of Nowhere, Eyes, JAPAN Co. Ltd.-----------</span><br =
+style=3D"font-family: Helvetica; font-size: 12px;"><span =
+style=3D"font-family: Helvetica; font-size: 12px;">&nbsp; &nbsp; &nbsp; =
+&nbsp;Jun Yamadera &nbsp; e-mail: &nbsp;<a =
+href=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank" =
+rel=3D"noreferrer">yamadera@nowhere.co.jp</a></span><br =
+style=3D"font-family: Helvetica; font-size: 12px;"><span =
+style=3D"font-family: Helvetica; font-size: 12px;">"Any sufficiently =
+advanced technology is indistinguishable</span><br style=3D"font-family: =
+Helvetica; font-size: 12px;"><span style=3D"font-family: Helvetica; =
+font-size: 12px;">from magic"=E3=80=80Arthur C. Clarke</span><br =
+style=3D"font-family: Helvetica; font-size: 12px;"><span =
+style=3D"font-family: Helvetica; font-size: 12px;">--URL: <a =
+href=3D"http://www.nowhere.co.jp/" target=3D"_blank" =
+rel=3D"noreferrer">http://www.nowhere.co.jp</a> &nbsp; e-mail: &nbsp;<a =
+href=3D"mailto:info@nowhere.co.jp" target=3D"_blank" =
+rel=3D"noreferrer">info@nowhere.co.jp</a> --</span><br></div></div>
+</blockquote></div>
+</div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_7BBE9258-0A51-4ACB-8DEB-CF43AD0A5F29--

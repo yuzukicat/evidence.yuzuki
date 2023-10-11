@@ -1,0 +1,51 @@
+export const LASTWEEK = [
+  {
+    id: 0,
+    project: 'Supermarket AI',
+    title: 'Supermarket AI: Collaborating (Data Clean Up)',
+    date: '16,19,20',
+    point: '16.25',
+  },
+  {
+    id: 1,
+    project: undefined,
+    title: 'Supermarket AI: Docs && Test && MTG Pre',
+    date: '20,21',
+    point: '17.25',
+  },
+  {
+    id: 2,
+    project: undefined,
+    title: 'Coordinating && Opts: (Schedule && MTG Pre && Xrandr && gc)',
+    date: '20',
+    point: '2',
+  },
+  {
+    id: 3,
+    project: 'PD',
+    title: 'Technical Support for Tamahashi',
+    date: '16,21',
+    point: '4.5',
+  },
+  {
+    id: 4,
+    project: 'Sec',
+    title: 'Opts: Security (LUKS2, initrd, partuuid, swap, impl method sharing)',
+    date: '16,19',
+    point: '5.75',
+  },
+  {
+    id: 5,
+    project: 'Others',
+    title: 'Opts: DEV ENV (iMac DFU Recovery)',
+    date: '19',
+    point: '0.5',
+  },
+  {
+    id: 6,
+    project: 'Others',
+    title: 'MTG / Info Sharing / Diligence and Indolence of PTs',
+    date: undefined,
+    point: '2.75',
+  },
+];

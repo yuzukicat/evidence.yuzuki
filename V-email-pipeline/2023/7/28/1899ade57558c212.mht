@@ -1,0 +1,207 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6359:63b0:b0:134:c132:59db with SMTP id sg48csp337700rwb;
+        Thu, 27 Jul 2023 22:00:10 -0700 (PDT)
+X-Received: by 2002:a17:907:2bcd:b0:99b:4bab:2841 with SMTP id gv13-20020a1709072bcd00b0099b4bab2841mr1516858ejc.26.1690520409850;
+        Thu, 27 Jul 2023 22:00:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690520409; cv=none;
+        d=google.com; s=arc-20160816;
+        b=hkxIAL4zG7cn/G7O8jmCa1Bt8w/tCN19NXaPLOjTxMXPXlwrlD3xWiaf1GQucdiPg7
+         h60YMuBtLfCbMlAHrDosz3FTFd4RxiIViubzrKNf2f9iVtTAlSuQpALK4s1lB9HvpQFa
+         S5Wb+KotEP1no2WACilD4L8xFGPhPN8Uu7xNYjsRu34xEWho9RXKiqxg9bQizCSCq7Te
+         4Xrky3+LTNyHZa7aUbo4d1erUuz8UAs9GEW/Zst3pMSsxHwgNeC9TNCiDbP7zvm/KsLi
+         P1aRc3z6BHH5/F3AZ39tZhHUafGZ43gcSGPVSUlB2qd4vhBj8uZR1672moAs3K90dJXm
+         VXBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=fBxrL3b0ZPxNsgNEVIM6D+2fkCCju/2Ygb7bX/rTZEs=;
+        fh=asNWYuTtfJXb14u58TSRSeIilgObS3H2FWvdZBS1G2k=;
+        b=p3zDDa2yr/jNePh4xjFDnsVo9/TqTuwYSquNdoayM/+bNsmy89L5TKnCq3ha7sp5oR
+         fSZxTg/r7yZ7aKVSLQzV+TwS2ic6e+Rdw0pX3JEccKYsOUcYdpcPWWC7utbgkzq92+po
+         1lwcf+GdOvccg9+11lx3nFLkgoxS0/+XIIF29MPofIeZwvQevnFLJAPIeTCOZ8hXWZFw
+         RekipYWbZVu8iKhPMw38FvKYH40I0b44B9/PPAztzRsW2LKQHZPS106nNmUae4fzzmYb
+         v2+ev/1ZHJXF8/fFDs8xPmeWOFtMA4R99dbHwr/lgLRNx1CFK1chQVa5PlNw3+ZRZGTt
+         OxIg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=ghOI3fic;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <victor@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id mr16-20020a170907829000b0099bcc83456bsor2910919ejc.1.2023.07.27.22.00.09
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Thu, 27 Jul 2023 22:00:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=ghOI3fic;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1690520409; x=1691125209;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fBxrL3b0ZPxNsgNEVIM6D+2fkCCju/2Ygb7bX/rTZEs=;
+        b=ghOI3ficZie20Drb/KcNwYugTkrzvp6o9C1z6Aik0isryCQw82NyUdBLqL4GkumENx
+         Tm02ClrEP45iHSwOXIoa6/I+/YD3+YmUrXX4zlND+dk/0d2NgKhWLKXc80QqXXGV3bjP
+         Mpy7pnl3kcSgnWeQGKSkR0HBNkP6qwEpKfbB4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690520409; x=1691125209;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fBxrL3b0ZPxNsgNEVIM6D+2fkCCju/2Ygb7bX/rTZEs=;
+        b=d0D9CTuJfhxv4eRkRmL30cDH/vO7zxyVord7SuwTR1k6u2epVOtTHqivxZKkpp9u+A
+         AeXJCbRAfdA6FGs66FNFYEQjnbQzsUuCWLT8l1/9kgEovIzNk4nIzDh0yUUJXp4tLaB5
+         eAhSBauhfwXSbsx9u4peYXGSIqwoJpSRPHPi2MMPfJOePAhBNjrMkIBuyl9qf8BzIoi0
+         lvdm3PDHYRiL43N7u4VJaYHeATBbQkziIU1lPxv33XE3HKeNVvLVTfPVcq5zrI3qK6qk
+         msT6FPlm4qkaT0GEjQ01aIWRMbmVyAZtFzQE2CI9pBOt71jiSQ+ZxCWvRofvetHYKV+B
+         /DEw==
+X-Gm-Message-State: ABy/qLb4v0GBaR/BRIfJCjvYAUefTxSTc13n//OHBYC/KXW9p9HkSoKH
+	9AhQbfEI6+8EkfkFi8FGQ5Z2GBACCM3q/kR7FmmY/+PvQWt3oA==
+X-Google-Smtp-Source: APBJJlFNyoOQ+7KPOSMqm37cs1Z2PbT8zf2X0vG2YgzcX6SDqpm4RVI0vasmFbRlIXYO3MxNafaKjQ==
+X-Received: by 2002:a17:906:74d5:b0:99b:c8bf:3f06 with SMTP id z21-20020a17090674d500b0099bc8bf3f06mr1450753ejl.24.1690520409071;
+        Thu, 27 Jul 2023 22:00:09 -0700 (PDT)
+Return-Path: <victor@nowhere.co.jp>
+Received: from smtpclient.apple (mm-219-1-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.1.219])
+        by smtp.gmail.com with ESMTPSA id n26-20020a170906089a00b0098e16f8c198sm1592493eje.18.2023.07.27.22.00.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Jul 2023 22:00:08 -0700 (PDT)
+From: Victor Khaustov <victor@nowhere.co.jp>
+Message-Id: <406B9E28-1EE9-4599-A881-B50029518912@nowhere.co.jp>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_F9DE2397-56B0-47AE-897D-3C4931FDB660"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: Clarification and Update on the Supermarket AI Project 2023-07-28
+Date: Fri, 28 Jul 2023 07:59:57 +0300
+In-Reply-To: <CAOkOQaGqJopnXvGNfgVw7ASz_KFzFwH_-EUS9uUuYe6N_frvgg@mail.gmail.com>
+Cc: Jun Yamadera <yamadera@nowhere.co.jp>,
+ Mark Ogbodo <ogbodo.mark@nowhere.co.jp>
+To: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+References: <CAOkOQaGqJopnXvGNfgVw7ASz_KFzFwH_-EUS9uUuYe6N_frvgg@mail.gmail.com>
+X-Mailer: Apple Mail (2.3731.600.7)
+
+
+--Apple-Mail=_F9DE2397-56B0-47AE-897D-3C4931FDB660
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Hi!
+
+Since Mark is in the process of moving to the US, can you please forward =
+the query to Cherubin Mugisha?
+
+Thanks=20
+
+> On Jul 28, 2023, at 06:37, JIANG DAWEI <dawei.jiang@nowhere.co.jp> =
+wrote:
+>=20
+> * Clarification and Update on the Supermarket AI Project 2023-07-28
+>=20
+> Dear Yamadera san
+>=20
+> I understand your concern regarding the progress of the Supermarket AI =
+project, and I appreciate the opportunity to shed light on the =
+situation.
+>=20
+> I'd like to clarify the roles and responsibilities within the project, =
+as it seems there may be some misunderstandings. Although I've been =
+deeply involved in the project, my scope of work is primarily focused on =
+the frontend interfaces. I'm pleased to report I completed my tasks =
+before our initial deadline and have been ready to integrate them with =
+the the project's ai predicted data since then.
+>=20
+> The delay, unfortunately, stems from aspects outside of my control, =
+specifically the machine learning model training, predicted data, should =
+managed by Victor's team. The project is an interlinked ecosystem of =
+efforts, and without the completion of the data prediction from machine =
+learning team, proceeding with the next steps was not feasible, hence =
+the delay.
+>=20
+> Recently, I received the predicted data from the Machine Learning =
+team. However, there seem to be some inaccuracies, with the predictions =
+consistently falling below actual levels. As these predictions play a =
+critical role in the seamless operation of our interfaces, it is crucial =
+that these inaccuracies are addressed by the respective team. I've =
+reached out to Mark to query about this and am awaiting their response =
+and rectification.
+>=20
+> Please rest assured that despite this hiccup, I am committed to =
+ensuring the successful completion of the Supermarket AI project. I am =
+consistently liaising with Victor's team to expedite the resolution of =
+the current issues and to proceed with the project as swiftly as =
+possible once these are addressed. My objective, as always, is to uphold =
+the quality and timeliness of our work.
+>=20
+> I hope this brings clarity to the situation and welcome any further =
+inquiries.
+>=20
+> Best regards,
+>=20
+> Yuzuki
+>=20
+
+
+--Apple-Mail=_F9DE2397-56B0-47AE-897D-3C4931FDB660
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=us-ascii"></head><body style="overflow-wrap: break-word; -webkit-nbsp-mode: space; line-break: after-white-space;">Hi!<div><br></div><div>Since Mark is in the process of moving to the US, can you please forward the query to Cherubin Mugisha?</div><div><br></div><div>Thanks&nbsp;<br><div><br><blockquote type="cite"><div>On Jul 28, 2023, at 06:37, JIANG DAWEI &lt;dawei.jiang@nowhere.co.jp&gt; wrote:</div><br class="Apple-interchange-newline"><div><div dir="ltr"><u></u>
+
+  
+
+    
+  
+  <div><p>* Clarification and Update on the Supermarket AI Project
+      2023-07-28<br>
+      <br>
+      Dear Yamadera san<br>
+      <br>
+      I understand your concern regarding <b>the progress of the
+        Supermarket AI project</b>, and I appreciate the opportunity to
+      shed light on the situation.<br>
+      <br>
+      I'd like to clarify the <b>roles and responsibilities</b> within
+      the project, as it seems there may be some <b>misunderstandings</b>.
+      Although I've been deeply involved in the project, my scope of
+      work is primarily focused on <b>the frontend interfaces</b>. I'm
+      pleased to report I completed my tasks before our initial deadline
+      and have been <b>ready to integrate them with the the project's
+        ai predicted data</b> since then.<br>
+      <br>
+      The delay, unfortunately, stems from aspects outside of my
+      control, specifically the machine learning model training,
+      predicted data, should managed by Victor's team. The project is an
+      interlinked ecosystem of efforts, and without the completion of
+      the data prediction from machine learning team, proceeding with
+      the next steps was not feasible, hence the delay.<br>
+      <br>
+      Recently, I <b>received the predicted data from the Machine
+        Learning team</b>. However, there seem to be some inaccuracies,
+      with <b>the predictions consistently falling below actual levels</b>.
+      As these predictions play a critical role in the seamless
+      operation of our interfaces, it is crucial that these inaccuracies
+      are addressed by the respective team. <b>I've reached out to Mark
+        to query about this and am awaiting their response and
+        rectification</b>.<br>
+      <br>
+      Please rest assured that despite this hiccup, I am committed to
+      ensuring the successful completion of the Supermarket AI project.
+      I am consistently liaising with Victor's team to expedite the
+      resolution of the current issues and to proceed with the project
+      as swiftly as possible once these are addressed. My objective, as
+      always, is to uphold the quality and timeliness of our work.<br>
+      <br>
+      I hope this brings clarity to the situation and welcome any
+      further inquiries.<br>
+      <br>
+      Best regards,<br>
+      <br>
+      Yuzuki<br>
+    </p>
+  </div>
+
+</div>
+</div></blockquote></div><br></div></body></html>
+--Apple-Mail=_F9DE2397-56B0-47AE-897D-3C4931FDB660--

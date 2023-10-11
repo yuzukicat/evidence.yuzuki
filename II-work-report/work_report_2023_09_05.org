@@ -1,0 +1,8 @@
+Work Report 2023-09-05
+Supermarket AI Project:
+1. Collaboration with Cherubin on MD Page Data Error:
+We have been focused mainly on resolving a data error we encountered on the MD page. After several attempts, we have been unsuccessful in rectifying this error, which appears to be resolved only when accessed through Cherubin's computer. We are still investigating possible solutions and are working hard to rectify this anomaly.
+Osaka University Project:
+1. Environment Set-up For PHP Docker:
+In addition to this, we have been working on the set-up for PHP Docker. Despite our efforts, we have noticed that the Docker file still contains bugs that need to be addressed. These issues remain unsolved, and we will continue to dedicate resources to resolve these bugs moving forward.
+Despite these challenges, we remain committed to resolving them in the most timely and efficient manner possible.

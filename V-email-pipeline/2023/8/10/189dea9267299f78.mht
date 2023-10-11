@@ -1,0 +1,256 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:6115:b0:134:c132:59db with SMTP id 21csp406992rws;
+        Thu, 10 Aug 2023 01:56:15 -0700 (PDT)
+X-Received: by 2002:a67:ff01:0:b0:443:83ef:1919 with SMTP id v1-20020a67ff01000000b0044383ef1919mr1029931vsp.30.1691657774974;
+        Thu, 10 Aug 2023 01:56:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691657774; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nvrG+t5tUFQhBMxrvuWv7g7Bohh//X0yNFnMIFzt1Lx5BXY+/QUbazmIZjmh2BS2lL
+         ZbZkdRLYZYZizQrl/JTKQgcCfGkv/gt+sD4eSIHWY3KYyCP/iqFlVqmupQFREKZdqcml
+         xkQ/N7MJwyPv8/ae/9ONPmIrVVuz2bwaDFYmKrsRU5Gycsh+6YHBgiwGAcir4OKbU7iR
+         afD5Adh4LRP/QZaXhIuV7xZHqdkNFg9Yo71jYP6kntA0OVShNn8QxASDro6QzU8V7nac
+         xyMpNKQ8ASfJR9gkse7MrjlEhCJh1lzeM475divqxLHMvTkIKroCLxIZPlmobZ86TIeT
+         q/zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :dkim-signature;
+        bh=4QicUfl3whMSyyyikDdjPnUPm4icW+b3s3pEDGPfiH4=;
+        fh=ItzVX713Fu5q609uaHfP3ndRxcgnbNaJH3NG5UrcEtU=;
+        b=D0O8nNkr0skgPdrkAFQN+RxheixJaBgSMbYosHI5A14FGFLrRoE//yg9WJPR1Jqfvf
+         t31yKcKB6fBPjBFdf7XuCTzWvIANa1NPZT0pivm2Kvv576jiCQmAUkUgWHpoX3IOVGyj
+         5DmwMEXqHVltwqfu7nZJii+Ywa9LZyPZg9l7LNbOk9JGvw2StabnKF1ftFZciAbp3gNH
+         A+fyIlVqOKFOoqJ6Lr6RCdKlv1MiF77gKebZA3FF+JsxcxQQ0DlOFcryvwdkXTno+0NH
+         aBY/iLJc5dY7RC0+pRk+IjVcDOXNH9zJfY4BHcWx+375TGFGoTT49pKv+hz5dY9ZfiW+
+         kcww==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=z+xVCdh7;
+       spf=pass (google.com: domain of 3lqbuzbukapkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3LqbUZBUKAPkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3LqbUZBUKAPkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id s33-20020a9f3664000000b0078cd454c301sor238538uad.5.2023.08.10.01.56.14
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Thu, 10 Aug 2023 01:56:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3lqbuzbukapkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=z+xVCdh7;
+       spf=pass (google.com: domain of 3lqbuzbukapkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3LqbUZBUKAPkmpplfs-tuvejp-opsfqmzhpphmf.dpn@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1691657774; x=1692262574;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4QicUfl3whMSyyyikDdjPnUPm4icW+b3s3pEDGPfiH4=;
+        b=z+xVCdh7e4xgexSWnxgAmon0Kzy68RaqL53piZoDzUDenx/k6WUl7Yy5enXg9z32iX
+         0nvq30J1HygU+52IsBdQzy9zRm2OE+0Voj6p2hZYSa7Y3ixN1tfr6U3RacMaOT6SKiVf
+         7bbVD8qM1E8iz1Mc1XuKl76jBVc2Ptpdb8bE202JD4J9pnBrTfCdKaUIYIscvbFFlHJO
+         F8Wzmv0sHmO3Xcnu3+SGmZtt11lynW4/7HXGPlqfOUA6md0w0jqp+/LRTKh/90EilfGA
+         qP68xU1goqq0E1kGAUqxPnw+9171Uf2MLfzzRxkDeYKeTcJD/E0JGfrqGd6MBQVUf+Jl
+         FKdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691657774; x=1692262574;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4QicUfl3whMSyyyikDdjPnUPm4icW+b3s3pEDGPfiH4=;
+        b=fDLHnDRhX9PlBwwIRxewwunrrLrRLmJ2qZwDblIbm9dn0zI90bMzQbqTWW2I8wKzOc
+         xOOXYoZpvIwwyCtj6hrSTwtJdhz1oTCyfeBzvhA1e2p2bAS8lO7nLyUAZSebnkfOs98j
+         1Q7pDXDMvGB3nJJ5/awi8I4cNRieTBplDCIt4zJ48VRImc3tCJg6Uo9nAkg7hoqctK8L
+         jn3Q08MYUuT4oBgEuy4mJihXCcAx/To7nb84rWBUxchZr3gYqDtBSGjfaV+XRnk8KrvH
+         HedjQCgvmuCU8rJJtcgk7WjryzdGJGkcflZCuUVLIbkAbMIYJ44Z8c0iNigcptuUZRbD
+         EkLQ==
+X-Gm-Message-State: AOJu0Ywtqe8WG+rqXbioK/0NVEOJawqNC9uXAxd7H3q0U9e+2VIRVuQ0
+	PrPrEBT972gKpGYsH/OpGwzK
+X-Google-Smtp-Source: AGHT+IFTrdS37wpF7uY4vRH4IBCtwjv4+SAMRhaLN5Ha+FNJK6kJ71aO6RxkBNSmumB94b+YheIRR9g=
+MIME-Version: 1.0
+X-Received: by 2002:a1f:eb42:0:b0:487:179c:25e1 with SMTP id
+ j63-20020a1feb42000000b00487179c25e1mr1645585vkh.4.1691657774488; Thu, 10 Aug
+ 2023 01:56:14 -0700 (PDT)
+Date: Thu, 10 Aug 2023 01:56:14 -0700
+Reply-To: cherubin@nowhere.co.jp
+X-Google-Id: 282474
+Feedback-ID: P365-0:C20083599:M110195869-en:gamma
+X-Notifications: 509dd454a9240000
+X-Notifications-Bounce-Info: AYb2H10h50sLdOTbfbgDASwfACFV-A35l5RDg7gugllEdoLswjwjO6wNWUpEF-0O52P_EsdOl84y396a6k8sOyi56RrpezlvWIh_SCT4YJFuj2PYJ2XEf_npiQJS5CVWNAhwbaxwrmFg3ChHEycgYPKpkaMwyTXYIwCZEYpM2KRFqfPSUGNNgV-3Zj9du9OQlansMF50RbgizofNF1wROtO3eSm3ZzqehIiZJ1f3iZRfwJ98zVIDrajBcL8bzxHmFqxn5gPiDFntjdA152mPhIHfVBKuDq0aTnfS-CnnnCEADcVkfnuWBDMtAsRXYU5S1XTrxfCoVszK1AMukNVqzlGJ-bFJCFmWEztq3gNjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <0a4dffa3cc5400128ab6c4bdf5b0f9ffaef44e49-20083599-110497617@google.com>
+Subject:  Supermarket AI copy - Invitation to view
+From: "Cherubin Mugisha (via Looker Studio)" <looker-studio-noreply@google.com>
+To: dawei.jiang@nowhere.co.jp
+Content-Type: multipart/alternative; boundary="000000000000badd4706028dc4cc"
+
+--000000000000badd4706028dc4cc
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+Cherubin Mugisha (cherubin@nowhere.co.jp) has invited you to view the  
+following file:
+
+
+Supermarket AI copy
+
+
+Open
+
+
+Looker Studio: Easy reporting and analysis across all your data.
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA Logo  
+for Looker Studio
+
+
+
+--000000000000badd4706028dc4cc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+   <head></head>
+   <body>
+          <div style=3D"width: 100%; padding: 24px 0 16px 0; background-col=
+or: #f5f5f5; text-align: center;">
+         <div style=3D"display: inline-block; width: 90%; max-width: 680px;=
+min-width: 280px; text-align: left; font-family: Roboto,Arial,Helvetica,san=
+s-serif;">
+            <div style=3D"height: 0px;" dir=3Dltr></div>
+            <div style=3D"display: block; padding: 0 2px;">
+               <div style=3D"display: block; background: #fff; height: 2px;=
+"></div>
+            </div>
+            <div style=3D"border-left: 1px solid #f0f0f0; border-right: 1px=
+ solid #f0f0f0;">
+               <div style=3D"padding: 24px 32px 24px 32px; background:#fff;=
+ border-right: 1px solid #eaeaea; border-left: 1px solid #eaeaea;" dir=3Dlt=
+r>
+                  <div style=3D"font-size: 14px; line-height: 18px; color: =
+#444;"><a href=3Dmailto:cherubin@nowhere.co.jp style=3Dcolor:inherit;text-d=
+ecoration:none>Cherubin Mugisha (cherubin@nowhere.co.jp)</a> has invited yo=
+u to <b>view</b> the following file:</div>
+                  <div style=3D"height: 10px;"></div>
+                  <div style=3D"font-size: 18px; display: table;">
+                     <div style=3D"display: table-row; border-bottom: 4px s=
+olid #fff;">
+                        <span style=3D"display: table-cell;">
+                           <div style=3D"height: 32px;"><img src=3Dhttps://=
+ssl.gstatic.com/docs/documents/share/images/services/datastudio_report_32-1=
+.png aria-label=3DReport style=3D"vertical-align: middle; max-width: 24px;"=
+></div>
+                        </span>
+                        <span style=3D"display: table-cell; padding-left: 1=
+2px; word-break: break-word;">
+                           <a href=3Dhttps://notifications.google.com/g/p/A=
+Niao5phl9YOikQoRk5D5VQzOZgSBBqY-X62i-K6uA-Q7xwec8Bxe1My9_Nd672gLvj2QLENsv-8=
+Ghh12tCXdf416dZ9ZA2hlLtpGmK1oO5zv4mKhzCU8yPc0mjHZIN-9nH3tPSBom2Cc2t9Fne25yw=
+QZ9gai7S_J_bTIIOMAFXurxjrZpap-KpdRULPxUqcRUV9CcKoqWXz9pgqRjaOYGIg8KQtc9aCcH=
+n5YA4XGc0SuYYI-k0631ffiCwnCqsU4AxxpxH0B0qaEH_FEHK99CBNbkEosQvTniqowG1cl1DGs=
+Ys style=3D"color: #3367d6; text-decoration: none; vertical-align: middle;"=
+>Supermarket AI copy</a>
+                           <div itemprop=3Daction itemscope itemtype=3Dhttp=
+://schema.org/ViewAction>
+                              <meta itemprop=3Durl content=3Dhttps://looker=
+studio.google.com/reporting/6eabf5e5-c395-4be9-9ee3-52fa7eb5e44c?authuser=
+=3Ddawei.jiang@nowhere.co.jp>
+                           </div>
+                        </span>
+                     </div>
+                  </div>
+                  <div style=3D"height: 32px;"></div>
+                  <div><a href=3Dhttps://notifications.google.com/g/p/ANiao=
+5phl9YOikQoRk5D5VQzOZgSBBqY-X62i-K6uA-Q7xwec8Bxe1My9_Nd672gLvj2QLENsv-8Ghh1=
+2tCXdf416dZ9ZA2hlLtpGmK1oO5zv4mKhzCU8yPc0mjHZIN-9nH3tPSBom2Cc2t9Fne25ywQZ9g=
+ai7S_J_bTIIOMAFXurxjrZpap-KpdRULPxUqcRUV9CcKoqWXz9pgqRjaOYGIg8KQtc9aCcHn5YA=
+4XGc0SuYYI-k0631ffiCwnCqsU4AxxpxH0B0qaEH_FEHK99CBNbkEosQvTniqowG1cl1DGsYs t=
+arget=3D_blank style=3D"background-color: #4d90fe; border: 1px solid #3079e=
+d; border-radius: 2px; color: white; display: inline-block; font-family: Ro=
+boto,Arial,Helvetica,sans-serif; font-size: 11px; font-weight: bold; height=
+: 29px; line-height: 29px; min-width: 54px; outline: 0px; padding: 0 8px; t=
+ext-align: center; text-decoration: none">Open</a></div>
+                  <div style=3D"height: 24px;"></div>
+               </div>
+            </div>
+            <table style=3D"width: 100%; border-collapse: collapse;" role=
+=3Dpresentation>
+               <tr>
+                  <td style=3D"padding: 0px;">
+                     <table style=3D"border-collapse: collapse; width: 3px;=
+" role=3Dpresentation>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#e5e5e5 style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#f5f5f5 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                     </table>
+                  </td>
+                  <td style=3D"width: 100%; padding: 0px;">
+                     <div style=3D"height: 1px; width: auto; border-top: 1p=
+x solid #ddd; background:#eaeaea; border-bottom: 1px solid #f0f0f0;"></div>
+                  </td>
+                  <td style=3D"padding: 0px;">
+                     <table style=3D"border-collapse: collapse; width: 3px;=
+" role=3Dpresentation>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#e5e5e5 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#eaeaea style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                        <tr height=3D1>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f0f0f0 style=3D"padding=
+: 0px;"></td>
+                           <td width=3D1 bgcolor=3D#f5f5f5 style=3D"padding=
+: 0px;"></td>
+                        </tr>
+                     </table>
+                  </td>
+               </tr>
+            </table>
+            <table style=3D"padding: 14px 10px 0 10px;" role=3Dpresentation=
+ dir=3Dltr>
+               <tr>
+                  <td style=3D"width: 100%; font-size:11px; font-family: Ro=
+boto,Arial,Helvetica,sans-serif; color:#646464; line-height: 20px; min-heig=
+ht: 40px; vertical-align: middle;">Looker Studio: Easy reporting and analys=
+is across all your data. <br>Google LLC, 1600 Amphitheatre Parkway, Mountai=
+n View, CA 94043, USA</td>
+                  <td style=3D"padding-left: 20px; vertical-align: middle;"=
+><a href=3Dhttps://notifications.google.com/g/p/ANiao5qonYCOzEni8McQRI2cVrt=
+HbgdL3_X6XX2nAGATQ83zCxPxdkf1ZI7eG6iO1AevAQNEpp7GjtKz_fMv3NcUsyNi1xO4wr9Gtx=
+8hYvzCRa6JVMQmu_mO1LG3Ga-c5yjos6P2VyrBez-SRMNVYBXpM_9T3QewyTjtGpD6drBQcd7ic=
+RfWRUQsW3sZFxCD_g target=3D_blank><img src=3Dhttps://www.gstatic.com/images=
+/branding/googlelogo/1x/googlelogo_tm_black54_color_96x40dp.png width=3D96 =
+alt=3D"Logo for Looker Studio" border=3D0></a></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
+--000000000000badd4706028dc4cc--

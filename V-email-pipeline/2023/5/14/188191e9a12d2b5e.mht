@@ -1,0 +1,462 @@
+MIME-Version: 1.0
+Date: Sun, 14 May 2023 16:16:55 +0900
+References: <CAOkOQaFU69na6pEYOr_dCdf2+zt6D_rqQ5bXuHuey2JSEoYBeQ@mail.gmail.com>
+	<5A2B0339-7F6A-4813-A1A8-E09DD0F26448@nowhere.co.jp>
+	<CAOkOQaFTX=1QKg0w+s1Ncsqz9m2OYhZvDdqf+pHNt1bNJxiZDQ@mail.gmail.com>
+	<CAOkOQaFwPhpuWoEUOWb_cUwTZbhTWvfP77i1eC09csrgEGJHXg@mail.gmail.com>
+	<04E7BB1E-FDA8-4CA7-A176-42AE4FA38F10@nowhere.co.jp>
+In-Reply-To: <04E7BB1E-FDA8-4CA7-A176-42AE4FA38F10@nowhere.co.jp>
+Message-ID: <CAOkOQaEg9uJ0DBSqzfHEY=x_z5pbXHJxeexjOc-ksNNxB8gm4g@mail.gmail.com>
+Subject: Re: Yuzuki - Get the instructions from Yamadera san to contact you
+ working on supermarket AI
+From: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+To: Victor Khaustov <victor@nowhere.co.jp>
+Cc: Mark Ogbodo <ogbodo.mark@nowhere.co.jp>, Jun Yamadera <yamadera@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="0000000000008d9bbe05fba21ff6"
+
+--0000000000008d9bbe05fba21ff6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Subject: Update on Quick Demo Schedule and Request for Clarification on
+Requirements
+
+Dear Victor, Mark and Yamadera-san,
+
+I hope this email finds you well. I wanted to provide you with an update on
+the quick demo requirement. Unfortunately, I will not be able to complete
+it by Monday as your hope, since I have been asked to take a holiday on
+Friday and will resume work on Monday.
+
+However, if it is crucial for you to have the demo by Monday, I am willing
+to work overtime including today from 18:00--23:00 and Monday 09:00--23:00
+to ensure it is delivered on time. Please let me know if this is necessary,
+and I will do my best to accommodate your needs.
+
+Additionally, I would like to request further clarification on the specific
+requirements of the project. As you may be aware, data science involves
+various aspects, and there is a significant difference between data
+virtualization and data visualization with notation. These two concepts
+require different approaches, timeframes, and solutions.
+
+To better understand your needs and deliver a suitable demo, I kindly ask
+that you provide a clear definition of your requirements, rather than
+screenshots from Google searches. This will enable me to tailor the demo to
+your exact needs and expectations.
+
+Thank you for your attention to this matter, and I look forward to
+receiving your feedback on both the timeline and the project requirements.
+
+Best regards,
+
+Yuzuki
+
+On Fri, May 12, 2023 at 1:07=E2=80=AFPM Victor Khaustov <victor@nowhere.co.=
+jp>
+wrote:
+
+> Hi Yuzuki,
+>
+> I=E2=80=99m busy with the RDS project now, so here is a quick reply to yo=
+ur
+> questions:
+>
+> 1. It=E2=80=99s a requirement from Yamadera san. But if you have experien=
+ce in a
+> similar AWS product and can make a quick demo until Monday, it probably
+> will be fine too.
+>
+> 2. It=E2=80=99s a quick demo for a customer. It should provide the interf=
+ace to
+> communicate with the data they provide and the prediction model. But
+> basically, you need to develop a tool that takes actual sales data and da=
+ta
+> predicted by the model (model is not implemented yet) and visualize it as
+> per screenshot.
+>
+> 3. While developing a demo, you need to decide the required format for
+> the data. The data itself is already processed and cleaned. Project=E2=80=
+=99s
+> repository (you have access to it as EJ member, here=E2=80=99s the link:
+> https://github.com/eyesjapan/supermarket-ai/) which contains the code for
+> analysis and some visualization of the data using Python. The data itself
+> can be downloaded from here:
+> https://drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tvX?=
+usp=3Dsharing
+>
+> 4. You don=E2=80=99t have to be an expert on the tools, but you need to b=
+e able to
+> learn from the documentation and have some general programming skills.
+>
+> Thank you!
+>
+> Best regards,
+> Victor
+>
+>
+> On May 12, 2023, at 12:12, JIANG DAWEI <dawei.jiang@nowhere.co.jp> wrote:
+>
+> ---------- Forwarded message ---------
+> Subject: Fwd: Yuzuki - Get the instructions from Yamadera san to contact
+> you working on supermarket AI
+> To: Jun Yamadera <yamadera@nowhere.co.jp>, Mark Ogbodo <
+> ogbodo.mark@nowhere.co.jp>
+>
+>
+> Subject: Questions and Clarifications on Supermarket AI Task
+>
+> Dear Yamadera san, Victor, and Mark:
+>
+> I hope this email finds you well. Thank you for providing me with the
+> information about the project. Before diving into the task, I have a few
+> questions and concerns that I would like to discuss with you to ensure I
+> have a clear understanding of the project requirements and my role in it.
+>
+> 1. Is using Google Data Studio a mandatory requirement from our customers
+> or Yamadera-san? I have no experience with this product, but I do have
+> experience with similar products from AWS. If the feasibility of Looker
+> Studio has already been tested, I believe it should be fine. However, as
+> you know, some SaaS or PaaS products can be challenging to customize.
+>
+> 2. I am currently unsure about the overall architecture of the project an=
+d
+> my role in the pipeline. From my understanding, there are some
+> well-established patterns for implementing ML in a product, and our proje=
+ct
+> seems to fit some of them. It would be helpful to have more information o=
+n
+> this aspect.
+>
+> 3. I am still unclear about the expected input and output for my part of
+> the project. Will I be given raw data (which means I would need to perfor=
+m
+> data cleaning), or will I receive serialized data (which means I would be
+> responsible for data visualization)? I would appreciate some clarificatio=
+n
+> on this.
+>
+> 4. Lastly, I would like to share some articles from my blog to give you a=
+n
+> idea of my technical background, what I know, and what I don't know. This
+> will help ensure that the project is delivered to our customers on time a=
+nd
+> with high quality.
+>
+>
+> https://kamisu66.com/2022/05/14/Introduction-to-Machine-Learning-Artifici=
+al-Intelligence-Machine-Learning-Deep-Learning-Neural-Networks-Algorithms/
+>
+>
+> https://kamisu66.com/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker-W=
+orkFlow-Process/
+>
+> Although I am not an expert in machine learning, I am eager to learn from
+> my colleagues and expand my knowledge in this area. I understand that thi=
+s
+> project is important to our company and our customers, and I am committed
+> to delivering high-quality work. To maximize my contribution to the proje=
+ct
+> and enhance my understanding of machine learning, I kindly request your
+> support and guidance.
+>
+> If you could provide me with any articles, websites, or step-by-step
+> guidelines related to machine learning, I would greatly appreciate it. An=
+d
+> I think it is necessary to have a meeting. These resources will help me
+> develop the necessary skills for this project and ensure that I can
+> contribute effectively to the team. Additionally, I would be grateful for
+> any advice or best practices that you could share based on your experienc=
+e
+> in the field.
+>
+> Once I have a better understanding of these points, I will be more
+> confident in proceeding with the task. I am looking forward to your
+> response and guidance on this project.
+>
+> Best regards,
+>
+> Yuzuki
+>
+> On Wed, May 10, 2023 at 6:10=E2=80=AFPM Victor Khaustov <victor@nowhere.c=
+o.jp>
+> wrote:
+>
+>> Hi Yuzuki,
+>>
+>> Please start from learning about the Looker Studio (formerly known as
+>> Google Data Studio): https://cloud.google.com/looker-studio
+>>
+>> Here is the Quickstart guide:
+>> Quick start guide - Looker Studio Help
+>> <https://support.google.com/looker-studio/answer/9171315>
+>> support.google.com
+>> <https://support.google.com/looker-studio/answer/9171315>
+>> <https://support.google.com/looker-studio/answer/9171315>
+>> <https://support.google.com/looker-studio/answer/9171315>
+>>
+> <https://support.google.com/looker-studio/answer/9171315>
+>> <https://support.google.com/looker-studio/answer/9171315>
+>>
+>> When learning the basics, please keep in mind that we need to create the
+>> report that is somewhat similar to the attached screenshot. The user can
+>> select a store via dropdown list (currently, there are 3 stores to choos=
+e
+>> from) and select the date. Next, the time series plot should appear with
+>> actual sales and predicted sales by the AI model (the model will be
+>> developed later, probably by Mark).
+>>
+>> You need to figure out what data format is required to build such plot,
+>> and how to connect the data sources from Google Drive (or other resource=
+s).
+>>
+>> Once you learn about Looker Studio and how to create a similar plot, we
+>> can organize a meeting to discuss some details.
+>>
+>> Thank you!
+>>
+>> Best regards,
+>> Victor
+>>
+>>
+>> On May 10, 2023, at 17:21, JIANG DAWEI <dawei.jiang@nowhere.co.jp> wrote=
+:
+>>
+>> I hope this email finds you well.
+>>
+>> Yuzuki was asked by Yamadera san, to contact you regarding the
+>> supermarket AI project.
+>>
+>> However, I must admit that I know very little about the project,
+>> including what my role is or how I can contribute to it.
+>>
+>> I was wondering if you could provide me with some information about the
+>> project, such as any documents or resources that I should read or any
+>> preparation or code reading that I should do. I want to make sure that I=
+ am
+>> fully prepared to contribute to the project in any way possible.
+>>
+>> Additionally, if you have any questions for me, please do not hesitate t=
+o
+>> ask. Like my technical background (or stack).
+>>
+>> I am eager to learn more about the project and to work with you and your
+>> team to ensure its success.
+>>
+>> Thank you for your time and consideration. I look forward to hearing bac=
+k
+>> from you soon.
+>>
+>> Best regards.
+>>
+>> Yuzuki
+>>
+>>
+>
+
+--0000000000008d9bbe05fba21ff6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Subject: Update on Quick Demo Schedu=
+le and Request for Clarification on Requirements<br><br>Dear Victor, Mark a=
+nd Yamadera-san,<br><br>I hope this email finds you well. I wanted to provi=
+de you with an update on the quick demo requirement. Unfortunately, I will =
+not be able to complete it by Monday as your hope, since I have been asked =
+to take a holiday on Friday and will resume work on Monday.<br><br>However,=
+ if it is crucial for you to have the demo by Monday, I am willing to work =
+overtime including today from 18:00--23:00 and Monday 09:00--23:00 to ensur=
+e it is delivered on time. Please let me know if this is necessary, and I w=
+ill do my best to accommodate your needs.<br><br>Additionally, I would like=
+ to request further clarification on the specific requirements of the proje=
+ct. As you may be aware, data science involves various aspects, and there i=
+s a significant difference between data virtualization and data visualizati=
+on with notation. These two concepts require different approaches, timefram=
+es, and solutions.<br><br>To better understand your needs and deliver a sui=
+table demo, I kindly ask that you provide a clear definition of your requir=
+ements, rather than screenshots from Google searches. This will enable me t=
+o tailor the demo to your exact needs and expectations.<br><br>Thank you fo=
+r your attention to this matter, and I look forward to receiving your feedb=
+ack on both the timeline and the project requirements.<br><br>Best regards,=
+<br><br></div>Yuzuki<br></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Fri, May 12, 2023 at 1:07=E2=80=AFPM Victor Khau=
+stov &lt;<a href=3D"mailto:victor@nowhere.co.jp">victor@nowhere.co.jp</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>H=
+i Yuzuki,<div><br></div><div>I=E2=80=99m busy with the RDS project now, so =
+here is a quick reply to your questions:</div><div><br></div><div>1. It=E2=
+=80=99s a requirement from Yamadera san. But if you have experience in a si=
+milar AWS product and can make a quick demo until Monday, it probably will =
+be fine too.</div><div><br></div><div>2. It=E2=80=99s a quick demo for a cu=
+stomer. It should provide the interface to communicate with the data they p=
+rovide and the prediction model. But basically, you need to develop a tool =
+that takes actual sales data and data predicted by the model (model is not =
+implemented yet) and visualize it as per screenshot.</div><div><br></div><d=
+iv>3.=C2=A0<font color=3D"#000000">While developing a demo, you need to dec=
+ide the required format for the data. The data itself is already processed =
+and cleaned. Project=E2=80=99s repository (you have access to it as EJ memb=
+er, here=E2=80=99s the link:=C2=A0</font><a href=3D"https://github.com/eyes=
+japan/supermarket-ai/" target=3D"_blank">https://github.com/eyesjapan/super=
+market-ai/</a>)<font color=3D"#000000">=C2=A0which contains the code for an=
+alysis and some visualization of the data using Python. <span>The</span>=C2=
+=A0data itself can be downloaded from here:=C2=A0</font><a href=3D"https://=
+drive.google.com/drive/folders/1fraYO_lW1WoJm56Rd4uNgj73-VCV6tvX?usp=3Dshar=
+ing" target=3D"_blank">https://drive.google.com/drive/folders/1fraYO_lW1WoJ=
+m56Rd4uNgj73-VCV6tvX?usp=3Dsharing</a></div><div><font color=3D"#000000"><s=
+pan><br></span></font></div><div><font color=3D"#000000">4. You don=E2=80=
+=99t have to be an expert on the tools, but you need to be able to learn fr=
+om the documentation and have some general programming skills.</font></div>=
+<div><font color=3D"#000000"><br></font></div><div><font color=3D"#000000">=
+Thank you!=C2=A0</font></div><div><font color=3D"#000000"><br></font></div>=
+<div><font color=3D"#000000">Best regards,</font></div><div><font color=3D"=
+#000000">Victor</font></div><div>=C2=A0 =C2=A0<br><div><br><blockquote type=
+=3D"cite"><div>On May 12, 2023, at 12:12, JIANG DAWEI &lt;<a href=3D"mailto=
+:dawei.jiang@nowhere.co.jp" target=3D"_blank">dawei.jiang@nowhere.co.jp</a>=
+&gt; wrote:</div><br><div><div dir=3D"ltr" style=3D"font-family:Helvetica;f=
+ont-size:14px;font-style:normal;font-variant-caps:normal;font-weight:400;le=
+tter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
+ite-space:normal;word-spacing:0px;text-decoration:none">---------- Forwarde=
+d message ---------<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">Subject: Fwd: Yuzuki - Get the instructions from Yamadera san to c=
+ontact you working on supermarket AI<br>To: Jun Yamadera &lt;<a href=3D"mai=
+lto:yamadera@nowhere.co.jp" target=3D"_blank">yamadera@nowhere.co.jp</a>&gt=
+;, Mark Ogbodo &lt;<a href=3D"mailto:ogbodo.mark@nowhere.co.jp" target=3D"_=
+blank">ogbodo.mark@nowhere.co.jp</a>&gt;<br></div><br><br><div dir=3D"ltr">=
+Subject: Questions and Clarifications on Supermarket AI Task<br><br>Dear Ya=
+madera san, Victor, and Mark:<br><br>I hope this email finds you well. Than=
+k you for providing me with the information about the project. Before divin=
+g into the task, I have a few questions and concerns that I would like to d=
+iscuss with you to ensure I have a clear understanding of the project requi=
+rements and my role in it.<br><br>1. Is using Google Data Studio a mandator=
+y requirement from our customers or Yamadera-san? I have no experience with=
+ this product, but I do have experience with similar products from AWS. If =
+the feasibility of Looker Studio has already been tested, I believe it shou=
+ld be fine. However, as you know, some SaaS or PaaS products can be challen=
+ging to customize.<br><br>2. I am currently unsure about the overall archit=
+ecture of the project and my role in the pipeline. From my understanding, t=
+here are some well-established patterns for implementing ML in a product, a=
+nd our project seems to fit some of them. It would be helpful to have more =
+information on this aspect.<br><br>3. I am still unclear about the expected=
+ input and output for my part of the project. Will I be given raw data (whi=
+ch means I would need to perform data cleaning), or will I receive serializ=
+ed data (which means I would be responsible for data visualization)? I woul=
+d appreciate some clarification on this.<br><br>4. Lastly, I would like to =
+share some articles from my blog to give you an idea of my technical backgr=
+ound, what I know, and what I don&#39;t know. This will help ensure that th=
+e project is delivered to our customers on time and with high quality.<br><=
+br><a href=3D"https://kamisu66.com/2022/05/14/Introduction-to-Machine-Learn=
+ing-Artificial-Intelligence-Machine-Learning-Deep-Learning-Neural-Networks-=
+Algorithms/" target=3D"_blank">https://kamisu66.com/2022/05/14/Introduction=
+-to-Machine-Learning-Artificial-Intelligence-Machine-Learning-Deep-Learning=
+-Neural-Networks-Algorithms/</a><br><br><div><a href=3D"https://kamisu66.co=
+m/2022/05/22/Machine-Learning-Pipeline-AWS-Sagemaker-WorkFlow-Process/" tar=
+get=3D"_blank">https://kamisu66.com/2022/05/22/Machine-Learning-Pipeline-AW=
+S-Sagemaker-WorkFlow-Process/</a><br></div><div><br></div><div>Although I a=
+m not an expert in machine learning, I am eager to learn from my colleagues=
+ and expand my knowledge in this area. I understand that this project is im=
+portant to our company and our customers, and I am committed to delivering =
+high-quality work. To maximize my contribution to the project and enhance m=
+y understanding of machine learning, I kindly request your support and guid=
+ance.</div><div><br></div><div>If you could provide me with any articles, w=
+ebsites, or step-by-step guidelines related to machine learning, I would gr=
+eatly appreciate it. And I think it is necessary to have a meeting. These r=
+esources will help me develop the necessary skills for this project and ens=
+ure that I can contribute effectively to the team. Additionally, I would be=
+ grateful for any advice or best practices that you could share based on yo=
+ur experience in the field.<br><br>Once I have a better understanding of th=
+ese points, I will be more confident in proceeding with the task. I am look=
+ing forward to your response and guidance on this project.<br><br>Best rega=
+rds,<br><br>Yuzuki<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Wed, May 10, 2023 at 6:10=E2=80=AFPM Victo=
+r Khaustov &lt;<a href=3D"mailto:victor@nowhere.co.jp" target=3D"_blank">vi=
+ctor@nowhere.co.jp</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div>Hi Yuzuki,<div><br></div><div>Please start from lear=
+ning about the Looker Studio (formerly known as Google Data Studio):=C2=A0<=
+a href=3D"https://cloud.google.com/looker-studio" target=3D"_blank">https:/=
+/cloud.google.com/looker-studio</a></div><div><br></div><div>Here is the Qu=
+ickstart guide:</div><div><div style=3D"display:block"><div role=3D"link" s=
+tyle=3D"display:inline-block"><a rel=3D"nofollow" href=3D"https://support.g=
+oogle.com/looker-studio/answer/9171315" dir=3D"ltr" role=3D"button" width=
+=3D"300" style=3D"border-radius:10px;font-family:-apple-system,Helvetica,Ar=
+ial,sans-serif;display:block;width:300px;overflow:hidden;text-decoration:no=
+ne" target=3D"_blank"><table style=3D"table-layout:fixed;border-collapse:co=
+llapse;width:300px;background-color:rgb(229,230,233);font-family:-apple-sys=
+tem,Helvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0" cellpadding=
+=3D"0" border=3D"0"><tbody><tr><td><table style=3D"font-family:-apple-syste=
+m,Helvetica,Arial,sans-serif;table-layout:fixed;background-color:rgb(229,23=
+0,233)" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E=
+9"><tbody><tr><td style=3D"padding:8px 0px"><div style=3D"max-width:100%;ma=
+rgin:0px 16px;overflow:hidden"><div style=3D"font-weight:500;font-size:12px=
+;overflow:hidden;text-overflow:ellipsis;text-align:left"><a rel=3D"nofollow=
+" href=3D"https://support.google.com/looker-studio/answer/9171315" style=3D=
+"text-decoration:none" target=3D"_blank"><font color=3D"#272727">Quick star=
+t guide - Looker Studio Help</font></a></div><div style=3D"font-weight:400;=
+font-size:11px;overflow:hidden;text-overflow:ellipsis;text-align:left"><a r=
+el=3D"nofollow" href=3D"https://support.google.com/looker-studio/answer/917=
+1315" style=3D"text-decoration:none" target=3D"_blank"><font color=3D"#8080=
+80">support.google.com</font></a></div></div></td><td style=3D"padding:6px =
+12px 6px 0px" width=3D"36"><a rel=3D"nofollow" href=3D"https://support.goog=
+le.com/looker-studio/answer/9171315" target=3D"_blank"></a></td></tr></tbod=
+y></table></td></tr></tbody></table></a></div></div></div></div></blockquot=
+e></div></div></div></div></blockquote></div></div></div><div><div><div><bl=
+ockquote type=3D"cite"><div><div dir=3D"ltr" style=3D"font-family:Helvetica=
+;font-size:14px;font-style:normal;font-variant-caps:normal;font-weight:400;=
+letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;=
+white-space:normal;word-spacing:0px;text-decoration:none"><div class=3D"gma=
+il_quote"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div><div><div style=3D"display:block"><div role=3D"link" style=
+=3D"display:inline-block"><a rel=3D"nofollow" href=3D"https://support.googl=
+e.com/looker-studio/answer/9171315" dir=3D"ltr" role=3D"button" width=3D"30=
+0" style=3D"border-radius:10px;font-family:-apple-system,Helvetica,Arial,sa=
+ns-serif;display:block;width:300px;overflow:hidden;text-decoration:none" ta=
+rget=3D"_blank"><table style=3D"table-layout:fixed;border-collapse:collapse=
+;width:300px;background-color:rgb(229,230,233);font-family:-apple-system,He=
+lvetica,Arial,sans-serif" width=3D"300" cellspacing=3D"0" cellpadding=3D"0"=
+ border=3D"0"><tbody><tr><td><table style=3D"font-family:-apple-system,Helv=
+etica,Arial,sans-serif;table-layout:fixed;background-color:rgb(229,230,233)=
+" width=3D"300" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#E5E6E9"><tb=
+ody><tr><td style=3D"padding:6px 12px 6px 0px" width=3D"36"><a rel=3D"nofol=
+low" href=3D"https://support.google.com/looker-studio/answer/9171315" targe=
+t=3D"_blank"></a></td></tr></tbody></table></td></tr></tbody></table></a></=
+div></div><br><div>When learning the basics, please keep in mind that we ne=
+ed to create the report that is somewhat similar to the attached screenshot=
+. The user can select a store via dropdown list (currently, there are 3 sto=
+res to choose from) and select the date. Next, the time series plot should =
+appear with actual sales and predicted sales by the AI model (the model wil=
+l be developed later, probably by Mark).</div><div><br></div><div>You need =
+to figure out what data format is required to build such plot, and how to c=
+onnect the data sources from Google Drive (or other resources).=C2=A0</div>=
+<div><br></div><div>Once you learn about Looker Studio and how to create a =
+similar plot, we can organize a meeting to discuss some details.</div><div>=
+<br></div><div>Thank you!</div><div><br></div><div>Best regards,</div><div>=
+Victor =C2=A0</div><div><br></div><div></div></div></div></blockquote></div=
+></div></div></div></blockquote></div></div></div><div><div><div><blockquot=
+e type=3D"cite"><div><div dir=3D"ltr" style=3D"font-family:Helvetica;font-s=
+ize:14px;font-style:normal;font-variant-caps:normal;font-weight:400;letter-=
+spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-s=
+pace:normal;word-spacing:0px;text-decoration:none"><div class=3D"gmail_quot=
+e"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div><div><div><br><blockquote type=3D"cite"><div>On May 10, 2023, at =
+17:21, JIANG DAWEI &lt;<a href=3D"mailto:dawei.jiang@nowhere.co.jp" target=
+=3D"_blank">dawei.jiang@nowhere.co.jp</a>&gt; wrote:</div><br><div><div dir=
+=3D"ltr"><div>I hope this email finds you well.<span>=C2=A0</span><br></div=
+><div><br></div><div>Yuzuki was asked by Yamadera san, to contact you regar=
+ding the supermarket AI project.</div><div><br></div><div>However, I must a=
+dmit that I know very little about the project, including what my role is o=
+r how I can contribute to it.</div><br>I was wondering if you could provide=
+ me with some information about the project, such as any documents or resou=
+rces that I should read or any preparation or code reading that I should do=
+. I want to make sure that I am fully prepared to contribute to the project=
+ in any way possible.<br><br><div>Additionally, if you have any questions f=
+or me, please do not hesitate to ask. Like my technical background (or stac=
+k).<span>=C2=A0</span><br></div><div><br></div><div>I am eager to learn mor=
+e about the project and to work with you and your team to ensure its succes=
+s.</div><br>Thank you for your time and consideration. I look forward to he=
+aring back from you soon.<br><br><div>Best regards.</div><div><br></div><di=
+v>Yuzuki</div></div></div></blockquote></div></div></div></blockquote></div=
+></div></div></div></blockquote></div><br></div></div></blockquote></div></=
+div>
+
+--0000000000008d9bbe05fba21ff6--

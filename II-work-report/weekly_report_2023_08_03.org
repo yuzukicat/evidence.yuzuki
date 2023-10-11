@@ -1,0 +1,23 @@
+* Last Week
+** PD
+**** Information Exchange with Tang && Tamahashi
+** Supermarket AI
+*** Coordinating
+**** Write the e-mail to report the progress of Supermarket AI Project to Yamadera san
+**** Fw the the e-mail to Cherubin
+**** Contact Part-Timers
+**** Online MTG with Cherubin on Predicted Data Issue
+**** Meeting Documents
+*** Collaborating
+**** Collaborating with Edward about Data Presence
+*** Review the predicted data provided by machine learning team
+** Others
+**** Morning Meeting
+**** Catch up && Back up E-Mails && Discord Message
+**** Learn how to write Work Report
+**** Write Work Report
+**** Report the visualization of working time, progress of supermarketai, docker admin account, flexing time to Yamadera san
+* Next Week
+** Supermarket AI
+*** Coordinating
+**** Progress Report

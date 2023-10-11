@@ -1,0 +1,112 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:2603:b0:123:4e67:2415 with SMTP id l3csp152929rwc;
+        Tue, 30 May 2023 21:46:35 -0700 (PDT)
+X-Received: by 2002:a05:6808:2226:b0:399:8529:672c with SMTP id bd38-20020a056808222600b003998529672cmr3870677oib.33.1685508395614;
+        Tue, 30 May 2023 21:46:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685508395; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MmOmZXf0BVUv03zs4+IOwjYJ5SMxZAdCEghH/tw86JHZxtVUd0icPwYXuOJ9SAsw34
+         vRgXuzQNMkzzNV6OXL7OrEaN+jTEPata678FdHflP9VBC6sxhnmEehiX0hug/p+TtT2Z
+         vL19nxBZB27vZt24DvD1yv6q13hI66H2ThMkjmVmUaXRONxzwWeybpmytD0LcDrYjW77
+         JIFpq5nyB519xtWvEwq9OMdYSWgkTNgjMsxnv103uIekvsvm8ImfP+BFxCbx/m9/3AcM
+         +VqalhqtHJfJshmf0E5ZGb32Op0hrpTdLi1bRurufvFbQvX0ThV1CZbISH7GFs5qCYmF
+         86lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature;
+        bh=ZOfemTiA9zn8KMGH2F8bRfLlyJajUqt6ys9yZfV5HPg=;
+        b=J++UQYwV1nC5/G/V2K8qRGBYGhjFEcAfnxqvnWQTpSktaN+y+ucUuhaYzognhb+LFj
+         qERa0bkmkA3FgQneF8tMI7vPNvaoBOMCZPg40+hXkgc9xW86SzncomqdVdmMToZ0Siaw
+         enu58XZfWxT6qfqxSXq7xhrffLQabK0BJB+mh+UOywz25MVX1sT3xPz23Ng2z59FWTFH
+         1CcELfYFSO+qY2uhezUyFtHKce98hIwjr9FlZmfObFEi1u6et46ck3MD8NnpeT+plF1l
+         1ehDgVVIwrJ+kuujVe+Qx/ucDxjWZipxpt/QdeWLVp56pxrNSBuAM3X7F0mnRaCn80yf
+         sgEg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=J0hTNvXj;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id y63-20020acae142000000b00395dc69f920sor198292oig.8.2023.05.30.21.46.35
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 30 May 2023 21:46:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=J0hTNvXj;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1685508394; x=1688100394;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZOfemTiA9zn8KMGH2F8bRfLlyJajUqt6ys9yZfV5HPg=;
+        b=J0hTNvXjGHMywbZtIcTsHzjBEDOaLqAHK67kQAAYqmyz3dBt+WfQ8K/jDksFGVVAol
+         0TMms2kbZQlDAicSbtUr3bZ98GfEfvxcNj5EO72yqjT4SgvmYr1dJ5yFszqIL0VPhkN4
+         tf/LJXreAJFshj0wZouZUaF4mBqy1P+C2ZPOI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685508394; x=1688100394;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZOfemTiA9zn8KMGH2F8bRfLlyJajUqt6ys9yZfV5HPg=;
+        b=M6CcdOqdbRk0pO0BwVGOqkO9zt0KLzBI5UJXppfmEw6IwkBck1y/dLJK+ZWk+Dmsn0
+         P6+TauH2m780tFfd5fQG/Z5Wf0f5el6CPUBrZI6OaO6Nvmf3zPLEN74Ax/NNZ532BzZI
+         XypKMfdSkrSS+exQ+kLZFHmB85HEYy2PcZddaxLCWX9HZsY336OuVT8irUBRpypPJHNR
+         ZNMdTeg11vuoVL32zr8utHAc+bIY2fTK+3mqBOmB7tXUj11+ZMmWrhWsilNqy31ijvlK
+         tplhfxKhOq9VvGimxJnrvVUlEXOeNlexzdd1u4fZjll67vnUrT1zS24vxen4TMTg4EFQ
+         gnCQ==
+X-Gm-Message-State: AC+VfDxO8nVEfZPDqe1xsZOG2+PC+0M9ysFPE4nNUca6U9ZOJ9pi+wRe
+	df/FIYODyi003KMl+WhwuOulcpmmIOFHzZ2uPZdbCYR7
+X-Google-Smtp-Source: ACHHUZ4drPiAMdmtc8CIM8vozhafhMqaL8Jx6ZcU1p4PXBqweasbsrV4v9VxANDph7f4u0BA7H0p6Q==
+X-Received: by 2002:a05:6808:1c97:b0:397:ebe4:eb83 with SMTP id co23-20020a0568081c9700b00397ebe4eb83mr2509439oib.17.1685508394352;
+        Tue, 30 May 2023 21:46:34 -0700 (PDT)
+Return-Path: <yamadera@nowhere.co.jp>
+Received: from smtpclient.apple ([240b:13:31e1:6200:d40:c5d8:c4ef:5b5b])
+        by smtp.gmail.com with ESMTPSA id d11-20020a170902728b00b001ac82e8491csm173213pll.282.2023.05.30.21.46.32
+        for <dawei.jiang@nowhere.co.jp>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 May 2023 21:46:33 -0700 (PDT)
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: =?utf-8?B?UmU6IFtleWVzIDEwOTE1XSBSZXZpc2VkOiBZdXp1a2kgUGFpZCBM?=
+ =?utf-8?B?ZWF2ZSA15pyIMzHml6UgKOawtOabnOaXpSkgLyA25pyIMeaXpSAo5pyo5puc?=
+ =?utf-8?B?5pelKQ==?=
+Date: Wed, 31 May 2023 13:46:21 +0900
+References: <CAOkOQaGYyo6iqopFxDPmtgk3zW70FdyGWGE1er0vHAkW015tpw@mail.gmail.com>
+To: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+In-Reply-To: <CAOkOQaGYyo6iqopFxDPmtgk3zW70FdyGWGE1er0vHAkW015tpw@mail.gmail.com>
+Message-Id: <42F3B739-7F2B-4B5B-8163-2115AA9CDB97@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.600.7)
+
+
+> 2023/05/29 17:42=E3=80=81JIANG DAWEI =
+<dawei.jiang@nowhere.co.jp>=E3=81=AE=E3=83=A1=E3=83=BC=E3=83=AB:
+>=20
+> Yuzuki Paid Leave (9/11+0/12) Keio University Hospital
+>     =E2=80=A2 When: <2023-05-31 Wed>=E2=80=93<2023-05-31 Wed>
+>     =E2=80=A2 Description: 9=E6=9C=8821=E6=97=A5 (=E6=B0=B4=E6=9B=9C=E6=97=
+=A5), 9=E6=9C=8822=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5), 11=E6=9C=889=E6=
+=97=A5 (=E6=B0=B4=E6=9B=9C=E6=97=A5), 11=E6=9C=8810=E6=97=A5 =
+(=E6=9C=A8=E6=9B=9C=E6=97=A5), 12=E6=9C=8822=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=
+=97=A5), 2=E6=9C=889=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5) , 4=E6=9C=886=E6=
+=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5), 5=E6=9C=8831=E6=97=A5 (=E6=B0=B4=E6=9B=
+=9C=E6=97=A5), 6=E6=9C=881=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5) =
+9/11+0/12.
+> Yuzuki Sick Leave (0/3)=20
+>     =E2=80=A2 Description: 3=E6=9C=8817=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=
+=A5), 5=E6=9C=8819=E6=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5), 7=E6=9C=8821=E6=
+=97=A5 (=E6=9C=A8=E6=9B=9C=E6=97=A5) 3/3+0/3.
+
+
+=09
+As I mentioned, You can take paid leaves as you like, but some days are =
+backdated
+(And can you just sent me only this fiscal year=E2=80=99s one, not the =
+next fiscal year)
+And sick leaves can=E2=80=99t be approved in advance. Thanks.
+

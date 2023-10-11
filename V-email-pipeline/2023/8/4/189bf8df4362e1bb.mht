@@ -1,0 +1,85 @@
+Message-ID: <a68cefa4-9933-6205-11d1-9b0f3ac8b823@nowhere.co.jp>
+Date: Fri, 4 Aug 2023 16:58:17 +0900
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: cherubin@nowhere.co.jp, yamadera@nowhere.co.jp, mark@nowhere.co.jp,
+ victor@nowhere.co.jp
+From: Sara Yuzuki <dawei.jiang@nowhere.co.jp>
+X-Mozilla-Draft-Info: internal/draft; vcard=0; receipt=0; DSN=0; uuencode=0;
+ attachmentreminder=0; deliveryformat=0
+X-Identity-Key: id1
+Fcc: imap://dawei.jiang%40nowhere.co.jp@imap.gmail.com/Sent
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>
+      Dear Cherubin:
+    </p>
+    <p>
+      There have been some concerns raised by our customers regarding
+      the output being developed by Machine Team. Specifically, they
+      have presented us with two questions we need to address:
+    </p>
+    <ul class="org-ul">
+      <li class="off"><code>[ ]</code> Why is the system only generating
+        predictions for one month in advance?</li>
+      <li class="off"><code>[ ]</code> Why are there no predictions
+        available for the period ranging from August 2022 to January
+        2023?</li>
+    </ul>
+    <p>
+      The nature of these questions suggests that the current output
+      does not align with our original design, which has been clearly
+      outlined in the requirement definitions. As a reminder, the
+      documentation can be found at our GitHub repository at:
+      <a
+href="https://github.com/eyesjapan/google-data-studio/blob/main/requirement-definition.md"
+        class="moz-txt-link-freetext">https://github.com/eyesjapan/google-data-studio/blob/main/requirement-definition.md</a>
+    </p>
+    <ul class="org-ul">
+      <li class="off"><code>[ ]</code> The client prefers to use Google
+        Data Studio for visualization. I understand that if we encounter
+        any limitations during the project, we are not responsible, as
+        we are following the client's instructions.</li>
+      <li class="off"><code>[ ]</code> The AI prediction for overlaying
+        daily sales at specific times (e.g., 12, 15, 17) will be handled
+        by Mark, not me. I will be responsible for visualizing the data
+        provided by Mark, which should be in CSV format.</li>
+      <li class="off"><code>[ ]</code> The selection of days with no
+        significant incidents to show the difference between AI
+        predictions and real results will also be provided by Mark. My
+        responsibility is to present the view of the CSV data or
+        results.</li>
+      <li class="off"><code>[ ]</code> The same applies to the daily
+        sales predictions for the three stores. I will be responsible
+        for data visualization, but the data should be predicted by Mark
+        first, or I will need some data examples.</li>
+    </ul>
+    <p>
+      Our clients rely on us to provide accurate and reliable
+      predictions as per the outlined design, hence their concern. As
+      part of the machine team, could you please look into these
+      questions and offer an explanation or solution?
+    </p>
+    <p>
+      Also, please find attached the record of proceedings from our last
+      meeting. This may offer some context to help.
+    </p>
+    <p>
+      We are counting on ML Team to help us resolve these concerns as
+      swiftly as possible so we can continue to provide our customers
+      with the high-quality service they expect from us.
+    </p>
+    <p>
+      Best regards.
+    </p>
+  </body>
+</html>

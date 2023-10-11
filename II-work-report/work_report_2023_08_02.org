@@ -1,0 +1,7 @@
+* Work Report 2023-08-02
+** 10:00--18:00 (Did not take a rest in the middle)
+*** 10:00--12:30 Morning Meeting, Review the predicted data provided by machine learning team :SupermarketAI:
+*** 12:30--13:00 Discuss with Cherubin :SupermarketAI:Coordinating:
+*** 13:00--14:00 Online MTG with Cherubin on Predicted Data Issue :SupermarketAI:Coordinating:
+*** 14:00--17:30 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 17:30--18:00 Meeting Documents Backup, Write Work Report :SupermarketAI:Opts:

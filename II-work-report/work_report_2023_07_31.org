@@ -1,0 +1,11 @@
+--text follows this line--
+* Work Report 2023-07-31
+** 09:00--18:00
+*** 09:00--10:00 Package Update :Others:Opts:
+*** 10:00--10:20 Morning Meeting, Init Work Report :Others:
+*** 10:20--10:35 Contact Part-Timers :SupermarketAI:Coordinating:
+*** 10:35--11:00 Back up E-Mails && Discord Message :SupermarketAI:Opts:
+*** 11:00--13:15 Review the predicted data provided by machine learning team :SupermarketAI:
+***** 13:15--14:15 Lunch Break
+*** 14:15--17:30 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 17:30--18:00 Write Work Report :Others:

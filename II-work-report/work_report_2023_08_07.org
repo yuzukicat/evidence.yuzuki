@@ -1,0 +1,7 @@
+* Work Report 2023-08-07
+** 09:00--17:00 (Did not take a rest in the middle)
+*** 09:00--10:00 Review the presentation of project :SupermarketAI:
+*** 10:00--10:05 Morning Meeting :Others:
+*** 10:05--15:30 Review the presentation of project && Catch up the E-Mail from Victor :SupermarketAI:Coordinating:
+*** 15:30--16:30 Review the presentation of project && Share the presentation of project :SupermarketAI:Coordinating:
+*** 16:30--17:00 Work Report :Others:

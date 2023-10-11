@@ -1,0 +1,31 @@
+* Last Week
+** Supermarket AI
+*** Coordinating
+**** Demo the look studio to Yamadera san.
+**** Documentation for the last meeting with Cherubin && E-Mail ML Team
+**** for asking explaination why there is only one month prediction.
+**** Catch up && Reply the E-Mail from Victor.
+**** Share the look studio to Victor, Mark, Cherubin.
+**** Report the replied e-mail from ML Team to Yamadera san.
+**** Get the instruction to have another meeting with ML Team.
+**** Exchange information, get suggestions && feature requests during the meeting.
+**** Organize all the memo && documents for the meeting.
+*** Collaborating
+**** Collaborating with Edward && Cherubin to impliment suggestions && feature requests.
+*** Opts
+**** Update google-chrome, install zoom on the macbook for the meeting.
+** Others
+**** Morning Meeting.
+**** Catch up && Back up E-Mails && Discord Message.
+**** Confirm the one hour break law with Yamadera san.
+**** Get the instruction from Yamadera san of filling in the google form for work report.
+**** Asked Tang about how to fill in the google form for work report.
+**** Fill in the google form for work report.
+**** Weekly meeting.
+* Next Week
+** Supermarket AI
+*** Coordinating
+**** Impliment suggestions && feature requests during our last meeting.
+**** Continues sharing the look studio to Victor, Mark, Cherubin.
+*** Collaborating
+** Others

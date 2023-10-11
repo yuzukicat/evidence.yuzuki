@@ -1,0 +1,7 @@
+1. PD - Android application development project, particularly focused on the user authentication (Auth) backend API.
+Integrating and testing Amazon Web Services (AWS) Cognito as our authentication backend. AWS Cognito's robust security functionalities are a promising asset, providing an enriched layer of security to our mobile application, especially in terms of user registration, sign-in, and sign-out routines.
+We are presently testing key user authentication functions, namely, the sign-in and sign-out processes. These tests are fundamental to ensuring the seamless operation of these features and are a pivotal part of our timeline. A successful testing phase will help maintain the application's integrity and safeguard user data, which aligns with our team's goal and the company's broader objective of prioritizing data security.
+2. Collaboration & Information Exchange:
+Productive information exchange with Tang, specifically discussing the database backend specifications and roadmaps. Details of these conversations will be shared separately.
+3. Accountability Concern:
+On a separate note, there was a situation where I was asked to assume responsibility for an issue I believe fell outside my remit. While I am fully committed to addressing any problems within my scope, it would be helpful to clarify the project's boundaries and individual responsibilities moving forward.

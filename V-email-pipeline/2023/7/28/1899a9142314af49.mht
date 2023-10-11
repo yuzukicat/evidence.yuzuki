@@ -1,0 +1,126 @@
+Return-Path: <dawei.jiang@nowhere.co.jp>
+Received: from ?IPV6:240b:13:31e1:6200:217e:b72f:4e04:8b5a? ([240b:13:31e1:6200:217e:b72f:4e04:8b5a])
+        by smtp.gmail.com with ESMTPSA id u3-20020a170902e80300b001b80d399730sm2372549plg.242.2023.07.27.20.35.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jul 2023 20:35:58 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------Jr13MkKiVMEEyN0IGqeLBOiq"
+Message-ID: <4c99bda4-836e-3144-2ab9-fec36d613204@nowhere.co.jp>
+Date: Fri, 28 Jul 2023 12:36:31 +0900
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: yamadera@nowhere.co.jp, victor@nowhere.co.jp, ogbodo.mark@nowhere.co.jp
+From: Sara Yuzuki <dawei.jiang@nowhere.co.jp>
+Subject: Clarification and Update on the Supermarket AI Project 2023-07-28
+
+This is a multi-part message in MIME format.
+--------------Jr13MkKiVMEEyN0IGqeLBOiq
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+* Clarification and Update on the Supermarket AI Project 2023-07-28
+
+Dear Yamadera san
+
+I understand your concern regarding *the progress of the Supermarket AI 
+project*, and I appreciate the opportunity to shed light on the situation.
+
+I'd like to clarify the *roles and responsibilities* within the project, 
+as it seems there may be some *misunderstandings*. Although I've been 
+deeply involved in the project, my scope of work is primarily focused on 
+*the frontend interfaces*. I'm pleased to report I completed my tasks 
+before our initial deadline and have been *ready to integrate them with 
+the the project's ai predicted data* since then.
+
+The delay, unfortunately, stems from aspects outside of my control, 
+specifically the machine learning model training, predicted data, should 
+managed by Victor's team. The project is an interlinked ecosystem of 
+efforts, and without the completion of the data prediction from machine 
+learning team, proceeding with the next steps was not feasible, hence 
+the delay.
+
+Recently, I *received the predicted data from the Machine Learning 
+team*. However, there seem to be some inaccuracies, with *the 
+predictions consistently falling below actual levels*. As these 
+predictions play a critical role in the seamless operation of our 
+interfaces, it is crucial that these inaccuracies are addressed by the 
+respective team. *I've reached out to Mark to query about this and am 
+awaiting their response and rectification*.
+
+Please rest assured that despite this hiccup, I am committed to ensuring 
+the successful completion of the Supermarket AI project. I am 
+consistently liaising with Victor's team to expedite the resolution of 
+the current issues and to proceed with the project as swiftly as 
+possible once these are addressed. My objective, as always, is to uphold 
+the quality and timeliness of our work.
+
+I hope this brings clarity to the situation and welcome any further 
+inquiries.
+
+Best regards,
+
+Yuzuki
+
+--------------Jr13MkKiVMEEyN0IGqeLBOiq
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>* Clarification and Update on the Supermarket AI Project
+      2023-07-28<br>
+      <br>
+      Dear Yamadera san<br>
+      <br>
+      I understand your concern regarding <b>the progress of the
+        Supermarket AI project</b>, and I appreciate the opportunity to
+      shed light on the situation.<br>
+      <br>
+      I'd like to clarify the <b>roles and responsibilities</b> within
+      the project, as it seems there may be some <b>misunderstandings</b>.
+      Although I've been deeply involved in the project, my scope of
+      work is primarily focused on <b>the frontend interfaces</b>. I'm
+      pleased to report I completed my tasks before our initial deadline
+      and have been <b>ready to integrate them with the the project's
+        ai predicted data</b> since then.<br>
+      <br>
+      The delay, unfortunately, stems from aspects outside of my
+      control, specifically the machine learning model training,
+      predicted data, should managed by Victor's team. The project is an
+      interlinked ecosystem of efforts, and without the completion of
+      the data prediction from machine learning team, proceeding with
+      the next steps was not feasible, hence the delay.<br>
+      <br>
+      Recently, I <b>received the predicted data from the Machine
+        Learning team</b>. However, there seem to be some inaccuracies,
+      with <b>the predictions consistently falling below actual levels</b>.
+      As these predictions play a critical role in the seamless
+      operation of our interfaces, it is crucial that these inaccuracies
+      are addressed by the respective team. <b>I've reached out to Mark
+        to query about this and am awaiting their response and
+        rectification</b>.<br>
+      <br>
+      Please rest assured that despite this hiccup, I am committed to
+      ensuring the successful completion of the Supermarket AI project.
+      I am consistently liaising with Victor's team to expedite the
+      resolution of the current issues and to proceed with the project
+      as swiftly as possible once these are addressed. My objective, as
+      always, is to uphold the quality and timeliness of our work.<br>
+      <br>
+      I hope this brings clarity to the situation and welcome any
+      further inquiries.<br>
+      <br>
+      Best regards,<br>
+      <br>
+      Yuzuki<br>
+    </p>
+  </body>
+</html>
+
+--------------Jr13MkKiVMEEyN0IGqeLBOiq--

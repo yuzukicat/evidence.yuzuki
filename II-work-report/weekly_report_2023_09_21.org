@@ -1,0 +1,4 @@
+PD - Android Application Development Project.
+Drafting the GraphQL schema guided by the JSON data provided by Tang, ensuring that all the fields in the JSON data are accurately represented.
+Test API types and GraphQL resolvers within the application. Confirming data integrity, checking response correctness.
+Creating the README.md file for deploying back-end resources on AWS. Guiding developers through the AWS deployment process and serve as a reference for potential issues and fixes. Despite AWS's complexity, effort has been made to ensure this document is comprehensive yet simple to follow.

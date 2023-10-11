@@ -1,0 +1,5 @@
+PD - Android Application Development Project User authentication (Auth) backend API.
+Focusing on the integration and testing of AWS Cognito for our authentication backend.
+Our efforts have been primarily concentrated on incorporating AWS Cognito into our operations due to its robust security functionalities. These measures would be particularly beneficial for our mobile application, enabling secure user registration, sign-in, and sign-out processes.
+At present, we are in the midst of testing key user authentication features such as sign-in and sign-out. This testing phase forms a critical part of ensuring that the application remains secure, reliable, and user data is safeguarded effectively.
+AWS Cognito integration is a significant step in our project timeline. We believe these essential authentication features' proper functioning is pivotal to preserving our application's integrity. Most importantly, it assures our users that their data is protected, a mandate we are committed to adhering to for fulfilling our obligations towards data security.

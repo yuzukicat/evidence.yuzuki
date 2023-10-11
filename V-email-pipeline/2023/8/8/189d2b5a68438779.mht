@@ -1,0 +1,263 @@
+MIME-Version: 1.0
+Date: Tue, 8 Aug 2023 10:14:26 +0900
+References: <9d658a68-fdf4-b4c5-b0a3-e2c6de0f5488@nowhere.co.jp>
+	<9D81D456-B97B-4EF9-BC21-D070221C03D0@nowhere.co.jp>
+In-Reply-To: <9D81D456-B97B-4EF9-BC21-D070221C03D0@nowhere.co.jp>
+Message-ID: <CAOkOQaFXEaBZzXki5-Nfw4JT8gbyVJ=19-yfEQhKZ8OqvxKFhg@mail.gmail.com>
+Subject: Fwd: Addressing Client Concerns and Ensuring Alignment with the
+ original design
+From: JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+To: Jun Yamadera <yamadera@nowhere.co.jp>, Mark Ogbodo <ogbodo.mark@nowhere.co.jp>, 
+	Cherubin Mugisha <cherubin@nowhere.co.jp>, Victor Khaustov <victor@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="00000000000090ebcc06025f1595"
+
+--00000000000090ebcc06025f1595
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Victor: Yamadera san think that we have some misunderstanding and need to
+arrange a meeting. Can you arrange a meeting of your suitable time?
+
+On Sun, Aug 6, 2023 at 5:27=E2=80=AFAM Victor Khaustov <victor@nowhere.co.j=
+p> wrote:
+
+> Dear Sara,
+>
+> I read the 45-minute transcript of your conversation with Cherubin to
+> understand the whole situation. It looks like we=E2=80=99re going back an=
+d forth
+> over and over again.
+>
+> Let me briefly repeat the main idea of the meeting with Yamadera san and
+> you at the beginning of May (including the follow-up emails): You should
+> prepare the prototype in Looker Studio for the client that can visualize
+> the sales of the provided data (from August to February) and the predicte=
+d
+> data for a short period. Mark would prepare the predicted data once you h=
+ad
+> provided him with the necessary format. Moreover, Yamadera san told you
+> that nobody expects the ideal predictions because the amount of data is
+> small (and also because we didn=E2=80=99t have time and resources to appl=
+y advanced
+> models). You were assigned to prepare the Looker Studio prototype and ask
+> Mark to provide the data in the appropriate format. I offered to help
+> answer questions and provide suggestions (but not with =E2=80=9Cleading t=
+he
+> project=E2=80=9D, since it=E2=80=99s a quick prototype).
+>
+> So both of your questions can be answered based on that idea:
+> - we decided to run the prediction for one month to showcase the
+> possibility of predicting the trends of sales. It=E2=80=99s not ideal, bu=
+t it
+> repeats the general trend.
+> - in Machine learning, you need to use some of the data for training.
+> That=E2=80=99s why the data from August to January is used to train the m=
+odel that
+> predicts the sales in February.
+>
+> So what you should do now: visualize the predicted data for February. You
+> told Cherubin that you received some predicted data from Edward and you
+> think that it fits better. In such a case, you can visualize Edward=E2=80=
+=99s data
+> (but ask him to explain how he got it). By the way, you haven=E2=80=99t s=
+hared the
+> Looker Studio report with me yet and only recently shared it with some te=
+am
+> members. If you had finished the prototype a long time ago, you could sha=
+re
+> it with everybody by using dummy data instead of the predicted one. In su=
+ch
+> a case, your work would be completed.
+>
+> You can even share two reports: one with Mark=E2=80=99s data and the othe=
+r one
+> with Edward=E2=80=99s, so we could compare, discuss, and make the decisio=
+n together.
+>
+> If you look again at the requirements: develop a quick prototype for the
+> customers to show what is possible in Looker Studio. If they like it, the=
+re
+> will be additional development of the interface, prediction model, etc.
+>
+> Best regards,
+> Victor Khaustov
+>
+> On Aug 4, 2023, at 11:20, Sara Yuzuki <dawei.jiang@nowhere.co.jp> wrote:
+>
+> Dear Cherubin:
+>
+> There have been some concerns raised by our customers regarding the outpu=
+t
+> being developed by Machine Team. Specifically, they have presented us wit=
+h
+> two questions we need to address:
+>
+>    - [ ] Why is the system only generating predictions for one month in
+>    advance?
+>    - [ ] Why are there no predictions available for the period ranging
+>    from August 2022 to January 2023?
+>
+> The nature of these questions suggests that the current output does not
+> align with our original design, which has been clearly outlined in the
+> requirement definitions. As a reminder, the documentation can be found at
+> our GitHub repository at:
+> https://github.com/eyesjapan/google-data-studio/blob/main/requirement-def=
+inition.md
+>
+>    - [ ] The client prefers to use Google Data Studio for visualization.
+>    I understand that if we encounter any limitations during the project, =
+we
+>    are not responsible, as we are following the client's instructions.
+>    - [ ] The AI prediction for overlaying daily sales at specific times
+>    (e.g., 12, 15, 17) will be handled by Mark, not me. I will be responsi=
+ble
+>    for visualizing the data provided by Mark, which should be in CSV form=
+at.
+>    - [ ] The selection of days with no significant incidents to show the
+>    difference between AI predictions and real results will also be provid=
+ed by
+>    Mark. My responsibility is to present the view of the CSV data or resu=
+lts.
+>    - [ ] The same applies to the daily sales predictions for the three
+>    stores. I will be responsible for data visualization, but the data sho=
+uld
+>    be predicted by Mark first, or I will need some data examples.
+>
+> Our clients rely on us to provide accurate and reliable predictions as pe=
+r
+> the outlined design, hence their concern. As part of the machine team,
+> could you please look into these questions and offer an explanation or
+> solution?
+>
+> Also, please find attached the record of proceedings from our last
+> meeting. This may offer some context to help.
+>
+> We are counting on ML Team to help us resolve these concerns as swiftly a=
+s
+> possible so we can continue to provide our customers with the high-qualit=
+y
+> service they expect from us.
+>
+> Best regards.
+> <20230802.pdf>
+>
+>
+>
+
+--00000000000090ebcc06025f1595
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Victor: Yamadera san think that we have some misunderstand=
+ing and need to arrange a meeting. Can you arrange a meeting of your suitab=
+le time?<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Sun, Aug 6, 2023 at 5:27=E2=80=AFAM Victor Khaustov &lt;<a h=
+ref=3D"mailto:victor@nowhere.co.jp">victor@nowhere.co.jp</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Dear Sara,<div=
+><br></div><div><div>I read the 45-minute transcript of your conversation w=
+ith Cherubin to understand the whole situation. It looks like we=E2=80=99re=
+ going back and forth over and over again.</div><div><br></div><div>Let me =
+briefly repeat the main idea of the meeting with Yamadera san and you at th=
+e beginning of May (including the follow-up emails): You should prepare the=
+ prototype in Looker Studio for the client that can visualize the sales of =
+the provided data (from August to February) and the predicted data for a sh=
+ort period. Mark would prepare the predicted data once you had provided him=
+ with the necessary format. Moreover, Yamadera san told you that nobody exp=
+ects the ideal predictions because the amount of data is small (and also be=
+cause we didn=E2=80=99t have time and resources to apply advanced models). =
+You were assigned to prepare the Looker Studio prototype and ask Mark to pr=
+ovide the data in the appropriate format. I offered to help answer question=
+s and provide suggestions (but not with =E2=80=9Cleading the project=E2=80=
+=9D, since it=E2=80=99s a quick prototype).=C2=A0</div><div><br></div><div>=
+So both of your questions can be answered based on that idea:</div><div>- w=
+e decided to run the prediction for one month to showcase the possibility o=
+f predicting the trends of sales. It=E2=80=99s not ideal, but it repeats th=
+e general trend.</div><div>- in Machine learning, you need to use some of t=
+he data for training. That=E2=80=99s why the data from August to January is=
+ used to train the model that predicts the sales in February.</div><div><br=
+></div><div>So what you should do now: visualize the predicted data for Feb=
+ruary. You told Cherubin that you received some predicted data from Edward =
+and you think that it fits better. In such a case, you can visualize Edward=
+=E2=80=99s data (but ask him to explain how he got it). By the way, you hav=
+en=E2=80=99t shared the Looker Studio report with me yet and only recently =
+shared it with some team members. If you had finished the prototype a long =
+time ago, you could share it with everybody by using dummy data instead of =
+the predicted one. In such a case, your work would be completed.</div><div>=
+<br></div><div>You can even share two reports: one with Mark=E2=80=99s data=
+ and the other one with Edward=E2=80=99s, so we could compare, discuss, and=
+ make the decision together.</div><div><br></div><div>If you look again at =
+the requirements: develop a quick prototype for the customers to show what =
+is possible in Looker Studio. If they like it, there will be additional dev=
+elopment of the interface, prediction model, etc.</div></div><div><br></div=
+><div>Best regards,</div><div>Victor Khaustov</div><div><div><br><blockquot=
+e type=3D"cite"><div>On Aug 4, 2023, at 11:20, Sara Yuzuki &lt;<a href=3D"m=
+ailto:dawei.jiang@nowhere.co.jp" target=3D"_blank">dawei.jiang@nowhere.co.j=
+p</a>&gt; wrote:</div><br><div>
+
+ =20
+
+   =20
+ =20
+  <div><p>
+      Dear Cherubin:
+    </p><p>
+      There have been some concerns raised by our customers regarding
+      the output being developed by Machine Team. Specifically, they
+      have presented us with two questions we need to address:
+    </p>
+    <ul>
+      <li><code>[=C2=A0]</code> Why is the system only generating
+        predictions for one month in advance?</li>
+      <li><code>[=C2=A0]</code> Why are there no predictions
+        available for the period ranging from August 2022 to January
+        2023?</li>
+    </ul><p>
+      The nature of these questions suggests that the current output
+      does not align with our original design, which has been clearly
+      outlined in the requirement definitions. As a reminder, the
+      documentation can be found at our GitHub repository at:
+      <a href=3D"https://github.com/eyesjapan/google-data-studio/blob/main/=
+requirement-definition.md" target=3D"_blank">https://github.com/eyesjapan/g=
+oogle-data-studio/blob/main/requirement-definition.md</a>
+    </p>
+    <ul>
+      <li><code>[=C2=A0]</code> The client prefers to use Google
+        Data Studio for visualization. I understand that if we encounter
+        any limitations during the project, we are not responsible, as
+        we are following the client&#39;s instructions.</li>
+      <li><code>[=C2=A0]</code> The AI prediction for overlaying
+        daily sales at specific times (e.g., 12, 15, 17) will be handled
+        by Mark, not me. I will be responsible for visualizing the data
+        provided by Mark, which should be in CSV format.</li>
+      <li><code>[=C2=A0]</code> The selection of days with no
+        significant incidents to show the difference between AI
+        predictions and real results will also be provided by Mark. My
+        responsibility is to present the view of the CSV data or
+        results.</li>
+      <li><code>[=C2=A0]</code> The same applies to the daily
+        sales predictions for the three stores. I will be responsible
+        for data visualization, but the data should be predicted by Mark
+        first, or I will need some data examples.</li>
+    </ul><p>
+      Our clients rely on us to provide accurate and reliable
+      predictions as per the outlined design, hence their concern. As
+      part of the machine team, could you please look into these
+      questions and offer an explanation or solution?
+    </p><p>
+      Also, please find attached the record of proceedings from our last
+      meeting. This may offer some context to help.
+    </p><p>
+      We are counting on ML Team to help us resolve these concerns as
+      swiftly as possible so we can continue to provide our customers
+      with the high-quality service they expect from us.
+    </p><p>
+      Best regards.
+    </p>
+  </div>
+
+<span id=3D"m_2519361907454850743cid:2ECBA264-F198-49F3-93AA-64967F134496">=
+&lt;20230802.pdf&gt;</span></div></blockquote></div><br></div></div></block=
+quote></div>
+
+--00000000000090ebcc06025f1595--

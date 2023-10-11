@@ -1,0 +1,3 @@
+Android Application Development project, user authentication (auth) back-end API.
+Focused on integrating and testing AWS Cognito for our auth backend. This system provides security functionalities to our mobile application, such as user registration, sign-in, and sign-out.
+User authentication functions including sign-in and sign-out are under the testing phase. This process is fundamental in making sure the application retains its integrity and user data is secure.

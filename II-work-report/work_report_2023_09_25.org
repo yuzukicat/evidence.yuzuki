@@ -1,0 +1,3 @@
+PD - Android Application Development Project User authentication (Auth) backend API.
+Integrating and thoroughly testing AWS Cognito as our chosen Auth backend.
+Testing phase of these user authentication functions. This phase is a pivotal part of our project timeline. We believe that ensuring the flawless operation of sign-in and sign-out features is fundamental in maintaining the application's integrity. More importantly, it guarantees the security of user data, which is a top priority for our team and the company at large.

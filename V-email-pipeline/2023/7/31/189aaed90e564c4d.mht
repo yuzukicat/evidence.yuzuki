@@ -1,0 +1,336 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6359:63b0:b0:134:c132:59db with SMTP id sg48csp2036027rwb;
+        Mon, 31 Jul 2023 00:50:43 -0700 (PDT)
+X-Received: by 2002:a05:6a00:194f:b0:662:5146:c761 with SMTP id s15-20020a056a00194f00b006625146c761mr13255660pfk.17.1690789843450;
+        Mon, 31 Jul 2023 00:50:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1690789843; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ee+Fn9I9PLqVt5n/E0gvrsKOvt8ECxtxXfjnG1VgWXzVBESvb8WB1jLqRijUpyFnXh
+         bdSpDQLZxPe1O1mKnjvzLhDouvmYxb/xG+rmR/DeKzoKqwIhMZy3IAO8AZdzYYtTRn/o
+         BM1Gri5P22g6hYxxLEA3wnPF9tkgb04ukSt6+0SP2vIRmIc0Eaq63CpYMq3dQi5MV74z
+         F5XuTQyq/X1sAXqKDi5iobDaUriBYYO4jacGARiCJzcORw+49jgYyWLzUueZkIgKQ6CY
+         /dLNyKdjxkQP1luml74izwWobQG10e6pBH1/f1i0NKpG2OgVxZSK01/sN/BFeNM2hnDi
+         Lzcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=XhgtC+RnqeQsyyvxDOVQtohEAlMCZWwT/T9t9cjGKnI=;
+        fh=NhhGMVUEh1yKoapFnntZyC/mlaqTTwhEGWmF9khZbNc=;
+        b=xwdIN2jT8xu0RZ6YICDoqR2KOqpUcV0pZVErXeIDKHjwrZxUi06iNiuOjYBwDMUGXa
+         vBWLFWRq5H3R1IxoS1hGKB0EWN+ifQR7knGfZzMVdf4DqlrUcwIihi561W1QONxtAQSU
+         L5R4QidTUMQd4ncdFVEVjnlVJ8HelF6cZ1XA66tR0e1ZyXIRJFIb3ISN1/ocRSS5rdCU
+         bpupMc/kge4CVh+ksj4h+/49mlEHL0pcyozCAdgtQ1t9yvL/lb+ccByZkw/XIBXFiCua
+         qJILtSp0QwkU+OPZFug1fIGaZJ7WURSf2Igaan9kqcTbszrgJV2QIZjxyKrQ92fzFzIc
+         VaUg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=e61V+wdR;
+       spf=pass (google.com: domain of cherubin@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=cherubin@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <cherubin@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q11-20020a638c4b000000b0055c50a8a848sor3769460pgn.10.2023.07.31.00.50.43
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Mon, 31 Jul 2023 00:50:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of cherubin@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=e61V+wdR;
+       spf=pass (google.com: domain of cherubin@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=cherubin@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1690789843; x=1691394643;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XhgtC+RnqeQsyyvxDOVQtohEAlMCZWwT/T9t9cjGKnI=;
+        b=e61V+wdRiMImGaDiF1fZ7EoRThx73UOGvzEm2WQUj26w+9/3rqG4Sbmp74KSK7lsrv
+         M3eZsbmbhpB+YysUlBxPUX9os8NgKhImbIjhXPpc1urI4OHvu0x2mesFOc25F98Mxry1
+         jl0sP/Df+uqERPAxhLfluxqLuPKRHor2vqIhA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1690789843; x=1691394643;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XhgtC+RnqeQsyyvxDOVQtohEAlMCZWwT/T9t9cjGKnI=;
+        b=D/RANN53Koj0yKtjbLG4sQfnIcT8axKgc0qQLmU2jOH3xcAAR1wkI0aV3DitBkX2/k
+         CqIeMOw/JsZF7jn6lKr1YgHcfkAhUENvE2/XRyw1nrE288jWFQj9ugjA6/Hqw3bTVwKu
+         qXqcJu2Q5Q9Popb9K+mrR2MYZeUhsd1oFwwgN4jb0W1r22D2nuMGo+SBxMX6tNg0BikR
+         SnfnOPOGgbVSbEzUD75kxvoqtZpaMwEdfCH7wEU2y3mPxC1j4WzCy78C5OVBUsIKzL4D
+         C2Ijxsv5R5mEgcnGIhX+E/DtyChrQuOLYvdTbrJqZJff2cMNvmbuqRlsicO9c2BDlSVK
+         LQgg==
+X-Gm-Message-State: ABy/qLa94d+04AKnkqUEJ91PdFlY5oAk+Nf8dDVl7SKvJCPOJCogKj0Q
+	VfmWpMCLI7q7QFG1jt4MLvNe4sHn/izh0wA28V8avNBT
+X-Google-Smtp-Source: APBJJlEcOeZhPlfGPVlScnnGgtnKcu0wDVF3cFx+BTRMIjKXENzBfqL1ObF76kAcEVVd6+mT4YqCpxhsW0h5oZ12ntk=
+X-Received: by 2002:a17:90b:4d04:b0:268:13ef:ddc with SMTP id
+ mw4-20020a17090b4d0400b0026813ef0ddcmr8026700pjb.3.1690789842889; Mon, 31 Jul
+ 2023 00:50:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <406B9E28-1EE9-4599-A881-B50029518912@nowhere.co.jp>
+ <9f1ad35c-8a34-7462-bee2-35f54bc2021b@nowhere.co.jp> <CAFsdFptXX=bbJWPEpRGUheBeomx-_f0HOP5XcmSdh1VbOPJATg@mail.gmail.com>
+ <4FEC2213-70D2-49F2-8FF3-9F16BA591711@nowhere.co.jp>
+In-Reply-To: <4FEC2213-70D2-49F2-8FF3-9F16BA591711@nowhere.co.jp>
+From: Cherubin Mugisha <cherubin@nowhere.co.jp>
+Date: Mon, 31 Jul 2023 16:50:30 +0900
+Message-ID: <CAFsdFpua8=QD4P_ctSnX=OJhVPF5QOTzcjNpdVa8WHZt8fttsQ@mail.gmail.com>
+Subject: Re: Clarification and Update on the Supermarket AI Project 2023-07-28
+To: Jun Yamadera <yamadera@nowhere.co.jp>
+Cc: Sara Yuzuki <dawei.jiang@nowhere.co.jp>, Victor Khaustov <victor@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="000000000000f9c9c00601c3af70"
+
+--000000000000f9c9c00601c3af70
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Yamadera-san,
+
+I deeply apologize for all the inconveniences from this project.
+I think there was a big miscommunication on the progress of the project.
+So far, Mark didn't share any remaining task or problem that might
+constitute an obstacle to deliver the project on time.
+To be honest, I was surprised when I read the email.
+But as you said, I'll make sure to make it the top priority until it's done=
+.
+
+Thank you for your understanding, and my apologies again.
+
+Best regards,
+Ch=C3=A9rubin
+
+On Mon, Jul 31, 2023, 15:57 Jun Yamadera <yamadera@nowhere.co.jp> wrote:
+
+>
+> Thanks, Cherubin, Since deadline has been passed more than 1 month
+> (Originally delivery to the customer should be by the end of June). I hav=
+e
+> lost our trust to the customer and did apologies, so I really hope the te=
+am
+> Can finish it by this week and preview in the team and deliver to the
+> customer
+> In the early next week. This is No. 1. Priority, so Yuzuki should make
+> time as
+> soon as possible. Thanks.
+>
+> Jun
+>
+> > 2023/07/31 15:29=E3=80=81Cherubin Mugisha <cherubin@nowhere.co.jp>=E3=
+=81=AE=E3=83=A1=E3=83=BC=E3=83=AB:
+> >
+> > Hi Yuzuki san,
+> > Are you available tomorrow afternoon, after the ALAN project meeting?
+> > I would like to discuss this matter with you.
+> > If you're not available, feel free to suggest another time the followin=
+g
+> day.
+> >
+> > Best regards.
+> > Cherubin
+> >
+> >
+> >
+> > Virus-free.www.avast.com
+> >
+> > On Fri, Jul 28, 2023 at 2:06=E2=80=AFPM Sara Yuzuki <dawei.jiang@nowher=
+e.co.jp>
+> wrote:
+> >
+> >
+> >
+> > -------- Forwarded Message -------- Subject: Re: Clarification and
+> Update on the Supermarket AI Project 2023-07-28 Date: Fri, 28 Jul 2023
+> 07:59:57 +0300 From: Victor Khaustov <victor@nowhere.co.jp> To: JIANG
+> DAWEI <dawei.jiang@nowhere.co.jp> CC: Jun Yamadera <yamadera@nowhere.co.j=
+p>,
+> Mark Ogbodo <ogbodo.mark@nowhere.co.jp>
+> >
+> > Hi!
+> >
+> > Since Mark is in the process of moving to the US, can you please forwar=
+d
+> the query to Cherubin Mugisha?
+> >
+> > Thanks
+> >
+> >> On Jul 28, 2023, at 06:37, JIANG DAWEI <dawei.jiang@nowhere.co.jp>
+> wrote:
+> >>
+> >> * Clarification and Update on the Supermarket AI Project 2023-07-28
+> >>
+> >> Dear Yamadera san
+> >>
+> >> I understand your concern regarding the progress of the Supermarket AI
+> project, and I appreciate the opportunity to shed light on the situation.
+> >>
+> >> I'd like to clarify the roles and responsibilities within the project,
+> as it seems there may be some misunderstandings. Although I've been deepl=
+y
+> involved in the project, my scope of work is primarily focused on the
+> frontend interfaces. I'm pleased to report I completed my tasks before ou=
+r
+> initial deadline and have been ready to integrate them with the the
+> project's ai predicted data since then.
+> >>
+> >> The delay, unfortunately, stems from aspects outside of my control,
+> specifically the machine learning model training, predicted data, should
+> managed by Victor's team. The project is an interlinked ecosystem of
+> efforts, and without the completion of the data prediction from machine
+> learning team, proceeding with the next steps was not feasible, hence the
+> delay.
+> >>
+> >> Recently, I received the predicted data from the Machine Learning team=
+.
+> However, there seem to be some inaccuracies, with the predictions
+> consistently falling below actual levels. As these predictions play a
+> critical role in the seamless operation of our interfaces, it is crucial
+> that these inaccuracies are addressed by the respective team. I've reache=
+d
+> out to Mark to query about this and am awaiting their response and
+> rectification.
+> >>
+> >> Please rest assured that despite this hiccup, I am committed to
+> ensuring the successful completion of the Supermarket AI project. I am
+> consistently liaising with Victor's team to expedite the resolution of th=
+e
+> current issues and to proceed with the project as swiftly as possible onc=
+e
+> these are addressed. My objective, as always, is to uphold the quality an=
+d
+> timeliness of our work.
+> >>
+> >> I hope this brings clarity to the situation and welcome any further
+> inquiries.
+> >>
+> >> Best regards,
+> >>
+> >> Yuzuki
+> >
+>
+>
+
+--000000000000f9c9c00601c3af70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Dear Yamadera-san,<div dir=3D"auto"><br></div><div dir=3D=
+"auto">I deeply apologize for all the inconveniences from this project.</di=
+v><div dir=3D"auto">I think there was a big miscommunication on the progres=
+s of the project.</div><div dir=3D"auto">So far, Mark didn&#39;t share any =
+remaining task or problem that might constitute an obstacle to deliver the =
+project on time.</div><div dir=3D"auto">To be honest, I was surprised when =
+I read the email.</div><div dir=3D"auto">But as=C2=A0you said, I&#39;ll mak=
+e sure to make it the top priority until it&#39;s=C2=A0done.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Thank=C2=A0you for your understanding=
+, and my apologies again.</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Best=C2=A0regards,</div><div dir=3D"auto">Ch=C3=A9rubin=C2=A0</div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon=
+, Jul 31, 2023, 15:57 Jun Yamadera &lt;<a href=3D"mailto:yamadera@nowhere.c=
+o.jp">yamadera@nowhere.co.jp</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex"><br>
+Thanks, Cherubin, Since deadline has been passed more than 1 month<br>
+(Originally delivery to the customer should be by the end of June). I have<=
+br>
+lost our trust to the customer and did apologies, so I really hope the team=
+<br>
+Can finish it by this week and preview in the team and deliver to the custo=
+mer<br>
+In the early next week. This is No. 1. Priority, so Yuzuki should make time=
+ as<br>
+soon as possible. Thanks.<br>
+<br>
+Jun<br>
+<br>
+&gt; 2023/07/31 15:29=E3=80=81Cherubin Mugisha &lt;<a href=3D"mailto:cherub=
+in@nowhere.co.jp" target=3D"_blank" rel=3D"noreferrer">cherubin@nowhere.co.=
+jp</a>&gt;=E3=81=AE=E3=83=A1=E3=83=BC=E3=83=AB:<br>
+&gt; <br>
+&gt; Hi Yuzuki san, <br>
+&gt; Are you available tomorrow afternoon, after the ALAN project meeting?<=
+br>
+&gt; I would like to discuss this matter with you.<br>
+&gt; If you&#39;re not available, feel free to suggest another time the fol=
+lowing day.<br>
+&gt; <br>
+&gt; Best regards.<br>
+&gt; Cherubin<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <a href=3D"http://Virus-free.www.avast.com" rel=3D"noreferrer noreferr=
+er" target=3D"_blank">Virus-free.www.avast.com</a><br>
+&gt; <br>
+&gt; On Fri, Jul 28, 2023 at 2:06=E2=80=AFPM Sara Yuzuki &lt;<a href=3D"mai=
+lto:dawei.jiang@nowhere.co.jp" target=3D"_blank" rel=3D"noreferrer">dawei.j=
+iang@nowhere.co.jp</a>&gt; wrote:<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; -------- Forwarded Message -------- Subject: Re: Clarification and Upd=
+ate on the Supermarket AI Project 2023-07-28 Date: Fri, 28 Jul 2023 07:59:5=
+7 +0300 From: Victor Khaustov &lt;<a href=3D"mailto:victor@nowhere.co.jp" t=
+arget=3D"_blank" rel=3D"noreferrer">victor@nowhere.co.jp</a>&gt; To: JIANG =
+DAWEI &lt;<a href=3D"mailto:dawei.jiang@nowhere.co.jp" target=3D"_blank" re=
+l=3D"noreferrer">dawei.jiang@nowhere.co.jp</a>&gt; CC: Jun Yamadera &lt;<a =
+href=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank" rel=3D"noreferrer"=
+>yamadera@nowhere.co.jp</a>&gt;, Mark Ogbodo &lt;<a href=3D"mailto:ogbodo.m=
+ark@nowhere.co.jp" target=3D"_blank" rel=3D"noreferrer">ogbodo.mark@nowhere=
+.co.jp</a>&gt; <br>
+&gt; <br>
+&gt; Hi! <br>
+&gt; <br>
+&gt; Since Mark is in the process of moving to the US, can you please forwa=
+rd the query to Cherubin Mugisha?<br>
+&gt; <br>
+&gt; Thanks <br>
+&gt; <br>
+&gt;&gt; On Jul 28, 2023, at 06:37, JIANG DAWEI &lt;<a href=3D"mailto:dawei=
+.jiang@nowhere.co.jp" target=3D"_blank" rel=3D"noreferrer">dawei.jiang@nowh=
+ere.co.jp</a>&gt; wrote:<br>
+&gt;&gt; <br>
+&gt;&gt; * Clarification and Update on the Supermarket AI Project 2023-07-2=
+8<br>
+&gt;&gt; <br>
+&gt;&gt; Dear Yamadera san<br>
+&gt;&gt; <br>
+&gt;&gt; I understand your concern regarding the progress of the Supermarke=
+t AI project, and I appreciate the opportunity to shed light on the situati=
+on.<br>
+&gt;&gt; <br>
+&gt;&gt; I&#39;d like to clarify the roles and responsibilities within the =
+project, as it seems there may be some misunderstandings. Although I&#39;ve=
+ been deeply involved in the project, my scope of work is primarily focused=
+ on the frontend interfaces. I&#39;m pleased to report I completed my tasks=
+ before our initial deadline and have been ready to integrate them with the=
+ the project&#39;s ai predicted data since then.<br>
+&gt;&gt; <br>
+&gt;&gt; The delay, unfortunately, stems from aspects outside of my control=
+, specifically the machine learning model training, predicted data, should =
+managed by Victor&#39;s team. The project is an interlinked ecosystem of ef=
+forts, and without the completion of the data prediction from machine learn=
+ing team, proceeding with the next steps was not feasible, hence the delay.=
+<br>
+&gt;&gt; <br>
+&gt;&gt; Recently, I received the predicted data from the Machine Learning =
+team. However, there seem to be some inaccuracies, with the predictions con=
+sistently falling below actual levels. As these predictions play a critical=
+ role in the seamless operation of our interfaces, it is crucial that these=
+ inaccuracies are addressed by the respective team. I&#39;ve reached out to=
+ Mark to query about this and am awaiting their response and rectification.=
+<br>
+&gt;&gt; <br>
+&gt;&gt; Please rest assured that despite this hiccup, I am committed to en=
+suring the successful completion of the Supermarket AI project. I am consis=
+tently liaising with Victor&#39;s team to expedite the resolution of the cu=
+rrent issues and to proceed with the project as swiftly as possible once th=
+ese are addressed. My objective, as always, is to uphold the quality and ti=
+meliness of our work.<br>
+&gt;&gt; <br>
+&gt;&gt; I hope this brings clarity to the situation and welcome any furthe=
+r inquiries.<br>
+&gt;&gt; <br>
+&gt;&gt; Best regards,<br>
+&gt;&gt; <br>
+&gt;&gt; Yuzuki<br>
+&gt; <br>
+<br>
+</blockquote></div>
+
+--000000000000f9c9c00601c3af70--

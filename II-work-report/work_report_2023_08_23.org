@@ -1,0 +1,4 @@
+2023-08-23 09:00--18:00
+**** SupermarketAI: Collaborating: Integrating && Review PTs' work from Cherubin.
+**** SupermarketAI: Impl suggestions and feature requests of last Thursday's meeting.
+**** SupermarketAI: Japanese Translation.

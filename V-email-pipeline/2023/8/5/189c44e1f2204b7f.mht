@@ -1,0 +1,202 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:511a:b0:134:c132:59db with SMTP id 26csp385861rwi;
+        Fri, 4 Aug 2023 23:06:41 -0700 (PDT)
+X-Received: by 2002:a05:6808:1443:b0:3a7:4cf6:f0cb with SMTP id x3-20020a056808144300b003a74cf6f0cbmr5645463oiv.21.1691215601634;
+        Fri, 04 Aug 2023 23:06:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691215601; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ky3PZw+E3Zw9qa6PawTF5QEsxyeKxEZGFEOk7CoKEM1Ymgkrr5Ouj4vJdajhNhU416
+         /LQgwSKMMHgtjQX1PrsoZsjj4fRGn40ZDchHD7YG1r78wBENI4yrtR4iWq8skoQuA1v2
+         /A+sW+NOZFr7gdBoj0eUnM7AT3F0Y08NwcOv6TqqXxwCr0AvLf3vaT6SioYCh74RyjZj
+         Y12GEQrBBihMf+VJiJ1y+14XUWRoqFhG+ZYHvzLiMH/ktge9Rt/6Nmo/2rkXeGoP/RVx
+         ZzR397i4b9UwWSxAzUlhIzO8uq+7+ulevvT+f3cC8WCQ5S1Xxj8JrwNsST63y9JHFbTe
+         3IXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :dkim-signature;
+        bh=PwPeYWmle2nn6GIED2/Sw9RMFR4hel+s27YNJ2/xQWA=;
+        fh=sg/nxfOYQt1OaG8YtdNkBTaMSoI4Ij2txQJzj0KhZRU=;
+        b=jUVg1Zxsbi4fOK0OKZxFMalfAB8+d6xPvB/N5h2W+UKDDNcafVjtoIOKwMJKYd79Qy
+         kAtNtKnNqGuK1Wk5kZAe6YkcP1rDF/IDIyc91m7L83oXJSWjXEFONz8RCW37n5+NpfZx
+         Yqxmvt8gZG/gQW1cWCoM5y9iTid/rqiuWIvt/zGdwIPGmjhl2jD60PqsgkqVb/mI2ncr
+         n/71pUXOfSG8ZGQKv7Ti5gKDA4WjhQcjkhMiwppwoGt5u20LFnC3eCpoaHRZ3E45f51B
+         HUiPVicCz2JF/P2HqzM1asZRnz2fZ3qLwPOyUJv2mYr15SR91dSdW7FV2tOVCiojUSQ8
+         jR/w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=UImPmSiC;
+       spf=pass (google.com: domain of 38ebnzbukacqlooker-studio-noreplygoogle.com@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=38ebNZBUKACQLOOKER-STUDIO-NOREPLYGOOGLE.COM@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <38ebNZBUKACQLOOKER-STUDIO-NOREPLYGOOGLE.COM@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 21-20020aca0d15000000b003a73a2ee4fbsor4978574oin.2.2023.08.04.23.06.41
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Fri, 04 Aug 2023 23:06:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 38ebnzbukacqlooker-studio-noreplygoogle.com@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20221208 header.b=UImPmSiC;
+       spf=pass (google.com: domain of 38ebnzbukacqlooker-studio-noreplygoogle.com@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=38ebNZBUKACQLOOKER-STUDIO-NOREPLYGOOGLE.COM@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1691215601; x=1691820401;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PwPeYWmle2nn6GIED2/Sw9RMFR4hel+s27YNJ2/xQWA=;
+        b=UImPmSiCVuw+ZFws27zhkz40ScejfhQCanMh3YLXEnRdZiMg+kk6LtR7lNr1Wpsgr6
+         xsxvEN3J4uFX0hBqjy8ExDUfahzz/LDym/4scnFkKuc9pFez0VV/0rMX8snMKXMPjzcK
+         WGmKERwSypabH2N5lOKVfLb5FpWkL89ehfOe+pXfFubdJMyMSspkSlWL4ee7b5O8uwOX
+         GUP93jxulvU4OI2PRAaPHNJbfMaTgQ2Q3GpsRxc11F0ZpK+nKzz1jUXxwl3sWBOAgaKS
+         L2/jjhookgKxIJB0V7jpnJZD5TPXnfSp83YBBjdCVSEKFu4Gm5lSrumkyBRiKZjqqa+T
+         AJEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691215601; x=1691820401;
+        h=to:from:subject:message-id:feedback-id:reply-to:date:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PwPeYWmle2nn6GIED2/Sw9RMFR4hel+s27YNJ2/xQWA=;
+        b=PUt0LAOS60h0h+Cqnnz0XQucy19crUf5+7vgNUtWQTFxFL/L7VZuZG3cWin435HhME
+         ylCVXO3/1Gm7dCk22V3/GbrSjoONl1NLacHuWvAKlZLOj+lyMkzD8A9f7KKCgpb+4XhF
+         pcBexUnMMxcCPBEmNUjb+7RbJHC0BSsPiCu/i2xVMSAMzShr3Mf5Ha3HwRgm7BHiLJyA
+         mamNsEg0uBvvFRSnVuZU1WromVBrrHGdjFfkuYhaldWB8xBp/YRYWpBqcXyAncrOCt79
+         5x7dji7rLParZxe77XZWYCPmpTJzcEl0F8Ddj1qKmbn32qL7Q4TiDYZ9prDccb3yVNwk
+         +FXw==
+X-Gm-Message-State: AOJu0YwYp1cEecub3GMhibOcNgDGS/iK6EmPcNmImzCLsCaR/Eswuwzd
+	/CSeLf4YeAoQRX3nJh86GYfI
+X-Google-Smtp-Source: AGHT+IHab/IsidPY1zyICkqLeytZ6aEVXB6z91kbWrtEogjHUWYR26GzBjpWUvIANUZrb196CNqnxlc=
+MIME-Version: 1.0
+X-Received: by 2002:a05:6808:2110:b0:3a7:8a1:9cdd with SMTP id
+ r16-20020a056808211000b003a708a19cddmr6444081oiw.28.1691215601485; Fri, 04
+ Aug 2023 23:06:41 -0700 (PDT)
+Date: Fri, 04 Aug 2023 23:06:41 -0700
+Reply-To: victor@nowhere.co.jp
+X-Google-Id: 4054782
+Feedback-ID: P365-0:C20143315:M110394118-en:gamma
+X-Notifications: a6887283f7c40000
+X-Notifications-Bounce-Info: AYb2H11vjxBxEkPDqVkGQDxnfCuUdYvpfzqbVubNi0TSg95Aal1HVZSeaYCdeXunshqJnHPtH-lY9eyOz0MeW9Dq5K0XcqwAfEDFpgWJ4tCzknMcozocNjxDdaWNY2wnQtMv-gJUD0guI1g8xih7XI0E49KxpXc01jeDf4S7ZR3PzxIHSXUI2hkaRMP8oSiCYWGtWpPGbDoZp-BWSWfND-hNV4RF5yVopqBXupTitupWt4eBOy1Y82fMA5aScy1wg7Xar-CCaBYvVccmz9k1hwp4NYVBL26mPZodTDu43UyPS50Q_FhsHkbI1fevUr-iUCWQac6X9LDQkLrMQWscqx2bP4whyeIdewRRpwNjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <068c07347ed8c22471ad2c5e2cd24c9e2102da18-20143315-110880842@google.com>
+Subject: Supermarket AI Stage I Demo - Request for access
+From: "Victor Khaustov (via Looker Studio)" <looker-studio-noreply@google.com>
+To: dawei.jiang@nowhere.co.jp
+Content-Type: multipart/alternative; boundary="0000000000002a47e6060226d191"
+
+--0000000000002a47e6060226d191
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+Share this report?
+
+Victor Khaustov (victor@nowhere.co.jp) is requesting access to the  
+following report:
+
+Please visit  
+https://lookerstudio.google.com/reporting/3267c78a-5ba2-4eb0-8d08-586af7aff5bf  
+to see the report in Data Studio.
+
+Please visit  
+https://lookerstudio.google.com/reporting/3267c78a-5ba2-4eb0-8d08-586af7aff5bf?access=editor&requester=victor%40nowhere.co.jp  
+to open sharing settings in Data Studio.
+
+Google Data Studio: Easy reporting and analysis across all your data.
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+You received this email because someone requested access to your file in  
+Google Data Studio.
+
+
+
+
+--0000000000002a47e6060226d191
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3Den>
+   <head>
+      <title>Looker Studio Request For Access</title>
+      <meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8=
+">
+   </head>
+   <body>
+      <div style=3D"width:100%;padding:24px 0 16px 0;background-color:white=
+;text-align:center">
+        <div style=3Ddisplay:inline-block;width:90%;max-width:700px;min-wid=
+th:280px;text-align:left;font-family:Roboto,Arial,Helvetica,sans-serif>
+            <div style=3D"border:1px solid #dadce0;border-radius:8px">
+              <div dir=3Dltr style=3Dpadding:4.5%>
+                  <div style=3D"font:normal 28px &quot;Google Sans&quot;,Ro=
+boto,sans-serif;line-height:36px;color:#1a73e8">Share this report?</div>
+                  <div style=3D"height: 32px;"></div>
+                  <table style=3Dfont-size:16px;line-height:24px;color:#202=
+124;letter-spacing:0.1px;table-layout:fixed;width:100%;overflow-wrap:break-=
+word;border-collapse:collapse role=3Dpresentation>
+                    <tbody>
+                        <tr>
+                          <td style=3Dvertical-align:top;width:50px;padding=
+:0>
+                              <img decoding=3Dasync alt=3D"Sender&#39;s pro=
+file photo" src=3Dhttps://lh3.googleusercontent.com/a/AAcHTtfVHf_2wQYl6v1RJ=
+UR-KDQycPXy7-8sOnMNHr2z3kenXMg=3Ds50 height=3D50 style=3D"border-radius: 50=
+%; width: 50px; height: 50px;">
+                          </td>
+                          <td style=3Dpadding:0>
+                              <div style=3D"padding:12px 0 0 12px">Victor K=
+haustov (<a href=3Dmailto:victor@nowhere.co.jp style=3Dcolor:inherit;text-d=
+ecoration:none target=3D_blank rel=3D"noreferrer noopener">victor@nowhere.c=
+o.jp</a>) is <b>requesting edit access</b> to the following report:</div>
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  <div style=3D"height: 32px;"></div>
+                  <div>
+                    <a href=3Dhttps://notifications.google.com/g/p/ANiao5ri=
+0OO3s9iVN_0THsMw4ujMhTh5WJ2NVMtKIL08BcvjEfcL57KY2VNMWIXGzFSq83BMSrLkHDbzxU5=
+52xDzZ5DN-u34JaDrqLyPjc3BHFzkO86E7Qqmxed0B1YWpwhQBWETjp3nDjKTZqA8avouzBXMGn=
+5RDqyyBGUUSUQamL7aqg2ExhSB0cnVl6m2CIaBdfunEnKfWXmDZ9C0KbCQovj2bWkpGClqP6eYQ=
+rXO2uCR8-Gqv2xbtpx-kmDTBg style=3D"border:1px solid #dadce0;border-radius:1=
+6px;color:#3c4043;display:inline-block;max-width:100%;text-decoration:none;=
+vertical-align:top" target=3D_blank rel=3D"noreferrer noopener">
+                        <div style=3D"line-height:18px;overflow:hidden;padd=
+ing:6px 12px;text-overflow:ellipsis;white-space:nowrap">
+                          <div style=3Ddisplay:inline-block;vertical-align:=
+top;width:26px>
+                            <img decoding=3Dasync src=3Dhttp://ssl.gstatic.=
+com/apps/cpanel/resources/img/data-studio-report-16.png height=3D18px style=
+=3D"vertical-align: top; width: 18px; height: 18px;" width=3D18px>
+                          </div>
+                          <div style=3D"display:inline;font:500 14px/18px &=
+quot;Google Sans&quot;,Roboto,sans-serif;letter-spacing:0.2px">Supermarket =
+AI Stage I Demo</div>
+                        </div>
+                    </a>
+                  </div>
+                  <div style=3D"height: 20px;"></div>
+                  <div>
+                    <a href=3Dhttps://notifications.google.com/g/p/ANiao5ob=
+RAjOd_pVFxzszPLjeitGLKkwKMtJ4BrlyyYqusOv9lBP0IDVXIpMSKgRu9nyY2KukDRUZr4IQlb=
+HMslUgmLtlBYv0Uih_UXH3t9CxJDr_CAip328iFpm0EVYfsa2dY73RyqEmGj2ANnM2Vswrtc25N=
+cSsZEgwcFEJpp-9D8pPRUsZI65BK07rgzmzPJ9_8jfsAs7LQpOwzBxUCpeOW8J2kZiJC77P48g7=
+QMKgwOSAlvGPfrgZ_xuJrlk9XTs08Yv4YJLYsR8XT9OWHrcwqItohwpBSMdgPAY-BO6jiwKsyZK=
+gi289BPIODPX role=3Dbutton style=3D"padding:0 8px;border:none;border-radius=
+:4px;box-sizing:border-box;display:inline-block;font:500 14px &quot;Google =
+Sans&quot;,Roboto,sans-serif;letter-spacing:.25px;line-height:36px;min-heig=
+ht:36px;text-align:center;text-decoration:none;vertical-align:top;color:#1a=
+73e8;" tabindex=3D0 target=3D_blank rel=3D"noreferrer noopener">Open sharin=
+g settings</a>
+                  </div>
+              </div>
+            </div>
+            <table style=3D"padding: 14px 10px 0 10px;" role=3Dpresentation=
+ dir=3Dltr>
+                    <tr>
+                        <td style=3D"width: 100%; font-size:11px; font-fami=
+ly: Roboto,Arial,Helvetica,sans-serif; color:#646464; line-height: 20px; mi=
+n-height: 40px; vertical-align: middle;">Looker Studio: Easy reporting and =
+analysis across all your data. <br>Google LLC, 1600 Amphitheatre Parkway, M=
+ountain View, CA 94043, USA <br>You received this email because someone req=
+uested access to your file in Looker Studio.</td>
+                        <td style=3D"padding-left: 20px; vertical-align: mi=
+ddle;"><img src=3Dhttps://www.gstatic.com/images/branding/googlelogo/1x/goo=
+glelogo_tm_black54_color_96x40dp.png width=3D96 border=3D0></td>
+                    </tr>
+                  </table>
+      </div>
+   </body>
+</html>
+--0000000000002a47e6060226d191--

@@ -1,0 +1,304 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:7404:b0:12f:24f9:7e58 with SMTP id s4csp7184829rwg;
+        Tue, 27 Jun 2023 22:04:23 -0700 (PDT)
+X-Received: by 2002:a19:6904:0:b0:4f8:5d0f:c779 with SMTP id e4-20020a196904000000b004f85d0fc779mr16837957lfc.40.1687928662840;
+        Tue, 27 Jun 2023 22:04:22 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1687928662; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=tD7eywz61RYgFC7wz9PdXx8iVVRQp1ROxhROcxBr+SjkWRuXop2eXilUptOhwdg01G
+         GTiwxjMDybdKRNyLG+PA3DfMwLp44Q5zt9QPxs+G85JenKfQYhpu2dQjxdLr7alQz5kc
+         QczTafsuiXUY6DU8u89RUpnB547cns9a5gD+HaUrb85i0BlIfIgaHJZwZpasHs4BTEgd
+         jcJxzugoqLwzkoYEFe59wHe4SHhcGmTF46euR/4Q04WZJU2q8E/2yF7uCcZYR/gmXrDG
+         8a8DVq49/EhUYcr9oygNsxQx8eJh2+QmF0cAsqvNWhup6Lg/5rG8AIjcQl3CNCrzkVnV
+         hx9w==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=TmVonT5ey2WwIGMP/gdZbVxdiWuSfYvl1k0s0OvOImU=;
+        fh=6+Oz1yFMJ5OTGmdr/P4whFt0iAOsFO6Mws92hiokUAU=;
+        b=BQIk5ahylERujCNxbydsjOavC3aG6Ben92jgY7yMNpOVs98KtBK/7qbo/wOHUBLtpS
+         hXsXLogwxnKIHyTiL5YW/kEMjms/09RXoHlGgkYtmGmiAkoR3f9Ofrejd+JCGylSXqah
+         dccXArazjfzCf5MDLBKQ4a1ysFbjvYU/vvTxspaBBaO22151jIeNXOfN+n5qdYTsI9IK
+         1TFfHTUkdpK8h0ry8TqzMrRbVz0GyGsm5zh3alJ+tzYHk+nJuvGD8Va+hX067xIRdyHN
+         b/1EcWHlKmQJjIasiOLHuTas7mMpMFCfK2KeyYTeyTMzQ0E4K2DXxVjo7fq23Qy77uw+
+         kueg==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Gv5FPOX1;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of eyes+bncbdpnxxpdz4krbvp652samgqet6zva3i@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=eyes+bncBDPNXXPDZ4KRBVP652SAMGQET6ZVA3I@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <eyes+bncBDPNXXPDZ4KRBVP652SAMGQET6ZVA3I@nowhere.co.jp>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id u28-20020a19791c000000b004fb7d11054esor1863791lfc.11.2023.06.27.22.04.22
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 27 Jun 2023 22:04:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of eyes+bncbdpnxxpdz4krbvp652samgqet6zva3i@nowhere.co.jp designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Gv5FPOX1;
+       arc=pass (i=2 spf=pass spfdomain=nowhere.co.jp dkim=pass dkdomain=nowhere.co.jp dmarc=pass fromdomain=nowhere.co.jp);
+       spf=pass (google.com: domain of eyes+bncbdpnxxpdz4krbvp652samgqet6zva3i@nowhere.co.jp designates 209.85.220.69 as permitted sender) smtp.mailfrom=eyes+bncBDPNXXPDZ4KRBVP652SAMGQET6ZVA3I@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+ARC-Seal: i=2; a=rsa-sha256; t=1687928662; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=hqnoSvsriOzSZUUJ+SlvPv5/1tUhtEwy6/ar0obLWypBjeO8QKQcupnujhdHo7LqR/
+         SmIsdxvbcTx4QwTFeHxa/irqiXjRhpy6tSpVRgCH+kxipszEjzj8aa0iCltfp0GJnhqZ
+         QL3JxSA1uYzjnZm3H5qBTIECNV5eODGGoBCYkRff8kW7ticXt0lzjgeuPuECxauHZebR
+         yFJy9YWuxhh1yBbYuDKg4QY5Lq5R3HwcIow7NSGvDDgykLIHcR8wH9qVOQSN+P0j1coZ
+         qlv39Y0PzvHY90c1MzVjXOVZ5G9y242ms3Qk0wVW3Kq/lJwjC4mDtlY8zVd44qb+yP0m
+         ei5Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=TmVonT5ey2WwIGMP/gdZbVxdiWuSfYvl1k0s0OvOImU=;
+        b=pJ6nEp9/qXKibK0Lrq9RFLrqf9kBJkpWwsYx/aA8RJD1Ynm/vGhQkO8+0vC7Hwg6RY
+         65T2ZrX6r59vDeyNuufXc/srBGKbAXpvvEoTLhMYZOdEK4+RQpF18dX8FVgI4TKxDQ+o
+         eRVmGANb+GuDE5+ukaebdzSGP3WNokXp0d9xZROErxjaS9zu3ouYen3/Mv9NH8/KqzJs
+         +3zsYpnqjIWVai5hNkiKWrT/Yr2fkrOO1piuMfPOYS/RLrgpJ8vaa3agkLdEIfqUwgw3
+         jWDlvmowbG+RLQyUX5MFoCHfv/u1rDlQFEpJb5iQiBgXYzOV943gBVfg1LhfLcW7L+BE
+         dT8A==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Yr+cuqqV;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1687928662; x=1690520662;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:x-original-authentication-results
+         :x-original-sender:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TmVonT5ey2WwIGMP/gdZbVxdiWuSfYvl1k0s0OvOImU=;
+        b=Gv5FPOX1PYGQ9PgiM15nO9NXaS2NDqDemyg+TCMuk3WYfxbQW+rd4flXxsW5IgWXD1
+         7nd6NaWECjBw51KyHy/3rUb2hxFshn9kYnjuPsL4E//M8K2ayMGiP9K++KxrHn9PmkYX
+         mHH20rgD4oTqGVqM/d38t7EOuxJjkq4/If3iA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687928662; x=1690520662;
+        h=list-unsubscribe:list-archive:list-help:list-post
+         :x-spam-checked-in-group:list-id:mailing-list:precedence
+         :x-original-authentication-results:x-original-sender:cc:to:subject
+         :message-id:date:from:in-reply-to:references:mime-version
+         :x-beenthere:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TmVonT5ey2WwIGMP/gdZbVxdiWuSfYvl1k0s0OvOImU=;
+        b=FlJvaMnGJsuLcCqjc+Nbwet3nTlMo8b+4QNFDbiCO7XSXsNAGNE3ia8WBYM+vqKDnz
+         8Pwv+wplIDy9wNitxEGEsbyrvbqfkx+3GSgiF+CDWOgggmagXEwNruVJS0PGhFQNQcG7
+         RlzpKnqH0jdJdIh3yZPXnjTeNyKuNewCKVfO3i4Koa+L9N8w6sx3kZ3avvqJFNmbZEJo
+         YvGFpPIUs483Mtt+nqVcjHEC1Jbem5zxHeW5RqEFJ5rgrc3uLY4sfLAY0pD9qjX/e6Zj
+         LTbgbL48KGP/fcowf3TE5NYdSXAd0K2x5V3O+6xYhJW2BPq0Y/iRVaFmqXH0vOO0FbGG
+         i+/A==
+X-Gm-Message-State: AC+VfDwY+zPx2OoyPL12ci9JzV55rZcQpYARYKfcaXU0gdqL9ovMz4HT
+	wFcqokyDRQI6ofwK9pNlKOonsxzG
+X-Google-Smtp-Source: ACHHUZ6awYd701ejDBzwSp1locZZRZI6efvhPlt4Q1HcrmFFr2jLHjmTLh+TtSfjURAPi+PR3b4teQ==
+X-Received: by 2002:a2e:a16b:0:b0:2b4:6dbf:e700 with SMTP id u11-20020a2ea16b000000b002b46dbfe700mr20806997ljl.38.1687928662102;
+        Tue, 27 Jun 2023 22:04:22 -0700 (PDT)
+X-BeenThere: eyes@nowhere.co.jp
+Received: by 2002:a2e:a692:0:b0:2b6:bf6a:f7a3 with SMTP id q18-20020a2ea692000000b002b6bf6af7a3ls39097lje.0.-pod-prod-06-eu;
+ Tue, 27 Jun 2023 22:04:20 -0700 (PDT)
+X-Received: by 2002:a2e:9b52:0:b0:2b4:6f0c:4760 with SMTP id o18-20020a2e9b52000000b002b46f0c4760mr19172199ljj.11.1687928659945;
+        Tue, 27 Jun 2023 22:04:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1687928659; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wuFdTA2bCe1PIvDj6MC0p1KMuf0jQyPg4+AsnjFWKok6zSIdgVWojzeKIQkF1yjwQp
+         vpdTplP+FUofDqsrzrhLxTPZ5yB58hoU37AJgW23zG5Gr/mMAZ4hl6n+9UmIpojf9qxH
+         hOg/RYnjK+t/vI4kjFXjFKv6dgtPFrd62nc/xFhoWMmNZDJHVeHLuuYHlvqBNLMioH/N
+         Z5HZ/JRK3ZeMNoezZVDPt6LzdE/GK5teubwqCGWB/SKKrzKgH54/b0ROTz9OGtxa++Gx
+         eJ0PkH2WFH4mVcdy5sWQ/m5jPTAtUOMGkoCy7ZbSw9PAVmOp4jaxu0O0TewYEVgIVD5L
+         EUyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=TmVonT5ey2WwIGMP/gdZbVxdiWuSfYvl1k0s0OvOImU=;
+        fh=6+Oz1yFMJ5OTGmdr/P4whFt0iAOsFO6Mws92hiokUAU=;
+        b=zaStKaOIqdPWnWcKQqMUd/DylJ4hpBFN6oBLXOgyxyUx0j4t1JyTK82k3XImzyUnqO
+         ruAHy+iI+dhNd7obp1snai4dxtrqiYMb6ut7RIMawZnjjA9ATCh/gUp6rK/Nq7kMzD4h
+         c45pjA9qL7XtWRMoP5bN66DkKkvNz0nsQixbd3FqfrRef8rNNhkT5vrQhtJHvSu2mpm2
+         BZ2KivYfMtotIVmBjTozM+vluaOC+ZoRhOVCg+FqMKD8pZk6eAdyxZ7KrZEdw0O0uc0V
+         32+/80itM2nbBSZZLkZMpNLJoh8mJU4FLm5d6U4jiOKfy/qyX5xLTdmm/GuiEWeiUHB8
+         jlgA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Yr+cuqqV;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id z24-20020a05600c221800b003fa98c37dc3sor1995034wml.1.2023.06.27.22.04.19
+        for <eyes@nowhere.co.jp>
+        (Google Transport Security);
+        Tue, 27 Jun 2023 22:04:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of yamadera@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+X-Received: by 2002:a05:600c:3655:b0:3fa:9d0f:f1e1 with SMTP id
+ y21-20020a05600c365500b003fa9d0ff1e1mr5191151wmq.35.1687928659397; Tue, 27
+ Jun 2023 22:04:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <44c14c58-3577-407b-bc8e-651fe3f444ac@Spark> <544fd514-876e-46c4-ba51-563165d5ddc7@Spark>
+In-Reply-To: <544fd514-876e-46c4-ba51-563165d5ddc7@Spark>
+From: Jun Yamadera <yamadera@nowhere.co.jp>
+Date: Wed, 28 Jun 2023 14:04:08 +0900
+Message-ID: <CANo=jaRbbS3eqXX0Fm_vjQX1=mQars8wMAqsKnuZ+dodxy7jvA@mail.gmail.com>
+Subject: =?UTF-8?B?W2V5ZXMgMTA5MzhdIFJlOiDjgJDkvJHmmofnlLPoq4vjgJFGRU5HIDIwMjMvNy8z?=
+To: Jueming Feng <feng.jueming@nowhere.co.jp>
+Cc: Full time Staff <eyes@nowhere.co.jp>, Naomi Yamadera <oguma@nowhere.co.jp>
+Content-Type: multipart/alternative; boundary="000000000000265fe705ff29846c"
+X-Original-Sender: yamadera@nowhere.co.jp
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=Yr+cuqqV;
+       spf=pass (google.com: domain of yamadera@nowhere.co.jp designates
+ 209.85.220.41 as permitted sender) smtp.mailfrom=yamadera@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Precedence: list
+Mailing-list: list eyes@nowhere.co.jp; contact eyes+owners@nowhere.co.jp
+List-ID: <eyes.nowhere.co.jp>
+X-Spam-Checked-In-Group: eyes@nowhere.co.jp
+X-Google-Group-Id: 79821179279
+List-Post: <https://groups.google.com/a/nowhere.co.jp/group/eyes/post>, <mailto:eyes@nowhere.co.jp>
+List-Help: <https://support.google.com/a/nowhere.co.jp/bin/topic.py?topic=25838>,
+ <mailto:eyes+help@nowhere.co.jp>
+List-Archive: <https://groups.google.com/a/nowhere.co.jp/group/eyes/>
+List-Unsubscribe: <mailto:googlegroups-manage+79821179279+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/nowhere.co.jp/group/eyes/subscribe>
+
+--000000000000265fe705ff29846c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+44GK55ay44KM5qeY44CC5LqG6Kej44Gn44GZDQoNCjIwMjPlubQ25pyIMjjml6Uo5rC0KSAxMzoy
+NCBKdWVtaW5nIEZlbmcgPGZlbmcuanVlbWluZ0Bub3doZXJlLmNvLmpwPjoNCg0KPiDlsbHlr7rj
+gZXjgpPjgIHlsI/nhorjgZXjgpMNCj4NCj4g44GK55ay44KM5qeY44Gn44GZ44CC6aau44Gn44GZ
+44CCDQo+DQo+IOS4i+iomOOBrumAmuOCiuS8keaah+OCkuOBhOOBn+OBoOOBjeOBn+OBhOOBruOB
+p+OBmeOBjOOAgeOCiOOCjeOBl+OBhOOBp+OBl+OCh+OBhuOBi+OAgg0KPiDjgZTmpJzoqI7jga7n
+qIvjgojjgo3jgZfjgY/jgYrpoZjjgYTjgYTjgZ/jgZfjgb7jgZnjgIINCj4NCj4g5LyR5pqH56iu
+5YilOiDmnInntaYNCj4NCj4g5LyR5pqH5pelOiA35pyIM+aXpe+8iOS7iuW5tOW6pjXml6Xnm67j
+gIHmrovjgoo35pel77yJDQo+DQo+IOOBvuOBnzbml6Xjga/kvJrnpL7jgavooYzjgY3jgb7jgZnj
+gIINCj4g77yI44OX44Os44K844Oz77yG54Cn44Gu5rmv44Oh44O844Or44OH44O844K/44Gu5Zue
+5Y+O77yG5p2x5piO5a+644Gu44OR44K944Kz44Oz6Kit5a6a77yJDQo+DQo+IOKUgeKUgeKUgeKU
+geKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKU
+geKUgeKUgeKUgeKUgQ0KPiDmoKrlvI/kvJrnpL5FeWVzLCBKQVBBTg0KPiDppq4g54+P6YqYIChK
+dWVtaW5nIEZlbmcpDQo+IOKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKA
+puKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApuKApg0KPiDjgJI5NjUtMDg3MiDn
+po/ls7bnnIzkvJrmtKXoi6Xmnb7luILmnbHmoITnlLo5LTE1DQo+IDxodHRwczovL3d3dy5nb29n
+bGUuY29tL21hcHMvc2VhcmNoLzk2NS0wODcyKyVFNyVBNiU4RiVFNSVCMyVCNiVFNyU5QyU4QyVF
+NCVCQyU5QSVFNiVCNCVBNSVFOCU4QiVBNSVFNiU5RCVCRSVFNSVCOCU4MiVFNiU5RCVCMSVFNiVB
+MCU4NCVFNyU5NCVCQTktMTU/ZW50cnk9Z21haWwmc291cmNlPWc+DQo+IE5UVOadseaghOeUuuOD
+k+ODqw0KPiBURUw6IDAyNDItMzgtMjAyMyBGQVg6IDAyNDItMzgtMjA4MA0KPiDilIHilIHilIHi
+lIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHi
+lIHilIHilIHilIHilIENCj4NCi0tIA0KLS0tLS0tLS0tLS0tLSB0aGUgTWlkZGxlIG9mIE5vd2hl
+cmUsIEV5ZXMsIEpBUEFOIENvLiBMdGQuLS0tLS0tLS0tLS0NCiAgICAgICBKdW4gWWFtYWRlcmEg
+ICBlLW1haWw6ICB5YW1hZGVyYUBub3doZXJlLmNvLmpwDQoiQW55IHN1ZmZpY2llbnRseSBhZHZh
+bmNlZCB0ZWNobm9sb2d5IGlzIGluZGlzdGluZ3Vpc2hhYmxlDQpmcm9tIG1hZ2ljIiBBcnRodXIg
+Qy4gQ2xhcmtlDQotLVVSTDogaHR0cDovL3d3dy5ub3doZXJlLmNvLmpwICAgZS1tYWlsOiAgaW5m
+b0Bub3doZXJlLmNvLmpwIC0tDQo=
+--000000000000265fe705ff29846c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">=E3=81=8A=E7=96=B2=E3=82=8C=E6=A7=98=E3=80=
+=82=E4=BA=86=E8=A7=A3=E3=81=A7=E3=81=99</div><div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">2023=E5=B9=B46=E6=9C=8828=E6=97=
+=A5(=E6=B0=B4) 13:24 Jueming Feng &lt;<a href=3D"mailto:feng.jueming@nowher=
+e.co.jp">feng.jueming@nowhere.co.jp</a>&gt;:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">
+
+
+
+<div>
+<div name=3D"messageBodySection">
+<div dir=3D"auto"><span style=3D"color:#000000;font-size:small">=E5=B1=B1=
+=E5=AF=BA=E3=81=95=E3=82=93=E3=80=81=E5=B0=8F=E7=86=8A=E3=81=95=E3=82=93</s=
+pan><span style=3D"font-size:small"><br></span><span style=3D"font-size:sma=
+ll"><br></span><span style=3D"color:#000000;font-size:small">=E3=81=8A=E7=
+=96=B2=E3=82=8C=E6=A7=98=E3=81=A7=E3=81=99=E3=80=82=E9=A6=AE=E3=81=A7=E3=81=
+=99=E3=80=82</span><span style=3D"font-size:small"><br></span><span style=
+=3D"font-size:small"><br></span><span style=3D"color:#000000;font-size:smal=
+l">=E4=B8=8B=E8=A8=98=E3=81=AE=E9=80=9A=E3=82=8A=E4=BC=91=E6=9A=87=E3=82=92=
+=E3=81=84=E3=81=9F=E3=81=A0=E3=81=8D=E3=81=9F=E3=81=84=E3=81=AE=E3=81=A7=E3=
+=81=99=E3=81=8C=E3=80=81=E3=82=88=E3=82=8D=E3=81=97=E3=81=84=E3=81=A7=E3=81=
+=97=E3=82=87=E3=81=86=E3=81=8B=E3=80=82</span><span style=3D"font-size:smal=
+l"><br></span><span style=3D"color:#000000;font-size:small">=E3=81=94=E6=A4=
+=9C=E8=A8=8E=E3=81=AE=E7=A8=8B=E3=82=88=E3=82=8D=E3=81=97=E3=81=8F=E3=81=8A=
+=E9=A1=98=E3=81=84=E3=81=84=E3=81=9F=E3=81=97=E3=81=BE=E3=81=99=E3=80=82</s=
+pan><span style=3D"font-size:small"><br></span><span style=3D"font-size:sma=
+ll"><br></span><span style=3D"color:#000000;font-size:small">=E4=BC=91=E6=
+=9A=87=E7=A8=AE=E5=88=A5</span><span style=3D"color:#000000;font-family:UIC=
+TFontTextStyleBody;font-size:small">:=C2=A0=E6=9C=89=E7=B5=A6</span><span s=
+tyle=3D"font-size:small"><br></span><span style=3D"font-size:small"><br></s=
+pan><span style=3D"color:#000000;font-size:small">=E4=BC=91=E6=9A=87=E6=97=
+=A5</span><span style=3D"color:#000000;font-family:UICTFontTextStyleBody;fo=
+nt-size:small">:</span><span style=3D"color:#000000;font-size:small">=C2=A0=
+7=E6=9C=883=E6=97=A5=EF=BC=88=E4=BB=8A=E5=B9=B4=E5=BA=A65=E6=97=A5=E7=9B=AE=
+=E3=80=81=E6=AE=8B=E3=82=8A7=E6=97=A5=EF=BC=89</span><span style=3D"font-si=
+ze:small"><br></span><span style=3D"font-size:small"><br></span>=E3=81=BE=
+=E3=81=9F6=E6=97=A5=E3=81=AF=E4=BC=9A=E7=A4=BE=E3=81=AB=E8=A1=8C=E3=81=8D=
+=E3=81=BE=E3=81=99=E3=80=82<br>
+=EF=BC=88=E3=83=97=E3=83=AC=E3=82=BC=E3=83=B3=EF=BC=86=E7=80=A7=E3=81=AE=E6=
+=B9=AF=E3=83=A1=E3=83=BC=E3=83=AB=E3=83=87=E3=83=BC=E3=82=BF=E3=81=AE=E5=9B=
+=9E=E5=8F=8E=EF=BC=86=E6=9D=B1=E6=98=8E=E5=AF=BA=E3=81=AE=E3=83=91=E3=82=BD=
+=E3=82=B3=E3=83=B3=E8=A8=AD=E5=AE=9A=EF=BC=89</div>
+</div>
+<div name=3D"messageSignatureSection"><br>
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E2=94=81=E2=94=81=E2=94=
+=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=
+=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=
+=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81</span=
+><br style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&quo=
+t;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E6=A0=AA=E5=BC=8F=E4=BC=
+=9A=E7=A4=BEEyes, JAPAN</span><br style=3D"color:rgb(0,0,0);font-family:-ap=
+ple-system,&quot;Segoe UI&quot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiry=
+o">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E9=A6=AE =E7=8F=8F=E9=8A=
+=98 (Jueming Feng)</span><br style=3D"color:rgb(0,0,0);font-family:-apple-s=
+ystem,&quot;Segoe UI&quot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E2=80=A6=E2=80=A6=E2=80=
+=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=
+=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=
+=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6</span=
+><br style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&quo=
+t;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E3=80=92<a href=3D"https=
+://www.google.com/maps/search/965-0872+%E7%A6%8F%E5%B3%B6%E7%9C%8C%E4%BC%9A=
+%E6%B4%A5%E8%8B%A5%E6%9D%BE%E5%B8%82%E6%9D%B1%E6%A0%84%E7%94%BA9-15?entry=
+=3Dgmail&amp;source=3Dg">965-0872 =E7=A6=8F=E5=B3=B6=E7=9C=8C=E4=BC=9A=E6=
+=B4=A5=E8=8B=A5=E6=9D=BE=E5=B8=82=E6=9D=B1=E6=A0=84=E7=94=BA9-15</a>=E3=80=
+=80NTT=E6=9D=B1=E6=A0=84=E7=94=BA=E3=83=93=E3=83=AB</span><br style=3D"colo=
+r:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&quot;,&quot;Segoe UI =
+Emoji&quot;,sans-serif,Meiryo">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">TEL: 0242-38-2023=E3=80=
+=80FAX: 0242-38-2080</span><br style=3D"color:rgb(0,0,0);font-family:-apple=
+-system,&quot;Segoe UI&quot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">
+<span style=3D"color:rgb(0,0,0);font-family:-apple-system,&quot;Segoe UI&qu=
+ot;,&quot;Segoe UI Emoji&quot;,sans-serif,Meiryo">=E2=94=81=E2=94=81=E2=94=
+=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=
+=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=
+=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81</span=
+><br></div>
+</div>
+
+</blockquote></div></div><span class=3D"gmail_signature_prefix">-- </span><=
+br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:Helvetic=
+a;font-size:12px">------------- the Middle of Nowhere, Eyes, JAPAN Co. Ltd.=
+-----------</span><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-=
+size:12px"><span style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:=
+12px">=C2=A0 =C2=A0 =C2=A0 =C2=A0Jun Yamadera =C2=A0 e-mail: =C2=A0<a href=
+=3D"mailto:yamadera@nowhere.co.jp" target=3D"_blank">yamadera@nowhere.co.jp=
+</a></span><br style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12=
+px"><span style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">&=
+quot;Any sufficiently advanced technology is indistinguishable</span><br st=
+yle=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px"><span style=
+=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:12px">from magic&quot;=
+=E3=80=80Arthur C. Clarke</span><br style=3D"color:rgb(0,0,0);font-family:H=
+elvetica;font-size:12px"><span style=3D"color:rgb(0,0,0);font-family:Helvet=
+ica;font-size:12px">--URL: <a href=3D"http://www.nowhere.co.jp" target=3D"_=
+blank">http://www.nowhere.co.jp</a> =C2=A0 e-mail: =C2=A0<a href=3D"mailto:=
+info@nowhere.co.jp" target=3D"_blank">info@nowhere.co.jp</a> --</span><br><=
+/div></div>
+
+--000000000000265fe705ff29846c--

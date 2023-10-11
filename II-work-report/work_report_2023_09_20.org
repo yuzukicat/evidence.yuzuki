@@ -1,0 +1,6 @@
+2023-09-20
+*PD Project - Android Application Development*
+Documentation aspect of our Android Application project, specifically the creation of the README.md file.
+The README.md file is instrumental in providing guidance to users and developers alike on how to deploy the back-end resources on AWS. It serves as a roadmap to understanding the structure of the project, the deployment process and any potential issues and fixes that may arise.
+Despite the complexity that surrounds Amazon Web Services (AWS), our aim was to make the README.md file comprehensive yet easy to understand.
+Drafting the README.md file for deploying back-end resources on AWS in our Android application project. The instructions and guidelines have been written with precision to ensure a smooth deployment process.

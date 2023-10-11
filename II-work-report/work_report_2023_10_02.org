@@ -1,0 +1,21 @@
+#+begin_ai
+This report provides a detailed summary of my work activities and the status of various assignments for the current status.
+
+1. Following are the recent agreements and updates from a reconfirmation with Tang:
+  
+   a) The Osaka University Project with a deadline for September 22 has been categorized as having no tasks assigned to Yuzuki-san.
+
+   b) All tasks related to PD - Android Application Development have been shifted to a suspension mode, under the management of Tang. This was not communicated until last Friday when I initiated a discussion about PD-related arrangements.
+
+   c) Tasks linked with Android Application Development have been approved and marked as completed by Tang. This includes the Demo segment with two primary components, GraphQL, and Auth, requiring completion by the end of October.
+
+   d) Despite Yuzuki-san's active involvement in the Osaka University Project by reading codes and attempting to enhance the docker file, this work is not being recognized as an official task or has not been "tasklized."
+
+   e) The tasks relating to Auth and API, which have been demarcated as completed, are not subject to reassignment or "retasklizing."
+   
+   f) Tang elected not to report the above-mentioned developments to Yamadera-san. Therefore, I am including them in this report for the sake of complete transparency.
+
+2. As of now, there are no specific tasks assigned to me. Awaiting further direction for project assignments.
+
+I will continue to monitor progress and maintain my readiness to undertake new tasks as they are assigned. Please let me know about any adjustments or clarifications needed in terms of task allocation or project involvement.
+#+end_ai

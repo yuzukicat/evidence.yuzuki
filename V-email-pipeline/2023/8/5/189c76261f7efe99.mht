@@ -1,0 +1,318 @@
+Delivered-To: dawei.jiang@nowhere.co.jp
+Received: by 2002:a05:6358:511a:b0:134:c132:59db with SMTP id 26csp711734rwi;
+        Sat, 5 Aug 2023 13:27:40 -0700 (PDT)
+X-Received: by 2002:ac2:4f0b:0:b0:4f9:cd02:4aec with SMTP id k11-20020ac24f0b000000b004f9cd024aecmr4848193lfr.29.1691267260729;
+        Sat, 05 Aug 2023 13:27:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1691267260; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CPfZL4Pn1Zldd9fH2gbhtBTAJcoG5phW2X0NkUpZ6+G5mNCL++xW8d9AXIiG7oF2hg
+         IXIXkxqgQ6pe1Eoqn8abirb5VWBYQrfNgP5Hrvd9D2n6Bljim+vmwf+j/BNDTjfIWn+M
+         zeAnRcQVRi/TRS5DiVzWsWb/dn8QK3guVA12Dr7QtYMBDiG5DF0QelCsWUeR6m9/SykA
+         pmz9tat+yNjS8ntkRKggSENBQdZ45EcBWe5LRr/Y3F/dbWFGELN7rPzNSxxTi7AyPEq1
+         hifcoSAhEFaeC0fCrenKl7zsTcGo2XGxOv3nMTge6QlduzKMiU6SdcxhoOibJ9gknxEK
+         mpXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=QRTdZiAhyL41TNA6ROTglbFRVVMjTg9NuS7skw/W/RQ=;
+        fh=woLKMQ24bo26OJxCckJ0nRHz0tsBkKLkZYy9O7yxl40=;
+        b=sCsk+o0n7xZxt3YKYK+hqRrVW67P65jng7soElq2enWcAlgfE1Zm43PMm09+zn+3Jr
+         HEwpdrWCgXmKuFvhsR0ZF0effX1aLM9CoSRFr7Csaal6NdXYuQXxW3Ih+qHtkv/8yQHH
+         ll4GjFL5Nbo42Si+b2wpIVUv2lUJvQhQEgTIzliq3LLcblum4C0oZovZDx95lqm1az5V
+         7y+xxB66c0l5Rfec3fs/gmHneFeRbLoH2G4zgWtyFf8qIOpVQGS08R6c8NLWwWbOVjmY
+         wzgpNNxyLFl5JW7nySJp4Q2FHCuUeXyvKvXcfkTk+RwMdgFWOjHK8L3UxNfT9JYRu2H2
+         UaUw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=VCacWGh9;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+Return-Path: <victor@nowhere.co.jp>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id i26-20020a198c5a000000b004f857f231edsor1902736lfj.9.2023.08.05.13.27.40
+        for <dawei.jiang@nowhere.co.jp>
+        (Google Transport Security);
+        Sat, 05 Aug 2023 13:27:40 -0700 (PDT)
+Received-SPF: pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@nowhere.co.jp header.s=r6k53in8es7g94a2 header.b=VCacWGh9;
+       spf=pass (google.com: domain of victor@nowhere.co.jp designates 209.85.220.41 as permitted sender) smtp.mailfrom=victor@nowhere.co.jp;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=nowhere.co.jp
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nowhere.co.jp; s=r6k53in8es7g94a2; t=1691267260; x=1691872060;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QRTdZiAhyL41TNA6ROTglbFRVVMjTg9NuS7skw/W/RQ=;
+        b=VCacWGh9j67/i/10u70hXweoJKE9IknbIVSekIdk9xnNux2WfbmFOaCTrC7quw/ArM
+         80HO5x0kKsnk+pIexHDmppr/5a1TVc0z+RFNSNJuEHWxFTRUV0M+0fuYAWfBTqCmnq6w
+         erC6Fmhp8IQE+Daam0BaMSSkrrIfPBCwdqngw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1691267260; x=1691872060;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QRTdZiAhyL41TNA6ROTglbFRVVMjTg9NuS7skw/W/RQ=;
+        b=RAv2kxvFX+x0eY1OBg0U1tFjzmL/x3P7/U3mGCNfZPoIm/7KmRTvYkkZU0naLQ0o7U
+         fDOVvDU6tXRKJlqaBOfDerm9GXBhL4Te0bvXL2guapJIEWtCtN2Rs2EZ3JCz+3WYmNNm
+         qWOWBulsGb9Sl495jerO1jgbHYdptaijfq3+ysBBHb7Elqb1Gnx5mgRLitMMsbBGjSxI
+         PMshsz2asagsE5h54ta0AzN8r4OIPAlVAx90vEUdwUjJRH/RTqdRuwpyE8IwyJicdra1
+         87znoDKC83N8BJK93Br3N+QTRWUn1VojYCsi3AqDTUo7gdUAiejermXchXfVNmgky1YJ
+         x01A==
+X-Gm-Message-State: AOJu0Yws+y6gisZoRZsBDoGt3GaP1xRzlipYllgqnOWFEw5F5YmojVup
+	D515AySZBJy8bgUEW6V4Gzg0LN8TYILvl61rJPVJF+ngY8MkqQ==
+X-Google-Smtp-Source: AGHT+IG8aBE8WaspK8wZYqCInpUWLL46dBetosD0A6TTPfT2wcCZshPeBazR3RaWno6BJ0exI0RJZw==
+X-Received: by 2002:ac2:5e35:0:b0:4fd:fabf:b923 with SMTP id o21-20020ac25e35000000b004fdfabfb923mr3321463lfg.14.1691267259830;
+        Sat, 05 Aug 2023 13:27:39 -0700 (PDT)
+Return-Path: <victor@nowhere.co.jp>
+Received: from smtpclient.apple ([185.65.50.66])
+        by smtp.gmail.com with ESMTPSA id r7-20020ac24d07000000b004fe3e0956ffsm852288lfi.142.2023.08.05.13.27.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 05 Aug 2023 13:27:39 -0700 (PDT)
+From: Victor Khaustov <victor@nowhere.co.jp>
+Message-Id: <9D81D456-B97B-4EF9-BC21-D070221C03D0@nowhere.co.jp>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_326507C0-2B05-439E-B6CC-4852A823D8FC"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6\))
+Subject: Re: Addressing Client Concerns and Ensuring Alignment with the
+ original design
+Date: Sat, 5 Aug 2023 23:27:27 +0300
+In-Reply-To: <9d658a68-fdf4-b4c5-b0a3-e2c6de0f5488@nowhere.co.jp>
+Cc: cherubin@nowhere.co.jp,
+ Jun Yamadera <yamadera@nowhere.co.jp>,
+ ogbodo.mark@nowhere.co.jp
+To: Sara Yuzuki <dawei.jiang@nowhere.co.jp>
+References: <9d658a68-fdf4-b4c5-b0a3-e2c6de0f5488@nowhere.co.jp>
+X-Mailer: Apple Mail (2.3731.700.6)
+
+
+--Apple-Mail=_326507C0-2B05-439E-B6CC-4852A823D8FC
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Dear Sara,
+
+I read the 45-minute transcript of your conversation with Cherubin to =
+understand the whole situation. It looks like we=E2=80=99re going back =
+and forth over and over again.
+
+Let me briefly repeat the main idea of the meeting with Yamadera san and =
+you at the beginning of May (including the follow-up emails): You should =
+prepare the prototype in Looker Studio for the client that can visualize =
+the sales of the provided data (from August to February) and the =
+predicted data for a short period. Mark would prepare the predicted data =
+once you had provided him with the necessary format. Moreover, Yamadera =
+san told you that nobody expects the ideal predictions because the =
+amount of data is small (and also because we didn=E2=80=99t have time =
+and resources to apply advanced models). You were assigned to prepare =
+the Looker Studio prototype and ask Mark to provide the data in the =
+appropriate format. I offered to help answer questions and provide =
+suggestions (but not with =E2=80=9Cleading the project=E2=80=9D, since =
+it=E2=80=99s a quick prototype).=20
+
+So both of your questions can be answered based on that idea:
+- we decided to run the prediction for one month to showcase the =
+possibility of predicting the trends of sales. It=E2=80=99s not ideal, =
+but it repeats the general trend.
+- in Machine learning, you need to use some of the data for training. =
+That=E2=80=99s why the data from August to January is used to train the =
+model that predicts the sales in February.
+
+So what you should do now: visualize the predicted data for February. =
+You told Cherubin that you received some predicted data from Edward and =
+you think that it fits better. In such a case, you can visualize =
+Edward=E2=80=99s data (but ask him to explain how he got it). By the =
+way, you haven=E2=80=99t shared the Looker Studio report with me yet and =
+only recently shared it with some team members. If you had finished the =
+prototype a long time ago, you could share it with everybody by using =
+dummy data instead of the predicted one. In such a case, your work would =
+be completed.
+
+You can even share two reports: one with Mark=E2=80=99s data and the =
+other one with Edward=E2=80=99s, so we could compare, discuss, and make =
+the decision together.
+
+If you look again at the requirements: develop a quick prototype for the =
+customers to show what is possible in Looker Studio. If they like it, =
+there will be additional development of the interface, prediction model, =
+etc.
+
+Best regards,
+Victor Khaustov
+
+> On Aug 4, 2023, at 11:20, Sara Yuzuki <dawei.jiang@nowhere.co.jp> =
+wrote:
+>=20
+> Dear Cherubin:
+>=20
+> There have been some concerns raised by our customers regarding the =
+output being developed by Machine Team. Specifically, they have =
+presented us with two questions we need to address:
+>=20
+> [ ] Why is the system only generating predictions for one month in =
+advance?
+> [ ] Why are there no predictions available for the period ranging from =
+August 2022 to January 2023?
+> The nature of these questions suggests that the current output does =
+not align with our original design, which has been clearly outlined in =
+the requirement definitions. As a reminder, the documentation can be =
+found at our GitHub repository at: =
+https://github.com/eyesjapan/google-data-studio/blob/main/requirement-defi=
+nition.md
+>=20
+> [ ] The client prefers to use Google Data Studio for visualization. I =
+understand that if we encounter any limitations during the project, we =
+are not responsible, as we are following the client's instructions.
+> [ ] The AI prediction for overlaying daily sales at specific times =
+(e.g., 12, 15, 17) will be handled by Mark, not me. I will be =
+responsible for visualizing the data provided by Mark, which should be =
+in CSV format.
+> [ ] The selection of days with no significant incidents to show the =
+difference between AI predictions and real results will also be provided =
+by Mark. My responsibility is to present the view of the CSV data or =
+results.
+> [ ] The same applies to the daily sales predictions for the three =
+stores. I will be responsible for data visualization, but the data =
+should be predicted by Mark first, or I will need some data examples.
+> Our clients rely on us to provide accurate and reliable predictions as =
+per the outlined design, hence their concern. As part of the machine =
+team, could you please look into these questions and offer an =
+explanation or solution?
+>=20
+> Also, please find attached the record of proceedings from our last =
+meeting. This may offer some context to help.
+>=20
+> We are counting on ML Team to help us resolve these concerns as =
+swiftly as possible so we can continue to provide our customers with the =
+high-quality service they expect from us.
+>=20
+> Best regards.
+>=20
+> <20230802.pdf>
+
+
+--Apple-Mail=_326507C0-2B05-439E-B6CC-4852A823D8FC
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Dear =
+Sara,<div><br></div><div><div>I read the 45-minute transcript of your =
+conversation with Cherubin to understand the whole situation. It looks =
+like we=E2=80=99re going back and forth over and over =
+again.</div><div><br></div><div>Let me briefly repeat the main idea of =
+the meeting with Yamadera san and you at the beginning of May (including =
+the follow-up emails): You should prepare the prototype in Looker Studio =
+for the client that can visualize the sales of the provided data (from =
+August to February) and the predicted data for a short period. Mark =
+would prepare the predicted data once you had provided him with the =
+necessary format. Moreover, Yamadera san told you that nobody expects =
+the ideal predictions because the amount of data is small (and also =
+because we didn=E2=80=99t have time and resources to apply advanced =
+models). You were assigned to prepare the Looker Studio prototype and =
+ask Mark to provide the data in the appropriate format. I offered to =
+help answer questions and provide suggestions (but not with =E2=80=9Cleadi=
+ng the project=E2=80=9D, since it=E2=80=99s a quick =
+prototype).&nbsp;</div><div><br></div><div>So both of your questions can =
+be answered based on that idea:</div><div>- we decided to run the =
+prediction for one month to showcase the possibility of predicting the =
+trends of sales. It=E2=80=99s not ideal, but it repeats the general =
+trend.</div><div>- in Machine learning, you need to use some of the data =
+for training. That=E2=80=99s why the data from August to January is used =
+to train the model that predicts the sales in =
+February.</div><div><br></div><div>So what you should do now: visualize =
+the predicted data for February. You told Cherubin that you received =
+some predicted data from Edward and you think that it fits better. In =
+such a case, you can visualize Edward=E2=80=99s data (but ask him to =
+explain how he got it). By the way, you haven=E2=80=99t shared the =
+Looker Studio report with me yet and only recently shared it with some =
+team members. If you had finished the prototype a long time ago, you =
+could share it with everybody by using dummy data instead of the =
+predicted one. In such a case, your work would be =
+completed.</div><div><br></div><div>You can even share two reports: one =
+with Mark=E2=80=99s data and the other one with Edward=E2=80=99s, so we =
+could compare, discuss, and make the decision =
+together.</div><div><br></div><div>If you look again at the =
+requirements: develop a quick prototype for the customers to show what =
+is possible in Looker Studio. If they like it, there will be additional =
+development of the interface, prediction model, =
+etc.</div></div><div><br></div><div>Best regards,</div><div>Victor =
+Khaustov</div><div><div><br><blockquote type=3D"cite"><div>On Aug 4, =
+2023, at 11:20, Sara Yuzuki &lt;dawei.jiang@nowhere.co.jp&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><div>
+
+ =20
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3DUTF-8">
+ =20
+  <div><p>
+      Dear Cherubin:
+    </p><p>
+      There have been some concerns raised by our customers regarding
+      the output being developed by Machine Team. Specifically, they
+      have presented us with two questions we need to address:
+    </p>
+    <ul class=3D"org-ul">
+      <li class=3D"off"><code>[&nbsp;]</code> Why is the system only =
+generating
+        predictions for one month in advance?</li>
+      <li class=3D"off"><code>[&nbsp;]</code> Why are there no =
+predictions
+        available for the period ranging from August 2022 to January
+        2023?</li>
+    </ul><p>
+      The nature of these questions suggests that the current output
+      does not align with our original design, which has been clearly
+      outlined in the requirement definitions. As a reminder, the
+      documentation can be found at our GitHub repository at:
+      <a =
+href=3D"https://github.com/eyesjapan/google-data-studio/blob/main/requirem=
+ent-definition.md" =
+class=3D"moz-txt-link-freetext">https://github.com/eyesjapan/google-data-s=
+tudio/blob/main/requirement-definition.md</a>
+    </p>
+    <ul class=3D"org-ul">
+      <li class=3D"off"><code>[&nbsp;]</code> The client prefers to use =
+Google
+        Data Studio for visualization. I understand that if we encounter
+        any limitations during the project, we are not responsible, as
+        we are following the client's instructions.</li>
+      <li class=3D"off"><code>[&nbsp;]</code> The AI prediction for =
+overlaying
+        daily sales at specific times (e.g., 12, 15, 17) will be handled
+        by Mark, not me. I will be responsible for visualizing the data
+        provided by Mark, which should be in CSV format.</li>
+      <li class=3D"off"><code>[&nbsp;]</code> The selection of days with =
+no
+        significant incidents to show the difference between AI
+        predictions and real results will also be provided by Mark. My
+        responsibility is to present the view of the CSV data or
+        results.</li>
+      <li class=3D"off"><code>[&nbsp;]</code> The same applies to the =
+daily
+        sales predictions for the three stores. I will be responsible
+        for data visualization, but the data should be predicted by Mark
+        first, or I will need some data examples.</li>
+    </ul><p>
+      Our clients rely on us to provide accurate and reliable
+      predictions as per the outlined design, hence their concern. As
+      part of the machine team, could you please look into these
+      questions and offer an explanation or solution?
+    </p><p>
+      Also, please find attached the record of proceedings from our last
+      meeting. This may offer some context to help.
+    </p><p>
+      We are counting on ML Team to help us resolve these concerns as
+      swiftly as possible so we can continue to provide our customers
+      with the high-quality service they expect from us.
+    </p><p>
+      Best regards.
+    </p>
+  </div>
+
+<span =
+id=3D"cid:2ECBA264-F198-49F3-93AA-64967F134496">&lt;20230802.pdf&gt;</span=
+></div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_326507C0-2B05-439E-B6CC-4852A823D8FC--

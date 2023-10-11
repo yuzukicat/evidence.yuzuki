@@ -1,0 +1,8 @@
+PD Project - Android Application Development:
+1. Revolved around the User Authentication (auth) back-end API. Integrating Amazon Web Services (AWS) Cognito as our chosen authentication backend.
+Placed the registration sign-in and sign-out functionalities of this system under thorough testing.
+2. Collaboration. Rigorous discussions were held with Tang on database backend specifications.
+Others:
+A concern raised this week regarding unclear boundaries and responsibilities. I was asked to tackle a problem outside my assigned duties. Aligning to more clear-cut roles will help to avoid any such discrepancies in the future, allowing us to focus more on our tasks at hand.
+PD Project - Android Application Development:
+1. GraphQL API service for integrating with the application and testing.

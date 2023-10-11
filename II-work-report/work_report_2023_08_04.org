@@ -1,0 +1,7 @@
+* Work Report 2023-08-04
+** 11:00--18:00 (Did not take a rest in the middle)
+*** 11:00--14:00 Review the presentation of project :SupermarketAI:
+*** 14:00--15:00 Present the project :SupermarketAI:
+*** 15:00--17:30 Documentation for last meeting with Cherubin && E-Mail Contacting Cherubin for                                                                                                          :SupermarketAI:Docs:
+*** explaining why there is only one month prediction and where there are no prediction from 2022-08--2023-01 :SupermarketAI:Coordinating:
+*** 17:30--18:00 Work Report :Others:

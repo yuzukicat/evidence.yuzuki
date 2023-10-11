@@ -1,0 +1,15 @@
+**PD Project - Android Application Development**
+API prototyping on AWS AppSync for our Android application.
+The prototype testing on the AppSync Konsole.
+
+**Others**
+I coordinated with Tang on various ongoing projects. The major updates from the discussion were as follows:
+1. All tasks relating to PD - Android Application Development are now on a hold, under Tang's supervision.
+2. The existing tasks linked with the Android Application Development have been sanctioned and marked as done by Tang. Thus, the PD - Android tasks relating to Auth and API, tagged as completed, will not be reassigned.
+3. No more tasks can be or going to be assigned to Yuzuki-san on the Osaka University Project due September 22.
+4. Despite Yuzuki-san's involvement in the Osaka University Project, the attempts to enhance the docker file haven't been marked as formal tasks.
+5. Tang decided not to relay these updates to Yamadera-san. Hence, they are included herein for utmost transparency.
+
+For these days, no specific tasks had been allocated to me.
+I am waiting for new project assignments while continuing to keep track of ongoing progress.
+Wait for task allocation or project involvement.

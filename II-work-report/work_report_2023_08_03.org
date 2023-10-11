@@ -1,0 +1,8 @@
+* Work Report 2023-08-03
+** 09:00--18:00 (Did not take a rest in the middle)
+*** 09:00--10:00 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 10:00--10:05 Morning Meeting :Others:Coordinating:
+*** 10:05--14:30 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 14:30--15:00 Collaborating with Edward about Data Presence :SupermarketAI:Collaborating:
+*** 15:00--17:00 Review the predicted data provided by machine learning team :SupermarketAI:
+*** 17:00--18:00 Weekly Report, Work Report :Others:Coordinating:

@@ -1,0 +1,20 @@
+--text follows this line--
+Dear Cherubin:
+
+There have been some concerns raised by our customers regarding the output being developed by Machine Team. Specifically, they have presented us with two questions we need to address:
+- [ ] Why is the system only generating predictions for one month in advance?
+- [ ] Why are there no predictions available for the period ranging from August 2022 to January 2023?
+
+The nature of these questions suggests that the current output does not align with our original design, which has been clearly outlined in the requirement definitions. As a reminder, the documentation can be found at our GitHub repository at:
+https://github.com/eyesjapan/google-data-studio/blob/main/requirement-definition.md
+- [ ] The client prefers to use Google Data Studio for visualization. I understand that if we encounter any limitations during the project, we are not responsible, as we are following the client's instructions.
+- [ ] The AI prediction for overlaying daily sales at specific times (e.g., 12, 15, 17) will be handled by Mark, not me. I will be responsible for visualizing the data provided by Mark, which should be in CSV format.
+- [ ] The selection of days with no significant incidents to show the difference between AI predictions and real results will also be provided by Mark. My responsibility is to present the view of the CSV data or results.
+- [ ] The same applies to the daily sales predictions for the three stores. I will be responsible for data visualization, but the data should be predicted by Mark first, or I will need some data examples.
+Our clients rely on us to provide accurate and reliable predictions as per the outlined design, hence their concern. As part of the machine team, could you please look into these questions and offer an explanation or solution?
+
+Also, please find attached the record of proceedings from our last meeting. This may offer some context to help.
+
+We are counting on ML Team to help us resolve these concerns as swiftly as possible so we can continue to provide our customers with the high-quality service they expect from us.
+
+Best regards.
